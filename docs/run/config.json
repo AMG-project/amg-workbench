@@ -1,0 +1,28 @@
+{
+ "model": "purpose",
+ "outcomes": [
+  "pi_star",
+  "A",
+  "B"
+ ],
+ "top": 3,
+ "candidates": 4,
+ "base_n": 128,
+ "grid": 81,
+ "seed": 0,
+ "diverse": true,
+ "optimise": "pi",
+ "fixed": {
+  "fsi_employees": 0.6,
+  "fsi_shareholders": 0.6,
+  "fsi_community": 0.6,
+  "outside_employees": 0.3,
+  "outside_shareholders": 0.3,
+  "outside_community": 0.3
+ },
+ "fingerprints": [
+  "68225e7096fe6283",
+  "6ec8419c20eb5bc0",
+  "ba2a37999a01e893"
+ ]
+}

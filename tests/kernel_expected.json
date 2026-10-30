@@ -1,0 +1,177 @@
+{
+ "scope": {
+  "a": 2.0,
+  "b": 3.0,
+  "c": 0.5,
+  "k_clarity": 1.25,
+  "purpose_clarity_factor": 0.4,
+  "t_x_to_y": 0.75,
+  "rho": 2.0
+ },
+ "valid": [
+  {
+   "src": "a",
+   "py": 2.0
+  },
+  {
+   "src": "a + b",
+   "py": 5.0
+  },
+  {
+   "src": "a - b",
+   "py": -1.0
+  },
+  {
+   "src": "a * b",
+   "py": 6.0
+  },
+  {
+   "src": "a / b",
+   "py": 0.6666666666666666
+  },
+  {
+   "src": "a ** b",
+   "py": 8.0
+  },
+  {
+   "src": "a + b * c",
+   "py": 3.5
+  },
+  {
+   "src": "(a + b) * c",
+   "py": 2.5
+  },
+  {
+   "src": "a - b - c",
+   "py": -1.5
+  },
+  {
+   "src": "a / b / c",
+   "py": 1.3333333333333333
+  },
+  {
+   "src": "a ** b ** c",
+   "py": 3.3219970854839125
+  },
+  {
+   "src": "-a",
+   "py": -2.0
+  },
+  {
+   "src": "-(a ** 2)",
+   "py": -4.0
+  },
+  {
+   "src": "a * -b",
+   "py": -6.0
+  },
+  {
+   "src": "-a + b",
+   "py": 1.0
+  },
+  {
+   "src": "min(a, b)",
+   "py": 2.0
+  },
+  {
+   "src": "max(a, b)",
+   "py": 3.0
+  },
+  {
+   "src": "min(a, max(b, c))",
+   "py": 2.0
+  },
+  {
+   "src": "exp(c)",
+   "py": 1.6487212707001282
+  },
+  {
+   "src": "log(a)",
+   "py": 0.6931471805599453
+  },
+  {
+   "src": "exp(log(a))",
+   "py": 2.0
+  },
+  {
+   "src": "2.5 * a",
+   "py": 5.0
+  },
+  {
+   "src": "0.5",
+   "py": 0.5
+  },
+  {
+   "src": "a * 0.5 + b * 0.5",
+   "py": 2.5
+  },
+  {
+   "src": "k_clarity / (k_clarity + purpose_clarity_factor) ** 2",
+   "py": 0.45913682277318646
+  },
+  {
+   "src": "(1 - exp(-2 * purpose_clarity_factor)) / (1 - exp(-2))",
+   "py": 0.6368607683496674
+  },
+  {
+   "src": "(0.5 * t_x_to_y ** rho + 0.5 * c ** rho) ** (1 / rho)",
+   "py": 0.6373774391990981
+  },
+  {
+   "src": "max(t_x_to_y, 1 - t_x_to_y)",
+   "py": 0.75
+  }
+ ],
+ "refused": [
+  {
+   "src": "secret_variable",
+   "says": "is not a declared name"
+  },
+  {
+   "src": "a +",
+   "says": "an operator with nothing to work on"
+  },
+  {
+   "src": "(a + b",
+   "says": "unbalanced brackets"
+  },
+  {
+   "src": "a + b)",
+   "says": "unbalanced brackets"
+  },
+  {
+   "src": "min(a)",
+   "says": "wrong number of arguments"
+  },
+  {
+   "src": "exp(a, b)",
+   "says": "not a single expression"
+  },
+  {
+   "src": "a $ b",
+   "says": "cannot read"
+  },
+  {
+   "src": "A + b",
+   "says": "cannot read"
+  }
+ ],
+ "too_long": {
+  "src": "a + a + a + a + a + a + a + a + a + a + a + a + a + a + a + a + a + a + a + a + a + a + a + a + a + a + a + a + a + a + a + a + a + a + a + a + a + a + a + a + a + a + a + a + a + a + a + a + a + a + a + a + a + a + a + a + a + a + a + a + a + a + a + a + a + a + a + a + a + a + a + a + a + a + a + a + a + a + a + a + a + a + a + a + a + a + a + a + a + a + a + a + a + a + a + a + a + a + a + a + a + a + a + a + a + a + a + a + a + a + a + a + a + a + a + a + a + a + a + a + a",
+  "says": "longer than 400 characters"
+ },
+ "tolerated": [
+  {
+   "src": "a + + b",
+   "py": 5.0
+  },
+  {
+   "src": "a - -b",
+   "py": 5.0
+  },
+  {
+   "src": "a * +b",
+   "py": 6.0
+  }
+ ]
+}

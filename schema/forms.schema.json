@@ -1,0 +1,46 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://bellapurpose.org/amg/forms.schema.json",
+  "title": "The registry of named forms",
+  "description": "The classes of functional form this bench enumerates over, as a file an engine in any language can read. Every robustness claim the bench makes is a claim about these expressions: a conclusion that survived a hundred form combinations survived a particular hundred, and `tag` is what lets a reader comparing two runs know whether they were the same hundred. Generated from docs/bench/core/forms.js by scripts/forms_json.mjs and held to it by tests/forms.test.mjs, so the file and the module cannot drift.",
+  "type": "object",
+  "required": ["format", "v", "tag", "properties", "families"],
+  "properties": {
+    "format": {"const": "amg-forms"},
+    "v": {"const": 1},
+    "tag": {"type": "string",
+      "description": "A short deterministic digest over every family name, its declared properties and its member expressions, with the family and member counts after it. A result, a proof or a deposit cites this to say WHICH registry it was computed over. Not a cryptographic digest and not pretending to be one: it answers whether two runs used the same registry, and it answers it synchronously, which is what lets it travel in a render."},
+    "what": {"type": "string"},
+    "properties": {
+      "description": "What a scholar can declare about a shape. A class is conjunctive: a family serves it only where the family's own properties carry every one of them.",
+      "type": "array", "items": {"type": "string"}
+    },
+    "families": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["family", "properties", "members"],
+        "properties": {
+          "family": {"type": "string"},
+          "properties": {"type": "array", "items": {"type": "string"},
+            "description": "What every member of this family is claimed to have. A family whose members do not have the properties it claims is not a class, it is a list."},
+          "members": {
+            "type": "array", "minItems": 1,
+            "items": {
+              "type": "object",
+              "required": ["name", "expr"],
+              "properties": {
+                "name": {"type": "string"},
+                "expr": {"type": "string",
+                  "description": "The member in the bench grammar, with X for what the term reads. The grammar is + - * / ** and exp log min max, and nothing else, so the same string runs in the page, under node, and in any engine that implements eight operators."}
+              }
+            }
+          }
+        }
+      }
+    },
+    "counts": {"type": "object",
+      "properties": {"families": {"type": "integer", "minimum": 0},
+        "members": {"type": "integer", "minimum": 0}}}
+  }
+}

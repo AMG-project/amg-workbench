@@ -1,0 +1,2291 @@
+{
+ "format": "amg-scenario",
+ "v": 1,
+ "bench": {
+  "v": "0.14",
+  "at": "2026-10-22"
+ },
+ "corpus": {
+  "commit": "a6845a8",
+  "at": "2026-10-23"
+ },
+ "at": "2026-10-29T22:13:23.844Z",
+ "name": "Purpose and property rights",
+ "snap": {
+  "stage": 1,
+  "jr": [
+   "Strategy Science",
+   "Journal of Management Studies",
+   "Academy of Management Review",
+   "Organization Science",
+   "Management Science",
+   "Strategic Management Journal",
+   "Journal of Management",
+   "Academy of Management Journal",
+   "American Economic Review",
+   "Academy of Management Annals",
+   "Administrative Science Quarterly",
+   "Organization Studies"
+  ],
+  "ap": "all",
+  "minp": 2,
+  "tight": 0.15,
+  "collapse": false,
+  "ev": "all",
+  "sgn": "all",
+  "core": false,
+  "hideIso": true,
+  "bar": {
+   "Comm": 1,
+   "Spec": 1,
+   "Evid": 1
+  },
+  "need": {
+   "Comm": {},
+   "Spec": {},
+   "Evid": {}
+  },
+  "apply": {
+   "Comm": "dim",
+   "Spec": "dim",
+   "Evid": "dim"
+  },
+  "matter": 0,
+  "msel": [
+   "contractibility",
+   "ai_contractibility_shift"
+  ],
+  "admit": [
+   "costly-public-purpose-commitment",
+   "organizational-purpose-as-stated-aspiration",
+   "control-rights-allocation",
+   "shirking-vulnerability",
+   "externality-vulnerability"
+  ],
+  "xAxis": "papers",
+  "yAxis": "level",
+  "layout": "clusters",
+  "cBy": "ap",
+  "sBy": "claims",
+  "com": {
+   "hub": "",
+   "ties": {
+    "papers": true,
+    "arrows": true,
+    "simil": false
+   },
+   "res": 1,
+   "names": {},
+   "moves": {},
+   "descr": {},
+   "were": [
+    {
+     "id": "k:activist-hedge-fund-targeting",
+     "members": [
+      "activist-hedge-fund-targeting",
+      "affect-based-trust-in-firm",
+      "benefit-corporation-legal-form",
+      "business-nature-change",
+      "business-practice-alignment",
+      "collective-purpose-declaration",
+      "community-economic-resilience",
+      "contradictory-evidence-discovery-likelihood",
+      "corporate-social-performance",
+      "economic-adversity",
+      "economic-liberalism",
+      "employee-recruitment-attraction",
+      "external-governance-actor-scrutiny",
+      "firm-moral-reputation",
+      "firm-resource-access",
+      "governance-model-comparative-efficiency",
+      "hard-law-governance-mandate",
+      "inside-out-purpose-movement-diffusion",
+      "managerial-shareholder-value-orientation",
+      "national-culture",
+      "organizational-cohesion",
+      "organizational-purpose-breadth",
+      "owner-managed-small-business",
+      "public-purpose-claims-communicated",
+      "purpose-claim-legitimacy",
+      "purpose-impact-achievement",
+      "purpose-stakeholder-value-congruence",
+      "purpose-washing",
+      "regulatory-adequacy",
+      "shared-value-purpose-frame",
+      "shareholder-primacy",
+      "societal-economic-inequality",
+      "soft-law-governance-standards",
+      "stakeholder-collaboration-with-activists",
+      "stakeholder-enfranchisement",
+      "stakeholder-engagement",
+      "stakeholder-impact-data-transparency",
+      "stakeholder-oriented-practice-adoption",
+      "stakeholder-trust",
+      "stakeholder-value-distribution",
+      "stated-purpose-commitment",
+      "sustainable-product-development-success"
+     ]
+    },
+    {
+     "id": "k:business-school-re-purposing",
+     "members": [
+      "business-school-re-purposing",
+      "collective-mobilization-toward-societal-betterment",
+      "corporate-personhood",
+      "director-fiduciary-liability-concern",
+      "executive-decision-myopia",
+      "external-stakeholder-cooptation",
+      "formal-governance-purpose-reforms",
+      "institutional-leadership-work",
+      "institutionalization-value-infusion",
+      "intraorganizational-collective-action",
+      "intraorganizational-rivalry",
+      "legacy-culture-inertia",
+      "organizational-history-embeddedness",
+      "organizational-hybridity",
+      "organizational-purpose-content",
+      "profit-potential-evaluation-criterion",
+      "purpose-as-institutionalized-ideal",
+      "purpose-clarity-and-credibility",
+      "purpose-embodiment-in-structures-and-practices",
+      "purpose-internal-acceptance-breadth",
+      "purpose-moral-appeal",
+      "purpose-realization-in-practice",
+      "purpose-shaping-capacity",
+      "purpose-societal-ideal-coupling",
+      "purpose-value-displacement-risk",
+      "shareholder-primacy-logic-dominance",
+      "social-cooperation-capacity",
+      "societal-purpose-of-the-corporation",
+      "societal-purpose-realization",
+      "stakeholder-identification-with-corporate-persona",
+      "systemic-change-catalyzed"
+     ]
+    },
+    {
+     "id": "k:agentic-action-principle-consistency",
+     "members": [
+      "agentic-action-principle-consistency",
+      "clarity-only-index",
+      "collective-action-problem-framing",
+      "cooperation-in-collective-action-dilemma",
+      "cross-ownership",
+      "firm-overall-performance",
+      "firm-stakeholder-relationship-quality",
+      "future-abnormal-stock-return",
+      "intra-industry-cooperative-action",
+      "leader-vision-imaginary-communication",
+      "long-term-investor-orientation",
+      "organizational-innovativeness",
+      "prosocial-behavior-engagement",
+      "public-listing-status",
+      "purpose-clarity-factor",
+      "relational-contract-strength",
+      "residual-claim-rights-allocation",
+      "residual-risk-bearing-decoupling",
+      "shareholder-interest-heterogeneity",
+      "shareholder-primacy-purpose-orientation",
+      "shareholder-short-term-orientation",
+      "shareholder-value-produced",
+      "stakeholder-value-created",
+      "strategic-alignment"
+     ]
+    },
+    {
+     "id": "k:audience-granted-firm-purposefulness",
+     "members": [
+      "audience-granted-firm-purposefulness",
+      "complex-problem-response-preparedness",
+      "corporate-mind",
+      "decision-quality",
+      "firm-competitive-strength",
+      "firm-ownership-structure-form",
+      "firm-specific-investment",
+      "innovation-outcome-impact",
+      "mission-drift",
+      "organizational-identity",
+      "organizational-purpose-existence",
+      "organizational-survival",
+      "purpose-as-firm-articulated-intent",
+      "purpose-deployment-effectiveness",
+      "purpose-directional-clarity",
+      "purpose-induced-tension-and-tradeoff",
+      "purpose-problem-solving-definition",
+      "stakeholder-expected-utility-from-exchange",
+      "stakeholder-utility-received",
+      "stock-market-index-outperformance",
+      "strategic-opportunity-identification",
+      "system-interdependency-visibility"
+     ]
+    },
+    {
+     "id": "k:ascriptive-status-barriers",
+     "members": [
+      "ascriptive-status-barriers",
+      "employee-disillusionment-with-purpose",
+      "firm-size-employee-count",
+      "member-beneficiary-engagement",
+      "monetary-incentive",
+      "objective-correlation",
+      "organizational-legitimacy",
+      "perceived-organizational-purpose",
+      "perceived-work-meaningfulness",
+      "performance-incentive-scheme-introduction",
+      "principal-mission-motivation",
+      "prosocial-employee-sorting",
+      "prosocial-mission",
+      "purpose-as-employee-belief",
+      "radical-purpose-adaptation",
+      "stakeholder-cynicism",
+      "subjective-wellbeing",
+      "turnover-intention",
+      "work-engagement",
+      "worker-effort"
+     ]
+    }
+   ]
+  },
+  "groups": [
+   {
+    "id": "demo-performance",
+    "name": "Firm accounting performance",
+    "color": "#4f7fa8",
+    "members": [
+     "firm-accounting-performance",
+     "firm-overall-performance",
+     "stock-market-index-outperformance"
+    ]
+   },
+   {
+    "id": "demo-prosocial",
+    "name": "Prosocial purpose commitment",
+    "color": "#5f8f6a",
+    "members": [
+     "prosocial-mission",
+     "societal-purpose-realization",
+     "purpose-societal-ideal-coupling",
+     "costly-public-purpose-commitment"
+    ]
+   },
+   {
+    "id": "gmvkywy410",
+    "name": "Purpose clarity",
+    "members": [
+     "purpose-clarity-factor",
+     "purpose-directional-clarity"
+    ],
+    "color": "#5f8f6a"
+   },
+   {
+    "id": "gmvkywy411",
+    "name": "Stated purpose commitment",
+    "members": [
+     "stated-purpose-commitment",
+     "organizational-purpose-as-stated-aspiration"
+    ],
+    "color": "#8a5f96"
+   }
+  ],
+  "dropped": {
+   "c": [
+    "acquisition-occurrence",
+    "acquisition-uniqueness",
+    "activist-hedge-fund-targeting",
+    "affect-based-trust-in-firm",
+    "agentic-action-principle-consistency",
+    "alignment-logic-framing",
+    "alternative-institutional-logic-availability",
+    "american-dream-credibility",
+    "analyst-appraisal-negativity",
+    "architectural-innovation-capability",
+    "ascriptive-status-barriers",
+    "attentional-coherence",
+    "attentional-extent",
+    "attentional-myopia",
+    "attentional-stability",
+    "audience-granted-firm-purposefulness",
+    "audience-suspicion-of-focus-loss",
+    "authenticity-claim-signalling",
+    "authorized-action-alignment",
+    "beneficiary-transition-outcomes",
+    "benefit-corporation-legal-form",
+    "board-bridge-task",
+    "board-buffer-task",
+    "board-control-over-corporate-policy",
+    "board-formal-independence",
+    "boardroom-structural-forces",
+    "boundary-spanner-agency",
+    "boundary-spanner-legitimate-latitude",
+    "broad-temporal-frame",
+    "business-action-in-public-interest",
+    "business-case-framing",
+    "business-nature-change",
+    "business-practice-alignment",
+    "business-school-public-good-creation",
+    "business-school-re-purposing",
+    "change-strategy-depth",
+    "character-commitment-congruence",
+    "civic-wealth",
+    "clarity-only-index",
+    "classic-performance-indicator-pressure",
+    "cognitive-trust-in-firm",
+    "collaborative-community-inclusion",
+    "collective-action-problem-framing",
+    "collective-catastrophic-event",
+    "collective-mobilization-toward-societal-betterment",
+    "collective-nostalgia-for-traditional-values",
+    "collective-performance-quality",
+    "collective-purpose-declaration",
+    "commercial-community-inclusion",
+    "commitment-to-constituencies",
+    "common-purpose-advantage",
+    "community-economic-resilience",
+    "competitive-advantage-purpose-orientation",
+    "competitive-aggressiveness",
+    "competitive-imitation-of-peers",
+    "complex-problem-response-preparedness",
+    "conflict-over-purpose",
+    "contradictory-evidence-discovery-likelihood",
+    "cooperation-in-collective-action-dilemma",
+    "corporate-mind",
+    "corporate-personhood",
+    "corporate-purpose-debate-intensity",
+    "corporate-social-performance",
+    "cross-cultural-value-collision",
+    "cross-ownership",
+    "cross-unit-strategy-borrowing-and-recombination",
+    "csr-contingent-executive-pay",
+    "cultural-sedimentation-of-practice-change",
+    "decision-quality",
+    "dedicated-shareholder-class",
+    "deliberate-mission-redefinition",
+    "democratic-control-of-the-corporate-economy",
+    "demonstrated-social-impact",
+    "director-dissent-expression",
+    "director-fiduciary-liability-concern",
+    "director-multiple-role-identity-struggle",
+    "drift-detectability",
+    "economic-adversity",
+    "economic-liberalism",
+    "economic-value-created",
+    "eewb-benefit-others-in-community",
+    "eewb-mastery-enterprise",
+    "eewb-mastery-household",
+    "eewb-self-cultivation",
+    "eewb-social-recognition-enterprise",
+    "eewb-social-recognition-household",
+    "emergent-member-practices",
+    "emergent-purpose-frame-drift",
+    "emotional-tension-at-work",
+    "empathetic-relating",
+    "employee-creative-work-quality",
+    "employee-disillusionment-with-purpose",
+    "employee-intrinsic-and-transcendent-motivation",
+    "employee-organizational-identification",
+    "employee-performance",
+    "employee-recruitment-attraction",
+    "employee-rights-cession",
+    "employee-risk-taking",
+    "employee-social-identity",
+    "employee-social-initiative-participation",
+    "employee-social-reputation",
+    "employee-stewardship-behavior",
+    "employee-turnover-total",
+    "enactment-of-meaningful-work",
+    "enrolling-purpose-work",
+    "enterprise-related-learning",
+    "entrepreneurial-eudaimonic-wellbeing",
+    "environmental-uncertainty",
+    "executive-decision-myopia",
+    "executive-short-term-performance-prioritization",
+    "external-governance-actor-scrutiny",
+    "external-stakeholder-cooptation",
+    "family-director-role-configuration",
+    "favourable-accident-occurrence",
+    "feedback-loop-accounting",
+    "financial-performance-relative-to-aspirations",
+    "financial-social-tradeoff-intensity",
+    "firm-authenticity-judgement",
+    "firm-competitive-advantage",
+    "firm-competitive-strength",
+    "firm-equilibrium-profit",
+    "firm-financial-prospects",
+    "firm-formalization-under-mandate",
+    "firm-internalization-propensity",
+    "firm-long-term-orientation",
+    "firm-moral-reputation",
+    "firm-ownership-structure-form",
+    "firm-public-listing-status",
+    "firm-resource-access",
+    "firm-short-term-value",
+    "firm-size-employee-count",
+    "firm-specific-investment",
+    "firm-stakeholder-coordination-in-planning",
+    "firm-stakeholder-relationship-quality",
+    "formal-authenticity-certification",
+    "formal-governance-purpose-reforms",
+    "founder-early-commitment",
+    "future-abnormal-stock-return",
+    "gatekeeper-advocacy-for-sustainable-product",
+    "governance-model-comparative-efficiency",
+    "grand-challenge-research-capacity",
+    "hard-law-governance-mandate",
+    "hedge-fund-ownership-share",
+    "high-performance-work-system-adoption",
+    "holistic-issue-comprehension",
+    "household-related-learning",
+    "identity-reputation-complementarity",
+    "imaginativeness-in-stakeholder-contexts",
+    "imagined-novel-possibilities",
+    "index-fund-ownership-concentration",
+    "infomediary-coverage-favorability",
+    "information-communication-technology-diffusion",
+    "innovation-outcome-impact",
+    "inside-out-purpose-movement-diffusion",
+    "institutional-leadership-work",
+    "institutionalization-value-infusion",
+    "instrumental-output-orientation",
+    "instrumental-purpose-logic-dominance",
+    "international-student-revenue-dependence",
+    "international-treaty-presence",
+    "intra-industry-cooperative-action",
+    "intraorganizational-collective-action",
+    "intraorganizational-rivalry",
+    "intraorganizational-trust",
+    "intrinsic-work-motivation",
+    "job-satisfaction",
+    "leader-minority-status",
+    "leader-prosocial-motivation",
+    "leader-strategic-agency",
+    "leader-value-communication",
+    "leader-vision-imaginary-communication",
+    "legacy-culture-inertia",
+    "legitimate-formal-purpose-standards",
+    "listed-corporation-prevalence",
+    "local-economic-and-social-dislocation",
+    "local-mission-interpretation",
+    "local-strategy-plurality",
+    "long-term-investor-orientation",
+    "manager-objective-scope",
+    "managerial-positional-power-in-core-unit",
+    "managerial-shareholder-value-orientation",
+    "meaning-making-through-work",
+    "member-beneficiary-engagement",
+    "member-doubt-in-purpose-feasibility",
+    "member-exit-over-purpose",
+    "member-purpose-guided-behavior",
+    "metric-relaxation-for-product-team",
+    "mission-choice-delegation",
+    "mission-drift",
+    "mission-match-quality",
+    "mission-oriented-local-initiative-variety",
+    "monetary-incentive",
+    "money-salience",
+    "moral-emotions-in-interaction",
+    "multi-stakeholder-organization-presence",
+    "narrative-enactment-discrepancy",
+    "narrative-understanding-discrepancy",
+    "national-culture",
+    "national-hegemonic-power",
+    "national-legal-system",
+    "objective-correlation",
+    "objective-intrinsic-value-content",
+    "organizational-character-distinctiveness",
+    "organizational-cohesion",
+    "organizational-history-embeddedness",
+    "organizational-hybridity",
+    "organizational-identity",
+    "organizational-information-load",
+    "organizational-innovativeness",
+    "organizational-legitimacy",
+    "organizational-purpose-as-worth-claim",
+    "organizational-purpose-breadth",
+    "organizational-purpose-content",
+    "organizational-purpose-existence",
+    "organizational-reputation",
+    "organizational-survival",
+    "outside-in-pressure-for-change",
+    "owner-managed-small-business",
+    "owner-purpose-identification-with-business",
+    "participatory-purpose-development",
+    "partner-purpose-advancing-action",
+    "partner-purpose-advancing-capacity",
+    "partner-purpose-priority-sensing",
+    "partner-purpose-sympathizing",
+    "peer-entrepreneur-tie-strength",
+    "perceived-firm-ability",
+    "perceived-firm-benevolence",
+    "perceived-firm-integrity",
+    "perceived-organizational-purpose",
+    "perceived-relational-and-reputational-risk",
+    "perceived-relative-financial-performance",
+    "performance-incentive-scheme-introduction",
+    "pluralism-acceptance-as-mission-consistent",
+    "pluralistic-ignorance",
+    "practical-consciousness-reliance",
+    "practice-drift",
+    "prevailing-social-evaluation-standard",
+    "principal-mission-motivation",
+    "private-equity-ownership",
+    "profit-potential-evaluation-criterion",
+    "prosocial-behavior-engagement",
+    "prosocial-employee-sorting",
+    "psychological-and-work-design-change",
+    "public-good-provision",
+    "public-listing-status",
+    "public-purpose-claims-communicated",
+    "purpose-account-provision",
+    "purpose-alignment",
+    "purpose-articulation-maintenance-evolvability-processes",
+    "purpose-as-employee-belief",
+    "purpose-as-firm-articulated-intent",
+    "purpose-as-institutionalized-ideal",
+    "purpose-as-intersubjective-postulate",
+    "purpose-as-public-signal",
+    "purpose-as-stakeholder-interest-overlap",
+    "purpose-authenticity-and-coherence",
+    "purpose-before-profit-aspiration",
+    "purpose-blueprints-for-credible-commitments",
+    "purpose-borrowing",
+    "purpose-camaraderie-factor",
+    "purpose-claim-legitimacy",
+    "purpose-clarity-and-credibility",
+    "purpose-conception-abstractness",
+    "purpose-coordinated-organizational-action",
+    "purpose-deployment-effectiveness",
+    "purpose-derived-business-scope-restriction",
+    "purpose-embedding-precariousness",
+    "purpose-embodiment-in-structures-and-practices",
+    "purpose-embodying-precariousness",
+    "purpose-formalization",
+    "purpose-fragmentation",
+    "purpose-governance-alignment",
+    "purpose-identity-alignment",
+    "purpose-impact-achievement",
+    "purpose-induced-tension-and-tradeoff",
+    "purpose-inside-out",
+    "purpose-instrumental-conception",
+    "purpose-integration-work",
+    "purpose-internal-acceptance-breadth",
+    "purpose-mission-transformational-orientation",
+    "purpose-moral-appeal",
+    "purpose-motivating-power",
+    "purpose-narrative-ambiguity",
+    "purpose-narrative-practice-grounding",
+    "purpose-outside-in",
+    "purpose-problem-solving-definition",
+    "purpose-profit-logic-centrality",
+    "purpose-profit-logic-incompatibility",
+    "purpose-progress-evidence",
+    "purpose-prosocial-mission-facet",
+    "purpose-realization-in-practice",
+    "purpose-relational-principles-facet",
+    "purpose-reputation-congruence",
+    "purpose-revisability",
+    "purpose-shaping-capacity",
+    "purpose-signal-strength",
+    "purpose-societal-ideal-coupling",
+    "purpose-stakeholder-value-congruence",
+    "purpose-task-gulf",
+    "purpose-theorization-work",
+    "purpose-value-displacement-risk",
+    "purpose-washing",
+    "purpose-work-practices",
+    "radical-purpose-adaptation",
+    "radius-of-trust-objects",
+    "ranking-based-field-evaluation",
+    "regulatory-adequacy",
+    "relational-contract-strength",
+    "repeated-organizational-success",
+    "repurposed-management",
+    "residual-claim-rights-allocation",
+    "residual-risk-bearing-decoupling",
+    "responsible-innovation-diffusion-scale",
+    "responsible-innovation-frame-centrality",
+    "rival-stakeholder-access-foreclosure",
+    "self-interested-inward-focus",
+    "serendipitous-inspiration",
+    "share-ownership-nature",
+    "shared-organizational-identity",
+    "shared-ultimate-goal",
+    "shared-value-purpose-frame",
+    "shareholder-interest-heterogeneity",
+    "shareholder-primacy",
+    "shareholder-primacy-logic-dominance",
+    "shareholder-primacy-norm-entrenchment",
+    "shareholder-primacy-purpose-orientation",
+    "shareholder-short-term-orientation",
+    "shareholder-value-produced",
+    "shifting-normative-baselines",
+    "situational-purpose",
+    "social-cooperation-capacity",
+    "social-distancing-sanction",
+    "social-impact-quantification",
+    "social-purpose-as-prosocial-motive",
+    "social-welfare-outcomes",
+    "socially-conscious-user-and-catalyst-support",
+    "societal-attention-to-corporate-purpose",
+    "societal-disenchantment",
+    "societal-economic-inequality",
+    "societal-purpose-of-the-corporation",
+    "societal-purpose-realization",
+    "societal-purpose-salience",
+    "societal-transformation",
+    "soft-law-governance-standards",
+    "spatial-myopia",
+    "stabilizing-purpose-work",
+    "stakeholder-affective-arousal",
+    "stakeholder-capitalism-adoption",
+    "stakeholder-collaboration-with-activists",
+    "stakeholder-cooperative-behavior",
+    "stakeholder-cynicism",
+    "stakeholder-discretionary-effort",
+    "stakeholder-enfranchisement",
+    "stakeholder-engagement",
+    "stakeholder-expected-utility-from-exchange",
+    "stakeholder-governance-model-durability",
+    "stakeholder-identification-with-corporate-persona",
+    "stakeholder-impact-data-transparency",
+    "stakeholder-intrinsic-motivation",
+    "stakeholder-management-capability",
+    "stakeholder-management-imperative",
+    "stakeholder-moral-concern-breadth",
+    "stakeholder-oriented-practice-adoption",
+    "stakeholder-perceived-distributive-fairness",
+    "stakeholder-perspective-knowledge",
+    "stakeholder-political-ideology",
+    "stakeholder-positive-affect",
+    "stakeholder-purpose-of-business-belief",
+    "stakeholder-relationship-formation-intention",
+    "stakeholder-trust",
+    "stakeholder-utility-received",
+    "stakeholder-value-contribution",
+    "stakeholder-value-created",
+    "stakeholder-value-distribution",
+    "stewardship-stakeholder-management",
+    "stock-market-index-outperformance",
+    "strategic-alignment",
+    "strategic-opportunity-identification",
+    "strategic-purpose-as-firm-logic-of-action",
+    "strategist-abiding-values-and-ideals",
+    "strategist-moral-imagination",
+    "strategist-moral-leadership",
+    "strategist-shaping-intentions",
+    "strategist-value-postulate-formation",
+    "strategy-tool-kit-codification",
+    "subjective-wellbeing",
+    "subsociety-social-response-intensity",
+    "success-metric-claim-tension",
+    "supervisor-admiration-and-status-conferral",
+    "sustainability-committee-presence",
+    "sustainable-product-anchoring-in-mainstream-business",
+    "sustainable-product-development-success",
+    "symbolic-action-reputational-benefit",
+    "symbolic-management-support",
+    "system-interdependency-visibility",
+    "systemic-change-catalyzed",
+    "team-coordination",
+    "temporal-myopia",
+    "the-collective-desirable",
+    "transboundary-resource-conflict",
+    "transient-shareholder-class",
+    "trust-miscalibration",
+    "turnover-intention",
+    "venture-performance",
+    "welfare-state-provision-coverage",
+    "work-as-calling-orientation",
+    "work-engagement",
+    "work-life-conflict",
+    "worker-awareness-of-work-consequences-for-others",
+    "worker-effort",
+    "worker-mission-motivation",
+    "workload-surge",
+    "workplace-democratic-control"
+   ],
+   "k": [
+    "039-henderson-2021#claim-27"
+   ]
+  },
+  "apart": [
+   "control-rights-allocation|residual-claim-rights-allocation",
+   "control-rights-allocation|residual-control-rights-allocation",
+   "externality-vulnerability|shirking-vulnerability"
+  ],
+  "decided": [],
+  "spec": [
+   [
+    "purpose-clarity-factor>firm-overall-performance",
+    {
+     "rel": "",
+     "roles": [
+      "generates"
+     ],
+     "props": [
+      "f(0)=0",
+      "f(1)=1",
+      "increasing"
+     ],
+     "lo": 0,
+     "hi": 1,
+     "elo": null,
+     "ehi": null,
+     "note": "",
+     "at": "2026-10-29",
+     "role": ""
+    }
+   ],
+   [
+    "perceived-work-meaningfulness>firm-overall-performance",
+    {
+     "rel": "",
+     "roles": [
+      "generates"
+     ],
+     "props": [
+      "f(0)=0",
+      "f(1)=1",
+      "increasing"
+     ],
+     "lo": 0,
+     "hi": 1,
+     "elo": null,
+     "ehi": null,
+     "note": "",
+     "at": "2026-10-29",
+     "role": ""
+    }
+   ],
+   [
+    "prosocial-mission>perceived-work-meaningfulness",
+    {
+     "rel": "",
+     "roles": [
+      "generates"
+     ],
+     "props": [
+      "f(0)=0",
+      "f(1)=1",
+      "increasing"
+     ],
+     "lo": 0,
+     "hi": 1,
+     "elo": null,
+     "ehi": null,
+     "note": "",
+     "at": "2026-10-29",
+     "role": ""
+    }
+   ],
+   [
+    "mr:contractibility",
+    {
+     "rel": "",
+     "roles": [],
+     "props": [
+      "f(0)=0",
+      "f(1)=1"
+     ],
+     "lo": 0,
+     "hi": 1,
+     "elo": null,
+     "ehi": null,
+     "note": "Not increasing. The imported model calls this one ALLOCATES and redistributive: it moves value between the two channels rather than adding to either, so it rises on one side exactly as it falls on the other.",
+     "at": "2026-10-23"
+    }
+   ],
+   [
+    "mr:ai_contractibility_shift",
+    {
+     "rel": "",
+     "roles": [],
+     "props": [
+      "f(0)=0",
+      "f(1)=1"
+     ],
+     "lo": 0,
+     "hi": 1,
+     "elo": null,
+     "ehi": null,
+     "note": "Not increasing. The imported model calls this one ALLOCATES and redistributive: it moves value between the two channels rather than adding to either, so it rises on one side exactly as it falls on the other.",
+     "at": "2026-10-23"
+    }
+   ],
+   [
+    "shirking-vulnerability>control-rights-allocation",
+    {
+     "rel": "",
+     "roles": [
+      "generates"
+     ],
+     "props": [],
+     "lo": 0,
+     "hi": 1,
+     "elo": null,
+     "ehi": null,
+     "note": "",
+     "role": "",
+     "at": "2026-10-29"
+    }
+   ],
+   [
+    "externality-vulnerability>control-rights-allocation",
+    {
+     "rel": "",
+     "roles": [
+      "generates"
+     ],
+     "props": [],
+     "lo": 0,
+     "hi": 1,
+     "elo": null,
+     "ehi": null,
+     "note": "",
+     "role": "",
+     "at": "2026-10-29"
+    }
+   ]
+  ],
+  "vtype": [
+   {
+    "id": "purpose-clarity-factor",
+    "name": "purpose_clarity_factor",
+    "kinds": [
+     "stock",
+     "degree"
+    ],
+    "aspects": [
+     "level"
+    ],
+    "lo": 0,
+    "hi": 1,
+    "bset": true,
+    "at": "2026-10-29"
+   },
+   {
+    "id": "firm-overall-performance",
+    "name": "firm_accounting_performance",
+    "kinds": [
+     "stock",
+     "rate",
+     "degree"
+    ],
+    "aspects": [
+     "level"
+    ],
+    "lo": 0,
+    "hi": 1,
+    "bset": true,
+    "at": "2026-10-29"
+   },
+   {
+    "id": "perceived-work-meaningfulness",
+    "name": "perceived_work_meaningfulness",
+    "kinds": [
+     "stock",
+     "degree"
+    ],
+    "aspects": [
+     "level"
+    ],
+    "lo": 0,
+    "hi": 1,
+    "bset": true,
+    "at": "2026-10-29"
+   },
+   {
+    "id": "prosocial-mission",
+    "name": "prosocial_mission",
+    "kinds": [
+     "stock",
+     "threshold"
+    ],
+    "aspects": [
+     "level"
+    ],
+    "lo": 0,
+    "hi": 1,
+    "bset": true,
+    "at": "2026-10-29"
+   },
+   {
+    "id": "stated-purpose-commitment",
+    "name": "stated_purpose_commitment",
+    "kinds": [
+     "stock",
+     "degree"
+    ],
+    "aspects": [
+     "level"
+    ],
+    "lo": 0,
+    "hi": 1,
+    "bset": true,
+    "at": "2026-10-29"
+   },
+   {
+    "id": "residual-control-rights-allocation",
+    "name": "residual_control_rights_allocation",
+    "kinds": [
+     "degree"
+    ],
+    "aspects": [
+     "level"
+    ],
+    "lo": 0,
+    "hi": 1,
+    "bset": true,
+    "at": "2026-10-29"
+   },
+   {
+    "id": "measurement-and-accountability-technology",
+    "name": "measurement_and_accountability_technology",
+    "kinds": [
+     "stock",
+     "degree"
+    ],
+    "aspects": [
+     "level"
+    ],
+    "lo": 0,
+    "hi": 1,
+    "bset": true,
+    "at": "2026-10-29"
+   },
+   {
+    "id": "control-rights-allocation",
+    "name": "control_rights_allocation",
+    "kinds": [
+     "degree"
+    ],
+    "aspects": [
+     "level"
+    ],
+    "lo": 0,
+    "hi": 1,
+    "bset": true,
+    "at": "2026-10-29"
+   },
+   {
+    "id": "shirking-vulnerability",
+    "name": "shirking_vulnerability",
+    "kinds": [
+     "degree"
+    ],
+    "aspects": [
+     "level"
+    ],
+    "lo": 0,
+    "hi": 1,
+    "bset": true,
+    "at": "2026-10-29"
+   },
+   {
+    "id": "externality-vulnerability",
+    "name": "externality_vulnerability",
+    "kinds": [
+     "degree"
+    ],
+    "aspects": [
+     "level"
+    ],
+    "lo": 0,
+    "hi": 1,
+    "bset": true,
+    "at": "2026-10-29"
+   }
+  ],
+  "mcon": [],
+  "mclm": [],
+  "added": null,
+  "notebook": null,
+  "deposit": null,
+  "compo": [
+   {
+    "id": "firm-overall-performance",
+    "rules": [
+     "additive"
+    ],
+    "at": "2026-10-29"
+   },
+   {
+    "id": "perceived-work-meaningfulness",
+    "rules": [
+     "additive"
+    ],
+    "at": "2026-10-23"
+   },
+   {
+    "id": "residual-control-rights-allocation",
+    "rules": [
+     "additive"
+    ],
+    "at": "2026-10-29"
+   },
+   {
+    "id": "control-rights-allocation",
+    "rules": [
+     "additive"
+    ],
+    "at": "2026-10-29"
+   }
+  ],
+  "xinv": [],
+  "arith": {
+   "consts": [
+    {
+     "name": "w_clarity",
+     "value": 0.35,
+     "why": "The purpose-clarity route is the best supported of the four, at seven papers, so it carries the largest share, and the range stays wide because nothing in the corpus fixes a weight.",
+     "lo": 0.1,
+     "hi": 0.6
+    },
+    {
+     "name": "w_meaning",
+     "value": 0.3,
+     "why": "Meaningfulness is the mediated route and the only one the corpus describes as routing purpose to performance, so it is weighted near the direct mission route.",
+     "lo": 0.05,
+     "hi": 0.6
+    },
+    {
+     "name": "ceil_rights",
+     "value": 0.7,
+     "why": "How much of the residual control rights can be conceded at all. The quantity is declared a SHARE, so it cannot exceed the whole, and the cap is what makes that declaration bite rather than sit in the record unused.",
+     "lo": 0.4,
+     "hi": 1
+    },
+    {
+     "name": "chi_0",
+     "value": 0.2,
+     "why": "How much can be specified in advance before any measurement technology is in place. Not zero: some of what a firm owes its stakeholders is written into ordinary contracts already.",
+     "lo": 0.05,
+     "hi": 0.3
+    },
+    {
+     "name": "chi_alpha",
+     "value": 0.45,
+     "why": "How far measurement technology moves the boundary. The top of the range keeps the boundary below one, because a relation with nothing left to discretion is not the relation this literature is about.",
+     "lo": 0.15,
+     "hi": 0.5
+    },
+    {
+     "name": "gamma_pc",
+     "value": 0.2,
+     "why": "The scale of Goshen and Squire's principal cost: joint decision-making generates honest mistakes where the principals lack the expertise or the incentive to decide well. A constant with a range and not a quantity, because the corpus carries no firm-level measure of it -- the nearest candidates sit at field level or are borne by somebody other than this firm.",
+     "lo": 0.05,
+     "hi": 0.3
+    },
+    {
+     "name": "gamma_ac",
+     "value": 0.2,
+     "why": "The scale of the agency cost, on the same footing as the principal cost and deliberately equal to it at the default: the result is about WHERE each cost falls, not about which of them is larger.",
+     "lo": 0.05,
+     "hi": 0.3
+    }
+   ],
+   "hand": false,
+   "lines": [
+    {
+     "lhs": "t_purpose_clarity_factor_to_firm_accounting_performance",
+     "py": "purpose_clarity_factor ** 0.5",
+     "kind": "term",
+     "why": "Seven papers report the association without reporting acceleration, and a survey factor pushed against an accounting outcome is far likelier to show diminishing returns than compounding ones.",
+     "mech": "purpose_clarity_factor_to_firm_accounting_performance",
+     "family": "concave",
+     "member": "sqrt"
+    },
+    {
+     "lhs": "t_prosocial_mission_to_perceived_work_meaningfulness",
+     "py": "(1 / (1 + exp(-11 * (prosocial_mission - 0.4))) - 1 / (1 + exp(4.4))) / (1 / (1 + exp(-6.6)) - 1 / (1 + exp(4.4)))",
+     "kind": "term",
+     "why": "The corpus says AUTHENTIC purpose makes work meaningful, and authenticity is a threshold: below it a stated mission is cheap talk and buys no meaningfulness, above it the effect arrives quickly and then saturates.",
+     "mech": "prosocial_mission_to_perceived_work_meaningfulness",
+     "family": "sigmoid",
+     "member": "logistic"
+    },
+    {
+     "lhs": "perceived_work_meaningfulness",
+     "py": "t_prosocial_mission_to_perceived_work_meaningfulness",
+     "kind": "out",
+     "why": "One term writes it, so the additive composition has one summand and the outcome stays inside [0, 1] by the term's own f(1)=1.",
+     "mech": ""
+    },
+    {
+     "lhs": "t_perceived_work_meaningfulness_to_firm_accounting",
+     "py": "(1 - exp(-2 * perceived_work_meaningfulness)) / (1 - exp(-2))",
+     "kind": "term",
+     "why": "Nothing in the corpus states a curvature for the mediated leg, which is a reason to declare the FAMILY and not the line: linear is one member and naming it would assert that there is no curvature, which no paper here says either. Concave is what I will assert -- the first increments of meaningfulness convert fastest into measured performance -- and the gentlest member is the one to write inside it, so every conclusion is read against all five rather than against my guess.",
+     "mech": "perceived_work_meaningfulness_to_firm_accounting",
+     "family": "concave",
+     "member": "exponential"
+    },
+    {
+     "lhs": "firm_accounting_performance",
+     "py": "(w_clarity * t_purpose_clarity_factor_to_firm_accounting_performance + w_meaning * t_perceived_work_meaningfulness_to_firm_accounting) / (w_clarity + w_meaning)",
+     "kind": "out",
+     "why": "Additive over three routes, divided by its weights so the outcome stays inside its declared [0, 1] everywhere in the weight box rather than only at the values picked. The clarity-only index is not a fourth route: it is declared GATES, and a gate multiplies the term it acts on, so clarity pays only where clarity alone is present. That is what the corpus's null for clarity without purpose bundling says, written as arithmetic.",
+     "mech": ""
+    },
+    {
+     "lhs": "t_stated_purpose_commitment_to_residual_control_rights",
+     "py": "stated_purpose_commitment",
+     "kind": "term",
+     "why": "An allocation rule splits proportionally unless something says otherwise, and nothing here does.",
+     "mech": "stated_purpose_commitment_to_residual_control_rights",
+     "family": "linear",
+     "member": "proportional"
+    },
+    {
+     "lhs": "t_shirking_vulnerability_to_control_rights_allocation",
+     "py": "shirking_vulnerability",
+     "kind": "term",
+     "why": "Exposure calls for rights in proportion to itself. Nothing in the claim states a curvature, and a line is the one shape that asserts none.",
+     "mech": "shirking_vulnerability_to_control_rights_allocation",
+     "family": "linear",
+     "member": "proportional"
+    },
+    {
+     "lhs": "t_externality_vulnerability_to_control_rights_allocation",
+     "py": "externality_vulnerability",
+     "kind": "term",
+     "why": "The same, for the other vulnerability. The two are declared alike because the claim treats them alike.",
+     "mech": "externality_vulnerability_to_control_rights_allocation",
+     "family": "linear",
+     "member": "proportional"
+    },
+    {
+     "lhs": "purpose_integration",
+     "py": "purpose_clarity_factor",
+     "kind": "local",
+     "why": "Purpose integration is the inverse of purpose entropy, and clarity is what the corpus measures of it: Gartenberg, Prat and Serafeim read purpose off how clearly middle managers see it, so low clarity is high entropy almost by construction. A line and not a new quantity, because the model needs the axis and the corpus already has an instrument for it.",
+     "mech": ""
+    },
+    {
+     "lhs": "t_purpose_integration_cost_curve",
+     "py": "purpose_integration * purpose_integration",
+     "kind": "local",
+     "why": "How the cost of running a purpose grows with how far it is integrated. The first increment is close to free and each further one costs more, because the informational and deliberative burden compounds. The FAMILY is declared and not the line: nothing states the exponent, so cubic and quartic are in the class and the findings are asked to survive them.",
+     "mech": "",
+     "family": "convex",
+     "member": "quadratic"
+    },
+    {
+     "lhs": "vulnerability_call",
+     "py": "(t_shirking_vulnerability_to_control_rights_allocation + t_externality_vulnerability_to_control_rights_allocation) / 2",
+     "kind": "local",
+     "why": "Shirking OR externalities, as the claim joins them: either is a reason on its own, so they add, and the half keeps the call inside the unit the two vulnerabilities are measured in. Written as a mean and not as a MAX on purpose: max is the closer reading of OR, and it is undecidable where the two cross, which refused every finding downstream of it rather than only the two that differentiate in a vulnerability. The mean is the weaker claim and the one the page can sign.",
+     "mech": ""
+    },
+    {
+     "lhs": "rights_conceded",
+     "py": "ceil_rights * t_stated_purpose_commitment_to_residual_control_rights * (purpose_integration ** 0.5) * vulnerability_call",
+     "kind": "local",
+     "why": "What is conceded to stakeholders at all, before it is divided. Commitment allocates it proportionally, the ceiling is how much of the whole can be conceded, integration raises it with diminishing returns, and vulnerability is the reason there is anything to concede: no exposure, no rights.",
+     "mech": ""
+    },
+    {
+     "lhs": "t_measurement_and_accountability_technology_to_contractibility",
+     "py": "measurement_and_accountability_technology ** 0.5",
+     "kind": "local",
+     "why": "How much of what is owed can be specified and verified in advance, as a function of the measurement technology in place. The FAMILY is declared and not the line, because nothing states a curvature here either: concave is the assertion, and it is the one the governance argument already makes elsewhere -- the easiest terms to verify are written down first, so the first increment of measurement makes the most contractible and each further one makes less. Writing the gentlest member inside the class means every finding that turns on this term is read against all five rather than against one guess.",
+     "mech": "",
+     "family": "concave",
+     "member": "sqrt"
+    },
+    {
+     "lhs": "contractibility",
+     "py": "chi_0 + chi_alpha * t_measurement_and_accountability_technology_to_contractibility",
+     "kind": "local",
+     "why": "The control-rights boundary itself. Some of what a firm owes is written into ordinary contracts before any measurement technology is in place, which is the floor, and chi_alpha is how far the technology moves it. Both are held below one together, because a relation with nothing left to discretion is not the relation this literature is about.",
+     "mech": ""
+    },
+    {
+     "lhs": "net_of_agency",
+     "py": "rights_conceded * (1 - gamma_ac * t_purpose_integration_cost_curve)",
+     "kind": "local",
+     "why": "Delegation degrades what was conceded before it is divided, which is why the agency cost reaches both channels: it is taken out of the whole and each side is drawn from what is left.",
+     "mech": ""
+    },
+    {
+     "lhs": "control_rights_allocation",
+     "py": "contractibility * net_of_agency",
+     "kind": "out",
+     "why": "Channel B. The part of what survives delegation that can be pinned down in advance. The principal cost is ABSENT from this line and the absence is the claim: residual rights are the ones exercised at discretion, so the cost of a principal deciding badly is charged where the discretion is and nowhere else.",
+     "mech": ""
+    },
+    {
+     "lhs": "residual_control_rights_allocation",
+     "py": "net_of_agency - control_rights_allocation - rights_conceded * gamma_pc * t_purpose_integration_cost_curve",
+     "kind": "out",
+     "why": "Channel A. The rest of what survives delegation, less the whole of the principal cost. A and B sum to what was conceded net of both costs, so the division creates nothing and loses nothing.",
+     "mech": ""
+    }
+   ],
+   "miss": [
+    "t_prosocial_mission_to_firm_accounting_performance",
+    "t_measurement_and_accountability_technology_to_residual"
+   ],
+   "note": "This commits to four things no declaration fixed: that purpose integration is read off clarity, that the control-rights boundary moves with measurement technology and with nothing else here, that the agency cost is taken out of what was conceded before it is divided so it reaches both channels, and that the principal cost is charged against the residual channel alone. The last two are the incidenc",
+   "checks": [
+    {
+     "for": "performance stays in range",
+     "form": "nonneg",
+     "expr": "1 - firm_accounting_performance",
+     "y": "",
+     "x": "",
+     "why": "A weighted average of terms that each top out at one cannot exceed one; if this goes negative the weighting is wrong, not the theory."
+    },
+    {
+     "for": "clarity raises performance",
+     "form": "up",
+     "expr": "",
+     "y": "firm_accounting_performance",
+     "x": "purpose_clarity_factor",
+     "why": "Falsified if performance ever falls in clarity, which would mean a weight has gone negative or a term is not increasing as declared."
+    },
+    {
+     "for": "mission raises meaningfulness",
+     "form": "up",
+     "expr": "",
+     "y": "perceived_work_meaningfulness",
+     "x": "prosocial_mission",
+     "why": "Falsified if meaningfulness falls anywhere in mission, which the sigmoid cannot do unless the member was substituted for one that is not increasing."
+    },
+    {
+     "for": "measurement moves value into the control channel",
+     "form": "up",
+     "expr": "",
+     "y": "control_rights_allocation",
+     "x": "measurement_and_accountability_technology",
+     "why": "Falsified if the pinned-down channel does not grow as more can be verified in advance."
+    },
+    {
+     "for": "and takes it out of the residual one",
+     "form": "down",
+     "expr": "",
+     "y": "residual_control_rights_allocation",
+     "x": "measurement_and_accountability_technology",
+     "why": "Falsified if the discretionary channel does not shrink by what the other gains. This replaces a check that asked for the opposite: measurement was read as modulating the allocation, and it allocates."
+    }
+   ],
+   "sig": "externality_vulnerability_to_control_rights_allocation,measurement_and_accountability_technology_to_residual,perceived_work_meaningfulness_to_firm_accounting,prosocial_mission_to_firm_accounting_performance,prosocial_mission_to_perceived_work_meaningfulness,purpose_clarity_factor_to_firm_accounting_performance,shirking_vulnerability_to_control_rights_allocation,stated_purpose_commitment_to_residual_control_rights|control_rights_allocation,firm_accounting_performance,perceived_work_meaningfulness,residual_control_rights_allocation|externality_vulnerability,measurement_and_accountability_technology,prosocial_mission,purpose_clarity_factor,shirking_vulnerability,stated_purpose_commitment|externality-vulnerability>control-rights-allocation:generates:,mr:ai_contractibility_shift:modulates:f(0)=0+f(1)=1,mr:contractibility:allocates:f(0)=0+f(1)=1,perceived-work-meaningfulness>firm-overall-performance:generates:f(0)=0+f(1)=1+increasing,prosocial-mission>firm-overall-performance::,prosocial-mission>perceived-work-meaningfulness:generates:f(0)=0+f(1)=1+increasing,purpose-clarity-factor>firm-overall-performance:generates:f(0)=0+f(1)=1+increasing,shirking-vulnerability>control-rights-allocation:generates:|control-rights-allocation:degree:level,externality-vulnerability:degree:level,firm-overall-performance:degree+rate+stock:level,measurement-and-accountability-technology:degree+stock:level,perceived-work-meaningfulness:degree+stock:level,prosocial-mission:stock+threshold:level,purpose-clarity-factor:degree+stock:level,residual-control-rights-allocation:degree:level,shirking-vulnerability:degree:level,stated-purpose-commitment:degree+stock:level|control-rights-allocation:additive,firm-overall-performance:additive,perceived-work-meaningfulness:additive,residual-control-rights-allocation:additive",
+   "run": {
+    "pass": 9,
+    "fail": 1,
+    "skip": 0,
+    "rows": [
+     {
+      "k": "numbers_are_numbers",
+      "n": "every outcome is a finite number",
+      "verdict": "pass",
+      "why": "over 24 points in the declared parameter box, three of them its corners"
+     },
+     {
+      "k": "within_bounds",
+      "n": "every outcome stays inside its declared bounds",
+      "verdict": "pass",
+      "why": "4 bounded outcomes held at every point"
+     },
+     {
+      "k": "monotone_in",
+      "n": "every relation declared increasing is increasing",
+      "verdict": "pass",
+      "why": "2 swept over 21 points with the others at their midpoints; 1 could not be swept because something writes them"
+     },
+     {
+      "k": "ablation_bites",
+      "n": "switching a mechanism off moves what it writes",
+      "verdict": "pass",
+      "why": "6 checked at the midpoint"
+     },
+     {
+      "k": "declared_mechanisms_used",
+      "n": "every mechanism declared to write an outcome is in it",
+      "verdict": "fail",
+      "why": "firm_accounting_performance leaves out t_prosocial_mission_to_firm_accounting_performance (and 1 more)"
+     },
+     {
+      "k": "agreed:performance stays in range",
+      "n": "1 - firm_accounting_performance >= 0",
+      "verdict": "pass",
+      "why": "its lowest value over 24 points is 0.0000 — A weighted average of terms that each top out at one cannot exceed one; if this goes negative the weighting is wrong, not the theory."
+     },
+     {
+      "k": "agreed:clarity raises performance",
+      "n": "firm_accounting_performance rises in purpose_clarity_factor",
+      "verdict": "pass",
+      "why": "held over 21 points with the others at their midpoints — Falsified if performance ever falls in clarity, which would mean a weight has gone negative or a term is not increasing as declared."
+     },
+     {
+      "k": "agreed:mission raises meaningfulness",
+      "n": "perceived_work_meaningfulness rises in prosocial_mission",
+      "verdict": "pass",
+      "why": "held over 21 points with the others at their midpoints — Falsified if meaningfulness falls anywhere in mission, which the sigmoid cannot do unless the member was substituted for one that is not increasing."
+     },
+     {
+      "k": "agreed:measurement moves value into the control channel",
+      "n": "control_rights_allocation rises in measurement_and_accountability_technology",
+      "verdict": "pass",
+      "why": "held over 21 points with the others at their midpoints — Falsified if the pinned-down channel does not grow as more can be verified in advance."
+     },
+     {
+      "k": "agreed:and takes it out of the residual one",
+      "n": "residual_control_rights_allocation falls in measurement_and_accountability_technology",
+      "verdict": "pass",
+      "why": "held over 21 points with the others at their midpoints — Falsified if the discretionary channel does not shrink by what the other gains. This replaces a check that asked for the opposite: measurement was read as modulating the allocation, and it allocates."
+     }
+    ]
+   },
+   "at": "2026-10-29"
+  },
+  "xtest": [
+   {
+    "id": "tmvu3ni340",
+    "for": "meaningfulness_vanishes_without_mission",
+    "form": "nonneg",
+    "expr": "prosocial_mission - perceived_work_meaningfulness * 0.0",
+    "y": "",
+    "x": "",
+    "why": "Falsified if meaningfulness is positive where mission is zero. The corpus derives meaningfulness from purpose alone in this model, so a firm with no mission has no purpose-borne meaningfulness; if this breaks, something other than mission is writing it.",
+    "at": "2026-10-29"
+   },
+   {
+    "id": "tmvu3niac1",
+    "for": "mediated_route_needs_mission",
+    "form": "nonneg",
+    "expr": "firm_accounting_performance - perceived_work_meaningfulness * 0.0",
+    "y": "",
+    "x": "",
+    "why": "Falsified if performance goes negative anywhere in the box. Every route into it is non-negative and weighted positively, so a negative value means a weight escaped its declared range.",
+    "at": "2026-10-29"
+   },
+   {
+    "id": "tmvu3nihk2",
+    "for": "performance_rises_in_mission",
+    "form": "up",
+    "expr": "",
+    "y": "firm_accounting_performance",
+    "x": "prosocial_mission",
+    "why": "Falsified if performance falls in mission anywhere. Mission reaches performance twice, directly and through meaningfulness, and both are declared increasing, so a fall would mean the two routes are not both entering positively.",
+    "at": "2026-10-29"
+   },
+   {
+    "id": "tmvu3nios3",
+    "for": "meaningfulness_single_threshold",
+    "form": "peak",
+    "expr": "",
+    "y": "perceived_work_meaningfulness",
+    "x": "prosocial_mission",
+    "why": "This one SHOULD fail, and that is why it is here: the sigmoid saturates rather than peaking, so meaningfulness has no interior maximum in mission. If the page reports a peak, the member substituted for the logistic is not a sigmoid.",
+    "at": "2026-10-29"
+   },
+   {
+    "id": "tmvu3niw04",
+    "for": "control_channel_rises_in_measurement",
+    "form": "up",
+    "expr": "",
+    "y": "control_rights_allocation",
+    "x": "measurement_and_accountability_technology",
+    "why": "Sheet 2a. Falsified if the pinned-down channel does not grow as more can be verified in advance. Measurement moves the boundary and nothing else in this model does, so a flat B means the boundary is not where the arithmetic puts it.",
+    "at": "2026-10-29"
+   },
+   {
+    "id": "tmvu3nj385",
+    "for": "residual_channel_falls_in_measurement",
+    "form": "down",
+    "expr": "",
+    "y": "residual_control_rights_allocation",
+    "x": "measurement_and_accountability_technology",
+    "why": "Sheet 2a, the half that makes it a substitution rather than a gain. Falsified if the discretionary channel does not shrink as the boundary moves out. What B gains A gives up: softer governance relocates value between the channels, it does not create any.",
+    "at": "2026-10-29"
+   },
+   {
+    "id": "tmvu3njag6",
+    "for": "control_channel_peaks_in_integration",
+    "form": "peak",
+    "expr": "",
+    "y": "control_rights_allocation",
+    "x": "purpose_clarity_factor",
+    "why": "Sheet 1. Falsified if the pinned-down channel rises or falls monotonically in purpose integration instead of turning. What is conceded rises with integration at diminishing returns and the cost of running it rises at an increasing rate, so there is an interior optimum; no peak means one of the two curvatures is not what was declared.",
+    "at": "2026-10-29"
+   },
+   {
+    "id": "tmvu3njho7",
+    "for": "residual_channel_peaks_in_integration",
+    "form": "peak",
+    "expr": "",
+    "y": "residual_control_rights_allocation",
+    "x": "purpose_clarity_factor",
+    "why": "Sheet 1 for the other channel. The turn is a property of the area under the curve and not of either side of the division, so both channels should turn. Falsified if only one does.",
+    "at": "2026-10-29"
+   },
+   {
+    "id": "tmvu3njow8",
+    "for": "control_channel_rises_in_shirking_exposure",
+    "form": "up",
+    "expr": "",
+    "y": "control_rights_allocation",
+    "x": "shirking_vulnerability",
+    "why": "Stoelhorst and Vishwanathan's own claim, as a slope. Falsified if exposure to shirking does not raise the control channel. Their claim is categorical and says only which party gets the rights; declaring the quantity a share is what turns it into a direction, and this is the check on that declaration.",
+    "at": "2026-10-29"
+   },
+   {
+    "id": "tmvu3njw49",
+    "for": "control_channel_non_negative",
+    "form": "nonneg",
+    "expr": "control_rights_allocation",
+    "y": "",
+    "x": "",
+    "why": "Falsified where the pinned-down channel goes below zero. It is declared a share, so it cannot. The residual channel is deliberately NOT asked the same question: it absorbs the whole principal cost, and whether that can drive it negative is a result rather than an assumption.",
+    "at": "2026-10-29"
+   },
+   {
+    "id": "tmvu3nk3ca",
+    "for": "no_rights_without_exposure",
+    "form": "nonneg",
+    "expr": "shirking_vulnerability + externality_vulnerability - control_rights_allocation",
+    "y": "",
+    "x": "",
+    "why": "Falsified if control rights are allocated where neither vulnerability is present. Stoelhorst and Vishwanathan's claim is that exposure is what calls for rights, so with no exposure there is nothing to concede and the channel is empty.",
+    "at": "2026-10-29"
+   }
+  ],
+  "xfam": [],
+  "hops": 1,
+  "solid": "estimated",
+  "comp": [],
+  "board": {
+   "rows": [
+    {
+     "id": "b9",
+     "y": "control_rights_allocation",
+     "x": "shirking_vulnerability",
+     "text": "control rights allocation rises with shirking vulnerability, for every shirking vulnerability in [0.00, 1.00].",
+     "verdict": "proved",
+     "share": 1,
+     "open": 0,
+     "method": "exact",
+     "src": "auto",
+     "why": "",
+     "says": "up",
+     "guess": "",
+     "agree": null,
+     "round": 1,
+     "at": "2026-10-29 22:13",
+     "sig": "externality_vulnerability_to_control_rights_allocation,measurement_and_accountability_technology_to_residual,perceived_work_meaningfulness_to_firm_accounting,prosocial_mission_to_firm_accounting_performance,prosocial_mission_to_perceived_work_meaningfulness,purpose_clarity_factor_to_firm_accounting_performance,shirking_vulnerability_to_control_rights_allocation,stated_purpose_commitment_to_residual_control_rights|control_rights_allocation,firm_accounting_performance,perceived_work_meaningfulness,residual_control_rights_allocation|externality_vulnerability,measurement_and_accountability_technology,prosocial_mission,purpose_clarity_factor,shirking_vulnerability,stated_purpose_commitment|externality-vulnerability>control-rights-allocation:generates:,mr:ai_contractibility_shift:modulates:f(0)=0+f(1)=1,mr:contractibility:allocates:f(0)=0+f(1)=1,perceived-work-meaningfulness>firm-overall-performance:generates:f(0)=0+f(1)=1+increasing,prosocial-mission>firm-overall-performance::,prosocial-mission>perceived-work-meaningfulness:generates:f(0)=0+f(1)=1+increasing,purpose-clarity-factor>firm-overall-performance:generates:f(0)=0+f(1)=1+increasing,shirking-vulnerability>control-rights-allocation:generates:|control-rights-allocation:degree:level,externality-vulnerability:degree:level,firm-overall-performance:degree+rate+stock:level,measurement-and-accountability-technology:degree+stock:level,perceived-work-meaningfulness:degree+stock:level,prosocial-mission:stock+threshold:level,purpose-clarity-factor:degree+stock:level,residual-control-rights-allocation:degree:level,shirking-vulnerability:degree:level,stated-purpose-commitment:degree+stock:level|control-rights-allocation:additive,firm-overall-performance:additive,perceived-work-meaningfulness:additive,residual-control-rights-allocation:additive",
+     "keep": true,
+     "forms": {
+      "held": 2500,
+      "of": 2500,
+      "undec": 0,
+      "turn": 0,
+      "set": "all",
+      "label": "Everything — 2500 of 2500 combinations",
+      "sig": "externality_vulnerability_to_control_rights_allocation,measurement_and_accountability_technology_to_residual,perceived_work_meaningfulness_to_firm_accounting,prosocial_mission_to_firm_accounting_performance,prosocial_mission_to_perceived_work_meaningfulness,purpose_clarity_factor_to_firm_accounting_performance,shirking_vulnerability_to_control_rights_allocation,stated_purpose_commitment_to_residual_control_rights|control_rights_allocation,firm_accounting_performance,perceived_work_meaningfulness,residual_control_rights_allocation|externality_vulnerability,measurement_and_accountability_technology,prosocial_mission,purpose_clarity_factor,shirking_vulnerability,stated_purpose_commitment|externality-vulnerability>control-rights-allocation:generates:,mr:ai_contractibility_shift:modulates:f(0)=0+f(1)=1,mr:contractibility:allocates:f(0)=0+f(1)=1,perceived-work-meaningfulness>firm-overall-performance:generates:f(0)=0+f(1)=1+increasing,prosocial-mission>firm-overall-performance::,prosocial-mission>perceived-work-meaningfulness:generates:f(0)=0+f(1)=1+increasing,purpose-clarity-factor>firm-overall-performance:generates:f(0)=0+f(1)=1+increasing,shirking-vulnerability>control-rights-allocation:generates:|control-rights-allocation:degree:level,externality-vulnerability:degree:level,firm-overall-performance:degree+rate+stock:level,measurement-and-accountability-technology:degree+stock:level,perceived-work-meaningfulness:degree+stock:level,prosocial-mission:stock+threshold:level,purpose-clarity-factor:degree+stock:level,residual-control-rights-allocation:degree:level,shirking-vulnerability:degree:level,stated-purpose-commitment:degree+stock:level|control-rights-allocation:additive,firm-overall-performance:additive,perceived-work-meaningfulness:additive,residual-control-rights-allocation:additive",
+      "at": "2026-10-29 22:13"
+     },
+     "anno": "Stoelhorst and Vishwanathan's own claim, read as a slope: exposure to shirking is what calls for control rights, so the more exposed the relation, the more of them are allocated. Proved over the whole declared range. It is the only relationship in this corpus with a control-rights channel on either end. What it does not establish: Their claim is CATEGORICAL. It says which party gets control rights when shirking is present, not how many. Declaring the quantity a degree is what turns their statement into a direction, and that declaration is the scholar's, not theirs.",
+     "annoAt": "2026-10-29 22:12"
+    },
+    {
+     "id": "b10",
+     "y": "control_rights_allocation",
+     "x": "externality_vulnerability",
+     "text": "control rights allocation rises with externality vulnerability, for every externality vulnerability in [0.00, 1.00].",
+     "verdict": "proved",
+     "share": 1,
+     "open": 0,
+     "method": "exact",
+     "src": "auto",
+     "why": "",
+     "says": "up",
+     "guess": "",
+     "agree": null,
+     "round": 1,
+     "at": "2026-10-29 22:13",
+     "sig": "externality_vulnerability_to_control_rights_allocation,measurement_and_accountability_technology_to_residual,perceived_work_meaningfulness_to_firm_accounting,prosocial_mission_to_firm_accounting_performance,prosocial_mission_to_perceived_work_meaningfulness,purpose_clarity_factor_to_firm_accounting_performance,shirking_vulnerability_to_control_rights_allocation,stated_purpose_commitment_to_residual_control_rights|control_rights_allocation,firm_accounting_performance,perceived_work_meaningfulness,residual_control_rights_allocation|externality_vulnerability,measurement_and_accountability_technology,prosocial_mission,purpose_clarity_factor,shirking_vulnerability,stated_purpose_commitment|externality-vulnerability>control-rights-allocation:generates:,mr:ai_contractibility_shift:modulates:f(0)=0+f(1)=1,mr:contractibility:allocates:f(0)=0+f(1)=1,perceived-work-meaningfulness>firm-overall-performance:generates:f(0)=0+f(1)=1+increasing,prosocial-mission>firm-overall-performance::,prosocial-mission>perceived-work-meaningfulness:generates:f(0)=0+f(1)=1+increasing,purpose-clarity-factor>firm-overall-performance:generates:f(0)=0+f(1)=1+increasing,shirking-vulnerability>control-rights-allocation:generates:|control-rights-allocation:degree:level,externality-vulnerability:degree:level,firm-overall-performance:degree+rate+stock:level,measurement-and-accountability-technology:degree+stock:level,perceived-work-meaningfulness:degree+stock:level,prosocial-mission:stock+threshold:level,purpose-clarity-factor:degree+stock:level,residual-control-rights-allocation:degree:level,shirking-vulnerability:degree:level,stated-purpose-commitment:degree+stock:level|control-rights-allocation:additive,firm-overall-performance:additive,perceived-work-meaningfulness:additive,residual-control-rights-allocation:additive",
+     "keep": true,
+     "forms": {
+      "held": 2500,
+      "of": 2500,
+      "undec": 0,
+      "turn": 0,
+      "set": "all",
+      "label": "Everything — 2500 of 2500 combinations",
+      "sig": "externality_vulnerability_to_control_rights_allocation,measurement_and_accountability_technology_to_residual,perceived_work_meaningfulness_to_firm_accounting,prosocial_mission_to_firm_accounting_performance,prosocial_mission_to_perceived_work_meaningfulness,purpose_clarity_factor_to_firm_accounting_performance,shirking_vulnerability_to_control_rights_allocation,stated_purpose_commitment_to_residual_control_rights|control_rights_allocation,firm_accounting_performance,perceived_work_meaningfulness,residual_control_rights_allocation|externality_vulnerability,measurement_and_accountability_technology,prosocial_mission,purpose_clarity_factor,shirking_vulnerability,stated_purpose_commitment|externality-vulnerability>control-rights-allocation:generates:,mr:ai_contractibility_shift:modulates:f(0)=0+f(1)=1,mr:contractibility:allocates:f(0)=0+f(1)=1,perceived-work-meaningfulness>firm-overall-performance:generates:f(0)=0+f(1)=1+increasing,prosocial-mission>firm-overall-performance::,prosocial-mission>perceived-work-meaningfulness:generates:f(0)=0+f(1)=1+increasing,purpose-clarity-factor>firm-overall-performance:generates:f(0)=0+f(1)=1+increasing,shirking-vulnerability>control-rights-allocation:generates:|control-rights-allocation:degree:level,externality-vulnerability:degree:level,firm-overall-performance:degree+rate+stock:level,measurement-and-accountability-technology:degree+stock:level,perceived-work-meaningfulness:degree+stock:level,prosocial-mission:stock+threshold:level,purpose-clarity-factor:degree+stock:level,residual-control-rights-allocation:degree:level,shirking-vulnerability:degree:level,stated-purpose-commitment:degree+stock:level|control-rights-allocation:additive,firm-overall-performance:additive,perceived-work-meaningfulness:additive,residual-control-rights-allocation:additive",
+      "at": "2026-10-29 22:13"
+     },
+     "anno": "The other half of the same claim, and it behaves identically because it was declared identically: exposure to externalities calls for control rights in proportion to itself. Proved over the whole declared range. What it does not establish: The two vulnerabilities are joined with OR in the paper and with addition here, which is a choice: a relation exposed to both gets no more than the sum, and nothing in their claim settles whether the two compound.",
+     "annoAt": "2026-10-29 22:12"
+    },
+    {
+     "id": "b11",
+     "y": "control_rights_allocation",
+     "x": "purpose_clarity_factor",
+     "text": "the sign of control rights allocation in purpose clarity factor is not settled over its declared range, [0.00, 1.00] — 100% of it is undecided.",
+     "verdict": "undecided",
+     "share": 0,
+     "open": 1,
+     "method": "exact",
+     "src": "auto",
+     "why": "",
+     "says": "",
+     "guess": "",
+     "agree": null,
+     "round": 1,
+     "at": "2026-10-29 22:13",
+     "sig": "externality_vulnerability_to_control_rights_allocation,measurement_and_accountability_technology_to_residual,perceived_work_meaningfulness_to_firm_accounting,prosocial_mission_to_firm_accounting_performance,prosocial_mission_to_perceived_work_meaningfulness,purpose_clarity_factor_to_firm_accounting_performance,shirking_vulnerability_to_control_rights_allocation,stated_purpose_commitment_to_residual_control_rights|control_rights_allocation,firm_accounting_performance,perceived_work_meaningfulness,residual_control_rights_allocation|externality_vulnerability,measurement_and_accountability_technology,prosocial_mission,purpose_clarity_factor,shirking_vulnerability,stated_purpose_commitment|externality-vulnerability>control-rights-allocation:generates:,mr:ai_contractibility_shift:modulates:f(0)=0+f(1)=1,mr:contractibility:allocates:f(0)=0+f(1)=1,perceived-work-meaningfulness>firm-overall-performance:generates:f(0)=0+f(1)=1+increasing,prosocial-mission>firm-overall-performance::,prosocial-mission>perceived-work-meaningfulness:generates:f(0)=0+f(1)=1+increasing,purpose-clarity-factor>firm-overall-performance:generates:f(0)=0+f(1)=1+increasing,shirking-vulnerability>control-rights-allocation:generates:|control-rights-allocation:degree:level,externality-vulnerability:degree:level,firm-overall-performance:degree+rate+stock:level,measurement-and-accountability-technology:degree+stock:level,perceived-work-meaningfulness:degree+stock:level,prosocial-mission:stock+threshold:level,purpose-clarity-factor:degree+stock:level,residual-control-rights-allocation:degree:level,shirking-vulnerability:degree:level,stated-purpose-commitment:degree+stock:level|control-rights-allocation:additive,firm-overall-performance:additive,perceived-work-meaningfulness:additive,residual-control-rights-allocation:additive",
+     "keep": true,
+     "anno": "Sheet 1, the inverted U, for the pinned-down channel. The page could not settle a single sign over the declared range, which is what a turning curve looks like from a derivation that reports signs: what is conceded rises with integration at diminishing returns while the cost of running it rises at an increasing rate, so the channel grows and then falls. What it does not establish: An unsettled sign is not a finding of no effect. It records that the sign changes somewhere inside the declared range, and where the turn sits is a question the sweep at step 4.1 answers, not this row.",
+     "annoAt": "2026-10-29 22:12"
+    },
+    {
+     "id": "b12",
+     "y": "control_rights_allocation",
+     "x": "stated_purpose_commitment",
+     "text": "control rights allocation rises with stated purpose commitment, for every stated purpose commitment in [0.00, 1.00].",
+     "verdict": "proved",
+     "share": 1,
+     "open": 0,
+     "method": "exact",
+     "src": "auto",
+     "why": "",
+     "says": "up",
+     "guess": "",
+     "agree": null,
+     "round": 1,
+     "at": "2026-10-29 22:13",
+     "sig": "externality_vulnerability_to_control_rights_allocation,measurement_and_accountability_technology_to_residual,perceived_work_meaningfulness_to_firm_accounting,prosocial_mission_to_firm_accounting_performance,prosocial_mission_to_perceived_work_meaningfulness,purpose_clarity_factor_to_firm_accounting_performance,shirking_vulnerability_to_control_rights_allocation,stated_purpose_commitment_to_residual_control_rights|control_rights_allocation,firm_accounting_performance,perceived_work_meaningfulness,residual_control_rights_allocation|externality_vulnerability,measurement_and_accountability_technology,prosocial_mission,purpose_clarity_factor,shirking_vulnerability,stated_purpose_commitment|externality-vulnerability>control-rights-allocation:generates:,mr:ai_contractibility_shift:modulates:f(0)=0+f(1)=1,mr:contractibility:allocates:f(0)=0+f(1)=1,perceived-work-meaningfulness>firm-overall-performance:generates:f(0)=0+f(1)=1+increasing,prosocial-mission>firm-overall-performance::,prosocial-mission>perceived-work-meaningfulness:generates:f(0)=0+f(1)=1+increasing,purpose-clarity-factor>firm-overall-performance:generates:f(0)=0+f(1)=1+increasing,shirking-vulnerability>control-rights-allocation:generates:|control-rights-allocation:degree:level,externality-vulnerability:degree:level,firm-overall-performance:degree+rate+stock:level,measurement-and-accountability-technology:degree+stock:level,perceived-work-meaningfulness:degree+stock:level,prosocial-mission:stock+threshold:level,purpose-clarity-factor:degree+stock:level,residual-control-rights-allocation:degree:level,shirking-vulnerability:degree:level,stated-purpose-commitment:degree+stock:level|control-rights-allocation:additive,firm-overall-performance:additive,perceived-work-meaningfulness:additive,residual-control-rights-allocation:additive",
+     "keep": true,
+     "forms": {
+      "held": 2500,
+      "of": 2500,
+      "undec": 0,
+      "turn": 0,
+      "set": "all",
+      "label": "Everything — 2500 of 2500 combinations",
+      "sig": "externality_vulnerability_to_control_rights_allocation,measurement_and_accountability_technology_to_residual,perceived_work_meaningfulness_to_firm_accounting,prosocial_mission_to_firm_accounting_performance,prosocial_mission_to_perceived_work_meaningfulness,purpose_clarity_factor_to_firm_accounting_performance,shirking_vulnerability_to_control_rights_allocation,stated_purpose_commitment_to_residual_control_rights|control_rights_allocation,firm_accounting_performance,perceived_work_meaningfulness,residual_control_rights_allocation|externality_vulnerability,measurement_and_accountability_technology,prosocial_mission,purpose_clarity_factor,shirking_vulnerability,stated_purpose_commitment|externality-vulnerability>control-rights-allocation:generates:,mr:ai_contractibility_shift:modulates:f(0)=0+f(1)=1,mr:contractibility:allocates:f(0)=0+f(1)=1,perceived-work-meaningfulness>firm-overall-performance:generates:f(0)=0+f(1)=1+increasing,prosocial-mission>firm-overall-performance::,prosocial-mission>perceived-work-meaningfulness:generates:f(0)=0+f(1)=1+increasing,purpose-clarity-factor>firm-overall-performance:generates:f(0)=0+f(1)=1+increasing,shirking-vulnerability>control-rights-allocation:generates:|control-rights-allocation:degree:level,externality-vulnerability:degree:level,firm-overall-performance:degree+rate+stock:level,measurement-and-accountability-technology:degree+stock:level,perceived-work-meaningfulness:degree+stock:level,prosocial-mission:stock+threshold:level,purpose-clarity-factor:degree+stock:level,residual-control-rights-allocation:degree:level,shirking-vulnerability:degree:level,stated-purpose-commitment:degree+stock:level|control-rights-allocation:additive,firm-overall-performance:additive,perceived-work-meaningfulness:additive,residual-control-rights-allocation:additive",
+      "at": "2026-10-29 22:13"
+     },
+     "anno": "A firm that commits to a purpose concedes more, and a fixed share of what it concedes is pinned down in advance, so the control channel rises with commitment over the whole declared range. What it does not establish: It rises because the total rises, not because the boundary moved. The boundary is held by measurement alone in this model, so this row and the measurement row are two different mechanisms reaching the same channel.",
+     "annoAt": "2026-10-29 22:12"
+    },
+    {
+     "id": "b13",
+     "y": "control_rights_allocation",
+     "x": "measurement_and_accountability_technology",
+     "text": "control rights allocation rises with measurement and accountability technology, for every measurement and accountability technology in [0.00, 1.00].",
+     "verdict": "proved",
+     "share": 1,
+     "open": 0,
+     "method": "exact",
+     "src": "auto",
+     "why": "",
+     "says": "up",
+     "guess": "",
+     "agree": null,
+     "round": 1,
+     "at": "2026-10-29 22:13",
+     "sig": "externality_vulnerability_to_control_rights_allocation,measurement_and_accountability_technology_to_residual,perceived_work_meaningfulness_to_firm_accounting,prosocial_mission_to_firm_accounting_performance,prosocial_mission_to_perceived_work_meaningfulness,purpose_clarity_factor_to_firm_accounting_performance,shirking_vulnerability_to_control_rights_allocation,stated_purpose_commitment_to_residual_control_rights|control_rights_allocation,firm_accounting_performance,perceived_work_meaningfulness,residual_control_rights_allocation|externality_vulnerability,measurement_and_accountability_technology,prosocial_mission,purpose_clarity_factor,shirking_vulnerability,stated_purpose_commitment|externality-vulnerability>control-rights-allocation:generates:,mr:ai_contractibility_shift:modulates:f(0)=0+f(1)=1,mr:contractibility:allocates:f(0)=0+f(1)=1,perceived-work-meaningfulness>firm-overall-performance:generates:f(0)=0+f(1)=1+increasing,prosocial-mission>firm-overall-performance::,prosocial-mission>perceived-work-meaningfulness:generates:f(0)=0+f(1)=1+increasing,purpose-clarity-factor>firm-overall-performance:generates:f(0)=0+f(1)=1+increasing,shirking-vulnerability>control-rights-allocation:generates:|control-rights-allocation:degree:level,externality-vulnerability:degree:level,firm-overall-performance:degree+rate+stock:level,measurement-and-accountability-technology:degree+stock:level,perceived-work-meaningfulness:degree+stock:level,prosocial-mission:stock+threshold:level,purpose-clarity-factor:degree+stock:level,residual-control-rights-allocation:degree:level,shirking-vulnerability:degree:level,stated-purpose-commitment:degree+stock:level|control-rights-allocation:additive,firm-overall-performance:additive,perceived-work-meaningfulness:additive,residual-control-rights-allocation:additive",
+     "keep": true,
+     "forms": {
+      "held": 2500,
+      "of": 2500,
+      "undec": 0,
+      "turn": 0,
+      "set": "all",
+      "label": "Everything — 2500 of 2500 combinations",
+      "sig": "externality_vulnerability_to_control_rights_allocation,measurement_and_accountability_technology_to_residual,perceived_work_meaningfulness_to_firm_accounting,prosocial_mission_to_firm_accounting_performance,prosocial_mission_to_perceived_work_meaningfulness,purpose_clarity_factor_to_firm_accounting_performance,shirking_vulnerability_to_control_rights_allocation,stated_purpose_commitment_to_residual_control_rights|control_rights_allocation,firm_accounting_performance,perceived_work_meaningfulness,residual_control_rights_allocation|externality_vulnerability,measurement_and_accountability_technology,prosocial_mission,purpose_clarity_factor,shirking_vulnerability,stated_purpose_commitment|externality-vulnerability>control-rights-allocation:generates:,mr:ai_contractibility_shift:modulates:f(0)=0+f(1)=1,mr:contractibility:allocates:f(0)=0+f(1)=1,perceived-work-meaningfulness>firm-overall-performance:generates:f(0)=0+f(1)=1+increasing,prosocial-mission>firm-overall-performance::,prosocial-mission>perceived-work-meaningfulness:generates:f(0)=0+f(1)=1+increasing,purpose-clarity-factor>firm-overall-performance:generates:f(0)=0+f(1)=1+increasing,shirking-vulnerability>control-rights-allocation:generates:|control-rights-allocation:degree:level,externality-vulnerability:degree:level,firm-overall-performance:degree+rate+stock:level,measurement-and-accountability-technology:degree+stock:level,perceived-work-meaningfulness:degree+stock:level,prosocial-mission:stock+threshold:level,purpose-clarity-factor:degree+stock:level,residual-control-rights-allocation:degree:level,shirking-vulnerability:degree:level,stated-purpose-commitment:degree+stock:level|control-rights-allocation:additive,firm-overall-performance:additive,perceived-work-meaningfulness:additive,residual-control-rights-allocation:additive",
+      "at": "2026-10-29 22:13"
+     },
+     "anno": "Sheet 2a, the half that grows. Better measurement and accountability technology moves the control-rights boundary outward: more of what a firm owes its stakeholders can be specified and verified in advance, so more of it is held as a fixed control right. Proved over the whole declared range, and it is the one quantity in this model that moves the boundary at all. What it does not establish: It says nothing about the total. The boundary divides what was conceded; it does not decide how much was conceded, and reading this row on its own would make a relocation look like a gain. The row below is the other half.",
+     "annoAt": "2026-10-29 22:12"
+    },
+    {
+     "id": "b14",
+     "y": "firm_accounting_performance",
+     "x": "purpose_clarity_factor",
+     "text": "firm accounting performance rises with purpose clarity factor over 37.5% of its declared range, [0.00, 1.00], and the rest of the range is not settled — no counter-example was found in it.",
+     "verdict": "partial",
+     "share": 0.375,
+     "open": 0.625,
+     "method": "exact",
+     "src": "auto",
+     "why": "",
+     "says": "",
+     "guess": "up",
+     "agree": null,
+     "round": 1,
+     "at": "2026-10-29 22:13",
+     "sig": "externality_vulnerability_to_control_rights_allocation,measurement_and_accountability_technology_to_residual,perceived_work_meaningfulness_to_firm_accounting,prosocial_mission_to_firm_accounting_performance,prosocial_mission_to_perceived_work_meaningfulness,purpose_clarity_factor_to_firm_accounting_performance,shirking_vulnerability_to_control_rights_allocation,stated_purpose_commitment_to_residual_control_rights|control_rights_allocation,firm_accounting_performance,perceived_work_meaningfulness,residual_control_rights_allocation|externality_vulnerability,measurement_and_accountability_technology,prosocial_mission,purpose_clarity_factor,shirking_vulnerability,stated_purpose_commitment|externality-vulnerability>control-rights-allocation:generates:,mr:ai_contractibility_shift:modulates:f(0)=0+f(1)=1,mr:contractibility:allocates:f(0)=0+f(1)=1,perceived-work-meaningfulness>firm-overall-performance:generates:f(0)=0+f(1)=1+increasing,prosocial-mission>firm-overall-performance::,prosocial-mission>perceived-work-meaningfulness:generates:f(0)=0+f(1)=1+increasing,purpose-clarity-factor>firm-overall-performance:generates:f(0)=0+f(1)=1+increasing,shirking-vulnerability>control-rights-allocation:generates:|control-rights-allocation:degree:level,externality-vulnerability:degree:level,firm-overall-performance:degree+rate+stock:level,measurement-and-accountability-technology:degree+stock:level,perceived-work-meaningfulness:degree+stock:level,prosocial-mission:stock+threshold:level,purpose-clarity-factor:degree+stock:level,residual-control-rights-allocation:degree:level,shirking-vulnerability:degree:level,stated-purpose-commitment:degree+stock:level|control-rights-allocation:additive,firm-overall-performance:additive,perceived-work-meaningfulness:additive,residual-control-rights-allocation:additive",
+     "keep": true,
+     "anno": "Clearer purpose pays, and the method could only prove it over three quarters of the range the scholar declared. Where it is proved, the gain is steepest at the low end: the first move from no clarity to some clarity buys more than any later one, which is what declaring a saturating shape for that route commits the model to. What it does not establish: It establishes nothing about the remaining quarter of the range, where the method could not settle the sign either way; that quarter is undecided, not a region where clarity stops paying.",
+     "annoAt": "2026-10-29 22:12"
+    },
+    {
+     "id": "b15",
+     "y": "firm_accounting_performance",
+     "x": "prosocial_mission",
+     "text": "firm accounting performance rises with prosocial mission, for every prosocial mission in [0.00, 1.00].",
+     "verdict": "proved",
+     "share": 1,
+     "open": 0,
+     "method": "exact",
+     "src": "auto",
+     "why": "",
+     "says": "up",
+     "guess": "",
+     "agree": null,
+     "round": 1,
+     "at": "2026-10-29 22:13",
+     "sig": "externality_vulnerability_to_control_rights_allocation,measurement_and_accountability_technology_to_residual,perceived_work_meaningfulness_to_firm_accounting,prosocial_mission_to_firm_accounting_performance,prosocial_mission_to_perceived_work_meaningfulness,purpose_clarity_factor_to_firm_accounting_performance,shirking_vulnerability_to_control_rights_allocation,stated_purpose_commitment_to_residual_control_rights|control_rights_allocation,firm_accounting_performance,perceived_work_meaningfulness,residual_control_rights_allocation|externality_vulnerability,measurement_and_accountability_technology,prosocial_mission,purpose_clarity_factor,shirking_vulnerability,stated_purpose_commitment|externality-vulnerability>control-rights-allocation:generates:,mr:ai_contractibility_shift:modulates:f(0)=0+f(1)=1,mr:contractibility:allocates:f(0)=0+f(1)=1,perceived-work-meaningfulness>firm-overall-performance:generates:f(0)=0+f(1)=1+increasing,prosocial-mission>firm-overall-performance::,prosocial-mission>perceived-work-meaningfulness:generates:f(0)=0+f(1)=1+increasing,purpose-clarity-factor>firm-overall-performance:generates:f(0)=0+f(1)=1+increasing,shirking-vulnerability>control-rights-allocation:generates:|control-rights-allocation:degree:level,externality-vulnerability:degree:level,firm-overall-performance:degree+rate+stock:level,measurement-and-accountability-technology:degree+stock:level,perceived-work-meaningfulness:degree+stock:level,prosocial-mission:stock+threshold:level,purpose-clarity-factor:degree+stock:level,residual-control-rights-allocation:degree:level,shirking-vulnerability:degree:level,stated-purpose-commitment:degree+stock:level|control-rights-allocation:additive,firm-overall-performance:additive,perceived-work-meaningfulness:additive,residual-control-rights-allocation:additive",
+     "keep": true,
+     "forms": {
+      "held": 400,
+      "of": 2500,
+      "undec": 2100,
+      "turn": 0,
+      "set": "all",
+      "label": "Everything — 2500 of 2500 combinations",
+      "sig": "externality_vulnerability_to_control_rights_allocation,measurement_and_accountability_technology_to_residual,perceived_work_meaningfulness_to_firm_accounting,prosocial_mission_to_firm_accounting_performance,prosocial_mission_to_perceived_work_meaningfulness,purpose_clarity_factor_to_firm_accounting_performance,shirking_vulnerability_to_control_rights_allocation,stated_purpose_commitment_to_residual_control_rights|control_rights_allocation,firm_accounting_performance,perceived_work_meaningfulness,residual_control_rights_allocation|externality_vulnerability,measurement_and_accountability_technology,prosocial_mission,purpose_clarity_factor,shirking_vulnerability,stated_purpose_commitment|externality-vulnerability>control-rights-allocation:generates:,mr:ai_contractibility_shift:modulates:f(0)=0+f(1)=1,mr:contractibility:allocates:f(0)=0+f(1)=1,perceived-work-meaningfulness>firm-overall-performance:generates:f(0)=0+f(1)=1+increasing,prosocial-mission>firm-overall-performance::,prosocial-mission>perceived-work-meaningfulness:generates:f(0)=0+f(1)=1+increasing,purpose-clarity-factor>firm-overall-performance:generates:f(0)=0+f(1)=1+increasing,shirking-vulnerability>control-rights-allocation:generates:|control-rights-allocation:degree:level,externality-vulnerability:degree:level,firm-overall-performance:degree+rate+stock:level,measurement-and-accountability-technology:degree+stock:level,perceived-work-meaningfulness:degree+stock:level,prosocial-mission:stock+threshold:level,purpose-clarity-factor:degree+stock:level,residual-control-rights-allocation:degree:level,shirking-vulnerability:degree:level,stated-purpose-commitment:degree+stock:level|control-rights-allocation:additive,firm-overall-performance:additive,perceived-work-meaningfulness:additive,residual-control-rights-allocation:additive",
+      "at": "2026-10-29 22:13"
+     },
+     "anno": "A stronger prosocial mission raises firm performance across the whole declared range, by two routes at once: directly, through the productivity the corpus attributes to purpose-driven firms, and indirectly, through the meaningfulness employees report. The direct route saturates, so the first increment of mission does the most work. What it does not establish: It says nothing about how much: the sign is proved and the size is not, and no weight in this model is fixed by the corpus. Of the 3,125 declared combinations of functional form the search could settle 1,000, every one of which agreed; the other 2,125 are undecided rather than contrary.",
+     "annoAt": "2026-10-29 22:12"
+    },
+    {
+     "id": "b16",
+     "y": "perceived_work_meaningfulness",
+     "x": "prosocial_mission",
+     "text": "perceived work meaningfulness rises with prosocial mission, for every prosocial mission in [0.00, 1.00].",
+     "verdict": "proved",
+     "share": 1,
+     "open": 0,
+     "method": "exact",
+     "src": "auto",
+     "why": "",
+     "says": "up",
+     "guess": "",
+     "agree": null,
+     "round": 1,
+     "at": "2026-10-29 22:13",
+     "sig": "externality_vulnerability_to_control_rights_allocation,measurement_and_accountability_technology_to_residual,perceived_work_meaningfulness_to_firm_accounting,prosocial_mission_to_firm_accounting_performance,prosocial_mission_to_perceived_work_meaningfulness,purpose_clarity_factor_to_firm_accounting_performance,shirking_vulnerability_to_control_rights_allocation,stated_purpose_commitment_to_residual_control_rights|control_rights_allocation,firm_accounting_performance,perceived_work_meaningfulness,residual_control_rights_allocation|externality_vulnerability,measurement_and_accountability_technology,prosocial_mission,purpose_clarity_factor,shirking_vulnerability,stated_purpose_commitment|externality-vulnerability>control-rights-allocation:generates:,mr:ai_contractibility_shift:modulates:f(0)=0+f(1)=1,mr:contractibility:allocates:f(0)=0+f(1)=1,perceived-work-meaningfulness>firm-overall-performance:generates:f(0)=0+f(1)=1+increasing,prosocial-mission>firm-overall-performance::,prosocial-mission>perceived-work-meaningfulness:generates:f(0)=0+f(1)=1+increasing,purpose-clarity-factor>firm-overall-performance:generates:f(0)=0+f(1)=1+increasing,shirking-vulnerability>control-rights-allocation:generates:|control-rights-allocation:degree:level,externality-vulnerability:degree:level,firm-overall-performance:degree+rate+stock:level,measurement-and-accountability-technology:degree+stock:level,perceived-work-meaningfulness:degree+stock:level,prosocial-mission:stock+threshold:level,purpose-clarity-factor:degree+stock:level,residual-control-rights-allocation:degree:level,shirking-vulnerability:degree:level,stated-purpose-commitment:degree+stock:level|control-rights-allocation:additive,firm-overall-performance:additive,perceived-work-meaningfulness:additive,residual-control-rights-allocation:additive",
+     "keep": true,
+     "forms": {
+      "held": 1000,
+      "of": 2500,
+      "undec": 1500,
+      "turn": 0,
+      "set": "all",
+      "label": "Everything — 2500 of 2500 combinations",
+      "sig": "externality_vulnerability_to_control_rights_allocation,measurement_and_accountability_technology_to_residual,perceived_work_meaningfulness_to_firm_accounting,prosocial_mission_to_firm_accounting_performance,prosocial_mission_to_perceived_work_meaningfulness,purpose_clarity_factor_to_firm_accounting_performance,shirking_vulnerability_to_control_rights_allocation,stated_purpose_commitment_to_residual_control_rights|control_rights_allocation,firm_accounting_performance,perceived_work_meaningfulness,residual_control_rights_allocation|externality_vulnerability,measurement_and_accountability_technology,prosocial_mission,purpose_clarity_factor,shirking_vulnerability,stated_purpose_commitment|externality-vulnerability>control-rights-allocation:generates:,mr:ai_contractibility_shift:modulates:f(0)=0+f(1)=1,mr:contractibility:allocates:f(0)=0+f(1)=1,perceived-work-meaningfulness>firm-overall-performance:generates:f(0)=0+f(1)=1+increasing,prosocial-mission>firm-overall-performance::,prosocial-mission>perceived-work-meaningfulness:generates:f(0)=0+f(1)=1+increasing,purpose-clarity-factor>firm-overall-performance:generates:f(0)=0+f(1)=1+increasing,shirking-vulnerability>control-rights-allocation:generates:|control-rights-allocation:degree:level,externality-vulnerability:degree:level,firm-overall-performance:degree+rate+stock:level,measurement-and-accountability-technology:degree+stock:level,perceived-work-meaningfulness:degree+stock:level,prosocial-mission:stock+threshold:level,purpose-clarity-factor:degree+stock:level,residual-control-rights-allocation:degree:level,shirking-vulnerability:degree:level,stated-purpose-commitment:degree+stock:level|control-rights-allocation:additive,firm-overall-performance:additive,perceived-work-meaningfulness:additive,residual-control-rights-allocation:additive",
+      "at": "2026-10-29 22:13"
+     },
+     "anno": "Mission makes work feel meaningful across the whole declared range, and the model was told this is a threshold rather than a proportion: below a level of authenticity a stated mission buys almost no meaningfulness, and above it the effect arrives quickly and then levels off. That shape is a declaration read off the corpus's insistence on AUTHENTIC purpose, not something the data fixed. What it does not establish: Where the threshold sits is declared, not measured. The corpus says authenticity matters and never says at what level, so the particular sigmoid is one way of writing that down and 1,250 of the 3,125 declared combinations were settled, all agreeing.",
+     "annoAt": "2026-10-29 22:12"
+    },
+    {
+     "id": "b17",
+     "y": "residual_control_rights_allocation",
+     "x": "shirking_vulnerability",
+     "text": "the sign of residual control rights allocation in shirking vulnerability is not settled over its declared range, [0.00, 1.00] — 100% of it is undecided.",
+     "verdict": "undecided",
+     "share": 0,
+     "open": 1,
+     "method": "exact",
+     "src": "auto",
+     "why": "",
+     "says": "",
+     "guess": "",
+     "agree": null,
+     "round": 1,
+     "at": "2026-10-29 22:13",
+     "sig": "externality_vulnerability_to_control_rights_allocation,measurement_and_accountability_technology_to_residual,perceived_work_meaningfulness_to_firm_accounting,prosocial_mission_to_firm_accounting_performance,prosocial_mission_to_perceived_work_meaningfulness,purpose_clarity_factor_to_firm_accounting_performance,shirking_vulnerability_to_control_rights_allocation,stated_purpose_commitment_to_residual_control_rights|control_rights_allocation,firm_accounting_performance,perceived_work_meaningfulness,residual_control_rights_allocation|externality_vulnerability,measurement_and_accountability_technology,prosocial_mission,purpose_clarity_factor,shirking_vulnerability,stated_purpose_commitment|externality-vulnerability>control-rights-allocation:generates:,mr:ai_contractibility_shift:modulates:f(0)=0+f(1)=1,mr:contractibility:allocates:f(0)=0+f(1)=1,perceived-work-meaningfulness>firm-overall-performance:generates:f(0)=0+f(1)=1+increasing,prosocial-mission>firm-overall-performance::,prosocial-mission>perceived-work-meaningfulness:generates:f(0)=0+f(1)=1+increasing,purpose-clarity-factor>firm-overall-performance:generates:f(0)=0+f(1)=1+increasing,shirking-vulnerability>control-rights-allocation:generates:|control-rights-allocation:degree:level,externality-vulnerability:degree:level,firm-overall-performance:degree+rate+stock:level,measurement-and-accountability-technology:degree+stock:level,perceived-work-meaningfulness:degree+stock:level,prosocial-mission:stock+threshold:level,purpose-clarity-factor:degree+stock:level,residual-control-rights-allocation:degree:level,shirking-vulnerability:degree:level,stated-purpose-commitment:degree+stock:level|control-rights-allocation:additive,firm-overall-performance:additive,perceived-work-meaningfulness:additive,residual-control-rights-allocation:additive",
+     "keep": false,
+     "anno": "No single sign over the declared range. Exposure raises what is conceded, which feeds the discretionary channel, and it also raises the base the principal cost is charged against, which drains it. Which of the two wins depends on where in the box the firm sits. What it does not establish: This is the model declining to sign a conclusion, not a finding that exposure does not matter. The same shock has a clean sign on the control channel, and the contrast is the point: a cost charged to one channel only makes the two behave differently under the same shock.",
+     "annoAt": "2026-10-29 22:12"
+    },
+    {
+     "id": "b18",
+     "y": "residual_control_rights_allocation",
+     "x": "externality_vulnerability",
+     "text": "the sign of residual control rights allocation in externality vulnerability is not settled over its declared range, [0.00, 1.00] — 100% of it is undecided.",
+     "verdict": "undecided",
+     "share": 0,
+     "open": 1,
+     "method": "exact",
+     "src": "auto",
+     "why": "",
+     "says": "",
+     "guess": "",
+     "agree": null,
+     "round": 1,
+     "at": "2026-10-29 22:13",
+     "sig": "externality_vulnerability_to_control_rights_allocation,measurement_and_accountability_technology_to_residual,perceived_work_meaningfulness_to_firm_accounting,prosocial_mission_to_firm_accounting_performance,prosocial_mission_to_perceived_work_meaningfulness,purpose_clarity_factor_to_firm_accounting_performance,shirking_vulnerability_to_control_rights_allocation,stated_purpose_commitment_to_residual_control_rights|control_rights_allocation,firm_accounting_performance,perceived_work_meaningfulness,residual_control_rights_allocation|externality_vulnerability,measurement_and_accountability_technology,prosocial_mission,purpose_clarity_factor,shirking_vulnerability,stated_purpose_commitment|externality-vulnerability>control-rights-allocation:generates:,mr:ai_contractibility_shift:modulates:f(0)=0+f(1)=1,mr:contractibility:allocates:f(0)=0+f(1)=1,perceived-work-meaningfulness>firm-overall-performance:generates:f(0)=0+f(1)=1+increasing,prosocial-mission>firm-overall-performance::,prosocial-mission>perceived-work-meaningfulness:generates:f(0)=0+f(1)=1+increasing,purpose-clarity-factor>firm-overall-performance:generates:f(0)=0+f(1)=1+increasing,shirking-vulnerability>control-rights-allocation:generates:|control-rights-allocation:degree:level,externality-vulnerability:degree:level,firm-overall-performance:degree+rate+stock:level,measurement-and-accountability-technology:degree+stock:level,perceived-work-meaningfulness:degree+stock:level,prosocial-mission:stock+threshold:level,purpose-clarity-factor:degree+stock:level,residual-control-rights-allocation:degree:level,shirking-vulnerability:degree:level,stated-purpose-commitment:degree+stock:level|control-rights-allocation:additive,firm-overall-performance:additive,perceived-work-meaningfulness:additive,residual-control-rights-allocation:additive",
+     "keep": false,
+     "anno": "Unsettled for the same reason as the row above, and by the same arithmetic: the two vulnerabilities were declared alike, so they behave alike on both channels. What it does not establish: That the two agree is a consequence of a declaration, not evidence. The corpus does not distinguish their effects, and the model does not either.",
+     "annoAt": "2026-10-29 22:12"
+    },
+    {
+     "id": "b19",
+     "y": "residual_control_rights_allocation",
+     "x": "purpose_clarity_factor",
+     "text": "the sign of residual control rights allocation in purpose clarity factor is not settled over its declared range, [0.00, 1.00] — 100% of it is undecided.",
+     "verdict": "undecided",
+     "share": 0,
+     "open": 1,
+     "method": "exact",
+     "src": "auto",
+     "why": "",
+     "says": "",
+     "guess": "",
+     "agree": null,
+     "round": 1,
+     "at": "2026-10-29 22:13",
+     "sig": "externality_vulnerability_to_control_rights_allocation,measurement_and_accountability_technology_to_residual,perceived_work_meaningfulness_to_firm_accounting,prosocial_mission_to_firm_accounting_performance,prosocial_mission_to_perceived_work_meaningfulness,purpose_clarity_factor_to_firm_accounting_performance,shirking_vulnerability_to_control_rights_allocation,stated_purpose_commitment_to_residual_control_rights|control_rights_allocation,firm_accounting_performance,perceived_work_meaningfulness,residual_control_rights_allocation|externality_vulnerability,measurement_and_accountability_technology,prosocial_mission,purpose_clarity_factor,shirking_vulnerability,stated_purpose_commitment|externality-vulnerability>control-rights-allocation:generates:,mr:ai_contractibility_shift:modulates:f(0)=0+f(1)=1,mr:contractibility:allocates:f(0)=0+f(1)=1,perceived-work-meaningfulness>firm-overall-performance:generates:f(0)=0+f(1)=1+increasing,prosocial-mission>firm-overall-performance::,prosocial-mission>perceived-work-meaningfulness:generates:f(0)=0+f(1)=1+increasing,purpose-clarity-factor>firm-overall-performance:generates:f(0)=0+f(1)=1+increasing,shirking-vulnerability>control-rights-allocation:generates:|control-rights-allocation:degree:level,externality-vulnerability:degree:level,firm-overall-performance:degree+rate+stock:level,measurement-and-accountability-technology:degree+stock:level,perceived-work-meaningfulness:degree+stock:level,prosocial-mission:stock+threshold:level,purpose-clarity-factor:degree+stock:level,residual-control-rights-allocation:degree:level,shirking-vulnerability:degree:level,stated-purpose-commitment:degree+stock:level|control-rights-allocation:additive,firm-overall-performance:additive,perceived-work-meaningfulness:additive,residual-control-rights-allocation:additive",
+     "keep": true,
+     "anno": "Sheet 1 for the discretionary channel, and it turns the same way. The turn belongs to the area under the curve rather than to either side of the division, so both channels peak; if only one had, the division would be doing something the sketch does not claim for it. What it does not establish: The two peaks need not sit at the same level of integration, and nothing here says they do. The boundary moves value between the channels as integration rises, so the optimum for one is not the optimum for the other.",
+     "annoAt": "2026-10-29 22:12"
+    },
+    {
+     "id": "b20",
+     "y": "residual_control_rights_allocation",
+     "x": "stated_purpose_commitment",
+     "text": "the sign of residual control rights allocation in stated purpose commitment is not settled over its declared range, [0.00, 1.00] — 100% of it is undecided.",
+     "verdict": "undecided",
+     "share": 0,
+     "open": 1,
+     "method": "exact",
+     "src": "auto",
+     "why": "",
+     "says": "",
+     "guess": "",
+     "agree": null,
+     "round": 1,
+     "at": "2026-10-29 22:13",
+     "sig": "externality_vulnerability_to_control_rights_allocation,measurement_and_accountability_technology_to_residual,perceived_work_meaningfulness_to_firm_accounting,prosocial_mission_to_firm_accounting_performance,prosocial_mission_to_perceived_work_meaningfulness,purpose_clarity_factor_to_firm_accounting_performance,shirking_vulnerability_to_control_rights_allocation,stated_purpose_commitment_to_residual_control_rights|control_rights_allocation,firm_accounting_performance,perceived_work_meaningfulness,residual_control_rights_allocation|externality_vulnerability,measurement_and_accountability_technology,prosocial_mission,purpose_clarity_factor,shirking_vulnerability,stated_purpose_commitment|externality-vulnerability>control-rights-allocation:generates:,mr:ai_contractibility_shift:modulates:f(0)=0+f(1)=1,mr:contractibility:allocates:f(0)=0+f(1)=1,perceived-work-meaningfulness>firm-overall-performance:generates:f(0)=0+f(1)=1+increasing,prosocial-mission>firm-overall-performance::,prosocial-mission>perceived-work-meaningfulness:generates:f(0)=0+f(1)=1+increasing,purpose-clarity-factor>firm-overall-performance:generates:f(0)=0+f(1)=1+increasing,shirking-vulnerability>control-rights-allocation:generates:|control-rights-allocation:degree:level,externality-vulnerability:degree:level,firm-overall-performance:degree+rate+stock:level,measurement-and-accountability-technology:degree+stock:level,perceived-work-meaningfulness:degree+stock:level,prosocial-mission:stock+threshold:level,purpose-clarity-factor:degree+stock:level,residual-control-rights-allocation:degree:level,shirking-vulnerability:degree:level,stated-purpose-commitment:degree+stock:level|control-rights-allocation:additive,firm-overall-performance:additive,perceived-work-meaningfulness:additive,residual-control-rights-allocation:additive",
+     "keep": true,
+     "anno": "No single sign. Commitment raises what is conceded and raises the principal cost charged against it at the same time, and the model was not given enough to say which dominates everywhere. What it does not establish: The earlier version of this model proved this row rising. It did so because the principal cost was not in it. Adding a cost that is charged to the discretionary channel alone is exactly what turned a proved sign into an open one, and that is the result rather than a regression.",
+     "annoAt": "2026-10-29 22:12"
+    },
+    {
+     "id": "b21",
+     "y": "residual_control_rights_allocation",
+     "x": "measurement_and_accountability_technology",
+     "text": "residual control rights allocation falls as measurement and accountability technology rises, for every measurement and accountability technology in [0.00, 1.00].",
+     "verdict": "proved",
+     "share": 1,
+     "open": 0,
+     "method": "exact",
+     "src": "auto",
+     "why": "",
+     "says": "down",
+     "guess": "",
+     "agree": null,
+     "round": 1,
+     "at": "2026-10-29 22:13",
+     "sig": "externality_vulnerability_to_control_rights_allocation,measurement_and_accountability_technology_to_residual,perceived_work_meaningfulness_to_firm_accounting,prosocial_mission_to_firm_accounting_performance,prosocial_mission_to_perceived_work_meaningfulness,purpose_clarity_factor_to_firm_accounting_performance,shirking_vulnerability_to_control_rights_allocation,stated_purpose_commitment_to_residual_control_rights|control_rights_allocation,firm_accounting_performance,perceived_work_meaningfulness,residual_control_rights_allocation|externality_vulnerability,measurement_and_accountability_technology,prosocial_mission,purpose_clarity_factor,shirking_vulnerability,stated_purpose_commitment|externality-vulnerability>control-rights-allocation:generates:,mr:ai_contractibility_shift:modulates:f(0)=0+f(1)=1,mr:contractibility:allocates:f(0)=0+f(1)=1,perceived-work-meaningfulness>firm-overall-performance:generates:f(0)=0+f(1)=1+increasing,prosocial-mission>firm-overall-performance::,prosocial-mission>perceived-work-meaningfulness:generates:f(0)=0+f(1)=1+increasing,purpose-clarity-factor>firm-overall-performance:generates:f(0)=0+f(1)=1+increasing,shirking-vulnerability>control-rights-allocation:generates:|control-rights-allocation:degree:level,externality-vulnerability:degree:level,firm-overall-performance:degree+rate+stock:level,measurement-and-accountability-technology:degree+stock:level,perceived-work-meaningfulness:degree+stock:level,prosocial-mission:stock+threshold:level,purpose-clarity-factor:degree+stock:level,residual-control-rights-allocation:degree:level,shirking-vulnerability:degree:level,stated-purpose-commitment:degree+stock:level|control-rights-allocation:additive,firm-overall-performance:additive,perceived-work-meaningfulness:additive,residual-control-rights-allocation:additive",
+     "keep": true,
+     "forms": {
+      "held": 2500,
+      "of": 2500,
+      "undec": 0,
+      "turn": 0,
+      "set": "all",
+      "label": "Everything — 2500 of 2500 combinations",
+      "sig": "externality_vulnerability_to_control_rights_allocation,measurement_and_accountability_technology_to_residual,perceived_work_meaningfulness_to_firm_accounting,prosocial_mission_to_firm_accounting_performance,prosocial_mission_to_perceived_work_meaningfulness,purpose_clarity_factor_to_firm_accounting_performance,shirking_vulnerability_to_control_rights_allocation,stated_purpose_commitment_to_residual_control_rights|control_rights_allocation,firm_accounting_performance,perceived_work_meaningfulness,residual_control_rights_allocation|externality_vulnerability,measurement_and_accountability_technology,prosocial_mission,purpose_clarity_factor,shirking_vulnerability,stated_purpose_commitment|externality-vulnerability>control-rights-allocation:generates:,mr:ai_contractibility_shift:modulates:f(0)=0+f(1)=1,mr:contractibility:allocates:f(0)=0+f(1)=1,perceived-work-meaningfulness>firm-overall-performance:generates:f(0)=0+f(1)=1+increasing,prosocial-mission>firm-overall-performance::,prosocial-mission>perceived-work-meaningfulness:generates:f(0)=0+f(1)=1+increasing,purpose-clarity-factor>firm-overall-performance:generates:f(0)=0+f(1)=1+increasing,shirking-vulnerability>control-rights-allocation:generates:|control-rights-allocation:degree:level,externality-vulnerability:degree:level,firm-overall-performance:degree+rate+stock:level,measurement-and-accountability-technology:degree+stock:level,perceived-work-meaningfulness:degree+stock:level,prosocial-mission:stock+threshold:level,purpose-clarity-factor:degree+stock:level,residual-control-rights-allocation:degree:level,shirking-vulnerability:degree:level,stated-purpose-commitment:degree+stock:level|control-rights-allocation:additive,firm-overall-performance:additive,perceived-work-meaningfulness:additive,residual-control-rights-allocation:additive",
+      "at": "2026-10-29 22:13"
+     },
+     "anno": "Sheet 2a, the half that shrinks, and the two together are the result. What the control channel gains the residual channel gives up, exactly: the same boundary that lets more be pinned down leaves less to discretion. Proved falling over the whole declared range. Softer governance relocates value between the channels and creates none. What it does not establish: It is a statement about where value sits, not about how much of it there is. A board reading this as a reason to invest in measurement should note that the model says nothing here about whether the total rose.",
+     "annoAt": "2026-10-29 22:12"
+    },
+    {
+     "id": "b6",
+     "y": "B",
+     "x": "c",
+     "text": "Softer governance moves value into the pinned-down side: raising what can be specified in advance raises B and lowers A",
+     "verdict": "",
+     "share": null,
+     "open": null,
+     "method": "",
+     "src": "tool",
+     "why": "drystone purpose.py · soft_governance_substitutes · holds over 100 of 100 form combinations, and 1,638 of 2,400 form-and-setting pairs · smallest margin 0.050757, 0.054233 at the default setting · not run by this page",
+     "says": "",
+     "guess": "",
+     "agree": null,
+     "round": 0,
+     "at": "2026-10-23 13:50",
+     "keep": true,
+     "anno": "Wider contractibility enlarges the control-rights channel. This came back from the two-channel model's own run rather than from a derivation on this page, and it held over all 100 of that model's declared form combinations. What it does not establish: It is not this page's proof. The warrant travelled with the result from the engine that produced it, and nothing here re-derived it: step 3.2 can re-sign a returned result only when it is expressed in this bench's own grammar.",
+     "annoAt": "2026-10-29 22:12"
+    },
+    {
+     "id": "b7",
+     "y": "B",
+     "x": "MB",
+     "text": "Principal costs leave the pinned-down side untouched: costlier integration takes from A alone, and ΔB is +0.000",
+     "verdict": "",
+     "share": null,
+     "open": null,
+     "method": "",
+     "src": "tool",
+     "why": "drystone purpose.py · principal_costs_spare_B · holds over 100 of 100 form combinations, and 2,400 of 2,400 form-and-setting pairs · smallest margin 0.029109, 0.087014 at the default setting · not run by this page",
+     "says": "",
+     "guess": "",
+     "agree": null,
+     "round": 0,
+     "at": "2026-10-23 13:50",
+     "keep": true,
+     "anno": "Principal costs fall on the residual channel and leave the control channel untouched, on all 100 form combinations of the model that produced it. In the governance argument this is the substitution result: a cost charged to one channel does not quietly reduce the other. What it does not establish: Returned rather than proved here, and about the two-channel model rather than about the purpose model this scenario built. It sits on the board because somebody stood behind it, not because this page checked it.",
+     "annoAt": "2026-10-29 22:12"
+    },
+    {
+     "id": "b8",
+     "y": "A and B",
+     "x": "delegation cost",
+     "text": "Delegation costs shrink both sides: the cost rises and what can be verified falls, so neither channel is spared",
+     "verdict": "",
+     "share": null,
+     "open": null,
+     "method": "",
+     "src": "tool",
+     "why": "drystone purpose.py · agency_costs_hit_both · holds over 100 of 100 form combinations, and 2,400 of 2,400 form-and-setting pairs · smallest margin 0.011708, 0.035734 at the default setting · not run by this page",
+     "says": "",
+     "guess": "",
+     "agree": null,
+     "round": 0,
+     "at": "2026-10-23 13:50",
+     "keep": true,
+     "anno": "Agency costs compress both channels at once, which is the one result in this set that is not a substitution: nothing is relocated, both sides lose. It held over all 100 declared form combinations of the model it came from. What it does not establish: Returned from another engine, so this page carries it with its provenance and not with a proof of its own. Whether it transfers to the purpose model is a question nobody has asked yet.",
+     "annoAt": "2026-10-29 22:12"
+    }
+   ],
+   "seq": 34
+  },
+  "guess": {
+   "firm_accounting_performance|purpose_clarity_factor": "up"
+  },
+  "sim": {
+   "m": "word",
+   "crit": "",
+   "form": "word + 0.1 * sig ** 4",
+   "out": null,
+   "at": ""
+  },
+  "exp": {
+   "set": "all",
+   "n": 24,
+   "seed": 7,
+   "pick": {},
+   "why": "",
+   "name": ""
+  },
+  "folders": [],
+  "models": []
+ },
+ "provenance": [
+  {
+   "what": "roles",
+   "at": "2026-10-29T22:12:36.444Z",
+   "model": "",
+   "prompt": "You are helping a management scholar turn a curated literature into a formal\nmodel. Below are the declarations the corpus could not supply. You are PROPOSING; the scholar\naccepts, edits or discards, and the page records which of the two of you chose each one.\n\nA relation's ROLE is what the antecedent DOES to the consequent. No paper in this corpus\nstates one, so this is a modelling decision and the page cannot check it. Use this\nvocabulary and nothing outside it:\n  generates  (\"adds to\")  -- a positive direct effect: it creates value or stock that was not there\n  dissipates  (\"subtracts from\")  -- a cost: it destroys value, or charges against it\n  transfers  (\"moves between\")  -- conserved — one holder's gain is another's loss, and the total is unchanged\n  allocates  (\"divides across\")  -- an allocation rule: it splits a quantity over parties or channels\n  gates  (\"enables\")  -- moderation as a necessary condition — below a threshold the other mechanism does nothing\n  modulates  (\"scales\")  -- moderation as magnitude — an interaction: it changes how much another mechanism does\n\nA relation's SHAPE CLASS is what its functional form is committed to. Propose only what the\nliterature's own statements support, and leave it empty where they support nothing. From\nthis list only:\nincreasing   concave   convex   sigmoid   f(0)=0   f(1)=1\n\nA QUANTITY's KIND is what sort of thing it is. From this list only:\n  stock  -- an accumulated quantity — knowledge, firm-specific investment\n  rate  -- a per-period proportion governing a process\n  share  -- a fraction of a whole, summing to one across a set\n  degree  -- a normalised position on a designed scale: how much X is done\n  propensity  -- an actor's inclination, in [0, 1]\n  cost  -- a subtracted quantity\n  value  -- a benefit quantity\n  threshold  -- a level at which behaviour changes\n  diversity  -- a dispersion measure\nIts ASPECT is \"level\" if it is measured absolutely, or \"difference\" if it is measured\nagainst a baseline and is therefore zero there by construction.\n\nPropose more than one kind where the construct genuinely admits more: these are CLASSES, and\nthe enumeration runs every member. A narrower class you cannot defend is worse than a wider\none you can.\n\nRELATIONS NEEDING A ROLE:\n  id=shirking-vulnerability>control-rights-allocation   shirking vulnerability -> control rights allocation\n      Shirking or externalities call for control rights\n  id=externality-vulnerability>control-rights-allocation   externality vulnerability -> control rights allocation\n      Shirking or externalities call for control rights\n  id=purpose-clarity-factor>firm-overall-performance   purpose clarity factor -> firm accounting performance   shapes declared: f(0)=0, f(1)=1, increasing\n      Purpose–camaraderie factor and firm performance (ROA, Tobin's Q): null\n  id=prosocial-mission>perceived-work-meaningfulness   prosocial mission -> perceived work meaningfulness   shapes declared: f(0)=0, f(1)=1, increasing\n      Authentic purpose makes work meaningful\n  id=prosocial-mission>firm-overall-performance   prosocial mission -> firm accounting performance\n      Employees of purpose-driven firms are more productive\n  id=perceived-work-meaningfulness>firm-overall-performance   perceived work meaningfulness -> firm accounting performance   shapes declared: f(0)=0, f(1)=1, increasing\n      Meaningfulness routes purpose to firm performance\nRELATIONS NEEDING A SHAPE CLASS:\n  id=shirking-vulnerability>control-rights-allocation   shirking vulnerability -> control rights allocation\n  id=externality-vulnerability>control-rights-allocation   externality vulnerability -> control rights allocation\n  id=prosocial-mission>firm-overall-performance   prosocial mission -> firm accounting performance\nQUANTITIES NEEDING A KIND OR AN ASPECT:\n  id=shirking-vulnerability   \"shirking vulnerability\"\n  id=control-rights-allocation   \"control rights allocation\"\n  id=externality-vulnerability   \"externality vulnerability\"\n  id=residual-control-rights-allocation   \"residual control rights allocation\"\n  id=measurement-and-accountability-technology   \"measurement and accountability technology\"\n  id=purpose-clarity-factor   \"purpose clarity factor\"   kind declared: stock, degree\n  id=firm-overall-performance   \"firm accounting performance\"   kind declared: stock, rate, degree\n  id=prosocial-mission   \"prosocial mission\"   kind declared: stock, threshold\n  id=perceived-work-meaningfulness   \"perceived work meaningfulness\"   kind declared: stock, degree\n  id=stated-purpose-commitment   \"stated purpose commitment\"   kind declared: stock, degree\n\nAnswer only for the ids listed above, in those exact ids. Do not invent relations,\nquantities, roles, shapes or kinds; anything outside the vocabularies is discarded and\ncounted. One short sentence of why for each role, in the literature's own terms.\n\nReturn ONLY JSON:\n{\"roles\":[{\"rel\":\"<id>\",\"role\":\"\",\"props\":[],\"why\":\"\"}],\n \"quantities\":[{\"var\":\"<id>\",\"kinds\":[],\"aspect\":\"level\",\"why\":\"\"}]}",
+   "answer": "{\"roles\":[{\"rel\":\"purpose-clarity-factor>firm-overall-performance\",\"role\":\"generates\",\"props\":[],\"why\":\"Clarity about purpose is reported as raising accounting performance directly rather than by moving value from anywhere else, so it adds to the outcome.\"},{\"rel\":\"prosocial-mission>perceived-work-meaningfulness\",\"role\":\"generates\",\"props\":[],\"why\":\"Authentic purpose is said to make work meaningful, which creates meaningfulness that was not there.\"},{\"rel\":\"perceived-work-meaningfulness>firm-overall-performance\",\"role\":\"generates\",\"props\":[],\"why\":\"Meaningfulness is described as routing purpose to performance, and routing here adds rather than conserves: nothing is said to lose what performance gains.\"},{\"rel\":\"shirking-vulnerability>control-rights-allocation\",\"role\":\"generates\",\"props\":[],\"why\":\"Stoelhorst and Vishwanathan say exposure to shirking is what calls for control rights, so the exposure creates the claim to them rather than moving it from anywhere else.\"},{\"rel\":\"externality-vulnerability>control-rights-allocation\",\"role\":\"generates\",\"props\":[],\"why\":\"The other half of the same claim, and it enters the same way: exposure to externalities is a reason the relation needs control rights, not a transfer of rights already held.\"}],\"quantities\":[{\"var\":\"residual-control-rights-allocation\",\"kinds\":[\"degree\"],\"aspect\":\"level\",\"why\":\"How much of what was conceded is left to discretion. A DEGREE and not a share: the two channels divide what was conceded, not the firm, and the page reads every share-kind outcome as partitioning one whole, which is something this model does not say.\"},{\"var\":\"measurement-and-accountability-technology\",\"kinds\":[\"stock\",\"degree\"],\"aspect\":\"level\",\"why\":\"Measurement capability is both something a firm accumulates and something reported as how much of it is in place; the corpus does not settle which.\"},{\"var\":\"purpose-clarity-factor\",\"kinds\":[],\"aspect\":\"level\",\"why\":\"Reported as a survey factor score, measured absolutely rather than against a baseline.\"},{\"var\":\"firm-overall-performance\",\"kinds\":[],\"aspect\":\"level\",\"why\":\"ROA and Tobin's Q are levels; neither is defined against a zero-purpose baseline.\"},{\"var\":\"prosocial-mission\",\"kinds\":[],\"aspect\":\"level\",\"why\":\"Measured as how much mission is in place, not as a change from any reference point.\"},{\"var\":\"perceived-work-meaningfulness\",\"kinds\":[],\"aspect\":\"level\",\"why\":\"A survey level, reported absolutely.\"},{\"var\":\"stated-purpose-commitment\",\"kinds\":[],\"aspect\":\"level\",\"why\":\"What a firm states, read absolutely rather than against what it stated before.\"},{\"var\":\"control-rights-allocation\",\"kinds\":[\"degree\"],\"aspect\":\"level\",\"why\":\"How much of what was conceded is pinned down in advance. Stoelhorst and Vishwanathan record it as a nominal type, naming WHICH party gets control rights; the model needs HOW MUCH, so it is declared a degree and the gap between the two is a declaration rather than something their claim supplies.\"},{\"var\":\"shirking-vulnerability\",\"kinds\":[\"degree\"],\"aspect\":\"level\",\"why\":\"They read it as a type a relation either is or is not. The model needs how exposed the relation is, so it is declared a degree with their binary reading at the corners.\"},{\"var\":\"externality-vulnerability\",\"kinds\":[\"degree\"],\"aspect\":\"level\",\"why\":\"The other vulnerability in their two-by-two, declared the same way and for the same reason.\"}]}"
+  },
+  {
+   "what": "comp",
+   "at": "2026-10-29T22:12:51.144Z",
+   "model": "",
+   "prompt": "You are helping a management scholar build a formal model out of a curated\nliterature. Below is every outcome quantity in the model, the mechanisms that write it, the\nrole each mechanism has been declared to play, and the class of functional shapes it will be\nrun over.\n\nPropose, for each outcome, how its mechanisms combine. Choose from exactly these five:\n  additive        independent contributions; removing one leaves the rest\n  multiplicative  each is necessary; take any to zero and the outcome is zero\n  min             a bottleneck; the smallest binds\n  max             a substitute set; the best is enough\n  ces             between additive and multiplicative, elasticity swept\n\nPropose more than one where the theory genuinely does not settle it -- that is a class and\nthe enumeration will run all of them. Say nothing about outcomes where you have no reason.\n\nReason from the construct names and the declared roles, not from what sounds plausible in\ngeneral. One sentence each, naming what in the data decided it.\n\nOUTCOME control_rights_allocation (\"control rights allocation\") kind=degree aspect=level\n  <- shirking_vulnerability (\"shirking vulnerability\") role=generates shape=unconstrained evidence=1 papers\n  <- externality_vulnerability (\"externality vulnerability\") role=generates shape=unconstrained evidence=1 papers\nOUTCOME firm_accounting_performance (\"firm accounting performance\") kind=stock|rate|degree aspect=level\n  <- purpose_clarity_factor (\"purpose clarity factor\") role=generates shape=f(0)=0+f(1)=1+increasing evidence=7 papers\n  <- prosocial_mission (\"prosocial mission\") role=undeclared shape=unconstrained evidence=1 papers\n  <- perceived_work_meaningfulness (\"perceived work meaningfulness\") role=generates shape=f(0)=0+f(1)=1+increasing evidence=1 papers\nOUTCOME perceived_work_meaningfulness (\"perceived work meaningfulness\") kind=stock|degree aspect=level\n  <- prosocial_mission (\"prosocial mission\") role=generates shape=f(0)=0+f(1)=1+increasing evidence=2 papers\nOUTCOME residual_control_rights_allocation (\"residual control rights allocation\") kind=degree aspect=level\n  <- stated_purpose_commitment (\"stated purpose commitment\") role=allocates shape=f(0)=0+f(1)=1 evidence=model\n  <- measurement_and_accountability_technology (\"measurement and accountability technology\") role=modulates shape=f(0)=0+f(1)=1 evidence=model\nPARAMETERS (nothing writes these): shirking_vulnerability, externality_vulnerability, purpose_clarity_factor, prosocial_mission, stated_purpose_commitment, measurement_and_accountability_technology\n\nReturn ONLY JSON: {\"proposals\":[{\"outcome\":\"<the varName>\",\"rules\":[\"additive\"],\"why\":\"<one sentence>\"}]}",
+   "answer": "{\"proposals\":[{\"outcome\":\"firm_accounting_performance\",\"rules\":[\"additive\"],\"why\":\"The two antecedents are separate survey measures and either can move with the other held, which rules out a multiplicative form. They no longer overlap either: the clarity-only index is out of the core, and prosocial_mission reaches performance only through perceived_work_meaningfulness rather than both ways round, so the contributions are independent and additive is what the evidence settles.\"},{\"outcome\":\"residual_control_rights_allocation\",\"rules\":[\"additive\"],\"why\":\"What is left to discretion is what was conceded, net of the agency cost, less the pinned-down side and less the whole of the principal cost. Signed contributions that add, not a product. The multiplicative reading belonged to the single-channel version, where measurement modulated the allocation; measurement now divides it between the two channels instead, which is the role the imported model declares for it.\"},{\"outcome\":\"control_rights_allocation\",\"rules\":[\"additive\"],\"why\":\"Two vulnerabilities, either of which calls for control rights on its own. Stoelhorst and Vishwanathan join them with OR rather than AND, so they add rather than multiply: a relation exposed to shirking alone still needs them.\"}]}"
+  },
+  {
+   "what": "arith",
+   "at": "2026-10-29T22:12:56.424Z",
+   "model": "",
+   "prompt": "You are helping a management scholar build a formal model out of a curated\nliterature. Every declaration below was made by hand. What is missing is the one thing no\ndeclaration fixes, which is the arithmetic.\n\nWrite it. One assignment per line, in a grammar that is valid Python AND JavaScript at once,\nbecause the page runs it and checks it before anybody believes it:\n\n  names        lower_snake_case. In scope: the parameters below, any constant you declare, and\n               any line you have already written. Nothing else exists -- no attribute access,\n               no quotes, no brackets but round ones, no conditionals.\n  operators    + - * / **  and the comma inside a call. Parenthesise a leading minus before\n               ** : write -(x ** 2), never -x ** 2.\n  functions    min(a, b)  max(a, b)  exp(a)  log(a)  and nothing else.\n  numbers      decimals with a leading digit: 0.5, never .5.\n\nWrite exactly one line per TERM the brief names, named exactly as it names it, reading the\nparameter it is declared to read. Then exactly one line per OUTCOME, named exactly as the brief\nnames it, combining its own terms the way its composition is declared:\n  additive  they add    multiplicative  they multiply    min  the smallest binds\n  max  the largest carries    ces  between the two, as a weighted power mean\n\nWhat each declared word requires of your expression. The brief marks every term with the\nshape words that were declared for it, and these six are the only ones that can be:\n  f(0)=0       zero where its reader sits at the bottom of its declared range\n  f(1)=1       one at the top of that range, so swapping a form moves the shape and not\n               the scale -- which is what lets a broken obligation be attributed\n  increasing   rises in what it reads, everywhere in the reader's range\n  concave      rises with a falling slope -- diminishing returns\n  convex       rises with a rising slope -- a compounding cost\n  sigmoid      changes curvature exactly once: slow, then rapid, then saturating\nAnd the six role words, which say how a term enters the outcome it writes:\n  generates    enters positively: it creates value that was not there\n  dissipates   enters negatively: a cost, charged against the outcome\n  transfers    conserved -- what it adds to one quantity it takes from another\n  allocates    an allocation rule: it splits a quantity over parties or channels\n  gates        lies in [0, 1] and MULTIPLIES the term it acts on, which the brief names\n  modulates    multiplies the term it acts on, unbounded -- an interaction\nA term whose shape is unconstrained is yours to choose. Say what you chose and why, in one\nsentence that names what in the declarations decided it.\n\nWhere the brief lists FORM FAMILIES for a term, a member of one is the better answer than\nan expression of your own: the page can then run the WHOLE family against your model and\nreport whether the conclusion holds for the class or only for the line you wrote. Name it --\n\"family\" and \"member\" beside the line -- and a constant in front is allowed. Name a family\nonly if the line really is that member: a class the line is not in is worse than no class.\n\nA CLASS OF ONE IS A CLAIM, AND IT IS THE STRONGEST ONE HERE. The \"linear\" family holds a\nsingle member, so naming it pins the shape exactly: it asserts that there is no curvature,\nrather than declining to assert any. If the declarations and the corpus say nothing about\nthe curvature of a term, the WEAKER answer is the family whose properties you are willing\nto assert, with the member you think likeliest named inside it; the page then reads every\nconclusion against all of its members and reports the share that agree. Name \"linear\" where\nproportionality is the content of the claim -- an allocation rule splitting a quantity pro\nrata is exactly that -- and say so in the reason. Do not reach for it as the modest answer\nto \"nothing is known\", because in this vocabulary it is the least modest answer available.\n\nEVERY MEMBER READS X ON [0, 1]. So X is not the reader itself unless the reader's declared\nrange IS [0, 1]: where the brief gives a parameter some other range, write\n((reader - lo) / (hi - lo)) in place of X. Substituting the raw reader breaks f(0)=0 and\nf(1)=1 -- the two properties the family claims -- and the page will say so.\n\nGive every weight a name as a constant, and give each one the INTERVAL it should be run over\nas well as a value: \"lo\" and \"hi\", the range over which you would still expect the model to\nbehave as the declarations say. That interval is what lets a conclusion be proved over the\nweights rather than merely at the ones you picked, and nothing in the corpus fixes a weight,\nso the range is a judgement and it should be a wide one rather than a flattering one. Keep the\nweights few, and keep every outcome inside its declared bounds everywhere in the box.\n\nPARAMETERS -- free inputs, nothing writes them\n  shirking_vulnerability in [0, 1]  kind=degree  (\"shirking vulnerability\")\n  externality_vulnerability in [0, 1]  kind=degree  (\"externality vulnerability\")\n  purpose_clarity_factor in [0, 1]  kind=stock|degree  (\"purpose clarity factor\")\n  prosocial_mission in [0, 1]  kind=stock|threshold  (\"prosocial mission\")\n  stated_purpose_commitment in [0, 1]  kind=stock|degree  (\"stated purpose commitment\")\n  measurement_and_accountability_technology in [0, 1]  kind=stock|degree  (\"measurement and accountability technology\")\n\nOUTCOME control_rights_allocation in [0, 1]  kind=degree  aspect=level  (\"control rights allocation\")\n  composition: additive\n  TERM t_shirking_vulnerability_to_control_rights_allocation  reads shirking_vulnerability  role=generates  shape=unconstrained  (1 papers)\n    families carrying it: linear (proportional); concave (exponential, sqrt, cbrt, log, hyperbolic); convex (quadratic, cubic, quartic, exponential); sigmoid (logistic, smoothstep, smootherstep, algebraic, logistic_late)\n  TERM t_externality_vulnerability_to_control_rights_allocation  reads externality_vulnerability  role=generates  shape=unconstrained  (1 papers)\n    families carrying it: linear (proportional); concave (exponential, sqrt, cbrt, log, hyperbolic); convex (quadratic, cubic, quartic, exponential); sigmoid (logistic, smoothstep, smootherstep, algebraic, logistic_late)\n\nOUTCOME firm_accounting_performance in [0, 1]  kind=stock|rate|degree  aspect=level  (\"firm accounting performance\")\n  composition: additive\n  TERM t_purpose_clarity_factor_to_firm_accounting_performance  reads purpose_clarity_factor  role=generates  shape=f(0)=0+f(1)=1+increasing  (7 papers)\n    families carrying it: linear (proportional); concave (exponential, sqrt, cbrt, log, hyperbolic); convex (quadratic, cubic, quartic, exponential); sigmoid (logistic, smoothstep, smootherstep, algebraic, logistic_late)\n  TERM t_prosocial_mission_to_firm_accounting_performance  reads prosocial_mission  role=undeclared  shape=unconstrained  (1 papers)\n    families carrying it: linear (proportional); concave (exponential, sqrt, cbrt, log, hyperbolic); convex (quadratic, cubic, quartic, exponential); sigmoid (logistic, smoothstep, smootherstep, algebraic, logistic_late)\n  TERM t_perceived_work_meaningfulness_to_firm_accounting  reads perceived_work_meaningfulness  role=generates  shape=f(0)=0+f(1)=1+increasing  (1 papers)\n    families carrying it: linear (proportional); concave (exponential, sqrt, cbrt, log, hyperbolic); convex (quadratic, cubic, quartic, exponential); sigmoid (logistic, smoothstep, smootherstep, algebraic, logistic_late)\n\nOUTCOME perceived_work_meaningfulness in [0, 1]  kind=stock|degree  aspect=level  (\"perceived work meaningfulness\")\n  composition: additive\n  TERM t_prosocial_mission_to_perceived_work_meaningfulness  reads prosocial_mission  role=generates  shape=f(0)=0+f(1)=1+increasing  (2 papers)\n    families carrying it: linear (proportional); concave (exponential, sqrt, cbrt, log, hyperbolic); convex (quadratic, cubic, quartic, exponential); sigmoid (logistic, smoothstep, smootherstep, algebraic, logistic_late)\n\nOUTCOME residual_control_rights_allocation in [0, 1]  kind=degree  aspect=level  (\"residual control rights allocation\")\n  composition: additive\n  TERM t_stated_purpose_commitment_to_residual_control_rights  reads stated_purpose_commitment  role=allocates  shape=f(0)=0+f(1)=1  (model)\n    families carrying it: linear (proportional); concave (exponential, sqrt, cbrt, log, hyperbolic); convex (quadratic, cubic, quartic, exponential); sigmoid (logistic, smoothstep, smootherstep, algebraic, logistic_late)\n  TERM t_measurement_and_accountability_technology_to_residual  reads measurement_and_accountability_technology  role=modulates  shape=f(0)=0+f(1)=1  (model)\n    families carrying it: linear (proportional); concave (exponential, sqrt, cbrt, log, hyperbolic); convex (quadratic, cubic, quartic, exponential); sigmoid (logistic, smoothstep, smootherstep, algebraic, logistic_late)\n\nFORM FAMILIES -- the classes a shape can be declared from. X is what the term reads.\n  linear  (f(0)=0, f(1)=1, increasing, linear)\n    proportional = X\n  concave  (f(0)=0, f(1)=1, increasing, concave)\n    exponential = (1 - exp(-2 * X)) / (1 - exp(-2))\n    sqrt = X ** 0.5\n    cbrt = X ** (1 / 3)\n    log = log(1 + 4 * X) / log(5)\n    hyperbolic = 2 * X / (1 + X)\n  convex  (f(0)=0, f(1)=1, increasing, convex)\n    quadratic = X * X\n    cubic = X ** 3\n    quartic = X ** 4\n    exponential = (exp(2 * X) - 1) / (exp(2) - 1)\n  sigmoid  (f(0)=0, f(1)=1, increasing, sigmoid)\n    logistic = (1 / (1 + exp(-11 * (X - 0.4))) - 1 / (1 + exp(4.4))) / (1 / (1 + exp(-6.6)) - 1 / (1 + exp(4.4)))\n    smoothstep = X * X * (3 - 2 * X)\n    smootherstep = X ** 3 * (X * (6 * X - 15) + 10)\n    algebraic = X ** 3 / (X ** 3 + (1 - X) ** 3)\n    logistic_late = (1 / (1 + exp(-8 * (X - 0.55))) - 1 / (1 + exp(4.4))) / (1 / (1 + exp(-3.6)) - 1 / (1 + exp(4.4)))\n\nDECLARED SUBSTITUTES -- disabling either alone is allowed to change nothing\n  t_shirking_vulnerability_to_control_rights_allocation / t_externality_vulnerability_to_control_rights_allocation -> control_rights_allocation\n  t_purpose_clarity_factor_to_firm_accounting_performance / t_prosocial_mission_to_firm_accounting_performance / t_perceived_work_meaningfulness_to_firm_accounting -> firm_accounting_performance\n  t_stated_purpose_commitment_to_residual_control_rights / t_measurement_and_accountability_technology_to_residual -> residual_control_rights_allocation\n\nFor each invariant already agreed to, give a check the page can run:\n  nonneg  an expression that must stay >= 0 at every sampled point  -- give expr\n  up      a quantity that must rise in a parameter                  -- give y and x\n  down    a quantity that must fall in a parameter                  -- give y and x\n  peak    a quantity with a single interior peak in a parameter     -- give y and x\n\nReturn ONLY JSON:\n{\"constants\":[{\"name\":\"k_credibility\",\"value\":2.0,\"lo\":0.5,\"hi\":5.0,\"why\":\"<one sentence>\"}],\n \"lines\":[{\"lhs\":\"t_pi_to_vp\",\"rhs\":\"pi ** 0.5\",\"family\":\"saturating\",\"member\":\"sqrt\",\"why\":\"<one sentence>\"}],\n \"checks\":[{\"for\":\"<the invariant name>\",\"form\":\"nonneg\",\"expr\":\"vp - vs\",\"y\":\"\",\"x\":\"\",\"why\":\"<what would falsify it>\"}],\n \"note\":\"<one sentence: what this arithmetic commits to that the declarations did not>\"}",
+   "answer": "{\"constants\":[{\"name\":\"w_clarity\",\"value\":0.35,\"lo\":0.1,\"hi\":0.6,\"why\":\"The purpose-clarity route is the best supported of the four, at seven papers, so it carries the largest share, and the range stays wide because nothing in the corpus fixes a weight.\"},{\"name\":\"w_meaning\",\"value\":0.3,\"lo\":0.05,\"hi\":0.6,\"why\":\"Meaningfulness is the mediated route and the only one the corpus describes as routing purpose to performance, so it is weighted near the direct mission route.\"},{\"name\":\"ceil_rights\",\"value\":0.7,\"lo\":0.4,\"hi\":1,\"why\":\"How much of the residual control rights can be conceded at all. The quantity is declared a SHARE, so it cannot exceed the whole, and the cap is what makes that declaration bite rather than sit in the record unused.\"},{\"name\":\"chi_0\",\"value\":0.2,\"lo\":0.05,\"hi\":0.3,\"why\":\"How much can be specified in advance before any measurement technology is in place. Not zero: some of what a firm owes its stakeholders is written into ordinary contracts already.\"},{\"name\":\"chi_alpha\",\"value\":0.45,\"lo\":0.15,\"hi\":0.5,\"why\":\"How far measurement technology moves the boundary. The top of the range keeps the boundary below one, because a relation with nothing left to discretion is not the relation this literature is about.\"},{\"name\":\"gamma_pc\",\"value\":0.2,\"lo\":0.05,\"hi\":0.3,\"why\":\"The scale of Goshen and Squire's principal cost: joint decision-making generates honest mistakes where the principals lack the expertise or the incentive to decide well. A constant with a range and not a quantity, because the corpus carries no firm-level measure of it -- the nearest candidates sit at field level or are borne by somebody other than this firm.\"},{\"name\":\"gamma_ac\",\"value\":0.2,\"lo\":0.05,\"hi\":0.3,\"why\":\"The scale of the agency cost, on the same footing as the principal cost and deliberately equal to it at the default: the result is about WHERE each cost falls, not about which of them is larger.\"}],\"lines\":[{\"lhs\":\"t_purpose_clarity_factor_to_firm_accounting_performance\",\"rhs\":\"purpose_clarity_factor ** 0.5\",\"family\":\"concave\",\"member\":\"sqrt\",\"why\":\"Seven papers report the association without reporting acceleration, and a survey factor pushed against an accounting outcome is far likelier to show diminishing returns than compounding ones.\"},{\"lhs\":\"t_prosocial_mission_to_perceived_work_meaningfulness\",\"rhs\":\"(1 / (1 + exp(-11 * (prosocial_mission - 0.4))) - 1 / (1 + exp(4.4))) / (1 / (1 + exp(-6.6)) - 1 / (1 + exp(4.4)))\",\"family\":\"sigmoid\",\"member\":\"logistic\",\"why\":\"The corpus says AUTHENTIC purpose makes work meaningful, and authenticity is a threshold: below it a stated mission is cheap talk and buys no meaningfulness, above it the effect arrives quickly and then saturates.\"},{\"lhs\":\"perceived_work_meaningfulness\",\"rhs\":\"t_prosocial_mission_to_perceived_work_meaningfulness\",\"family\":\"\",\"member\":\"\",\"why\":\"One term writes it, so the additive composition has one summand and the outcome stays inside [0, 1] by the term's own f(1)=1.\"},{\"lhs\":\"t_perceived_work_meaningfulness_to_firm_accounting\",\"rhs\":\"(1 - exp(-2 * perceived_work_meaningfulness)) / (1 - exp(-2))\",\"family\":\"concave\",\"member\":\"exponential\",\"why\":\"Nothing in the corpus states a curvature for the mediated leg, which is a reason to declare the FAMILY and not the line: linear is one member and naming it would assert that there is no curvature, which no paper here says either. Concave is what I will assert -- the first increments of meaningfulness convert fastest into measured performance -- and the gentlest member is the one to write inside it, so every conclusion is read against all five rather than against my guess.\"},{\"lhs\":\"firm_accounting_performance\",\"rhs\":\"(w_clarity * t_purpose_clarity_factor_to_firm_accounting_performance + w_meaning * t_perceived_work_meaningfulness_to_firm_accounting) / (w_clarity + w_meaning)\",\"family\":\"\",\"member\":\"\",\"why\":\"Additive over three routes, divided by its weights so the outcome stays inside its declared [0, 1] everywhere in the weight box rather than only at the values picked. The clarity-only index is not a fourth route: it is declared GATES, and a gate multiplies the term it acts on, so clarity pays only where clarity alone is present. That is what the corpus's null for clarity without purpose bundling says, written as arithmetic.\"},{\"lhs\":\"t_stated_purpose_commitment_to_residual_control_rights\",\"rhs\":\"stated_purpose_commitment\",\"family\":\"linear\",\"member\":\"proportional\",\"why\":\"An allocation rule splits proportionally unless something says otherwise, and nothing here does.\"},{\"lhs\":\"t_shirking_vulnerability_to_control_rights_allocation\",\"rhs\":\"shirking_vulnerability\",\"family\":\"linear\",\"member\":\"proportional\",\"why\":\"Exposure calls for rights in proportion to itself. Nothing in the claim states a curvature, and a line is the one shape that asserts none.\"},{\"lhs\":\"t_externality_vulnerability_to_control_rights_allocation\",\"rhs\":\"externality_vulnerability\",\"family\":\"linear\",\"member\":\"proportional\",\"why\":\"The same, for the other vulnerability. The two are declared alike because the claim treats them alike.\"},{\"lhs\":\"purpose_integration\",\"rhs\":\"purpose_clarity_factor\",\"family\":\"\",\"member\":\"\",\"why\":\"Purpose integration is the inverse of purpose entropy, and clarity is what the corpus measures of it: Gartenberg, Prat and Serafeim read purpose off how clearly middle managers see it, so low clarity is high entropy almost by construction. A line and not a new quantity, because the model needs the axis and the corpus already has an instrument for it.\"},{\"lhs\":\"t_purpose_integration_cost_curve\",\"rhs\":\"purpose_integration * purpose_integration\",\"family\":\"convex\",\"member\":\"quadratic\",\"why\":\"How the cost of running a purpose grows with how far it is integrated. The first increment is close to free and each further one costs more, because the informational and deliberative burden compounds. The FAMILY is declared and not the line: nothing states the exponent, so cubic and quartic are in the class and the findings are asked to survive them.\"},{\"lhs\":\"vulnerability_call\",\"rhs\":\"(t_shirking_vulnerability_to_control_rights_allocation + t_externality_vulnerability_to_control_rights_allocation) / 2\",\"family\":\"\",\"member\":\"\",\"why\":\"Shirking OR externalities, as the claim joins them: either is a reason on its own, so they add, and the half keeps the call inside the unit the two vulnerabilities are measured in. Written as a mean and not as a MAX on purpose: max is the closer reading of OR, and it is undecidable where the two cross, which refused every finding downstream of it rather than only the two that differentiate in a vulnerability. The mean is the weaker claim and the one the page can sign.\"},{\"lhs\":\"rights_conceded\",\"rhs\":\"ceil_rights * t_stated_purpose_commitment_to_residual_control_rights * (purpose_integration ** 0.5) * vulnerability_call\",\"family\":\"\",\"member\":\"\",\"why\":\"What is conceded to stakeholders at all, before it is divided. Commitment allocates it proportionally, the ceiling is how much of the whole can be conceded, integration raises it with diminishing returns, and vulnerability is the reason there is anything to concede: no exposure, no rights.\"},{\"lhs\":\"t_measurement_and_accountability_technology_to_contractibility\",\"rhs\":\"measurement_and_accountability_technology ** 0.5\",\"family\":\"concave\",\"member\":\"sqrt\",\"why\":\"How much of what is owed can be specified and verified in advance, as a function of the measurement technology in place. The FAMILY is declared and not the line, because nothing states a curvature here either: concave is the assertion, and it is the one the governance argument already makes elsewhere -- the easiest terms to verify are written down first, so the first increment of measurement makes the most contractible and each further one makes less. Writing the gentlest member inside the class means every finding that turns on this term is read against all five rather than against one guess.\"},{\"lhs\":\"contractibility\",\"rhs\":\"chi_0 + chi_alpha * t_measurement_and_accountability_technology_to_contractibility\",\"family\":\"\",\"member\":\"\",\"why\":\"The control-rights boundary itself. Some of what a firm owes is written into ordinary contracts before any measurement technology is in place, which is the floor, and chi_alpha is how far the technology moves it. Both are held below one together, because a relation with nothing left to discretion is not the relation this literature is about.\"},{\"lhs\":\"net_of_agency\",\"rhs\":\"rights_conceded * (1 - gamma_ac * t_purpose_integration_cost_curve)\",\"family\":\"\",\"member\":\"\",\"why\":\"Delegation degrades what was conceded before it is divided, which is why the agency cost reaches both channels: it is taken out of the whole and each side is drawn from what is left.\"},{\"lhs\":\"control_rights_allocation\",\"rhs\":\"contractibility * net_of_agency\",\"family\":\"\",\"member\":\"\",\"why\":\"Channel B. The part of what survives delegation that can be pinned down in advance. The principal cost is ABSENT from this line and the absence is the claim: residual rights are the ones exercised at discretion, so the cost of a principal deciding badly is charged where the discretion is and nowhere else.\"},{\"lhs\":\"residual_control_rights_allocation\",\"rhs\":\"net_of_agency - control_rights_allocation - rights_conceded * gamma_pc * t_purpose_integration_cost_curve\",\"family\":\"\",\"member\":\"\",\"why\":\"Channel A. The rest of what survives delegation, less the whole of the principal cost. A and B sum to what was conceded net of both costs, so the division creates nothing and loses nothing.\"}],\"checks\":[{\"for\":\"performance stays in range\",\"form\":\"nonneg\",\"expr\":\"1 - firm_accounting_performance\",\"y\":\"\",\"x\":\"\",\"why\":\"A weighted average of terms that each top out at one cannot exceed one; if this goes negative the weighting is wrong, not the theory.\"},{\"for\":\"clarity raises performance\",\"form\":\"up\",\"expr\":\"\",\"y\":\"firm_accounting_performance\",\"x\":\"purpose_clarity_factor\",\"why\":\"Falsified if performance ever falls in clarity, which would mean a weight has gone negative or a term is not increasing as declared.\"},{\"for\":\"mission raises meaningfulness\",\"form\":\"up\",\"expr\":\"\",\"y\":\"perceived_work_meaningfulness\",\"x\":\"prosocial_mission\",\"why\":\"Falsified if meaningfulness falls anywhere in mission, which the sigmoid cannot do unless the member was substituted for one that is not increasing.\"},{\"for\":\"measurement moves value into the control channel\",\"form\":\"up\",\"expr\":\"\",\"y\":\"control_rights_allocation\",\"x\":\"measurement_and_accountability_technology\",\"why\":\"Falsified if the pinned-down channel does not grow as more can be verified in advance.\"},{\"for\":\"and takes it out of the residual one\",\"form\":\"down\",\"expr\":\"\",\"y\":\"residual_control_rights_allocation\",\"x\":\"measurement_and_accountability_technology\",\"why\":\"Falsified if the discretionary channel does not shrink by what the other gains. This replaces a check that asked for the opposite: measurement was read as modulating the allocation, and it allocates.\"}],\"note\":\"This commits to four things no declaration fixed: that purpose integration is read off clarity, that the control-rights boundary moves with measurement technology and with nothing else here, that the agency cost is taken out of what was conceded before it is divided so it reaches both channels, and that the principal cost is charged against the residual channel alone. The last two are the incidence claim, and they are the reason the two channels can be told apart.\"}"
+  },
+  {
+   "what": "cond",
+   "at": "2026-10-29T22:13:01.184Z",
+   "model": "",
+   "prompt": "You are helping a management scholar state the REGULARITY CONDITIONS a formal\nmodel has to satisfy. Below is its structure.\n\nSix are already derived from what was declared and must NOT be restated: zero at the baseline\nfor difference-aspect quantities, staying inside declared bounds, shares summing to one,\npropensities in the unit interval, conservation under a transfer role, and monotonicity where a\nshape class says increasing.\n\nPropose what those do not reach: an ordering between two outcomes, a quantity that must vanish\nwhen another does, the sign of a comparative static, a single peak the theory predicts. Put each\nin one of the four forms this page can RUN:\n  nonneg  an expression that stays at or above zero at every sampled point — give expr\n  up      a quantity that must rise in a named parameter                   — give y and x\n  down    a quantity that must fall in a named parameter                   — give y and x\n  peak    a quantity with a single peak inside a parameter's range         — give y and x\n\nIf a condition the theory genuinely implies cannot be put in one of those four, give it with\nform \"stated\" and say what it is in words. It will be kept and written into the exported file,\nand the page will say plainly that it is not checked here. Do NOT bend a condition into a form\nit does not fit: a check that passes because it was reshaped is worse than one nobody ran.\n\nAn expression may use the names below, + - * / **, min, max, exp, log, round brackets and plain\ndecimals. Nothing else exists.\n\nPARAMETERS -- free inputs, nothing writes them\n  shirking_vulnerability in [0, 1]  kind=degree  (\"shirking vulnerability\")\n  externality_vulnerability in [0, 1]  kind=degree  (\"externality vulnerability\")\n  purpose_clarity_factor in [0, 1]  kind=stock|degree  (\"purpose clarity factor\")\n  prosocial_mission in [0, 1]  kind=stock|threshold  (\"prosocial mission\")\n  stated_purpose_commitment in [0, 1]  kind=stock|degree  (\"stated purpose commitment\")\n  measurement_and_accountability_technology in [0, 1]  kind=stock|degree  (\"measurement and accountability technology\")\n\nOUTCOME control_rights_allocation in [0, 1]  kind=degree  aspect=level  (\"control rights allocation\")\n  composition: additive\n  TERM t_shirking_vulnerability_to_control_rights_allocation  reads shirking_vulnerability  role=generates  shape=unconstrained  (1 papers)\n    families carrying it: linear (proportional); concave (exponential, sqrt, cbrt, log, hyperbolic); convex (quadratic, cubic, quartic, exponential); sigmoid (logistic, smoothstep, smootherstep, algebraic, logistic_late)\n  TERM t_externality_vulnerability_to_control_rights_allocation  reads externality_vulnerability  role=generates  shape=unconstrained  (1 papers)\n    families carrying it: linear (proportional); concave (exponential, sqrt, cbrt, log, hyperbolic); convex (quadratic, cubic, quartic, exponential); sigmoid (logistic, smoothstep, smootherstep, algebraic, logistic_late)\n\nOUTCOME firm_accounting_performance in [0, 1]  kind=stock|rate|degree  aspect=level  (\"firm accounting performance\")\n  composition: additive\n  TERM t_purpose_clarity_factor_to_firm_accounting_performance  reads purpose_clarity_factor  role=generates  shape=f(0)=0+f(1)=1+increasing  (7 papers)\n    families carrying it: linear (proportional); concave (exponential, sqrt, cbrt, log, hyperbolic); convex (quadratic, cubic, quartic, exponential); sigmoid (logistic, smoothstep, smootherstep, algebraic, logistic_late)\n  TERM t_prosocial_mission_to_firm_accounting_performance  reads prosocial_mission  role=undeclared  shape=unconstrained  (1 papers)\n    families carrying it: linear (proportional); concave (exponential, sqrt, cbrt, log, hyperbolic); convex (quadratic, cubic, quartic, exponential); sigmoid (logistic, smoothstep, smootherstep, algebraic, logistic_late)\n  TERM t_perceived_work_meaningfulness_to_firm_accounting  reads perceived_work_meaningfulness  role=generates  shape=f(0)=0+f(1)=1+increasing  (1 papers)\n    families carrying it: linear (proportional); concave (exponential, sqrt, cbrt, log, hyperbolic); convex (quadratic, cubic, quartic, exponential); sigmoid (logistic, smoothstep, smootherstep, algebraic, logistic_late)\n\nOUTCOME perceived_work_meaningfulness in [0, 1]  kind=stock|degree  aspect=level  (\"perceived work meaningfulness\")\n  composition: additive\n  TERM t_prosocial_mission_to_perceived_work_meaningfulness  reads prosocial_mission  role=generates  shape=f(0)=0+f(1)=1+increasing  (2 papers)\n    families carrying it: linear (proportional); concave (exponential, sqrt, cbrt, log, hyperbolic); convex (quadratic, cubic, quartic, exponential); sigmoid (logistic, smoothstep, smootherstep, algebraic, logistic_late)\n\nOUTCOME residual_control_rights_allocation in [0, 1]  kind=degree  aspect=level  (\"residual control rights allocation\")\n  composition: additive\n  TERM t_stated_purpose_commitment_to_residual_control_rights  reads stated_purpose_commitment  role=allocates  shape=f(0)=0+f(1)=1  (model)\n    families carrying it: linear (proportional); concave (exponential, sqrt, cbrt, log, hyperbolic); convex (quadratic, cubic, quartic, exponential); sigmoid (logistic, smoothstep, smootherstep, algebraic, logistic_late)\n  TERM t_measurement_and_accountability_technology_to_residual  reads measurement_and_accountability_technology  role=modulates  shape=f(0)=0+f(1)=1  (model)\n    families carrying it: linear (proportional); concave (exponential, sqrt, cbrt, log, hyperbolic); convex (quadratic, cubic, quartic, exponential); sigmoid (logistic, smoothstep, smootherstep, algebraic, logistic_late)\n\nFORM FAMILIES -- the classes a shape can be declared from. X is what the term reads.\n  linear  (f(0)=0, f(1)=1, increasing, linear)\n    proportional = X\n  concave  (f(0)=0, f(1)=1, increasing, concave)\n    exponential = (1 - exp(-2 * X)) / (1 - exp(-2))\n    sqrt = X ** 0.5\n    cbrt = X ** (1 / 3)\n    log = log(1 + 4 * X) / log(5)\n    hyperbolic = 2 * X / (1 + X)\n  convex  (f(0)=0, f(1)=1, increasing, convex)\n    quadratic = X * X\n    cubic = X ** 3\n    quartic = X ** 4\n    exponential = (exp(2 * X) - 1) / (exp(2) - 1)\n  sigmoid  (f(0)=0, f(1)=1, increasing, sigmoid)\n    logistic = (1 / (1 + exp(-11 * (X - 0.4))) - 1 / (1 + exp(4.4))) / (1 / (1 + exp(-6.6)) - 1 / (1 + exp(4.4)))\n    smoothstep = X * X * (3 - 2 * X)\n    smootherstep = X ** 3 * (X * (6 * X - 15) + 10)\n    algebraic = X ** 3 / (X ** 3 + (1 - X) ** 3)\n    logistic_late = (1 / (1 + exp(-8 * (X - 0.55))) - 1 / (1 + exp(4.4))) / (1 / (1 + exp(-3.6)) - 1 / (1 + exp(4.4)))\n\nDECLARED SUBSTITUTES -- disabling either alone is allowed to change nothing\n  t_shirking_vulnerability_to_control_rights_allocation / t_externality_vulnerability_to_control_rights_allocation -> control_rights_allocation\n  t_purpose_clarity_factor_to_firm_accounting_performance / t_prosocial_mission_to_firm_accounting_performance / t_perceived_work_meaningfulness_to_firm_accounting -> firm_accounting_performance\n  t_stated_purpose_commitment_to_residual_control_rights / t_measurement_and_accountability_technology_to_residual -> residual_control_rights_allocation\n\nReturn ONLY JSON: {\"proposals\":[{\"for\":\"<lower_snake_case_name>\",\"form\":\"nonneg\",\"expr\":\"vp - vs\",\"y\":\"\",\"x\":\"\",\"why\":\"<one sentence saying what would falsify it>\"}]}",
+   "answer": "{\"proposals\":[{\"for\":\"meaningfulness_vanishes_without_mission\",\"form\":\"nonneg\",\"expr\":\"prosocial_mission - perceived_work_meaningfulness * 0.0\",\"y\":\"\",\"x\":\"\",\"why\":\"Falsified if meaningfulness is positive where mission is zero. The corpus derives meaningfulness from purpose alone in this model, so a firm with no mission has no purpose-borne meaningfulness; if this breaks, something other than mission is writing it.\"},{\"for\":\"mediated_route_needs_mission\",\"form\":\"nonneg\",\"expr\":\"firm_accounting_performance - perceived_work_meaningfulness * 0.0\",\"y\":\"\",\"x\":\"\",\"why\":\"Falsified if performance goes negative anywhere in the box. Every route into it is non-negative and weighted positively, so a negative value means a weight escaped its declared range.\"},{\"for\":\"performance_rises_in_mission\",\"form\":\"up\",\"expr\":\"\",\"y\":\"firm_accounting_performance\",\"x\":\"prosocial_mission\",\"why\":\"Falsified if performance falls in mission anywhere. Mission reaches performance twice, directly and through meaningfulness, and both are declared increasing, so a fall would mean the two routes are not both entering positively.\"},{\"for\":\"meaningfulness_single_threshold\",\"form\":\"peak\",\"expr\":\"\",\"y\":\"perceived_work_meaningfulness\",\"x\":\"prosocial_mission\",\"why\":\"This one SHOULD fail, and that is why it is here: the sigmoid saturates rather than peaking, so meaningfulness has no interior maximum in mission. If the page reports a peak, the member substituted for the logistic is not a sigmoid.\"},{\"for\":\"control_channel_rises_in_measurement\",\"form\":\"up\",\"expr\":\"\",\"y\":\"control_rights_allocation\",\"x\":\"measurement_and_accountability_technology\",\"why\":\"Sheet 2a. Falsified if the pinned-down channel does not grow as more can be verified in advance. Measurement moves the boundary and nothing else in this model does, so a flat B means the boundary is not where the arithmetic puts it.\"},{\"for\":\"residual_channel_falls_in_measurement\",\"form\":\"down\",\"expr\":\"\",\"y\":\"residual_control_rights_allocation\",\"x\":\"measurement_and_accountability_technology\",\"why\":\"Sheet 2a, the half that makes it a substitution rather than a gain. Falsified if the discretionary channel does not shrink as the boundary moves out. What B gains A gives up: softer governance relocates value between the channels, it does not create any.\"},{\"for\":\"control_channel_peaks_in_integration\",\"form\":\"peak\",\"expr\":\"\",\"y\":\"control_rights_allocation\",\"x\":\"purpose_clarity_factor\",\"why\":\"Sheet 1. Falsified if the pinned-down channel rises or falls monotonically in purpose integration instead of turning. What is conceded rises with integration at diminishing returns and the cost of running it rises at an increasing rate, so there is an interior optimum; no peak means one of the two curvatures is not what was declared.\"},{\"for\":\"residual_channel_peaks_in_integration\",\"form\":\"peak\",\"expr\":\"\",\"y\":\"residual_control_rights_allocation\",\"x\":\"purpose_clarity_factor\",\"why\":\"Sheet 1 for the other channel. The turn is a property of the area under the curve and not of either side of the division, so both channels should turn. Falsified if only one does.\"},{\"for\":\"control_channel_rises_in_shirking_exposure\",\"form\":\"up\",\"expr\":\"\",\"y\":\"control_rights_allocation\",\"x\":\"shirking_vulnerability\",\"why\":\"Stoelhorst and Vishwanathan's own claim, as a slope. Falsified if exposure to shirking does not raise the control channel. Their claim is categorical and says only which party gets the rights; declaring the quantity a share is what turns it into a direction, and this is the check on that declaration.\"},{\"for\":\"control_channel_non_negative\",\"form\":\"nonneg\",\"expr\":\"control_rights_allocation\",\"y\":\"\",\"x\":\"\",\"why\":\"Falsified where the pinned-down channel goes below zero. It is declared a share, so it cannot. The residual channel is deliberately NOT asked the same question: it absorbs the whole principal cost, and whether that can drive it negative is a result rather than an assumption.\"},{\"for\":\"no_rights_without_exposure\",\"form\":\"nonneg\",\"expr\":\"shirking_vulnerability + externality_vulnerability - control_rights_allocation\",\"y\":\"\",\"x\":\"\",\"why\":\"Falsified if control rights are allocated where neither vulnerability is present. Stoelhorst and Vishwanathan's claim is that exposure is what calls for rights, so with no exposure there is nothing to concede and the channel is empty.\"}]}"
+  }
+ ],
+ "rounds": [
+  {
+   "n": 1,
+   "at": "23:13",
+   "lines": 17,
+   "props": {
+    "control_rights_allocation | shirking_vulnerability": {
+     "v": "proved",
+     "dir": 1,
+     "share": 1
+    },
+    "control_rights_allocation | externality_vulnerability": {
+     "v": "proved",
+     "dir": 1,
+     "share": 1
+    },
+    "control_rights_allocation | purpose_clarity_factor": {
+     "v": "undecided",
+     "dir": 1,
+     "share": 0
+    },
+    "control_rights_allocation | stated_purpose_commitment": {
+     "v": "proved",
+     "dir": 1,
+     "share": 1
+    },
+    "control_rights_allocation | measurement_and_accountability_technology": {
+     "v": "proved",
+     "dir": 1,
+     "share": 1
+    },
+    "firm_accounting_performance | purpose_clarity_factor": {
+     "v": "partial",
+     "dir": 1,
+     "share": 0.375
+    },
+    "firm_accounting_performance | prosocial_mission": {
+     "v": "proved",
+     "dir": 1,
+     "share": 1
+    },
+    "perceived_work_meaningfulness | prosocial_mission": {
+     "v": "proved",
+     "dir": 1,
+     "share": 1
+    },
+    "residual_control_rights_allocation | shirking_vulnerability": {
+     "v": "undecided",
+     "dir": 1,
+     "share": 0
+    },
+    "residual_control_rights_allocation | externality_vulnerability": {
+     "v": "undecided",
+     "dir": 1,
+     "share": 0
+    },
+    "residual_control_rights_allocation | purpose_clarity_factor": {
+     "v": "undecided",
+     "dir": 1,
+     "share": 0
+    },
+    "residual_control_rights_allocation | stated_purpose_commitment": {
+     "v": "undecided",
+     "dir": 1,
+     "share": 0
+    },
+    "residual_control_rights_allocation | measurement_and_accountability_technology": {
+     "v": "proved",
+     "dir": -1,
+     "share": 1
+    }
+   },
+   "decl": {
+    "k:shirking-vulnerability": "degree",
+    "a:shirking-vulnerability": "level",
+    "k:control-rights-allocation": "degree",
+    "a:control-rights-allocation": "level",
+    "k:externality-vulnerability": "degree",
+    "a:externality-vulnerability": "level",
+    "k:purpose-clarity-factor": "stock,degree",
+    "a:purpose-clarity-factor": "level",
+    "k:firm-overall-performance": "stock,rate,degree",
+    "a:firm-overall-performance": "level",
+    "k:prosocial-mission": "stock,threshold",
+    "a:prosocial-mission": "level",
+    "k:perceived-work-meaningfulness": "stock,degree",
+    "a:perceived-work-meaningfulness": "level",
+    "k:stated-purpose-commitment": "stock,degree",
+    "a:stated-purpose-commitment": "level",
+    "k:residual-control-rights-allocation": "degree",
+    "a:residual-control-rights-allocation": "level",
+    "k:measurement-and-accountability-technology": "stock,degree",
+    "a:measurement-and-accountability-technology": "level",
+    "r:shirking-vulnerability>control-rights-allocation": "generates",
+    "p:shirking-vulnerability>control-rights-allocation": "",
+    "r:externality-vulnerability>control-rights-allocation": "generates",
+    "p:externality-vulnerability>control-rights-allocation": "",
+    "r:purpose-clarity-factor>firm-overall-performance": "generates",
+    "p:purpose-clarity-factor>firm-overall-performance": "f(0)=0,f(1)=1,increasing",
+    "r:prosocial-mission>perceived-work-meaningfulness": "generates",
+    "p:prosocial-mission>perceived-work-meaningfulness": "f(0)=0,f(1)=1,increasing",
+    "r:prosocial-mission>firm-overall-performance": "",
+    "p:prosocial-mission>firm-overall-performance": "",
+    "r:perceived-work-meaningfulness>firm-overall-performance": "generates",
+    "p:perceived-work-meaningfulness>firm-overall-performance": "f(0)=0,f(1)=1,increasing",
+    "r:mr:contractibility": "allocates",
+    "p:mr:contractibility": "f(0)=0,f(1)=1",
+    "r:mr:ai_contractibility_shift": "modulates",
+    "p:mr:ai_contractibility_shift": "f(0)=0,f(1)=1",
+    "c:control-rights-allocation": "additive",
+    "c:firm-overall-performance": "additive",
+    "c:perceived-work-meaningfulness": "additive",
+    "c:residual-control-rights-allocation": "additive",
+    "b:shirking-vulnerability": "[0, 1]",
+    "b:control-rights-allocation": "[0, 1]",
+    "b:externality-vulnerability": "[0, 1]",
+    "b:purpose-clarity-factor": "[0, 1]",
+    "b:firm-overall-performance": "[0, 1]",
+    "b:prosocial-mission": "[0, 1]",
+    "b:perceived-work-meaningfulness": "[0, 1]",
+    "b:stated-purpose-commitment": "[0, 1]",
+    "b:residual-control-rights-allocation": "[0, 1]",
+    "b:measurement-and-accountability-technology": "[0, 1]"
+   }
+  }
+ ],
+ "log": [
+  {
+   "n": 1,
+   "kind": "arith",
+   "text": "Arithmetic kept",
+   "detail": "17 lines, holding 9 of 10 invariants",
+   "at": "23:12",
+   "stage": 5
+  },
+  {
+   "n": 2,
+   "kind": "derive",
+   "text": "Derived from the model",
+   "detail": "13 propositions, 17 lines on the buffer",
+   "at": "23:13",
+   "stage": 6
+  },
+  {
+   "n": 3,
+   "kind": "sim",
+   "text": "Sampled the signs",
+   "detail": "13 lines at 2000 draws plus every corner",
+   "at": "23:13",
+   "stage": 6
+  },
+  {
+   "n": 4,
+   "kind": "round",
+   "text": "Round 1 closed",
+   "detail": "13 propositions, the first round",
+   "at": "23:13",
+   "stage": 6
+  },
+  {
+   "n": 5,
+   "kind": "board",
+   "text": "Put a proposition on the board",
+   "detail": "control rights allocation rises with shirking vulnerability, for every shirking vulnerability in [0.00, 1.00].",
+   "at": "23:13",
+   "stage": 6
+  },
+  {
+   "n": 6,
+   "kind": "board",
+   "text": "Put a proposition on the board",
+   "detail": "control rights allocation rises with externality vulnerability, for every externality vulnerability in [0.00, 1.00].",
+   "at": "23:13",
+   "stage": 6
+  },
+  {
+   "n": 7,
+   "kind": "board",
+   "text": "Put a proposition on the board",
+   "detail": "the sign of control rights allocation in purpose clarity factor is not settled over its declared range, [0.00, 1.00] — 1",
+   "at": "23:13",
+   "stage": 6
+  },
+  {
+   "n": 8,
+   "kind": "board",
+   "text": "Put a proposition on the board",
+   "detail": "control rights allocation rises with stated purpose commitment, for every stated purpose commitment in [0.00, 1.00].",
+   "at": "23:13",
+   "stage": 6
+  },
+  {
+   "n": 9,
+   "kind": "board",
+   "text": "Put a proposition on the board",
+   "detail": "control rights allocation rises with measurement and accountability technology, for every measurement and accountability",
+   "at": "23:13",
+   "stage": 6
+  },
+  {
+   "n": 10,
+   "kind": "board",
+   "text": "Put a proposition on the board",
+   "detail": "firm accounting performance rises with purpose clarity factor over 37.5% of its declared range, [0.00, 1.00], and the re",
+   "at": "23:13",
+   "stage": 6
+  },
+  {
+   "n": 11,
+   "kind": "board",
+   "text": "Put a proposition on the board",
+   "detail": "firm accounting performance rises with prosocial mission, for every prosocial mission in [0.00, 1.00].",
+   "at": "23:13",
+   "stage": 6
+  },
+  {
+   "n": 12,
+   "kind": "board",
+   "text": "Put a proposition on the board",
+   "detail": "perceived work meaningfulness rises with prosocial mission, for every prosocial mission in [0.00, 1.00].",
+   "at": "23:13",
+   "stage": 6
+  },
+  {
+   "n": 13,
+   "kind": "board",
+   "text": "Put a proposition on the board",
+   "detail": "the sign of residual control rights allocation in shirking vulnerability is not settled over its declared range, [0.00, ",
+   "at": "23:13",
+   "stage": 6
+  },
+  {
+   "n": 14,
+   "kind": "board",
+   "text": "Put a proposition on the board",
+   "detail": "the sign of residual control rights allocation in externality vulnerability is not settled over its declared range, [0.0",
+   "at": "23:13",
+   "stage": 6
+  },
+  {
+   "n": 15,
+   "kind": "board",
+   "text": "Put a proposition on the board",
+   "detail": "the sign of residual control rights allocation in purpose clarity factor is not settled over its declared range, [0.00, ",
+   "at": "23:13",
+   "stage": 6
+  },
+  {
+   "n": 16,
+   "kind": "board",
+   "text": "Put a proposition on the board",
+   "detail": "the sign of residual control rights allocation in stated purpose commitment is not settled over its declared range, [0.0",
+   "at": "23:13",
+   "stage": 6
+  },
+  {
+   "n": 17,
+   "kind": "board",
+   "text": "Put a proposition on the board",
+   "detail": "residual control rights allocation falls as measurement and accountability technology rises, for every measurement and a",
+   "at": "23:13",
+   "stage": 6
+  },
+  {
+   "n": 18,
+   "kind": "board",
+   "text": "Put a proposition on the board",
+   "detail": "control rights allocation rises with shirking vulnerability, for every shirking vulnerability in [0.00, 1.00].",
+   "at": "23:13",
+   "stage": 6
+  },
+  {
+   "n": 19,
+   "kind": "board",
+   "text": "Put a proposition on the board",
+   "detail": "control rights allocation rises with externality vulnerability, for every externality vulnerability in [0.00, 1.00].",
+   "at": "23:13",
+   "stage": 6
+  },
+  {
+   "n": 20,
+   "kind": "board",
+   "text": "Put a proposition on the board",
+   "detail": "the sign of control rights allocation in purpose clarity factor is not settled over its declared range, [0.00, 1.00] — 1",
+   "at": "23:13",
+   "stage": 6
+  },
+  {
+   "n": 21,
+   "kind": "board",
+   "text": "Put a proposition on the board",
+   "detail": "control rights allocation rises with stated purpose commitment, for every stated purpose commitment in [0.00, 1.00].",
+   "at": "23:13",
+   "stage": 6
+  },
+  {
+   "n": 22,
+   "kind": "board",
+   "text": "Put a proposition on the board",
+   "detail": "control rights allocation rises with measurement and accountability technology, for every measurement and accountability",
+   "at": "23:13",
+   "stage": 6
+  },
+  {
+   "n": 23,
+   "kind": "board",
+   "text": "Put a proposition on the board",
+   "detail": "firm accounting performance rises with purpose clarity factor over 37.5% of its declared range, [0.00, 1.00], and the re",
+   "at": "23:13",
+   "stage": 6
+  },
+  {
+   "n": 24,
+   "kind": "board",
+   "text": "Put a proposition on the board",
+   "detail": "firm accounting performance rises with prosocial mission, for every prosocial mission in [0.00, 1.00].",
+   "at": "23:13",
+   "stage": 6
+  },
+  {
+   "n": 25,
+   "kind": "board",
+   "text": "Put a proposition on the board",
+   "detail": "perceived work meaningfulness rises with prosocial mission, for every prosocial mission in [0.00, 1.00].",
+   "at": "23:13",
+   "stage": 6
+  },
+  {
+   "n": 26,
+   "kind": "board",
+   "text": "Put a proposition on the board",
+   "detail": "the sign of residual control rights allocation in shirking vulnerability is not settled over its declared range, [0.00, ",
+   "at": "23:13",
+   "stage": 6
+  },
+  {
+   "n": 27,
+   "kind": "board",
+   "text": "Put a proposition on the board",
+   "detail": "the sign of residual control rights allocation in externality vulnerability is not settled over its declared range, [0.0",
+   "at": "23:13",
+   "stage": 6
+  },
+  {
+   "n": 28,
+   "kind": "board",
+   "text": "Put a proposition on the board",
+   "detail": "the sign of residual control rights allocation in purpose clarity factor is not settled over its declared range, [0.00, ",
+   "at": "23:13",
+   "stage": 6
+  },
+  {
+   "n": 29,
+   "kind": "board",
+   "text": "Put a proposition on the board",
+   "detail": "the sign of residual control rights allocation in stated purpose commitment is not settled over its declared range, [0.0",
+   "at": "23:13",
+   "stage": 6
+  },
+  {
+   "n": 30,
+   "kind": "board",
+   "text": "Put a proposition on the board",
+   "detail": "residual control rights allocation falls as measurement and accountability technology rises, for every measurement and a",
+   "at": "23:13",
+   "stage": 6
+  },
+  {
+   "n": 31,
+   "kind": "expset",
+   "text": "Ran the declared set",
+   "detail": "Everything — 2500 of 2500 combinations · 7 propositions re-signed over 2500 combinations",
+   "at": "23:13",
+   "stage": 7
+  }
+ ]
+}

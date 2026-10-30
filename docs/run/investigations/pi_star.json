@@ -1,0 +1,193 @@
+{
+ "entail_version": "0.1.0.dev0",
+ "created_at": "2026-09-02T13:23:09Z",
+ "model": "purpose",
+ "llm": "claude-opus-5",
+ "design": {
+  "base_n": 128,
+  "grid": 81,
+  "optimised": "pi",
+  "objective": "AVp",
+  "parameters": [
+   "alpha",
+   "principal_competence",
+   "principal_conflict",
+   "agent_conflict"
+  ],
+  "ablated": []
+ },
+ "prompt_key": "3f691daaa2b731f02a1375f10410ab1f",
+ "outcome": "pi_star",
+ "patterns": [
+  {
+   "sentence": "principal_competence raises pi_star (rank correlation +0.74; Sobol first-order 0.55, total 0.64)",
+   "parameter": "principal_competence",
+   "first_order": 0.5517424317782414,
+   "total": 0.6408700553731886,
+   "correlation": 0.7377419402899626
+  },
+  {
+   "sentence": "agent_conflict lowers pi_star (rank correlation -0.54; Sobol first-order 0.28, total 0.35)",
+   "parameter": "agent_conflict",
+   "first_order": 0.2835471998408433,
+   "total": 0.34590006299943615,
+   "correlation": -0.5415283586874078
+  },
+  {
+   "sentence": "principal_conflict raises pi_star (rank correlation +0.26; Sobol first-order 0.04, total 0.15)",
+   "parameter": "principal_conflict",
+   "first_order": 0.04217093847055052,
+   "total": 0.14642395304884115,
+   "correlation": 0.2589691927637599
+  },
+  {
+   "sentence": "alpha no clear direction pi_star (rank correlation -0.05; Sobol first-order 0.03, total 0.06)",
+   "parameter": "alpha",
+   "first_order": 0.02781369850901324,
+   "total": 0.06154050200603482,
+   "correlation": -0.04680737488214846
+  }
+ ],
+ "candidates": [
+  {
+   "claim": "Optimal purpose integration rises with the costs of joint decision-making because purpose can be conceded through control rights, which those costs never touch: the dearer discretion becomes, the more of the concession is worth committing to in advance, and the higher the integration that is optimal.",
+   "explains": "principal_competence",
+   "mechanisms": [
+    "principal_competence_cost",
+    "principal_conflict_cost",
+    "principal_cost_incidence",
+    "contractibility"
+   ],
+   "minimal": [
+    "principal_competence_cost"
+   ],
+   "redundant": [
+    "principal_conflict_cost",
+    "principal_cost_incidence",
+    "contractibility"
+   ],
+   "rationale": "The counter-intuitive positive signs are, on this account, a routing result: rising principal-side costs do not make purpose less attractive, they make the contracted route to purpose relatively more attractive, and the optimum follows. Removing the two principal costs leaves nothing whose route needs avoiding, and removing the incidence rule and the control channel leaves no alternative route to take. Either way pi_star should stop responding to both parameters, which would account for the strongest effect on the list (competence, 0.74) and the weakest signed one (conflict, 0.26) with a single set of switches.",
+   "predicted": "vanishes",
+   "observed": "vanishes",
+   "confirmed": true,
+   "total_before": 0.6408700553731886,
+   "total_after": 0.0,
+   "correlation_before": 0.7377419402899626,
+   "correlation_after": -0.011302806823890274
+  },
+  {
+   "claim": "Optimal purpose integration rises with the costs of joint decision-making because purpose can be conceded through control rights, which those costs never touch: the dearer discretion becomes, the more of the concession is worth committing to in advance, and the higher the integration that is optimal.",
+   "explains": "principal_conflict",
+   "mechanisms": [
+    "principal_competence_cost",
+    "principal_conflict_cost",
+    "principal_cost_incidence",
+    "contractibility"
+   ],
+   "minimal": [
+    "principal_conflict_cost"
+   ],
+   "redundant": [
+    "principal_competence_cost",
+    "principal_cost_incidence",
+    "contractibility"
+   ],
+   "rationale": "The counter-intuitive positive signs are, on this account, a routing result: rising principal-side costs do not make purpose less attractive, they make the contracted route to purpose relatively more attractive, and the optimum follows. Removing the two principal costs leaves nothing whose route needs avoiding, and removing the incidence rule and the control channel leaves no alternative route to take. Either way pi_star should stop responding to both parameters, which would account for the strongest effect on the list (competence, 0.74) and the weakest signed one (conflict, 0.26) with a single set of switches.",
+   "predicted": "vanishes",
+   "observed": "vanishes",
+   "confirmed": true,
+   "total_before": 0.14642395304884115,
+   "total_after": 0.0,
+   "correlation_before": 0.2589691927637599,
+   "correlation_after": 0.009905008690698063
+  },
+  {
+   "claim": "Agent conflict lowers pi_star because the agency problem is charged against both channels at once, so wider enfranchisement has no cheap route around it and the optimum retreats rather than reallocating.",
+   "explains": "agent_conflict",
+   "mechanisms": [
+    "agent_conflict_cost",
+    "agency_cost_incidence",
+    "ai_agency_cost_reduction"
+   ],
+   "minimal": [
+    "agent_conflict_cost"
+   ],
+   "redundant": [
+    "agency_cost_incidence",
+    "ai_agency_cost_reduction"
+   ],
+   "rationale": "This is the mirror image of the routing account: the sign on agent_conflict is negative precisely because agency_cost_incidence denies it the escape that principal_cost_incidence grants the principal costs. With agent_conflict_cost off there is no manager agenda for enfranchisement to widen; with agency_cost_incidence off the cost no longer reaches the contracted channel and the parameter should behave like the principal costs instead. ai_agency_cost_reduction is included because it scales the same cost, and leaving it on would preserve an attenuated version of the effect through AI intensity.",
+   "predicted": "vanishes",
+   "observed": "vanishes",
+   "confirmed": true,
+   "total_before": 0.34590006299943615,
+   "total_after": 0.0,
+   "correlation_before": -0.5415283586874078,
+   "correlation_after": -0.00876813536816861
+  },
+  {
+   "claim": "Alpha fails to move pi_star not because the split between control and residual rights is irrelevant but because the two ways of protecting a stakeholder are substitutes: what alpha buys by making the concession contractible, integration has already bought by lowering the risk premium demanded.",
+   "explains": "alpha",
+   "mechanisms": [
+    "contractibility",
+    "ai_contractibility_shift",
+    "purpose_vulnerability_reduction"
+   ],
+   "minimal": [
+    "ai_contractibility_shift",
+    "purpose_vulnerability_reduction"
+   ],
+   "redundant": [
+    "contractibility"
+   ],
+   "rationale": "A null produced by substitution should survive the removal of one substitute, because the other compensates: with the contractibility channels off, purpose_vulnerability_reduction still delivers the protection alpha would have delivered, and pi_star stays indifferent to alpha. This is the one prediction on the list where persistence of the observed pattern confirms rather than refutes the explanation, and it is falsified if alpha acquires a clear sign under this ablation. The small total-order index (0.06 against first-order 0.03) is consistent with genuine near-irrelevance at the optimum rather than with two large offsetting effects.",
+   "predicted": "unchanged",
+   "observed": "weakens",
+   "confirmed": false,
+   "total_before": 0.06154050200603482,
+   "total_after": 0.023534256433668143,
+   "correlation_before": -0.04680737488214846,
+   "correlation_after": 0.06303160976208066
+  },
+  {
+   "claim": "The positive signs on both principal costs come from the credibility threshold alone: below the point where purpose is backed by governance it is cheap talk, and the principal-cost parameters shift where that threshold falls, so the sweep records a jump in the optimum rather than a gradient in the cost balance.",
+   "explains": "principal_competence",
+   "mechanisms": [
+    "commitment_credibility"
+   ],
+   "minimal": [],
+   "redundant": [],
+   "rationale": "If the observed rank correlations are picking up movement of a discontinuity rather than a smooth cost trade-off, then removing the threshold should remove both effects outright, with no reallocation of the concession required to explain them. This covers the same two effects as the routing account but throws an entirely different switch, so ablation separates them cleanly: routing predicts survival under commitment_credibility alone being off, this account predicts collapse. I hold it as the unlikely one, because commitment_credibility is described as gating whether integration is believed at all rather than as pricing the competence of principals, and a threshold effect would more naturally show up as a large gap between first-order and total Sobol indices than as the tight 0.55/0.64 observed.",
+   "predicted": "vanishes",
+   "observed": "vanishes",
+   "confirmed": true,
+   "total_before": 0.6408700553731886,
+   "total_after": 0.060151861055516814,
+   "correlation_before": 0.7377419402899626,
+   "correlation_after": 0.11002057104819139
+  },
+  {
+   "claim": "The positive signs on both principal costs come from the credibility threshold alone: below the point where purpose is backed by governance it is cheap talk, and the principal-cost parameters shift where that threshold falls, so the sweep records a jump in the optimum rather than a gradient in the cost balance.",
+   "explains": "principal_conflict",
+   "mechanisms": [
+    "commitment_credibility"
+   ],
+   "minimal": [],
+   "redundant": [],
+   "rationale": "If the observed rank correlations are picking up movement of a discontinuity rather than a smooth cost trade-off, then removing the threshold should remove both effects outright, with no reallocation of the concession required to explain them. This covers the same two effects as the routing account but throws an entirely different switch, so ablation separates them cleanly: routing predicts survival under commitment_credibility alone being off, this account predicts collapse. I hold it as the unlikely one, because commitment_credibility is described as gating whether integration is believed at all rather than as pricing the competence of principals, and a threshold effect would more naturally show up as a large gap between first-order and total Sobol indices than as the tight 0.55/0.64 observed.",
+   "predicted": "vanishes",
+   "observed": "unchanged",
+   "confirmed": false,
+   "total_before": 0.14642395304884115,
+   "total_after": 0.6068402539637846,
+   "correlation_before": 0.2589691927637599,
+   "correlation_after": 0.6680939315047133
+  }
+ ],
+ "malformed": [],
+ "summary": {
+  "proposed": 6,
+  "survived": 4,
+  "refuted": 2
+ }
+}

@@ -1,0 +1,31 @@
+You are helping a management scholar build a formal model out of a curated
+literature. Below is every outcome quantity in the model, the mechanisms that write it, the
+role each mechanism has been declared to play, and the class of functional shapes it will be
+run over.
+
+Propose, for each outcome, how its mechanisms combine. Choose from exactly these five:
+  additive        independent contributions; removing one leaves the rest
+  multiplicative  each is necessary; take any to zero and the outcome is zero
+  min             a bottleneck; the smallest binds
+  max             a substitute set; the best is enough
+  ces             between additive and multiplicative, elasticity swept
+
+Propose more than one where the theory genuinely does not settle it -- that is a class and
+the enumeration will run all of them. Say nothing about outcomes where you have no reason.
+
+Reason from the construct names and the declared roles, not from what sounds plausible in
+general. One sentence each, naming what in the data decided it.
+
+OUTCOME firm_accounting_performance ("firm accounting performance") kind=stock|rate|degree aspect=level
+  <- purpose_clarity_factor ("purpose clarity factor") role=generates shape=f(0)=0+f(1)=1+increasing evidence=7 papers
+  <- clarity_only_index ("clarity only index") role=gates shape=f(0)=0+f(1)=1+increasing evidence=1 papers
+  <- prosocial_mission ("prosocial mission") role=generates shape=f(0)=0+f(1)=1+increasing evidence=1 papers
+  <- perceived_work_meaningfulness ("perceived work meaningfulness") role=generates shape=f(0)=0+f(1)=1+increasing evidence=1 papers
+OUTCOME perceived_work_meaningfulness ("perceived work meaningfulness") kind=stock|degree aspect=level
+  <- prosocial_mission ("prosocial mission") role=generates shape=f(0)=0+f(1)=1+increasing evidence=2 papers
+OUTCOME residual_control_rights_allocation ("residual control rights allocation") kind=share aspect=level
+  <- stated_purpose_commitment ("stated purpose commitment") role=allocates shape=f(0)=0+f(1)=1+increasing evidence=model
+  <- measurement_and_accountability_technology ("measurement and accountability technology") role=modulates shape=f(0)=0+f(1)=1+increasing evidence=model
+PARAMETERS (nothing writes these): purpose_clarity_factor, clarity_only_index, prosocial_mission, stated_purpose_commitment, measurement_and_accountability_technology
+
+Return ONLY JSON: {"proposals":[{"outcome":"<the varName>","rules":["additive"],"why":"<one sentence>"}]}

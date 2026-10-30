@@ -1,0 +1,688 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AMG Workbench</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,600;1,400&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js"></script>
+
+<link rel="stylesheet" href="bench.css">
+<!-- fullscreen.js injects its own sheet, so statics/index.html gets it too
+     without loading this page's. -->
+
+
+<div class="wrap">
+<header>
+  <h1 class="sr-only">AMG Workbench — Purpose</h1>
+  <!-- Streams are tabs because the procedure is not specific to purpose, and a
+       second stream is how that relationship stops being an assertion. Only the first
+       one exists in this pilot; the rest are stated and disabled rather than
+       hidden, so what is missing is visible. -->
+  <nav class="tabs" aria-label="The workbench, the project you are in, and the four phases">
+    <button type="button" class="toolname" id="goHome" aria-current="false"
+      title="AMG Workbench: back to the start page">AMG Workbench</button>
+    <span class="toolrule" aria-hidden="true"></span>
+    <!-- Save and load, with no save button: every choice on every step is
+         written to the scenario you are in as you make it. The record went into
+         this menu rather than beside it: it is a thing you do to the scenario,
+         and a second menu was a second thing to read on a row that now also
+         carries the chain. -->
+    <span class="scen">
+      <details class="menu" id="scenMenu">
+        <summary class="tabbtn menubtn" title="Everything you can do to a project, and which one you are in">Menu</summary>
+        <div class="menupop">
+          <!-- WHAT A SCENARIO IS, where the word is first met. Scenarios are
+               about the workbench, not about the final output. A reader who
+               thinks a scenario IS the action model will
+               look for their deliverable in this menu and not find it. -->
+          <p class="menunote">A <b>project</b> is your work on the workbench: the
+            literatures you bring in, and every choice you make on them. The
+            <b>action model</b> is what you share from it at the end.</p>
+          <span class="menusep"></span>
+          <button type="button" class="tabbtn" id="scenNew"
+            title="Starts a project with nothing decided.">New project</button>
+          <button type="button" class="tabbtn" id="scenCopy"
+            title="A copy of this project, from where you are now, beside it rather than over it.">Duplicate this project</button>
+          <div class="submenu">
+            <button type="button" class="tabbtn subhd" id="impHd" aria-expanded="false"
+              aria-controls="impRows" title="What can be brought in from outside this browser">Import<span class="subarw" aria-hidden="true">&#9656;</span></button>
+            <div class="subrows" id="impRows" hidden>
+              <button type="button" class="tabbtn" id="scenOpen"
+                title="A project file written by this workbench. It arrives beside the one you are in and does not touch it.">A project file&hellip;</button>
+              <input type="file" id="scenFileIn" accept=".json,application/json" hidden>
+              <button type="button" class="tabbtn" id="impModel"
+                title="Somebody else's action model, held BESIDE yours rather than opened over it: the declarations they made, the arithmetic they wrote, and the conclusions they retained with the region each holds on. Each declaration is placed against this corpus and offered to be adopted by name, one at a time; their model can go into the model editor, where it is parsed like anything you type; their conclusions sit beside yours about the same pair. Nothing is yours until you adopt it. Reads a project file this workbench wrote, or an amg-stream carrying declarations.">From an AMG&hellip;</button>
+              <input type="file" id="impModelIn" accept=".json,application/json" hidden>
+            </div>
+          </div>
+          <div class="submenu">
+            <button type="button" class="tabbtn subhd" id="scenEgs" aria-expanded="false"
+              aria-controls="egRows" title="Two finished runs that ship with the page">Open a demo project<span class="subarw" aria-hidden="true">&#9656;</span></button>
+            <div class="subrows" id="egRows" hidden>
+              <button type="button" class="tabbtn" id="scenDemo"
+                title="A finished run: the purpose literature curated down to a core, two relations imported from the property-rights model, and the joined model declared, closed and derived.">Purpose and property rights</button>
+              <button type="button" class="tabbtn" id="scenModel"
+                title="The other way round: the model first, and the literature read for what the model needs. Two literatures scoped on their own terms and joined, six constructs admitted by name below the threshold because one paper each carries them, eleven mechanisms, three shape classes over a hundred form combinations, and three quantities carried by no paper in either literature and saying so.">Two-channel model</button>
+            </div>
+          </div>
+          <div class="submenu">
+            <button type="button" class="tabbtn subhd" id="scenPull" aria-expanded="false"
+              aria-controls="scenRows" title="A project somebody put in this artifact's own store">Open from the workbench<span class="subarw" aria-hidden="true">&#9656;</span></button>
+            <div class="scenrows subrows" id="scenRows" hidden></div>
+          </div>
+          <span class="menusep"></span>
+          <button type="button" class="tabbtn" id="scenSave"
+            title="Every decision, every answer you accepted, and the stamps that say which bench and which corpus it came off. A replay reads this file instead of calling a model.">Export this project as a file</button>
+          <button type="button" class="tabbtn" id="scenPush"
+            title="Put it in the artifact's own store, where a co-author can open it without a file changing hands. Needs a host that offers one; the file export works everywhere.">Save this project to the workbench</button>
+          <span class="menusep"></span>
+          <button type="button" class="tabbtn" id="scenName">Rename this project</button>
+          <button type="button" class="tabbtn" id="scenDrop">Delete this project</button>
+          <span class="menusep"></span>
+          <button type="button" class="tabbtn mi2" id="recBtn" aria-expanded="false">Decision record<i>what was decided, construct by construct</i></button>
+          <button type="button" class="tabbtn mi2" id="histBtn" aria-expanded="false">History<i>your moves in order, and fork from any of them</i></button>
+          <span class="menusep"></span>
+          <!-- THE SCENARIOS THEMSELVES, last and ticked, which is where a
+               window menu puts its windows. This replaced a select beside the
+               menu: two controls for one thing, on the row that also carries
+               the chain. -->
+          <span class="menuhd">Projects</span>
+          <div class="scenlist" id="scenList" role="group" aria-label="Projects"></div>
+        </div>
+      </details>
+    </span>
+    <!-- The four blocks ride the header. They were a row of their own under it,
+         which spent thirty-five pixels saying what fits beside a title. -->
+    <div class="blockrow" id="blockrow"></div>
+    <!-- These were a column beside the panel, which put them at the first level
+         of reading on every step whether anybody wanted them or not. They
+         became a launcher, and the launcher floated over the bottom right
+         corner where it covered whatever scrolled under it. It sits at the end
+         of the chain row: the suggestions are about the whole chain, so they
+         belong after it rather than among the controls that act on a scenario.
+         In full screen the header is not drawn and this goes with it. -->
+    <button type="button" class="gfab" id="gfab" aria-expanded="false"
+      aria-controls="guide" title="What contradicts, what the findings rest on, and — when you ask for it — a reading of the whole chain">
+      <span class="gfabt">Suggestions</span>
+    </button>
+    <aside class="guide" id="guide" hidden role="dialog" aria-label="Suggestions"></aside>
+  </nav>
+  <!-- The steps of the open block, as chevrons under their block. A step is a
+       page: you are on one of them, the panel below is its own, and nothing
+       else is stacked under it waiting to be scrolled past. -->
+  <div class="steprow" id="steprow"></div>
+</header>
+
+<!-- THE TWO FINISHED EXAMPLES, OFFERED RATHER THAN LEFT IN A MENU. A reader
+     arriving here lands on step 1.1 with 422 constructs drawn and no way of
+     knowing that two completed runs ship beside the page; both were reachable
+     only from the ... menu beside the scenario name. This is not a greeting
+     and it stores no dismissal: it is shown while this browser has declared
+     nothing, and it is gone for good the moment anything is declared or either
+     example is opened. -->
+<!-- THE START PAGE. A page of its own rather than a ledger on the first step,
+     with a way back out of it.
+
+     So it is a page and not a banner: body.home takes the chain, the panel,
+     the map and the footer off screen and leaves this. The way back is the
+     wordmark in the header, which is where every other tool puts it.
+
+     It is shown on arrival while this browser has declared nothing, and the
+     moment anything is declared or an example is opened it gives way to the
+     work -- but it is no longer GONE, because there is now a button. The four
+     phases and the counts are read off BLOCKS and the corpus in
+     page/06-wiring.js rather than written again here, so a step moving
+     between phases cannot leave this page saying the old thing. -->
+<div class="openbar" id="openbar" hidden>
+  <div class="obhead">
+    <h2>Action Model Generators for Organization Science</h2>
+    <p>Organization science produces findings faster than it builds on them. Theories
+      multiply, and studies are hard to compare <span class="obcite">(<a href="https://doi.org/10.1177/1094428109345156" target="_blank" rel="noopener">Leavitt et al., 2010</a>)</span> <span class="obcite">(<a href="https://doi.org/10.1002/smj.2607" target="_blank" rel="noopener">Durand et al., 2017</a>)</span>. AI is pushing the number of
+      papers up and their quality down, and the editors of <i>Organization Science</i> trace
+      the recent rise in submissions primarily to AI use <span class="obcite"><a href="https://doi.org/10.1287/orsc.2026.ed.v37.n3" target="_blank" rel="noopener">Gartenberg et al., 2026</a></span>. The <b>AMG Workbench</b> uses AI
+      the other way: to make knowledge cumulative.</p>
+    <p>It turns a research stream into an <b>Action Model Generator (AMG)</b>: a map of the
+      relationships the literature claims and tests around an outcome of interest. Think of
+      an AMG as a meta-paper. Its relationships are what we used to call a theoretical
+      model, and checking where each one holds is what we used to call empirical
+      testing.</p>
+    <p>The name echoes Starbuck&rsquo;s <span class="obcite">(<a href="https://doi.org/10.2307/2095147" target="_blank" rel="noopener">1983</a>)</span> <i>organizations as action generators</i>.
+      Scholars draw many <b>action models</b> from one AMG, and their findings are meant to
+      inform what organizations do. The demonstration uses corporate purpose, a recent
+      literature whose authors still define it differently.</p>
+  </div>
+
+  <div class="obsec">
+    <h3 class="obh">The four phases</h3>
+    <ol class="obphases" id="obphases"></ol>
+  </div>
+
+  <div class="obsec">
+    <h3 class="obh">Design principles</h3>
+    <ol class="obhow">
+      <li><b>Human-led.</b> The scholar decides every input choice that builds the core
+        model, drawing on what a language model proposes. Nothing proposed is used until
+        you accept it, and every choice is recorded. <span class="obcite">(<a href="https://doi.org/10.1177/00018392241304403" target="_blank" rel="noopener">Bechky &amp; Davis, 2025</a>)</span> <span class="obcite">(<a href="https://doi.org/10.1016/j.respol.2026.105575" target="_blank" rel="noopener">Tr&ouml;binger et al., 2026</a>)</span></li>
+      <li><b>AI-assisted.</b> A language model can guide your thinking or take on whole
+        tasks, such as reading a paper into the corpus. The <svg class="aim" viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M8 0C8.6 4.6 11.4 7.4 16 8C11.4 8.6 8.6 11.4 8 16C7.4 11.4 4.6 8.6 0 8C4.6 7.4 7.4 4.6 8 0Z"/></svg> mark shows where
+        it works, and every exchange is stored with the prompt that produced it, so an ask
+        can be audited and run again. <span class="obcite">(<a href="https://doi.org/10.5465/amr.2018.0072" target="_blank" rel="noopener">Raisch &amp; Krakowski, 2021</a>)</span> <span class="obcite">(<a href="https://doi.org/10.1002/smj.70023" target="_blank" rel="noopener">Carlson &amp; Burbano, 2026</a>)</span></li>
+      <li><b>Traceable.</b> Every element of the synthesis has a declared origin: each
+        construct and relationship to the paper and passage behind it, each choice to
+        whoever made it. <span class="obcite">(<a href="https://doi.org/10.3233/ISU-2010-0613" target="_blank" rel="noopener">Groth et al., 2010</a>)</span></li>
+      <li><b>Modular.</b> Each part of the method can be replaced on its own, or handed to a
+        tool you already use: Scopus, Web of Science or OpenAlex for the literature; SymPy,
+        Mathematica or LaTeX for models; R or Python for data. <span class="obcite">(<a href="https://doi.org/10.1093/bioinformatics/btg015" target="_blank" rel="noopener">Hucka et al., 2003</a>)</span></li>
+      <li><b>Testable.</b> You choose the shape of each relationship, whether read off the
+        literature or proposed as an exploratory hypothesis, and which method checks it.
+        Each finding comes with the conditions under which it holds, and when the workbench
+        cannot tell, it says so. <span class="obcite">(<a href="https://doi.org/10.5465/amr.2007.24351453" target="_blank" rel="noopener">Davis et al., 2007</a>)</span> <span class="obcite">(<a href="https://doi.org/10.1177/0149206319889129" target="_blank" rel="noopener">Csaszar, 2020</a>)</span> <span class="obcite">(<a href="https://doi.org/10.1002/smj.70112" target="_blank" rel="noopener">Tranchero et al., 2026</a>)</span> <span class="obcite">(He &amp; Puranam, 2026)</span></li>
+      <li><b>Open and reproducible.</b> The code is under the MIT licence, derivation by
+        proof is deterministic, and every decision is recorded, so an AMG documents the
+        whole path from the literature it selected to the findings and their validity
+        domains. Anyone can rerun it and get the same result. <span class="obcite">(<a href="https://doi.org/10.1126/science.aab2374" target="_blank" rel="noopener">Nosek et al., 2015</a>)</span> <span class="obcite">(<a href="https://doi.org/10.1146/annurev-psych-020821-114157" target="_blank" rel="noopener">Nosek et al., 2022</a>)</span></li>
+      <li><b>Standard and flexible.</b> Every AMG follows the same frame and the same file
+        format, so each becomes a building block that can be assembled with others. Within
+        that frame the modelling choices are yours. <span class="obcite">(<a href="https://doi.org/10.18564/jasss.4259" target="_blank" rel="noopener">Grimm et al., 2020</a>)</span></li>
+    </ol>
+    <p class="why">The <span class="infdemo">i</span> beside a heading says why the workbench
+      asks what it asks. Nothing is uploaded: every project stays in this browser until you
+      export it.</p>
+  </div>
+
+  <!-- WHERE A MODEL COMES FROM, AND IT COMES FIRST. It used to sit under the
+       tours, which put the one question a reader arrives with -- where does
+       the key go -- below two things they have not done yet. On a host that
+       provides a model this said nothing at all, so the question had no
+       answer anywhere on the page. It answers it in every case now, and it
+       answers it before the projects. -->
+  <div class="obsec" id="obmodel"></div>
+  <div class="obsec">
+    <h3 class="obh">Where to start</h3>
+    <!-- BOXED, because two buttons on an open page read as part of the prose
+         above them. The same box is on the tours, so the two things a reader
+         can actually press look alike and look pressable. -->
+    <div class="obbox">
+      <div class="obways">
+        <button type="button" class="tabbtn obgo" id="openNew"
+          title="An empty workbench: no literature, no constructs, nothing decided. You say which literature this is about, by ticking outlets, reading in a search export, or opening an AMG somebody else built.">New project</button>
+        <button type="button" class="tabbtn obgo" id="openDemo"
+          title="52 papers on corporate purpose from twelve journals, joined with two relationships from property rights, explored and finalized.">Purpose and property rights</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- THE TOURS, under the examples and nowhere else. Written by renderPanel
+       because the list is data in page/30-tour.js: a tour added there has to
+       appear here without this file being touched. -->
+  <div class="obsec" id="obtours"></div>
+
+
+  <!-- THE SOURCES, closed, and only the works this page cites. Every relationship on
+       the page carries its source beside the sentence; this is where the full
+       reference lives. notes/64 holds the passage behind each one and the fit
+       it supports, which is the part a reader cannot check from a reference
+       list. A work with no DOI is listed without a link rather than with a
+       guessed one. -->
+  <div class="obsec">
+    <details class="obsrc">
+      <summary>Sources</summary>
+      <ul>
+      <li>Bechky, B. A., &amp; Davis, G. F. (2025). Resisting the algorithmic management of science: Craft and community after generative AI. <i>Administrative Science Quarterly, 70</i>(1), 1&ndash;22. <a href="https://doi.org/10.1177/00018392241304403" target="_blank" rel="noopener">doi:10.1177/00018392241304403</a></li>
+      <li>Carlson, N. A., &amp; Burbano, V. (2026). The use of LLMs to annotate data in management research: Foundational guidelines and warnings. <i>Strategic Management Journal, 47</i>(3), 699&ndash;725. <a href="https://doi.org/10.1002/smj.70023" target="_blank" rel="noopener">doi:10.1002/smj.70023</a></li>
+      <li>Csaszar, F. A. (2020). Certum quod factum: How formal models contribute to the theoretical and empirical robustness of organization theory. <i>Journal of Management, 46</i>(7), 1289&ndash;1301. <a href="https://doi.org/10.1177/0149206319889129" target="_blank" rel="noopener">doi:10.1177/0149206319889129</a></li>
+      <li>Davis, J. P., Eisenhardt, K. M., &amp; Bingham, C. B. (2007). Developing theory through simulation methods. <i>Academy of Management Review, 32</i>(2), 480&ndash;499. <a href="https://doi.org/10.5465/amr.2007.24351453" target="_blank" rel="noopener">doi:10.5465/amr.2007.24351453</a></li>
+      <li>Durand, R., Grant, R. M., &amp; Madsen, T. L. (2017). The expanding domain of strategic management research and the quest for integration. <i>Strategic Management Journal, 38</i>(1), 4&ndash;16. <a href="https://doi.org/10.1002/smj.2607" target="_blank" rel="noopener">doi:10.1002/smj.2607</a></li>
+      <li>Gartenberg, C., Hasan, S., Murray, A., &amp; Pierce, L. (2026). More versus better: Artificial intelligence, incentives, and the emerging crisis in peer review. <i>Organization Science, 37</i>(3), 795&ndash;812. <a href="https://doi.org/10.1287/orsc.2026.ed.v37.n3" target="_blank" rel="noopener">doi:10.1287/orsc.2026.ed.v37.n3</a></li>
+      <li>Grimm, V., Railsback, S. F., Vincenot, C. E., Berger, U., Gallagher, C., DeAngelis, D. L., &hellip; Ayll&oacute;n, D. (2020). The ODD protocol for describing agent-based and other simulation models: A second update to improve clarity, replication, and structural realism. <i>Journal of Artificial Societies and Social Simulation, 23</i>(2), 7. <a href="https://doi.org/10.18564/jasss.4259" target="_blank" rel="noopener">doi:10.18564/jasss.4259</a></li>
+      <li>Groth, P., Gibson, A., &amp; Velterop, J. (2010). The anatomy of a nanopublication. <i>Information Services &amp; Use, 30</i>(1&ndash;2), 51&ndash;56. <a href="https://doi.org/10.3233/ISU-2010-0613" target="_blank" rel="noopener">doi:10.3233/ISU-2010-0613</a></li>
+      <li>He, V. F., &amp; Puranam, P. (2026). Improving abductive reasoning. Working paper, SSRN.</li>
+      <li>Hucka, M., Finney, A., Sauro, H. M., Bolouri, H., Doyle, J. C., Kitano, H., &hellip; the SBML Forum. (2003). The systems biology markup language (SBML): A medium for representation and exchange of biochemical network models. <i>Bioinformatics, 19</i>(4), 524&ndash;531. <a href="https://doi.org/10.1093/bioinformatics/btg015" target="_blank" rel="noopener">doi:10.1093/bioinformatics/btg015</a></li>
+      <li>Leavitt, K., Mitchell, T. R., &amp; Peterson, J. (2010). Theory pruning: Strategies to reduce our dense theoretical landscape. <i>Organizational Research Methods, 13</i>(4), 644&ndash;667. <a href="https://doi.org/10.1177/1094428109345156" target="_blank" rel="noopener">doi:10.1177/1094428109345156</a></li>
+      <li>Nosek, B. A., Alter, G., Banks, G. C., Borsboom, D., Bowman, S. D., &hellip; Yarkoni, T. (2015). Promoting an open research culture. <i>Science, 348</i>(6242), 1422&ndash;1425. <a href="https://doi.org/10.1126/science.aab2374" target="_blank" rel="noopener">doi:10.1126/science.aab2374</a></li>
+      <li>Nosek, B. A., Hardwicke, T. E., Moshontz, H., Allard, A., Corker, K. S., Dreber, A., &hellip; Vazire, S. (2022). Replicability, robustness, and reproducibility in psychological science. <i>Annual Review of Psychology, 73</i>, 719&ndash;748. <a href="https://doi.org/10.1146/annurev-psych-020821-114157" target="_blank" rel="noopener">doi:10.1146/annurev-psych-020821-114157</a></li>
+      <li>Raisch, S., &amp; Krakowski, S. (2021). Artificial intelligence and management: The automation&ndash;augmentation paradox. <i>Academy of Management Review, 46</i>(1), 192&ndash;210. <a href="https://doi.org/10.5465/amr.2018.0072" target="_blank" rel="noopener">doi:10.5465/amr.2018.0072</a></li>
+      <li>Starbuck, W. H. (1983). Organizations as action generators. <i>American Sociological Review, 48</i>(1), 91&ndash;102. <a href="https://doi.org/10.2307/2095147" target="_blank" rel="noopener">doi:10.2307/2095147</a></li>
+      <li>Tranchero, M., Brenninkmeijer, C.-F., Murugan, A., &amp; Nagaraj, A. (2026). Simulating strategic interactions with AI agents. <i>Strategic Management Journal</i>. <a href="https://doi.org/10.1002/smj.70112" target="_blank" rel="noopener">doi:10.1002/smj.70112</a></li>
+      <li>Tr&ouml;binger, M., Doshi, A. R., &amp; Chai, S. (2026). How experience moderates the impact of AI suggestions on researchers&rsquo; perceptions of their ideas. <i>Research Policy, 55</i>(8), 105575. <a href="https://doi.org/10.1016/j.respol.2026.105575" target="_blank" rel="noopener">doi:10.1016/j.respol.2026.105575</a></li>
+      </ul>
+    </details>
+  </div>
+</div>
+
+<!-- The decision record. Out of step 2.1 and under the header, because it is
+     not that step's work: it is everything every step decided, and it is read
+     at the end or copied out, not operated. -->
+<div class="recbox" id="recbox" hidden>
+  <div class="phdr">
+    <span class="ctl-label">Decision record</span>
+    <span class="pacts">
+      <!-- THREE FILES, AND THE THIRD IS WHY THE FIRST TWO MEAN ANYTHING. The
+           record says what was decided; the stream is the material it was
+           decided about. A reader holding only the record has a list of
+           judgements about objects they do not have. Both shapes of the
+           record are offered for the same reason the findings are: the TSV is
+           what index/passes.tsv uses and a curator reads, the JSON has a
+           published schema and a machine reads it. -->
+      <button type="button" class="tabbtn" id="expPass">Export passes.tsv</button>
+      <button type="button" class="tabbtn" id="expRec">Export the record as JSON</button>
+      <button type="button" class="tabbtn" id="expStream">Export the stream</button>
+      <button type="button" class="tabbtn" id="recClose">Close</button>
+    </span>
+  </div>
+  <div class="passbox" id="passbox"></div>
+  <p class="why">Everything this session decided — the scope, what was admitted, what was
+    dropped, every merge, the flags and every adjudication — in the vocabulary
+    <code>index/passes.tsv</code> already uses, addressed to construct and claim ids so a row
+    keeps meaning what it meant after the tightness moves. <b>It is a record, not an
+    instruction</b>: nothing in the corpus reads it, and <code>curate.py</code> refuses to
+    merge on its own say-so. Exporting writes the file. The model's own declarations are a
+    separate export and a different thing: step 3.1 writes those, as a skeleton
+    <code>check_contract()</code> can read.</p>
+</div>
+
+<!-- How you got here. Under the header with the record, for the same reason:
+     it is every step's, not any one step's. -->
+<div class="recbox" id="histbox" hidden></div>
+
+<section class="flow">
+  <div class="track" id="track"></div>
+</section>
+
+<!-- The exploring phase has a record and the other blocks do not, so the
+     panel sits in a grid that grows a second column when there is something to
+     put in it. The map's own rail cannot carry this: `nomap` takes the whole of
+     stageWrap off the page from step 3.1, which is exactly where the record
+     starts to matter. -->
+<div class="work" id="work">
+<div class="panel" id="panel">
+  <div class="phead" id="phead"></div>
+  <div class="pbody" id="pbody"></div>
+  <div class="pfoot" id="pfoot"></div>
+  <div class="hoffbox" id="hoffbox" hidden></div>
+</div>
+</div>
+<section class="papersec" id="papersec" hidden></section>
+
+<div class="stageWrap">
+  <div class="canvas">
+    <svg id="g" role="img" aria-label="Map of constructs in the purpose literature and the arrows running between them"></svg>
+    <div class="cbar">
+      <div class="cleft">
+        <div class="modeov" id="mapov"></div>
+      </div>
+    </div>
+    <div class="axsel y" id="ySelWrap"></div>
+    <div class="hint-ov"><span id="chint"></span></div>
+    <div class="botbar">
+      <div class="botrow keys"><div class="axsel x" id="xSelWrap"></div></div>
+      <div class="botrow">
+      <div class="tally" id="tally"></div>
+      <div class="zoomov" id="zoomov">
+        <div class="legend" id="legend"></div>
+        <span class="zsep"></span>
+        <span class="zpct" id="zoomPct">100%</span>
+        <button type="button" id="zOut" aria-label="Zoom out">&minus;</button>
+        <button type="button" id="zIn" aria-label="Zoom in">+</button>
+        <button type="button" id="zAll">Fit all</button>
+        <button type="button" id="zSel">Fit selection</button>
+        <button type="button" id="zFS" aria-pressed="false">Full screen</button>
+      </div>
+      </div>
+    </div>
+    <!-- IN FULL SCREEN THE CONTROLS COME BACK AS PANES OVER THE MAP, hidden
+         until asked for. Nothing about the step is here: not its title, not
+         its chevrons, not the block row. The diagram is the whole screen and
+         the filters are a thing you open, look at and close again. -->
+    <div class="fsbar" id="fsbar" hidden>
+      <button type="button" class="tabbtn" id="fsFiltBtn" aria-pressed="false"
+        aria-controls="fsFilters"
+        title="The controls that decide what this map shows, over the map rather than beside it">Filters</button>
+      <button type="button" class="tabbtn" id="fsInspBtn" aria-pressed="false"
+        aria-controls="fsInsp"
+        title="What you are carrying, and the definition of whatever is pinned">Inspector</button>
+    </div>
+    <div class="fspane left" id="fsFilters" hidden>
+      <div class="fspanehd"><b>Filters</b>
+        <button type="button" class="tabbtn" id="fsFiltX">Hide</button></div>
+      <div id="fsFiltBody"></div>
+    </div>
+    <div class="fspane right" id="fsInsp" hidden>
+      <div class="fspanehd"><b>Inspector</b>
+        <button type="button" class="tabbtn" id="fsInspX">Hide</button></div>
+      <div id="fsInspBody"></div>
+    </div>
+  </div>
+  <div class="rail">
+    <div class="card" id="stepcard">
+      <h3 id="stepcardh"></h3>
+      <p class="sub" id="stepcardp"></p>
+      <div class="body flush" id="grail"></div>
+    </div>
+    <div class="card insp">
+      <h3>Inspector</h3>
+      <p class="sub" id="inspSub">Hover anything on the map for a definition. Click to pin it here.</p>
+      <div class="body" id="insp" hidden></div>
+    </div>
+  </div>
+  <!-- A step whose work belongs UNDER its building blocks and ABOVE the map
+       renders it here. Step 2.1 is the only one: the blocks are what a model
+       would be assembled from, the mergers are what joins two literatures'
+       blocks together, and the map is there to check both. A grid item, so the
+       order is CSS and not a DOM move. -->
+  <div id="blkfoot" hidden></div>
+</div>
+
+<!-- Directly under the map, from step 1.3 on: the relationships this step is handing
+     to the next one, each with whatever domain of validity has been declared
+     about it. Under the diagram because every row is an arrow drawn on it, and
+     above the worklist because it is the step's output rather than its leftovers. -->
+<div class="wlfoot" id="clfoot" hidden></div>
+
+<!-- Below the map, which is below the step's own work: what a setting or the
+     corpus did and you have not ruled on. Last, because it is the least of what
+     the step asks, and under the diagram because every row is about something
+     drawn on it. -->
+<div class="wlfoot" id="wlfoot"></div>
+
+<footer>
+<details class="footfold">
+  <summary><strong>What this makes.</strong> An <b>action model</b> is what leaves here: a
+  formal model of a literature, with every choice the literature left open declared rather
+  than defaulted. <span class="footmore">Read on</span></summary>
+
+  <p><strong>What this makes.</strong> An <b>action model</b> carries the arithmetic that closes
+  the model, and each conclusion carries the region of the declared space its sign was proved on. It is called that because it is meant to be acted on &mdash; by a scholar
+  who disagrees with one of its declarations and changes it, or by somebody deciding something.
+  The eight steps build one; step 4.2 shares it as a building block, and step 1.1 is where
+  somebody else&rsquo;s would come in.</p>
+
+  <p class="aileg"><svg class="aim" viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor"
+  d="M8 0C8.6 4.6 11.4 7.4 16 8C11.4 8.6 8.6 11.4 8 16C7.4 11.4 4.6 8.6 0 8C4.6 7.4 7.4 4.6 8 0Z"/></svg><strong>This
+  mark</strong> is on every place a language model is asked or has proposed something.
+  <strong>Which model proposes.</strong> Wherever this page offers to fill something in, what
+  answers is <b>the model the host provides</b> &mdash; on claude.ai that is Claude, and the page
+  cannot name it, because the capability it asks does not say. It is written as <b>an LLM</b>
+  throughout because <b>nothing downstream depends on which one it is</b>. Every proposal is
+  parsed against the declared ids and the closed vocabularies before it is shown, anything outside
+  them is counted rather than written, the record says which of the two of you chose each
+  declaration, and the same path accepts an answer typed in by hand or returned by Mathematica.
+  A wrong proposal is refused by name rather than argued with, so the model is <i>replaceable</i>
+  and not merely unnamed &mdash; which is the property that matters, since infrastructure other
+  researchers cannot reach is infrastructure they cannot check.</p>
+
+  <p><strong>What is on the map.</strong> A <b>construct</b> is a quantity one or more papers
+  named, carried with its signature: level, scale, bearer, stock or flow. A <b>relationship</b> is
+  one paper&rsquo;s assertion that one construct acts on another, with its sign, form and owning
+  theory. An <b>arrow</b> is every relationship running between two constructs, weighted by how many
+  and coloured by the direction they agree on. A <b>statement</b> is what a relationship asserts,
+  held apart from who asserted it, so several papers stating the same one are its evidence. A
+  <b>merge</b> is the judgement that two constructs measure the same quantity.</p>
+
+  <p><strong>Why merging is done by hand.</strong> The unit is the nanopublication&rsquo;s:
+  <a href="https://doi.org/10.3233/ISU-2010-0613" target="_blank" rel="noopener">Groth, Gibson
+  &amp; Velterop (2010)</a> built the format so an aggregator could combine the several accounts
+  of one statement &mdash; which rests on a registry giving every concept one identifier. This
+  literature has none. So <b>merging is the only operation that changes how much evidence a
+  statement has</b>, and it does not only raise it: unmerged, 22 of 597 statements carry more
+  than one paper (3.7%); at step 1.2&rsquo;s default, 22 of 164 (13.4%); merged harder, 22 of 152,
+  the most this corpus yields; harder still, 7 of 29, because collapsing two constructs can
+  delete the statement between them instead of pooling it. That is the argument for a curator
+  and against a threshold.</p>
+
+  <p><strong>Where the bench stops.</strong> Steps 1.1 to 1.3 do the first step of
+  <a href="https://doi.org/10.1177/1745691620969647" target="_blank" rel="noopener">Borsboom
+  et al. (2021)</a> &mdash; identify the phenomena, &ldquo;general, robust and stubborn&rdquo;
+  where data is &ldquo;particular, pliable and ephemeral&rdquo; &mdash; which is what the
+  corroboration counts are there to let you see. Step 2.1 is their prototheory and formal
+  model. Their fourth step, checking the model reproduces the phenomena, needs those phenomena
+  in the model&rsquo;s own language; <code>reconcile.py</code> is the finding that this corpus
+  does not supply it. Their fifth, weighing parsimony and plausibility, the bench does not do.
+  Both are said here rather than hidden.</p>
+</details>
+</footer>
+</div>
+<!-- One relationship's domain of validity. A popup rather than an inline form because
+     the declaration is long and the list it is reached from is long too. -->
+<dialog id="domdlg" aria-labelledby="domdlgh">
+  <div class="dlgh">
+    <h4 id="domdlgh">Declare the domain of validity</h4>
+    <span class="sig" id="domwhat"></span>
+  </div>
+  <div class="dlgb" id="dombody"></div>
+  <div class="dlgf">
+    <span class="sp" id="domsize"></span>
+    <!-- ONE ARROW, AS A FILE. The unit notes/33 section 3 says this bench
+         produces, and the one thing it could not hand over on its own: a
+         model is a set of these plus the identity that joins them. It leaves
+         from the dialog that declares it, because what makes it a declared
+         relation rather than a row of the corpus is what is declared here. -->
+    <button type="button" class="edbtn" id="domexp">Export this relation</button>
+    <button type="button" class="edbtn" id="domclear">Undeclare</button>
+    <button type="button" class="edbtn" id="domcancel">Cancel</button>
+    <button type="button" class="edbtn" id="domsave"><b>Declare</b></button>
+  </div>
+</dialog>
+<!-- A construct the corpus has not got. A name and a definition, and no measure
+     to record, which is the thing the definition has to make up for. -->
+<dialog id="condlg" aria-labelledby="condlgh">
+  <div class="dlgh">
+    <h4 id="condlgh">Add a construct</h4>
+    <span class="sig" id="conwhat"></span>
+  </div>
+  <div class="dlgb" id="conbody"></div>
+  <div class="dlgf">
+    <span class="sp" id="conwarn"></span>
+    <button type="button" class="edbtn" id="concancel">Cancel</button>
+    <button type="button" class="edbtn" id="consave"><b>Add</b></button>
+  </div>
+</dialog>
+<!-- A relation the corpus has not got, between two constructs it may or may not
+     have. Every dimension on it is declared rather than read off a paper. -->
+<dialog id="clmdlg" aria-labelledby="clmdlgh">
+  <div class="dlgh">
+    <h4 id="clmdlgh">Assert a relationship</h4>
+    <span class="sig" id="clmwhat"></span>
+  </div>
+  <div class="dlgb" id="clmbody"></div>
+  <div class="dlgf">
+    <span class="sp" id="clmwarn"></span>
+    <button type="button" class="edbtn" id="clmcancel">Cancel</button>
+    <button type="button" class="edbtn" id="clmsave"><b>Assert</b></button>
+  </div>
+</dialog>
+<!-- A construct typed as a model quantity. The signature the corpus recorded
+     sits in the header, because the whole point of asking here is that the two
+     can be read against each other. -->
+<dialog id="vardlg" aria-labelledby="vardlgh">
+  <div class="dlgh">
+    <h4 id="vardlgh">Type the quantity</h4>
+    <span class="sig" id="varwhat"></span>
+  </div>
+  <div class="dlgb" id="varbody"></div>
+  <div class="dlgf">
+    <span class="sp" id="varwarn"></span>
+    <button type="button" class="edbtn" id="varclear">Untype</button>
+    <button type="button" class="edbtn" id="varcancel">Cancel</button>
+    <button type="button" class="edbtn" id="varsave"><b>Declare</b></button>
+  </div>
+</dialog>
+<!-- The worked example on step 7 used to be a <template> here, cloned into the
+     step and driven by a copy of its script in page/00-worked-example.js. It is
+     statics/statics.js now, markup and all, which is the same file the standalone
+     statics page mounts -- so there is one of it rather than three. -->
+<!-- The families of forms. Not displayed inline any more: they are a reference
+     a scholar consults while attributing a shape to a relation, not one of the
+     declarations the step is asking for, and inline they took more vertical
+     space than the list they were about. Opened from step 3.1's mechanisms
+     column, where a shape class is actually chosen, and from step 3.1 where a
+     line can name a member. -->
+<!-- The manual join: one construct from each stream, under one name. It was the
+     whole of step 2.1, which asked a scholar to find the join by reading two
+     lists of 125 and 24 names. The candidates are computed now and this is the
+     exception behind a button. -->
+<dialog id="joindlg" aria-labelledby="joindlgh">
+  <div class="dlgh">
+    <h4 id="joindlgh">Merge other constructs</h4>
+    <span class="sig" id="joinwhat"></span>
+  </div>
+  <div class="dlgb" id="joinbody"></div>
+  <div class="dlgf">
+    <span class="sp"></span>
+    <button type="button" class="edbtn" id="joinclose"><b>Close</b></button>
+  </div>
+</dialog>
+<!-- A PAPER THIS CORPUS HAS NOT GOT. The shipped fifty-two were extracted
+     offline over full texts; this asks the same job of one paper, in the
+     browser, from whatever the scholar can give it. What comes back is a
+     proposal like any other: parsed against the corpus's own vocabularies,
+     shown before it is applied, and accepted or refused by name. -->
+<dialog id="pdlg" aria-labelledby="pdlgh">
+  <div class="dlgh">
+    <h4 id="pdlgh">Add a paper</h4>
+    <span class="sig" id="pdlgwhat"></span>
+  </div>
+  <div class="dlgb" id="pdlgbody"></div>
+  <div class="dlgf">
+    <span class="sp" id="pdlgwarn"></span>
+    <button type="button" class="edbtn" id="pdlgcancel">Close</button>
+    <button type="button" class="edbtn" id="pdlgsave"><b>Add it to the corpus</b></button>
+  </div>
+</dialog>
+<!-- WHAT STEP 1.1 CAN BRING IN. One dialog for three imports, because each of
+     the three is the same act -- look at what is outside, see what it would do
+     to the corpus, accept or discard -- and three dialogs would be three
+     places for that act to be described differently. page/24-import.js. -->
+<dialog id="idlg" aria-labelledby="idlgh">
+  <div class="dlgh">
+    <h4 id="idlgh">Import</h4>
+    <span class="sig" id="idlgwhat"></span>
+  </div>
+  <div class="dlgb" id="idlgbody"></div>
+  <div class="dlgf">
+    <span class="sp" id="idlgwarn"></span>
+    <button type="button" class="edbtn" id="idlgdrop" hidden>Restore the shipped snapshot</button>
+    <button type="button" class="edbtn" id="idlgcancel">Close</button>
+    <button type="button" class="edbtn" id="idlggo">Read</button>
+    <button type="button" class="edbtn" id="idlgok" hidden><b>Accept</b></button>
+  </div>
+</dialog>
+<!-- The clusters, as proposals. A list of candidate merges is something you
+     read down once and then act on, which is a dialog rather than a column in
+     a panel: the settings live on the Clusters preset and this is what they
+     produced. -->
+<!-- NARROWING WHAT IS TESTED. Step 4.1 reads every finding against the whole
+     declared class by default, which is the declaration that is almost always
+     right; this holds the apparatus for saying otherwise, so the step itself
+     is a line and the findings. page/04-stages.js expSetHTML() fills it. -->
+<dialog id="expdlg" aria-labelledby="expdlgh">
+  <div class="dlgh">
+    <h4 id="expdlgh">Narrow what is tested</h4>
+    <span class="sig" id="expwhat"></span>
+  </div>
+  <div class="dlgb" id="expbody"></div>
+  <div class="dlgf">
+    <span class="sp"></span>
+    <button type="button" class="edbtn" id="expclose"><b>Done</b></button>
+  </div>
+</dialog>
+<dialog id="comdlg" aria-labelledby="comdlgh">
+  <div class="dlgh">
+    <h4 id="comdlgh">Merges the clustering proposes</h4>
+    <span class="sig" id="comwhat"></span>
+  </div>
+  <div class="dlgb" id="combody"></div>
+  <div class="dlgf">
+    <span class="sp"></span>
+    <button type="button" class="edbtn" id="comclose"><b>Close</b></button>
+  </div>
+</dialog>
+<dialog id="famdlg" aria-labelledby="famdlgh">
+  <div class="dlgh">
+    <h4 id="famdlgh">Families of forms</h4>
+    <span class="sig" id="famwhat"></span>
+  </div>
+  <div class="dlgb" id="fambody"></div>
+  <div class="dlgf">
+    <span class="sp"></span>
+    <button type="button" class="edbtn" id="famclose"><b>Close</b></button>
+  </div>
+</dialog>
+<!-- The guided tour's backdrop and caption. Outside the panel, because the
+     panel is rebuilt on every render and the tour has to survive its own
+     navigation. page/30-tour.js. -->
+<div id="tourhost"></div>
+<div id="tip" role="tooltip"></div>
+
+
+<script type="module" src="page/00-worked-example.js"></script>
+<!-- The comparative statics, markup and model and all. The standalone page at
+     statics/index.html mounts this same module, which is why there is one of
+     it: step 7 and that page draw the same model with the same code. -->
+<script type="module" src="statics/statics.js"></script>
+<!-- core/ is the lower layer: no DOM, no corpus, no page state, and nothing in
+     it may use a name declared outside it. scripts/check_bench.py enforces
+     that, which is what lets a scholar replace one of these on its own. -->
+<!-- Full screen for the three diagrams. Imports nothing, so statics/index.html
+     can load it on its own without pulling the page graph in behind it. -->
+<script type="module" src="fullscreen.js"></script>
+<script type="module" src="core/safe.js"></script>
+<script type="module" src="core/vocab.js"></script>
+<script type="module" src="core/kernel.js"></script>
+<script type="module" src="core/compose.js"></script>
+<script type="module" src="core/curate.js"></script>
+<script type="module" src="core/forms.js"></script>
+<script type="module" src="core/certify.js"></script>
+<script type="module" src="core/report.js"></script>
+<script type="module" src="core/curve.js"></script>
+<script type="module" src="core/invariants.js"></script>
+<script type="module" src="core/expset.js"></script>
+<script type="module" src="core/verdict.js"></script>
+<script type="module" src="core/similarity.js"></script>
+<script type="module" src="core/checks.js"></script>
+<script type="module" src="core/export.js"></script>
+<script type="module" src="core/rank.js"></script>
+<script type="module" src="core/communities.js"></script>
+<script type="module" src="graph-data.js"></script>
+<script type="module" src="model-report.js"></script>
+<script type="module" src="page/01-mr-fallback.js"></script>
+<script type="module" src="page/02-modules.js"></script>
+<script type="module" src="page/03-stores.js"></script>
+<script type="module" src="page/03b-decisions.js"></script>
+<script type="module" src="page/03c-corpus.js"></script>
+<script type="module" src="page/03d-similarity.js"></script>
+<script type="module" src="page/04-stages.js"></script>
+<script type="module" src="page/05-explore.js"></script>
+<script type="module" src="page/06-wiring.js"></script>
+<script type="module" src="page/07-grouping.js"></script>
+<script type="module" src="page/08-ask.js"></script>
+<script type="module" src="page/09-derive.js"></script>
+<script type="module" src="page/10-depends.js"></script>
+<script type="module" src="page/11-classes.js"></script>
+<script type="module" src="page/12-claims.js"></script>
+<script type="module" src="page/13-map.js"></script>
+<script type="module" src="page/14-boot.js"></script>
+<script type="module" src="page/15-deposit.js"></script>
+<script type="module" src="page/16-worklists.js"></script>
+<script type="module" src="page/17-scenarios.js"></script>
+<script type="module" src="page/18-workspace.js"></script>
+<script type="module" src="page/19-review.js"></script>
+<script type="module" src="page/20-expset.js"></script>
+<script type="module" src="page/21-exprun.js"></script>
+<script type="module" src="page/22-communities.js"></script>
+<script type="module" src="page/23-exchange.js"></script>
+<script type="module" src="page/24-import.js"></script>
+<script type="module" src="page/25-notebook.js"></script>
+<script type="module" src="page/26-deposit.js"></script>
+<script type="module" src="page/27-streams.js"></script>
+<script type="module" src="page/28-bridge.js"></script>
+<script type="module" src="page/29-models.js"></script>
+<script type="module" src="page/30-tour.js"></script>
+<script type="module" src="page/31-report.js"></script>
+
+<!-- Nothing above runs while it loads: every statement that used to is a
+     function, and boot() calls them in the order the tags used to imply. See
+     the note on boot() in page/14-boot.js. -->
+<script type="module">
+import { boot } from "./page/14-boot.js";
+"use strict"; boot();</script>

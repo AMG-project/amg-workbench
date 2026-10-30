@@ -1,0 +1,14 @@
+__pycache__/
+*.py[cod]
+.venv/
+.pytest_cache/
+.ruff_cache/
+dist/
+*.egg-info/
+# Scratch output from runs.
+data/runs/
+
+# NOTE: data/transcripts/ is deliberately NOT ignored. Recorded model calls are
+# the reproducibility mechanism -- a reader replays the study from them with no
+# API key -- so they belong in the repository.
+.env

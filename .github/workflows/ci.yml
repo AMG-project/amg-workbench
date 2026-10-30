@@ -1,0 +1,42 @@
+name: ci
+on: [push, pull_request]
+
+# ONE JOB, NO INSTALL STEP.
+#
+# This file used to run `uv sync`, ruff, pytest and a separate bench job,
+# because until 23 October 2026 the repository carried a Python engine. That
+# engine is gone (tag `drystone-final`) and so is its packaging, so two of the
+# three jobs here could not have passed: there is no pyproject.toml to sync
+# against and no Python tests to collect. A red CI on a submission whose first
+# gate is reproducibility is worse than no CI, so this is the whole of it now.
+#
+# `make check` needs node and a system Python and installs nothing: the two
+# scanners import only the standard library, the tests import only node's
+# builtins, and there is no package.json, no lockfile and no build step. Both
+# runtimes are pinned, because "it ran on my machine" is the failure the
+# reproducibility gate is about.
+#
+# What it runs, in order: 164 node tests, two static scanners over the page, a
+# headless walk over all eight steps against a recorded snapshot, a scenario
+# that tries to run script in the page that opens it, the second demo opened
+# and derived, and a smoke test of the statics page. The four headless checks
+# need a browser; the GitHub Ubuntu image ships Chrome, and CHROME_PATH
+# overrides where it looks.
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: what the runner has
+        run: |
+          node --version
+          python3 --version
+          google-chrome --version || chromium --version || echo "no chrome on this runner"
+      - run: make check

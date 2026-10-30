@@ -1,0 +1,70 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://bellapurpose.org/amg/deposit.schema.json",
+  "title": "A deposit",
+  "description": "What leaves the workbench at the end, on what terms, at what address. The five decisions step 4.2 asks for, with the day each was made, and the counts of what the deposit carries. This is the manifest-of-record inside the archive the step writes: `DEPOSIT.md` is the same thing for a reader, and `MANIFEST.txt` beside it carries a SHA-256 per file. It was a format with a producer and no schema for a day, which is the inverse of what the declared relation was for a year.",
+  "type": "object",
+  "required": ["format", "v", "version", "where", "travels", "licence"],
+  "properties": {
+    "format": {"const": "amg-deposit"},
+    "v": {"const": 1},
+    "version": {"type": "string",
+      "description": "What a citation pins to. A curation is not one thing: it is whatever state the declarations were in when a conclusion was read off them, so a citation without a version cannot tell a reader whether they are disagreeing with the same object. The page proposes bench, corpus and the day; the curator may write anything over it."},
+    "decided": {"type": "integer", "minimum": 0,
+      "description": "How many of the five are declared. A deposit written with some of them open says so on every page of itself rather than reading as finished."},
+    "of": {"type": "integer", "minimum": 0},
+    "where": {
+      "description": "Two different jobs, so two fields. A Git host carries the code and the history and lets somebody open an issue against it; an archive pins one state to an identifier that still resolves in ten years.",
+      "type": "object",
+      "properties": {
+        "host": {"type": "string"}, "repository": {"type": "string"},
+        "archive": {"type": "string"}, "doi": {"type": "string"}
+      }
+    },
+    "travels": {
+      "description": "Not a free choice, and the one part of it that is. The papers are other people's copyright and do not travel under any decision available: what ships is what was read off them, with an identifier per paper so a replicator obtains the texts. Whether the verbatim spans go with the claims IS a choice, and withholding them means a reader cannot check a claim against its source without obtaining the paper first.",
+      "type": "object",
+      "required": ["claims", "papers"],
+      "properties": {
+        "claims": {"const": true},
+        "constructs": {"type": "boolean"},
+        "signatures": {"type": "boolean"},
+        "quotes": {"type": "boolean"},
+        "papers": {"const": false},
+        "note": {"type": "string"}
+      }
+    },
+    "licence": {
+      "description": "Two objects and two licences. Something permissive for anything executable, and a data licence for the claim table, which is a database and not a program. The common failure runs in both directions: a permissive licence over somebody else's extracted text, or a restrictive one over the part that was meant to be reused.",
+      "type": "object",
+      "properties": {"code": {"type": "string"}, "data": {"type": "string"}}
+    },
+    "transcripts": {
+      "description": "Whether the exchanges with language models ship, and the three answers are not symmetrical. Shipping makes the run replayable without being paid for twice and makes a proposal auditable by somebody who thinks it was wrong. Withholding turns the record of how the model was built into a claim about it.",
+      "enum": ["all", "prompts", "none", ""]
+    },
+    "counts": {
+      "type": "object",
+      "properties": {
+        "papers": {"type": "integer", "minimum": 0},
+        "constructs": {"type": "integer", "minimum": 0},
+        "claims": {"type": "integer", "minimum": 0},
+        "findings": {"type": "integer", "minimum": 0},
+        "exchanges": {"type": "integer", "minimum": 0},
+        "notebook": {"type": "integer", "minimum": 0}
+      }
+    },
+    "declared_on": {"type": "object",
+      "description": "The day each decision was made, keyed by its field. A declaration carries when it was taken; a setting does not, and that is the difference between the two."},
+    "provenance": {
+      "type": "object",
+      "properties": {
+        "bench": {"type": "string"}, "corpus": {"type": "string"},
+        "scenario": {"type": "string"},
+        "forms": {"type": "string",
+          "description": "Which registry of named forms every robustness number in this deposit was read against. The registry travels in the bundle as well, by value."},
+        "at": {"type": "string"}
+      }
+    }
+  }
+}

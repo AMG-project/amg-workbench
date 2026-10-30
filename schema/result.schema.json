@@ -1,0 +1,67 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://bellapurpose.org/amg/result.schema.json",
+  "title": "A result",
+  "description": "A proposition with its scope, the method that produced it, and what it rests on. The scope is not a footnote on the finding: a region is metadata in mathematics and half the finding here, so it is required and sits inside the object rather than beside it.",
+  "type": "object",
+  "required": ["format", "v", "outcome", "parameter", "direction", "verdict", "scope", "method", "rests_on"],
+  "properties": {
+    "format": {"const": "amg-result"},
+    "v": {"const": 1},
+    "id": {"type": "string"},
+    "sentence": {"type": "string", "description": "The proposition in words, as a reader would write it"},
+    "outcome": {"type": "string"},
+    "parameter": {"type": "string"},
+    "direction": {"enum": ["up", "down", "none"],
+      "description": "`none` goes with the verdict `flat` and with nothing else: a finding that the outcome does not move has no direction. The field stays required rather than becoming optional for the flat case, because optional would let a proved finding omit it too, which weakens the format for every reader to accommodate one verdict. The pairing is not expressible in the subset of JSON Schema this repository's validator covers, so it is stated here and tested instead."},
+    "verdict": {"enum": ["proved", "disproved", "partial", "undecided", "flat"],
+      "description": "`flat` is the derivative being identically zero on the box: the outcome does not move with the parameter anywhere on it. A decided answer and not a weak `proved` -- an enclosure that never leaves zero passes the test for rising and the test for falling alike, and the engine returned both until 23 October 2026."},
+    "share": {"type": "number", "description": "Of the declared box, where the verdict is partial"},
+    "scope": {
+      "type": "object", "required": ["box"],
+      "properties": {
+        "box": {"type": "object", "description": "name to [lo, hi], the box the verdict ran over"},
+        "declared": {"type": "array", "items": {"type": "string"},
+          "description": "Which of those ranges somebody actually declared. A proof over a default interval is proved against an obligation nobody took on."},
+        "region": {"type": "object", "description": "Where it holds, where that is narrower than the box",
+          "properties": {
+            "cuts": {"type": "array", "items": {"type": "object", "required": ["name"],
+              "properties": {"name": {"type": "string"}, "lo": {"type": "number"}, "hi": {"type": "number"}}}},
+            "rate": {"type": "number"}, "base": {"type": "number"}, "volume": {"type": "number"},
+            "read_off": {"type": "integer", "description": "How many draws it was read off, since a region found this way is evidence and not a boundary"}
+          }}
+      }
+    },
+    "method": {
+      "description": "How it was settled, and the three say different things. `exact` proves and may shrug; `sampled` cannot prove; `error` reports how often it survives idiosyncrasy and says nothing about the clean model.",
+      "type": "object", "required": ["kind"],
+      "properties": {
+        "kind": {"enum": ["exact", "sampled", "exact+sampled", "error"]},
+        "draws": {"type": "integer", "minimum": 0},
+        "corners": {"type": "integer", "minimum": 0},
+        "boxes": {"type": "integer", "minimum": 0, "description": "Branch-and-bound cells, for the exact method"},
+        "error_sd": {"type": "number", "description": "As a share of each range, where the method is error"},
+        "holds": {"type": "number", "description": "Share of runs in which it held, where the method is error"}
+      }
+    },
+    "rests_on": {
+      "description": "The mechanisms the conclusion actually used, found by re-deriving with each one switched off, and the declarations behind them. The ones it does not rest on are the ones a reader can stop worrying about.",
+      "type": "object", "required": ["mechanisms"],
+      "properties": {
+        "mechanisms": {"type": "array", "items": {"type": "string"}},
+        "idle": {"type": "array", "items": {"type": "string"}},
+        "declarations": {"type": "array", "items": {"type": "string"}},
+        "combination_rule": {"type": "string"}
+      }
+    },
+    "witness": {"type": "object", "description": "A counter-example, where there is one"},
+    "provenance": {
+      "type": "object",
+      "properties": {
+        "bench": {"type": "string"}, "corpus": {"type": "string"},
+        "scenario": {"type": "string"}, "round": {"type": "integer"},
+        "at": {"type": "string"}
+      }
+    }
+  }
+}

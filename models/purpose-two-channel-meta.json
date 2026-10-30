@@ -1,0 +1,165 @@
+{
+ "_what": "What the two-channel model says about itself in prose, which the grammar does not carry: the paper it formalises, the point its figures were drawn at, what each declared class is a class OF, what each mechanism does, and how each conclusion is stated. models/purpose-two-channel.json is the arithmetic; this is the documentation of it, and scripts/export_bench_model.py reads both. The claim texts are the model's own sentences, which name the sheets of the source sketch; docs/bench/core/scope-run.js states the same nine as predicates with short labels of its own, and those are the page's, not the model's.",
+ "_source": "Recovered verbatim from drystone, which P6 removed (notes/40). The mechanisms are the Mechanism(...) literals in src/drystone/models/purpose.py, lifted with the same ast walk the exporter used to read them; the class declarations are FAMILIES[].description and the claim texts CLAIM_SET[].text in docs/explorer/model.mjs, the JS port both browser pages were built from. Tag drystone-final holds the last commit with either file. Both were checked field by field against docs/bench/model-report.js, the artefact they produced, before being written here.",
+ "paper": "022-stoelhorst-vishwanathan-2024",
+ "settings": "sheet 1 of the source sketch",
+ "class_declarations": {
+  "credibility": "How much of a declared purpose is believed at a given level of integration. Purpose is cheap talk until integrated enough to bind, so the response is slow, then rapid, then saturating: a threshold, not a proportion.",
+  "saturating": "Protection against opportunism as purpose is integrated. Early integration buys the most protection and further integration buys progressively less, because the easiest exposures are closed first.",
+  "convex_cost": "How the cost of enfranchisement grows with the level of purpose integration. The first increment is close to free and each further one costs more, because the informational and deliberative burden compounds."
+ },
+ "mechanisms": [
+  {
+   "id": "purpose_vulnerability_reduction",
+   "says": "Purpose integration reduces stakeholders' exposure to opportunism, lowering the risk premium they demand. Lowers opportunity cost and raises willingness-to-pay.",
+   "reads": [
+    "pi",
+    "principal_conflict"
+   ],
+   "writes": [
+    "Vp",
+    "AVp"
+   ],
+   "role": "modulates"
+  },
+  {
+   "id": "commitment_credibility",
+   "says": "Purpose backed by governance rather than declared is credible, so stakeholders make firm-specific investments they would otherwise withhold. Below the threshold of credibility, purpose is cheap talk.",
+   "reads": [
+    "pi",
+    "fsi_employees",
+    "fsi_shareholders",
+    "fsi_community"
+   ],
+   "writes": [
+    "Vp",
+    "AVp"
+   ],
+   "role": "gates"
+  },
+  {
+   "id": "decision_cost",
+   "says": "Enfranchising more stakeholders raises the informational and deliberative burden on the central authority, and does so at an increasing rate.",
+   "reads": [
+    "pi"
+   ],
+   "writes": [
+    "Vp",
+    "AVp"
+   ],
+   "role": "dissipates"
+  },
+  {
+   "id": "principal_competence_cost",
+   "says": "Joint decision-making generates honest mistakes from lack of expertise, information or talent among the principals.",
+   "reads": [
+    "pi",
+    "principal_competence"
+   ],
+   "writes": [
+    "A",
+    "Vp"
+   ],
+   "role": "dissipates"
+  },
+  {
+   "id": "principal_conflict_cost",
+   "says": "Principals decide in their own interest against the interests of others, which is the opportunism stakeholders anticipate and price in.",
+   "reads": [
+    "principal_conflict"
+   ],
+   "writes": [
+    "A",
+    "Vp"
+   ],
+   "role": "dissipates"
+  },
+  {
+   "id": "agent_conflict_cost",
+   "says": "The classical agency problem: managers pursue their own agenda, and a wider enfranchisement gives them more room to play principals off against each other.",
+   "reads": [
+    "pi",
+    "agent_conflict"
+   ],
+   "writes": [
+    "A",
+    "B",
+    "Vp"
+   ],
+   "role": "dissipates"
+  },
+  {
+   "id": "contractibility",
+   "says": "Determines what fraction of what stakeholders are owed can be specified ex ante, and therefore held as control rather than residual rights.",
+   "reads": [
+    "pi",
+    "alpha"
+   ],
+   "writes": [
+    "A",
+    "B"
+   ],
+   "role": "allocates"
+  },
+  {
+   "id": "ai_contractibility_shift",
+   "says": "AI intensity raises contractibility: more of what is conceded can be written down and verified ex ante, so the control channel widens.",
+   "reads": [
+    "alpha"
+   ],
+   "writes": [
+    "A",
+    "B"
+   ],
+   "role": "modulates"
+  },
+  {
+   "id": "ai_agency_cost_reduction",
+   "says": "AI lowers the cost of monitoring agents, reducing agent-side conflict costs.",
+   "reads": [
+    "alpha"
+   ],
+   "writes": [
+    "Vp"
+   ],
+   "role": "modulates"
+  },
+  {
+   "id": "principal_cost_incidence",
+   "says": "Principal costs are charged against the residual channel only, never the control channel. Residual rights are the ones exercised at discretion, so the cost of a principal deciding badly falls there.",
+   "reads": [
+    "pi",
+    "alpha"
+   ],
+   "writes": [
+    "A",
+    "B"
+   ],
+   "role": "allocates"
+  },
+  {
+   "id": "agency_cost_incidence",
+   "says": "Agency costs are charged against both channels, because delegation degrades what is contracted as well as what is left to discretion.",
+   "reads": [
+    "pi",
+    "alpha"
+   ],
+   "writes": [
+    "A",
+    "B"
+   ],
+   "role": "allocates"
+  }
+ ],
+ "claim_texts": {
+  "mb_single_peaked": "MB rises then falls and never turns back up.",
+  "interior_optimum": "Total additional value is maximal at an interior \u03c0.",
+  "mb_starts_at_origin": "Purpose returns nothing until it is believed: MB(0) \u2248 0.",
+  "channels_non_negative": "Both rights channels carry non-negative value up to the optimum.",
+  "residual_exhausted_first": "The control boundary meets MB before the optimum, exhausting the residual channel.",
+  "soft_governance_raises_B": "Sheet 2a: AI-enabled contractibility raises the control channel.",
+  "soft_governance_substitutes": "Sheet 2a, stronger: what B gains, A gives up \u2014 relocation, not creation.",
+  "principal_costs_spare_B": "Sheet 2b: principal costs fall on the residual channel and leave B untouched.",
+  "agency_costs_hit_both": "Sheet 3: agency costs compress both channels."
+ }
+}

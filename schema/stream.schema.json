@@ -1,0 +1,502 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://bellapurpose.org/amg/stream.schema.json",
+  "title": "A literature, as the material a curation was made from",
+  "description": "The other half of the decision record. A reader holding only the record has a list of judgements about objects they do not have; this is the objects. Every construct with the signature the extraction recorded, every claim with its verbatim span and its three scores, the papers as metadata, the two relations between claims that no arrow shows, and the declarations made on top. The papers themselves do not travel: fifty-two articles are other people's copyright, so what ships is what was read off them with an identifier per paper, and a replicator obtains the texts.",
+  "type": "object",
+  "required": [
+    "format",
+    "v",
+    "counts",
+    "papers",
+    "constructs",
+    "claims"
+  ],
+  "properties": {
+    "format": {
+      "const": "amg-stream"
+    },
+    "v": {
+      "const": 1
+    },
+    "name": {
+      "type": "string",
+      "description": "The literature's own name, since a bench may hold more than one"
+    },
+    "what": {
+      "type": "string"
+    },
+    "built": {
+      "type": "object",
+      "description": "The commit and date of the payload this was read off",
+      "properties": {
+        "commit": {
+          "type": "string"
+        },
+        "at": {
+          "type": "string"
+        }
+      }
+    },
+    "builds_on": {
+      "type": "array",
+      "description": "Every AMG this one was built on, each as that AMG's own file named itself: carried verbatim from the imported stream and never recomposed here, because a provenance the importing bench wrote would be its claim about the source rather than the source's own. Absent rather than empty where nothing was imported. This is the only field in the format that points OUTWARD: every other provenance block names the build that made the file it sits in.",
+      "items": {
+        "type": "object",
+        "required": [
+          "name"
+        ],
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "The literature's own name, as it gave it."
+          },
+          "doi": {
+            "type": "string",
+            "description": "Where it is deposited, when it was. Empty until somebody deposits it."
+          },
+          "built": {
+            "type": "object",
+            "description": "The commit and date of the payload it was read off.",
+            "properties": {
+              "commit": {
+                "type": "string"
+              },
+              "at": {
+                "type": "string"
+              }
+            }
+          },
+          "provenance": {
+            "type": "object",
+            "description": "The bench, corpus and curation that wrote it.",
+            "properties": {
+              "bench": {
+                "type": "string"
+              },
+              "corpus": {
+                "type": "string"
+              },
+              "scenario": {
+                "type": "string"
+              },
+              "at": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      }
+    },
+    "counts": {
+      "type": "object",
+      "properties": {
+        "papers": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "constructs": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "claims": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "declarations": {
+          "type": "integer",
+          "minimum": 0
+        }
+      }
+    },
+    "papers": {
+      "description": "Metadata only, and `cited` carries the day it was read because a count with no date behind it is not evidence of anything.",
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "id"
+        ],
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "authors": {
+            "type": "string"
+          },
+          "year": {
+            "type": "string"
+          },
+          "journal": {
+            "type": "string"
+          },
+          "journal_full": {
+            "type": "string"
+          },
+          "doi": {
+            "type": "string"
+          },
+          "title": {
+            "type": "string"
+          },
+          "kind": {
+            "enum": [
+              "theory",
+              "qualitative",
+              "quantitative",
+              "review",
+              "formal",
+              ""
+            ]
+          },
+          "tradition": {
+            "type": "string",
+            "description": "The research tradition it was classified into, or `--` for unassigned. A classification is read out of a paper and declared for the corpus, so it is not a property of the paper."
+          },
+          "claims": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "cited": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "cited_read": {
+            "type": "string"
+          },
+          "full_text": {
+            "type": "boolean",
+            "description": "Whether the curation held a full text. Every quote below was verified verbatim against the text held."
+          },
+          "in_scope": {
+            "type": "boolean",
+            "description": "Whether the filters had it in view when this was written. Carried so that a reader can tell a scoped corpus from an unscoped one."
+          },
+          "added_here": {
+            "type": "boolean",
+            "description": "True for a paper read in on the bench rather than shipped with the payload, which is a different warrant: one extraction by one model from one text, against the vocabularies."
+          }
+        }
+      }
+    },
+    "constructs": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "level",
+          "scale",
+          "stock_or_flow"
+        ],
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "level": {
+            "type": "string",
+            "description": "firm, individual, field, team"
+          },
+          "scale": {
+            "enum": [
+              "binary",
+              "nominal",
+              "ordinal",
+              "interval",
+              "ratio"
+            ]
+          },
+          "bearer": {
+            "type": "string",
+            "description": "Who or what carries the quantity"
+          },
+          "stock_or_flow": {
+            "enum": [
+              "stock",
+              "flow"
+            ]
+          },
+          "papers": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "definition": {
+            "type": "string"
+          },
+          "added_here": {
+            "type": "boolean"
+          }
+        }
+      }
+    },
+    "claims": {
+      "description": "The reusable object, and the one nobody else has. `quote` is a verbatim span from the paper named, which is what makes the claim checkable without the text; `scope` carries the paper's own words for where it holds, and `unstated` is a value and not a blank.",
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "paper",
+          "antecedent",
+          "consequent",
+          "sign",
+          "epistemic_status"
+        ],
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "paper": {
+            "type": "string"
+          },
+          "antecedent": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "consequent": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "sign": {
+            "enum": [
+              "positive",
+              "negative",
+              "none",
+              "conditional",
+              "categorical",
+              "inverted-U"
+            ]
+          },
+          "epistemic_status": {
+            "enum": [
+              "asserted",
+              "reported",
+              "derived",
+              "estimated"
+            ]
+          },
+          "quote": {
+            "type": "string"
+          },
+          "shape": {
+            "type": "string"
+          },
+          "shape_basis": {
+            "type": "string"
+          },
+          "scope": {
+            "type": "string"
+          },
+          "scores": {
+            "description": "Out of four each, from the twelve components of step 1.3. Specification is how precisely the relation is stated, commensurability whether the two ends are the same kind of quantity, evidence what the claim was obtained by.",
+            "type": "object",
+            "properties": {
+              "specification": {
+                "type": "integer",
+                "minimum": 0
+              },
+              "commensurability": {
+                "type": "integer",
+                "minimum": 0
+              },
+              "evidence": {
+                "type": "integer",
+                "minimum": 0
+              }
+            }
+          },
+          "flags": {
+            "type": "object",
+            "properties": {
+              "specification": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "commensurability": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "evidence": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "added_here": {
+            "type": "boolean"
+          }
+        }
+      }
+    },
+    "answers": {
+      "description": "What a claim answers, refines or contradicts. A relation between claims and not between constructs, so no arrow on a map shows it, and a second bench would otherwise have to rediscover it.",
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "from",
+          "to",
+          "kind"
+        ],
+        "properties": {
+          "from": {
+            "type": "string"
+          },
+          "to": {
+            "type": "string"
+          },
+          "kind": {
+            "enum": [
+              "responds_to",
+              "refines",
+              "contradicts"
+            ]
+          }
+        }
+      }
+    },
+    "near": {
+      "description": "The wording scores between pairs of constructs, which is what a merge threshold reads. Scores and not merges: a merge is a decision and belongs in the record.",
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "a",
+          "b",
+          "score"
+        ],
+        "properties": {
+          "a": {
+            "type": "string"
+          },
+          "b": {
+            "type": "string"
+          },
+          "score": {
+            "type": "number",
+            "minimum": 0
+          }
+        }
+      }
+    },
+    "theses": {
+      "description": "What a paper argues beyond any single claim. Carried because dropping it is how a corpus comes to look as though a literature consists of relations.",
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "paper",
+          "says"
+        ],
+        "properties": {
+          "paper": {
+            "type": "string"
+          },
+          "says": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "declarations": {
+      "description": "What a modeller declared ON TOP of the corpus, never mixed into it: the corpus records what a paper said. Two kinds, told apart by which key they carry. A row with `statement` declares a relation's shape class, its roles and its range; a row with `quantity` declares what sort of quantity a construct was bound to and over what range.",
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "statement": {
+            "type": "string"
+          },
+          "from": {
+            "type": "string"
+          },
+          "to": {
+            "type": "string"
+          },
+          "relationship": {
+            "type": "string"
+          },
+          "roles": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "moderates": {
+            "type": "string"
+          },
+          "properties": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "range": {
+            "type": "array",
+            "minItems": 2
+          },
+          "estimate": {
+            "type": "array"
+          },
+          "note": {
+            "type": "string"
+          },
+          "at": {
+            "type": "string"
+          },
+          "rests_on": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "quantity": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "kind": {
+            "type": "string"
+          },
+          "aspect": {
+            "type": "string"
+          },
+          "range_declared": {
+            "type": "boolean",
+            "description": "False means the range is this page's default and nobody committed to it, which is the failure the bench exists to make visible."
+          }
+        }
+      }
+    },
+    "provenance": {
+      "type": "object",
+      "properties": {
+        "bench": {
+          "type": "string"
+        },
+        "corpus": {
+          "type": "string"
+        },
+        "scenario": {
+          "type": "string"
+        },
+        "at": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,284 @@
+{
+ "format": "amg-stream",
+ "v": 1,
+ "name": "Control costs and partitioned rights",
+ "what": "The governance literature the two-channel model reads for the quantities the purpose literature does not state: who exercises control, what that costs on each side of the relation, and whether rights to one resource can be held in partitions by several stakeholders at once. Two papers, read in by hand on 25 October 2026. A literature of two papers is a thin literature and the bench scores it as one: nothing here is corroborated more than twice, and the one place where both papers say the same thing is the only corroborated relation in it.",
+ "built": {"commit": "hand", "at": "2026-10-25"},
+ "counts": {"papers": 2, "constructs": 10, "claims": 8, "declarations": 1},
+ "papers": [
+  {
+   "id": "gs-2017-columlrev",
+   "authors": "Goshen & Squire",
+   "year": "2017",
+   "journal": "Colum L Rev",
+   "journal_full": "Columbia Law Review",
+   "title": "Principal costs: A new theory for corporate law and governance",
+   "kind": "theory",
+   "tradition": "property rights",
+   "claims": 6,
+   "cited": 0,
+   "cited_read": "",
+   "full_text": true,
+   "in_scope": true,
+   "added_here": true
+  },
+  {
+   "id": "amm-2005-jmg",
+   "authors": "Asher, Mahoney & Mahoney",
+   "year": "2005",
+   "journal": "JMG",
+   "journal_full": "Journal of Management and Governance",
+   "title": "Towards a property rights foundation for a stakeholder theory of the firm",
+   "kind": "theory",
+   "tradition": "property rights",
+   "claims": 2,
+   "cited": 0,
+   "cited_read": "",
+   "full_text": true,
+   "in_scope": true,
+   "added_here": true
+  }
+ ],
+ "constructs": [
+  {
+   "id": "control-rights-delegation",
+   "level": "firm",
+   "scale": "ratio",
+   "bearer": "firm",
+   "stock_or_flow": "stock",
+   "papers": ["gs-2017-columlrev"],
+   "definition": "The share of a firm's control rights that investors hand to managers while voluntarily restricting their own, which is the position the firm occupies on what the paper calls the governance spectrum.",
+   "added_here": true
+  },
+  {
+   "id": "principal-competence-cost",
+   "level": "firm",
+   "scale": "ratio",
+   "bearer": "investors exercising control",
+   "stock_or_flow": "flow",
+   "papers": ["gs-2017-columlrev"],
+   "definition": "Losses from honest mistakes made by investors who exercise control, attributable to a lack of expertise, information or talent rather than to any divergence of interest.",
+   "added_here": true
+  },
+  {
+   "id": "principal-conflict-cost",
+   "level": "firm",
+   "scale": "ratio",
+   "bearer": "investors exercising control",
+   "stock_or_flow": "flow",
+   "papers": ["gs-2017-columlrev"],
+   "definition": "Losses from investor self-seeking, which arise where principals share control, cash flows or both, and which conventional agency theory leaves out.",
+   "added_here": true
+  },
+  {
+   "id": "agent-competence-cost",
+   "level": "firm",
+   "scale": "ratio",
+   "bearer": "managers exercising control",
+   "stock_or_flow": "flow",
+   "papers": ["gs-2017-columlrev"],
+   "definition": "Losses from honest mistakes made by managers who exercise delegated control, for the same three reasons and with no divergence of interest implied.",
+   "added_here": true
+  },
+  {
+   "id": "agent-conflict-cost",
+   "level": "firm",
+   "scale": "ratio",
+   "bearer": "managers exercising control",
+   "stock_or_flow": "flow",
+   "papers": ["gs-2017-columlrev"],
+   "definition": "Losses from manager self-seeking under the separation of ownership and control, which is the single quantity conventional agency theory treats as the governance problem.",
+   "added_here": true
+  },
+  {
+   "id": "total-control-cost",
+   "level": "firm",
+   "scale": "ratio",
+   "bearer": "firm",
+   "stock_or_flow": "flow",
+   "papers": ["gs-2017-columlrev"],
+   "definition": "The sum of the four control costs, principal and agent, competence and conflict. The quantity the paper says an optimal governance structure minimizes, as against minimizing the agent side alone.",
+   "added_here": true
+  },
+  {
+   "id": "governance-structure-optimality-uniqueness",
+   "level": "field",
+   "scale": "binary",
+   "bearer": "firm",
+   "stock_or_flow": "stock",
+   "papers": ["gs-2017-columlrev", "amm-2005-jmg"],
+   "definition": "Whether one governance structure is best for every firm, or whether the best structure depends on the firm. The only construct in this literature that two papers reach, which is why it is the only relation here with any corroboration behind it.",
+   "added_here": true
+  },
+  {
+   "id": "rights-partition-across-stakeholders",
+   "level": "firm",
+   "scale": "ordinal",
+   "bearer": "stakeholder",
+   "stock_or_flow": "stock",
+   "papers": ["amm-2005-jmg"],
+   "definition": "The extent to which rights to one resource are held in partitions by several different people rather than whole by one, so that a stakeholder can hold a facet of a resource without owning it.",
+   "added_here": true
+  },
+  {
+   "id": "residual-claim-vs-control-locus",
+   "level": "firm",
+   "scale": "nominal",
+   "bearer": "firm",
+   "stock_or_flow": "stock",
+   "papers": ["amm-2005-jmg"],
+   "definition": "Whether ownership is located in residual rights to income, as classical property rights theory has it, or in residual control rights, as the modern literature has it. The paper ties the first to ex ante contractual problems and the second to ex post ones.",
+   "added_here": true
+  },
+  {
+   "id": "fixed-control-rights-share",
+   "level": "firm",
+   "scale": "ratio",
+   "bearer": "stakeholder",
+   "stock_or_flow": "stock",
+   "papers": [],
+   "definition": "The fraction of what a stakeholder is owed that can be stipulated by contract in advance and therefore held as a fixed control right, as against left to whoever holds the residual. RECONSTRUCTED, and carried by no paper here: Stoelhorst and Vishwanathan (2024) distinguish fixed from residual control rights and make contractually stipulated fixed rights for vulnerable stakeholders the distinctive instrument of the stakeholder corporation, but they state the distinction as a kind and not as a quantity. Read here as a degree, because a model that moves between the two channels needs a margin and not a category. The inference is this scenario's and not the paper's.",
+   "added_here": true
+  }
+ ],
+ "claims": [
+  {
+   "id": "gs-2017-columlrev#claim-1",
+   "paper": "gs-2017-columlrev",
+   "antecedent": ["control-rights-delegation"],
+   "consequent": ["principal-conflict-cost"],
+   "sign": "negative",
+   "epistemic_status": "asserted",
+   "quote": "Investors who delegate control to managers, and restrict their own control rights, avoid principal costs",
+   "shape": "unspecified",
+   "shape_basis": "unspecified",
+   "scope": "business firms choosing a division of control between investors and managers; the paper's referent throughout is American corporate law",
+   "scores": {"specification": 1, "commensurability": 1, "evidence": 2},
+   "flags": {"specification": ["no functional form"], "commensurability": ["stock to flow"], "evidence": ["first-hand", "scope stated"]},
+   "added_here": true
+  },
+  {
+   "id": "gs-2017-columlrev#claim-2",
+   "paper": "gs-2017-columlrev",
+   "antecedent": ["control-rights-delegation"],
+   "consequent": ["principal-competence-cost"],
+   "sign": "negative",
+   "epistemic_status": "asserted",
+   "quote": "Delegation raises the competence of whoever decides, which is what lowers principal competence costs",
+   "shape": "unspecified",
+   "shape_basis": "unspecified",
+   "scope": "business firms choosing a division of control between investors and managers",
+   "scores": {"specification": 1, "commensurability": 1, "evidence": 1},
+   "flags": {"specification": ["no functional form"], "commensurability": ["stock to flow"], "evidence": ["first-hand"]},
+   "added_here": true
+  },
+  {
+   "id": "gs-2017-columlrev#claim-3",
+   "paper": "gs-2017-columlrev",
+   "antecedent": ["control-rights-delegation"],
+   "consequent": ["agent-conflict-cost"],
+   "sign": "positive",
+   "epistemic_status": "asserted",
+   "quote": "Agent costs are produced when managers exercise control",
+   "shape": "unspecified",
+   "shape_basis": "unspecified",
+   "scope": "business firms choosing a division of control between investors and managers",
+   "scores": {"specification": 1, "commensurability": 1, "evidence": 2},
+   "flags": {"specification": ["no functional form"], "commensurability": ["stock to flow"], "evidence": ["first-hand", "scope stated"]},
+   "added_here": true
+  },
+  {
+   "id": "gs-2017-columlrev#claim-4",
+   "paper": "gs-2017-columlrev",
+   "antecedent": ["control-rights-delegation"],
+   "consequent": ["agent-competence-cost"],
+   "sign": "positive",
+   "epistemic_status": "asserted",
+   "quote": "Managers make honest mistakes of their own, which generate agent competence costs",
+   "shape": "unspecified",
+   "shape_basis": "unspecified",
+   "scope": "business firms choosing a division of control between investors and managers",
+   "scores": {"specification": 1, "commensurability": 1, "evidence": 1},
+   "flags": {"specification": ["no functional form"], "commensurability": ["stock to flow"], "evidence": ["first-hand"]},
+   "added_here": true
+  },
+  {
+   "id": "gs-2017-columlrev#claim-5",
+   "paper": "gs-2017-columlrev",
+   "antecedent": ["principal-competence-cost", "principal-conflict-cost", "agent-competence-cost", "agent-conflict-cost"],
+   "consequent": ["total-control-cost"],
+   "sign": "positive",
+   "epistemic_status": "asserted",
+   "quote": "Total control costs are the sum of the four categories, principal and agent, competence and conflict",
+   "shape": "additive",
+   "shape_basis": "stated",
+   "scope": "any business firm; the decomposition is offered as general",
+   "scores": {"specification": 2, "commensurability": 0, "evidence": 2},
+   "flags": {"specification": ["several antecedents"], "commensurability": [], "evidence": ["first-hand", "scope stated"]},
+   "added_here": true
+  },
+  {
+   "id": "gs-2017-columlrev#claim-6",
+   "paper": "gs-2017-columlrev",
+   "antecedent": ["total-control-cost"],
+   "consequent": ["governance-structure-optimality-uniqueness"],
+   "sign": "categorical",
+   "epistemic_status": "asserted",
+   "quote": "Because the division of control that minimises total control costs varies by firm, no governance structure is intrinsically best",
+   "shape": "categorical",
+   "shape_basis": "unspecified",
+   "scope": "business firms; argued against uniform reform prescriptions in American corporate law",
+   "scores": {"specification": 1, "commensurability": 1, "evidence": 2},
+   "flags": {"specification": ["no direction"], "commensurability": ["unordered category"], "evidence": ["first-hand", "scope stated"]},
+   "added_here": true
+  },
+  {
+   "id": "amm-2005-jmg#claim-1",
+   "paper": "amm-2005-jmg",
+   "antecedent": ["rights-partition-across-stakeholders"],
+   "consequent": ["residual-claim-vs-control-locus"],
+   "sign": "categorical",
+   "epistemic_status": "asserted",
+   "quote": "Rights to one resource can be held in partitions by many different people, so ownership is a bundle of rights rather than a physical thing",
+   "shape": "categorical",
+   "shape_basis": "unspecified",
+   "scope": "the firm as a method of property tenure, examined stakeholder by stakeholder",
+   "scores": {"specification": 1, "commensurability": 1, "evidence": 2},
+   "flags": {"specification": ["no direction"], "commensurability": ["unordered category"], "evidence": ["first-hand", "scope stated"]},
+   "added_here": true
+  },
+  {
+   "id": "amm-2005-jmg#claim-2",
+   "paper": "amm-2005-jmg",
+   "antecedent": ["rights-partition-across-stakeholders"],
+   "consequent": ["governance-structure-optimality-uniqueness"],
+   "sign": "categorical",
+   "epistemic_status": "asserted",
+   "quote": "There may not be a single best governance structure",
+   "shape": "categorical",
+   "shape_basis": "unspecified",
+   "scope": "unstated; offered as a programmatic conclusion rather than for a stated population",
+   "scores": {"specification": 1, "commensurability": 1, "evidence": 1},
+   "flags": {"specification": ["no direction"], "commensurability": ["unordered category"], "evidence": ["first-hand"]},
+   "added_here": true
+  }
+ ],
+ "answers": [
+  {"from": "amm-2005-jmg#claim-2", "to": "gs-2017-columlrev#claim-6", "kind": "responds_to"}
+ ],
+ "theses": [
+  {"paper": "gs-2017-columlrev", "says": "Corporate law should let each firm choose its own division of control, because the cost-minimising division is firm-specific and uniform prescriptions therefore misfire."},
+  {"paper": "amm-2005-jmg", "says": "Incomplete and implicit contracting in modern property rights theory is the economic foundation a stakeholder theory of the firm needs, and the work of building it had not been done."}
+ ],
+ "declarations": [
+  {
+   "quantity": "fixed-control-rights-share",
+   "name": "fixed control rights, share of what is owed",
+   "kind": "degree",
+   "range": [0, 1],
+   "note": "Reconstructed from Stoelhorst and Vishwanathan (2024), who distinguish fixed control rights from residual ones and take fixed rights for vulnerable stakeholders seriously as an instrument, without stating the split as a quantity. Declared here as a degree on [0, 1] so that a model can move between the two channels continuously. No paper in either literature asserts this quantity, and it is recorded as a declaration rather than carried as a claim for that reason.",
+   "at": "2026-10-25",
+   "rests_on": ["022-stoelhorst-vishwanathan-2024#claim-1"]
+  }
+ ]
+}

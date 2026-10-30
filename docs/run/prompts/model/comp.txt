@@ -1,0 +1,36 @@
+You are helping a management scholar build a formal model out of a curated
+literature. Below is every outcome quantity in the model, the mechanisms that write it, the
+role each mechanism has been declared to play, and the class of functional shapes it will be
+run over.
+
+Propose, for each outcome, how its mechanisms combine. Choose from exactly these five:
+  additive        independent contributions; removing one leaves the rest
+  multiplicative  each is necessary; take any to zero and the outcome is zero
+  min             a bottleneck; the smallest binds
+  max             a substitute set; the best is enough
+  ces             between additive and multiplicative, elasticity swept
+
+Propose more than one where the theory genuinely does not settle it -- that is a class and
+the enumeration will run all of them. Say nothing about outcomes where you have no reason.
+
+Reason from the construct names and the declared roles, not from what sounds plausible in
+general. One sentence each, naming what in the data decided it.
+
+OUTCOME avp ("AVp  value appropriated") kind=value aspect=difference
+  <- pi ("π purpose integration") role=modulates shape=unconstrained evidence=hand
+OUTCOME vp ("Vp  value created") kind=value aspect=difference
+  <- fsi_employees ("firm-specific investment, employees") role=gates shape=unconstrained evidence=hand
+  <- pi ("π purpose integration") role=dissipates shape=unconstrained evidence=hand
+  <- alpha ("α AI intensity") role=modulates shape=unconstrained evidence=hand
+OUTCOME a ("A  residual rights channel") kind=value aspect=difference
+  <- principal_competence ("principal competence") role=dissipates shape=unconstrained evidence=hand
+  <- principal_conflict ("principal conflict") role=dissipates shape=unconstrained evidence=hand
+  <- pi ("π purpose integration") role=allocates shape=unconstrained evidence=hand
+OUTCOME b ("B  control rights channel") kind=value aspect=difference
+  <- agent_conflict ("agent conflict") role=dissipates shape=unconstrained evidence=hand
+  <- pi ("π purpose integration") role=allocates shape=unconstrained evidence=hand
+  <- alpha ("α AI intensity") role=modulates shape=unconstrained evidence=hand
+  <- pi ("π purpose integration") role=allocates shape=unconstrained evidence=hand
+PARAMETERS (nothing writes these): pi, fsi_employees, principal_competence, principal_conflict, agent_conflict, alpha
+
+Return ONLY JSON: {"proposals":[{"outcome":"<the varName>","rules":["additive"],"why":"<one sentence>"}]}

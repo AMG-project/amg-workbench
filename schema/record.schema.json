@@ -1,0 +1,48 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://bellapurpose.org/amg/record.schema.json",
+  "title": "The decision record",
+  "description": "Every judgement a curation took, with its date, its target, the corpus identifiers it was taken against and the reason given. The same rows as `passes.tsv`, which is the shape `index/passes.tsv` uses and the one a curator reads; this is that record with a published shape, so a reader's own tooling can parse it without guessing what the columns are. It says what was decided and not what about: the material is `amg-stream`.",
+  "type": "object",
+  "required": ["format", "v", "decisions"],
+  "properties": {
+    "format": {"const": "amg-record"},
+    "v": {"const": 1},
+    "what": {"type": "string"},
+    "at": {"type": "string"},
+    "counts": {"type": "object",
+      "description": "The total, and one count per action, so a reader can see the shape of a pass before reading it"},
+    "decisions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["date", "action", "target"],
+        "properties": {
+          "date": {"type": "string"},
+          "action": {
+            "description": "Nine the bench takes on the curator's behalf and records as such -- scope, admit, carry, drop, declare, compose, domain, merge, flag -- and the verbs a curator answers a nominated decision with, which are the corpus's own vocabulary rather than this page's. A reader meeting an action outside this list is reading a file from a bench that knows something this schema does not, and should say so rather than skip the row.",
+            "enum": ["scope", "admit", "carry", "drop", "declare", "compose", "domain",
+                     "merge", "flag", "split", "apart", "INVERSE", "CONFLICT", "CONFLATION",
+                     "retire", "keep", "structure", "implementation", "widen", "rescope",
+                     "rebind"]
+          },
+          "target": {"type": "string",
+            "description": "What the decision is about, in the words the record uses for it: a setting's name, a construct's label, or one arrow written as `from -> to`."},
+          "members": {"type": "array", "items": {"type": "string"},
+            "description": "The corpus identifiers the decision was taken against -- construct ids for a merge or a drop of constructs, claim ids for a relation. Recorded against identifiers and never against a cluster name, because a cluster is renamed by any change of threshold and an identifier is not."},
+          "reason": {"type": "string",
+            "description": "Empty where the record states the decision and no reason was given. That is a fact about the pass and not a missing field."},
+          "section": {"type": "string",
+            "description": "The heading the row falls under in the record as a curator reads it. The TSV implies this with comment lines; here it is a field."}
+        }
+      }
+    },
+    "provenance": {
+      "type": "object",
+      "properties": {
+        "bench": {"type": "string"}, "corpus": {"type": "string"},
+        "scenario": {"type": "string"}, "at": {"type": "string"}
+      }
+    }
+  }
+}

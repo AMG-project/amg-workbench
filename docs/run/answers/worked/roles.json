@@ -1,0 +1,107 @@
+{
+ "roles": [
+  {
+   "rel": "purpose-clarity-factor>firm-overall-performance",
+   "role": "generates",
+   "props": [],
+   "why": "Clarity about purpose is reported as raising accounting performance directly rather than by moving value from anywhere else, so it adds to the outcome."
+  },
+  {
+   "rel": "prosocial-mission>perceived-work-meaningfulness",
+   "role": "generates",
+   "props": [],
+   "why": "Authentic purpose is said to make work meaningful, which creates meaningfulness that was not there."
+  },
+  {
+   "rel": "perceived-work-meaningfulness>firm-overall-performance",
+   "role": "generates",
+   "props": [],
+   "why": "Meaningfulness is described as routing purpose to performance, and routing here adds rather than conserves: nothing is said to lose what performance gains."
+  },
+  {
+   "rel": "shirking-vulnerability>control-rights-allocation",
+   "role": "generates",
+   "props": [],
+   "why": "Stoelhorst and Vishwanathan say exposure to shirking is what calls for control rights, so the exposure creates the claim to them rather than moving it from anywhere else."
+  },
+  {
+   "rel": "externality-vulnerability>control-rights-allocation",
+   "role": "generates",
+   "props": [],
+   "why": "The other half of the same claim, and it enters the same way: exposure to externalities is a reason the relation needs control rights, not a transfer of rights already held."
+  }
+ ],
+ "quantities": [
+  {
+   "var": "residual-control-rights-allocation",
+   "kinds": [
+    "degree"
+   ],
+   "aspect": "level",
+   "why": "How much of what was conceded is left to discretion. A DEGREE and not a share: the two channels divide what was conceded, not the firm, and the page reads every share-kind outcome as partitioning one whole, which is something this model does not say."
+  },
+  {
+   "var": "measurement-and-accountability-technology",
+   "kinds": [
+    "stock",
+    "degree"
+   ],
+   "aspect": "level",
+   "why": "Measurement capability is both something a firm accumulates and something reported as how much of it is in place; the corpus does not settle which."
+  },
+  {
+   "var": "purpose-clarity-factor",
+   "kinds": [],
+   "aspect": "level",
+   "why": "Reported as a survey factor score, measured absolutely rather than against a baseline."
+  },
+  {
+   "var": "firm-overall-performance",
+   "kinds": [],
+   "aspect": "level",
+   "why": "ROA and Tobin's Q are levels; neither is defined against a zero-purpose baseline."
+  },
+  {
+   "var": "prosocial-mission",
+   "kinds": [],
+   "aspect": "level",
+   "why": "Measured as how much mission is in place, not as a change from any reference point."
+  },
+  {
+   "var": "perceived-work-meaningfulness",
+   "kinds": [],
+   "aspect": "level",
+   "why": "A survey level, reported absolutely."
+  },
+  {
+   "var": "stated-purpose-commitment",
+   "kinds": [],
+   "aspect": "level",
+   "why": "What a firm states, read absolutely rather than against what it stated before."
+  },
+  {
+   "var": "control-rights-allocation",
+   "kinds": [
+    "degree"
+   ],
+   "aspect": "level",
+   "why": "How much of what was conceded is pinned down in advance. Stoelhorst and Vishwanathan record it as a nominal type, naming WHICH party gets control rights; the model needs HOW MUCH, so it is declared a degree and the gap between the two is a declaration rather than something their claim supplies."
+  },
+  {
+   "var": "shirking-vulnerability",
+   "kinds": [
+    "degree"
+   ],
+   "aspect": "level",
+   "why": "They read it as a type a relation either is or is not. The model needs how exposed the relation is, so it is declared a degree with their binary reading at the corners."
+  },
+  {
+   "var": "externality-vulnerability",
+   "kinds": [
+    "degree"
+   ],
+   "aspect": "level",
+   "why": "The other vulnerability in their two-by-two, declared the same way and for the same reason."
+  }
+ ]
+}

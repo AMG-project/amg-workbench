@@ -1,0 +1,92 @@
+{
+ "proposals": [
+  {
+   "for": "meaningfulness_vanishes_without_mission",
+   "form": "nonneg",
+   "expr": "prosocial_mission - perceived_work_meaningfulness * 0.0",
+   "y": "",
+   "x": "",
+   "why": "Falsified if meaningfulness is positive where mission is zero. The corpus derives meaningfulness from purpose alone in this model, so a firm with no mission has no purpose-borne meaningfulness; if this breaks, something other than mission is writing it."
+  },
+  {
+   "for": "mediated_route_needs_mission",
+   "form": "nonneg",
+   "expr": "firm_accounting_performance - perceived_work_meaningfulness * 0.0",
+   "y": "",
+   "x": "",
+   "why": "Falsified if performance goes negative anywhere in the box. Every route into it is non-negative and weighted positively, so a negative value means a weight escaped its declared range."
+  },
+  {
+   "for": "performance_rises_in_mission",
+   "form": "up",
+   "expr": "",
+   "y": "firm_accounting_performance",
+   "x": "prosocial_mission",
+   "why": "Falsified if performance falls in mission anywhere. Mission reaches performance twice, directly and through meaningfulness, and both are declared increasing, so a fall would mean the two routes are not both entering positively."
+  },
+  {
+   "for": "meaningfulness_single_threshold",
+   "form": "peak",
+   "expr": "",
+   "y": "perceived_work_meaningfulness",
+   "x": "prosocial_mission",
+   "why": "This one SHOULD fail, and that is why it is here: the sigmoid saturates rather than peaking, so meaningfulness has no interior maximum in mission. If the page reports a peak, the member substituted for the logistic is not a sigmoid."
+  },
+  {
+   "for": "control_channel_rises_in_measurement",
+   "form": "up",
+   "expr": "",
+   "y": "control_rights_allocation",
+   "x": "measurement_and_accountability_technology",
+   "why": "Sheet 2a. Falsified if the pinned-down channel does not grow as more can be verified in advance. Measurement moves the boundary and nothing else in this model does, so a flat B means the boundary is not where the arithmetic puts it."
+  },
+  {
+   "for": "residual_channel_falls_in_measurement",
+   "form": "down",
+   "expr": "",
+   "y": "residual_control_rights_allocation",
+   "x": "measurement_and_accountability_technology",
+   "why": "Sheet 2a, the half that makes it a substitution rather than a gain. Falsified if the discretionary channel does not shrink as the boundary moves out. What B gains A gives up: softer governance relocates value between the channels, it does not create any."
+  },
+  {
+   "for": "control_channel_peaks_in_integration",
+   "form": "peak",
+   "expr": "",
+   "y": "control_rights_allocation",
+   "x": "purpose_clarity_factor",
+   "why": "Sheet 1. Falsified if the pinned-down channel rises or falls monotonically in purpose integration instead of turning. What is conceded rises with integration at diminishing returns and the cost of running it rises at an increasing rate, so there is an interior optimum; no peak means one of the two curvatures is not what was declared."
+  },
+  {
+   "for": "residual_channel_peaks_in_integration",
+   "form": "peak",
+   "expr": "",
+   "y": "residual_control_rights_allocation",
+   "x": "purpose_clarity_factor",
+   "why": "Sheet 1 for the other channel. The turn is a property of the area under the curve and not of either side of the division, so both channels should turn. Falsified if only one does."
+  },
+  {
+   "for": "control_channel_rises_in_shirking_exposure",
+   "form": "up",
+   "expr": "",
+   "y": "control_rights_allocation",
+   "x": "shirking_vulnerability",
+   "why": "Stoelhorst and Vishwanathan's own claim, as a slope. Falsified if exposure to shirking does not raise the control channel. Their claim is categorical and says only which party gets the rights; declaring the quantity a share is what turns it into a direction, and this is the check on that declaration."
+  },
+  {
+   "for": "control_channel_non_negative",
+   "form": "nonneg",
+   "expr": "control_rights_allocation",
+   "y": "",
+   "x": "",
+   "why": "Falsified where the pinned-down channel goes below zero. It is declared a share, so it cannot. The residual channel is deliberately NOT asked the same question: it absorbs the whole principal cost, and whether that can drive it negative is a result rather than an assumption."
+  },
+  {
+   "for": "no_rights_without_exposure",
+   "form": "nonneg",
+   "expr": "shirking_vulnerability + externality_vulnerability - control_rights_allocation",
+   "y": "",
+   "x": "",
+   "why": "Falsified if control rights are allocated where neither vulnerability is present. Stoelhorst and Vishwanathan's claim is that exposure is what calls for rights, so with no exposure there is nothing to concede and the channel is empty."
+  }
+ ]
+}

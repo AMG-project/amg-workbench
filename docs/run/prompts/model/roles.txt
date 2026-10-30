@@ -1,0 +1,63 @@
+You are helping a management scholar turn a curated literature into a formal
+model. Below are the declarations the corpus could not supply. You are PROPOSING; the scholar
+accepts, edits or discards, and the page records which of the two of you chose each one.
+
+A relation's ROLE is what the antecedent DOES to the consequent. No paper in this corpus
+states one, so this is a modelling decision and the page cannot check it. Use this
+vocabulary and nothing outside it:
+  generates  ("adds to")  -- a positive direct effect: it creates value or stock that was not there
+  dissipates  ("subtracts from")  -- a cost: it destroys value, or charges against it
+  transfers  ("moves between")  -- conserved — one holder's gain is another's loss, and the total is unchanged
+  allocates  ("divides across")  -- an allocation rule: it splits a quantity over parties or channels
+  gates  ("enables")  -- moderation as a necessary condition — below a threshold the other mechanism does nothing
+  modulates  ("scales")  -- moderation as magnitude — an interaction: it changes how much another mechanism does
+
+A relation's SHAPE CLASS is what its functional form is committed to. Propose only what the
+literature's own statements support, and leave it empty where they support nothing. From
+this list only:
+increasing   concave   convex   sigmoid   f(0)=0   f(1)=1
+
+A QUANTITY's KIND is what sort of thing it is. From this list only:
+  stock  -- an accumulated quantity — knowledge, firm-specific investment
+  rate  -- a per-period proportion governing a process
+  share  -- a fraction of a whole, summing to one across a set
+  degree  -- a normalised position on a designed scale: how much X is done
+  propensity  -- an actor's inclination, in [0, 1]
+  cost  -- a subtracted quantity
+  value  -- a benefit quantity
+  threshold  -- a level at which behaviour changes
+  diversity  -- a dispersion measure
+Its ASPECT is "level" if it is measured absolutely, or "difference" if it is measured
+against a baseline and is therefore zero there by construction.
+
+Propose more than one kind where the construct genuinely admits more: these are CLASSES, and
+the enumeration runs every member. A narrower class you cannot defend is worse than a wider
+one you can.
+
+RELATIONS NEEDING A SHAPE CLASS:
+  id=mx:xk_purpose_vulnerability_reduction   π purpose integration -> AVp  value appropriated   role declared: modulates
+  id=mx:xk_commitment_credibility   firm-specific investment, employees -> Vp  value created   role declared: gates
+  id=mx:xk_decision_cost   π purpose integration -> Vp  value created   role declared: dissipates
+  id=mx:xk_principal_competence_cost   principal competence -> A  residual rights channel   role declared: dissipates
+  id=mx:xk_principal_conflict_cost   principal conflict -> A  residual rights channel   role declared: dissipates
+  id=mx:xk_agent_conflict_cost   agent conflict -> B  control rights channel   role declared: dissipates
+  id=mx:xk_contractibility   π purpose integration -> B  control rights channel   role declared: allocates
+  id=mx:xk_ai_contractibility_shift   α AI intensity -> B  control rights channel   role declared: modulates
+  id=mx:xk_ai_agency_cost_reduction   α AI intensity -> Vp  value created   role declared: modulates
+  id=mx:xk_principal_cost_incidence   π purpose integration -> A  residual rights channel   role declared: allocates
+  id=mx:xk_agency_cost_incidence   π purpose integration -> B  control rights channel   role declared: allocates
+QUANTITIES NEEDING A KIND OR AN ASPECT:
+  id=pi   "π purpose integration"   kind declared: degree
+  id=fsi_employees   "firm-specific investment, employees"   kind declared: stock
+  id=principal_competence   "principal competence"   kind declared: degree
+  id=principal_conflict   "principal conflict"   kind declared: propensity
+  id=agent_conflict   "agent conflict"   kind declared: propensity
+  id=alpha   "α AI intensity"   kind declared: degree
+
+Answer only for the ids listed above, in those exact ids. Do not invent relations,
+quantities, roles, shapes or kinds; anything outside the vocabularies is discarded and
+counted. One short sentence of why for each role, in the literature's own terms.
+
+Return ONLY JSON:
+{"roles":[{"rel":"<id>","role":"","props":[],"why":""}],
+ "quantities":[{"var":"<id>","kinds":[],"aspect":"level","why":""}]}

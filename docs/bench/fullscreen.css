@@ -1,0 +1,54 @@
+/* The CSS fallback, and what full screen does to a diagram either way.
+
+   Two selectors for one state. `:fullscreen` is what the browser sets when the
+   real API is granted; `.fsfix` is what this page sets when it is refused,
+   which is the case inside an iframe that does not allow it. Everything below
+   is written for both, because a rule that works in only one of them is a page
+   that works on only one of its two hosts. */
+
+html.fslock, html.fslock body{overflow:hidden}
+
+/* !important ON THE LAYOUT, deliberately. This class has to beat whatever the
+   host page already says about the element, and it did not: a statics panel is
+   matched by `.stx .panel{position:relative}`, two classes against this one,
+   so the panel stayed in the flow, `inset:0` did nothing, and the measured
+   height went from 747px to 763px in an 813px window instead of filling it.
+   An override that must win over rules it cannot know about is the case this
+   keyword is for. Only the five properties that take the element out of the
+   flow are marked; everything else stays overridable. */
+.fsfix{position:fixed !important;inset:0 !important;z-index:600 !important;
+  margin:0 !important;width:auto !important;height:auto !important;
+  border-radius:0;max-width:none;max-height:none;background:var(--card,#fff)}
+
+/* The diagram takes the height it was refused. The map is NOT given a height
+   here: size() in page/13-map.js sets one inline from the element's own box,
+   and an !important rule would fight it and leave the viewBox disagreeing with
+   the rendered height. What this does is make the element a column so the svg
+   can have the room, and let a chart that wants to fill it say so. */
+.fson{display:flex;flex-direction:column}
+.fson svg.fsgrow, :fullscreen svg.fsgrow{height:100% !important;flex:1 1 auto;min-height:0}
+
+/* A chart with a viewBox scales on its own; what it needs is the room and the
+   aspect ratio kept, so the labels inside the viewBox stay in proportion. */
+.fson.fschart{align-items:center;justify-content:center;padding:18px}
+.fson.fschart > svg, :fullscreen.fschart > svg{width:auto;max-width:100%;
+  max-height:100%;height:auto !important;flex:0 1 auto}
+
+/* THE CONTROLS, AS PANES OVER THE DIAGRAM RATHER THAN BESIDE IT. Hidden on
+   arrival, because the point of the button is the diagram. */
+.fsbar{position:absolute;top:10px;right:12px;z-index:3;display:flex;gap:6px}
+.fspane{position:absolute;top:0;bottom:0;width:min(420px,42vw);z-index:4;
+  overflow-y:auto;overscroll-behavior:contain;padding:14px 16px 20px;
+  background:var(--card,#fff);border-left:1px solid var(--rule,#ddd);
+  box-shadow:-10px 0 30px rgba(0,0,0,.14)}
+.fspane.left{left:0;right:auto;border-left:0;border-right:1px solid var(--rule,#ddd);
+  box-shadow:10px 0 30px rgba(0,0,0,.14)}
+.fspane.right{right:0}
+.fspane[hidden]{display:none}
+.fspane > .card{border:0;margin:0 0 12px;padding:0}
+.fspanehd{display:flex;align-items:baseline;justify-content:space-between;
+  gap:10px;margin-bottom:10px;padding-bottom:7px;
+  border-bottom:1px solid var(--rule-soft,#eee)}
+.fspanehd b{font-size:11px;font-weight:600;letter-spacing:.07em;text-transform:uppercase;
+  color:var(--steel,#567)}
+@media(max-width:700px){.fspane{width:100%}}

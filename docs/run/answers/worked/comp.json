@@ -1,0 +1,25 @@
+{
+ "proposals": [
+  {
+   "outcome": "firm_accounting_performance",
+   "rules": [
+    "additive"
+   ],
+   "why": "The two antecedents are separate survey measures and either can move with the other held, which rules out a multiplicative form. They no longer overlap either: the clarity-only index is out of the core, and prosocial_mission reaches performance only through perceived_work_meaningfulness rather than both ways round, so the contributions are independent and additive is what the evidence settles."
+  },
+  {
+   "outcome": "residual_control_rights_allocation",
+   "rules": [
+    "additive"
+   ],
+   "why": "What is left to discretion is what was conceded, net of the agency cost, less the pinned-down side and less the whole of the principal cost. Signed contributions that add, not a product. The multiplicative reading belonged to the single-channel version, where measurement modulated the allocation; measurement now divides it between the two channels instead, which is the role the imported model declares for it."
+  },
+  {
+   "outcome": "control_rights_allocation",
+   "rules": [
+    "additive"
+   ],
+   "why": "Two vulnerabilities, either of which calls for control rights on its own. Stoelhorst and Vishwanathan join them with OR rather than AND, so they add rather than multiply: a relation exposed to shirking alone still needs them."
+  }
+ ]
+}

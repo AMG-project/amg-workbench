@@ -1,0 +1,73 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://bellapurpose.org/amg/relation.schema.json",
+  "title": "A declared relation",
+  "description": "The unit this bench produces, from notes/33 section 3: one arrow, carrying the two constructs with their signatures, the sign, the declared class of forms, the scope, what it rests on, and what it deliberately does not fix. A model is a set of these plus the identity that joins them.",
+  "type": "object",
+  "required": ["format", "v", "from", "to", "sign", "forms", "scope", "rests_on", "not_fixed"],
+  "properties": {
+    "format": {"const": "amg-relation"},
+    "v": {"const": 1},
+    "id": {"type": "string"},
+    "from": {"$ref": "#/$defs/construct"},
+    "to": {"$ref": "#/$defs/construct"},
+    "role": {
+      "description": "What the antecedent does to the consequent. No paper in the pilot corpus states one, so it is the modeller's and nothing on the page can check it.",
+      "enum": ["generates", "dissipates", "transfers", "allocates", "gates", "modulates"]
+    },
+    "sign": {"enum": ["positive", "negative", "none", "conditional", "categorical", "inverted-U"]},
+    "forms": {
+      "description": "A CLASS and not a function: the properties the theory asserts, and the members that enumerate them. An empty properties list is the widest declaration available, not the narrowest.",
+      "type": "object", "required": ["properties"],
+      "properties": {
+        "family": {"type": "string"},
+        "properties": {"type": "array", "items": {"enum": ["increasing", "concave", "convex", "sigmoid", "f(0)=0", "f(1)=1"]}},
+        "members": {"type": "array", "items": {
+          "type": "object", "required": ["name", "expr"],
+          "properties": {
+            "name": {"type": "string"},
+            "expr": {"type": "string", "description": "In the bench grammar, X for what the term reads"}
+          }}}
+      }
+    },
+    "scope": {
+      "description": "Where it was stated to hold. `unstated` is a VALUE and not a blank: 380 of the pilot's 1080 claims state nothing, and that is a finding about the literature rather than a gap in the record.",
+      "type": "object", "required": ["stated"],
+      "properties": {
+        "stated": {"type": "string"},
+        "box": {"type": "object", "description": "name to [lo, hi], where a range was declared"}
+      }
+    },
+    "rests_on": {
+      "description": "The claim ids it stands on, each tracing to a span verified verbatim against its source. Empty means the modeller posited it, which is a different warrant and is recorded as one.",
+      "type": "array",
+      "items": {"type": "object", "required": ["claim", "paper"],
+        "properties": {"claim": {"type": "string"}, "paper": {"type": "string"},
+                       "quote": {"type": "string"}}}
+    },
+    "not_fixed": {
+      "description": "What the relation deliberately leaves open, WITH THE REASON. A magnitude left open because no paper states one is a different object from one left open because the modeller has not decided.",
+      "type": "array",
+      "items": {"type": "object", "required": ["what", "why"],
+        "properties": {"what": {"type": "string"}, "why": {"type": "string"}}}
+    }
+  },
+  "$defs": {
+    "construct": {
+      "type": "object", "required": ["id", "signature"],
+      "properties": {
+        "id": {"type": "string"},
+        "label": {"type": "string"},
+        "signature": {
+          "type": "object", "required": ["level", "bearer", "scale", "stock_or_flow"],
+          "properties": {
+            "level": {"type": "string"}, "bearer": {"type": "string"},
+            "scale": {"enum": ["binary", "nominal", "ordinal", "interval", "ratio"]},
+            "stock_or_flow": {"enum": ["stock", "flow"]},
+            "aggregation": {"type": "string"}
+          }
+        }
+      }
+    }
+  }
+}

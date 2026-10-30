@@ -1,0 +1,479 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://bellapurpose.org/amg/report.schema.json",
+  "title": "An action model, reported",
+  "description": "THE FILE A REVIEWER AUDITS AND ANOTHER SCHOLAR BUILDS ON. Everything else this workbench writes is a part: a result here, its certificate there, the claims under it in a third. This is the whole argument in one object, limited to the findings somebody decided to stand behind. It EMBEDS rather than references, because a reviewer auditing one finding should not have to open a second file, and the embedding cannot drift because the generator is handed the same objects the standalone files are written from rather than rebuilding them. Prose twin: REPORT.md, rendered from this same object by core/report.js, carrying what the certificates amount to where this carries the enclosures themselves. The test of the format is one walk: from the sentence, to the derivative, to the box and who declared each bound, to the certificate, to the mechanisms, to the relations, to the claims, to the papers and the scope each one stated. If a link in that walk needs another file, the format has failed.",
+  "type": "object",
+  "required": [
+    "format",
+    "v",
+    "title",
+    "at",
+    "provenance",
+    "selection",
+    "findings",
+    "limits"
+  ],
+  "properties": {
+    "format": {
+      "const": "amg-report"
+    },
+    "v": {
+      "const": 1
+    },
+    "title": {
+      "type": "string"
+    },
+    "at": {
+      "type": "string"
+    },
+    "provenance": {
+      "type": "object",
+      "required": [
+        "bench",
+        "corpus",
+        "forms"
+      ],
+      "description": "What this was made by and from. A robustness figure that does not say which registry of forms it was read against is not checkable, which is why `forms` is required rather than nice to have.",
+      "properties": {
+        "bench": {
+          "type": "string"
+        },
+        "corpus": {
+          "type": "string",
+          "description": "The commit of the corpus the claims were read from."
+        },
+        "scenario": {
+          "type": "string"
+        },
+        "forms": {
+          "type": "string",
+          "description": "The tag of the registry of named forms every robustness number here was read against."
+        },
+        "regenerate": {
+          "type": "string",
+          "description": "The command that rebuilds this file from the deposited scenario, so a reader can run it and diff rather than take the file on trust."
+        }
+      }
+    },
+    "builds_on": {
+      "type": "array",
+      "description": "Every AMG this one was built on, each as that AMG's own file named itself: carried verbatim from the imported stream and never recomposed here, because a provenance the importing bench wrote would be its claim about the source rather than the source's own. Absent rather than empty where nothing was imported. This is the only field in the format that points OUTWARD: every other provenance block names the build that made the file it sits in.",
+      "items": {
+        "type": "object",
+        "required": [
+          "name"
+        ],
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "The literature's own name, as it gave it."
+          },
+          "doi": {
+            "type": "string",
+            "description": "Where it is deposited, when it was. Empty until somebody deposits it."
+          },
+          "built": {
+            "type": "object",
+            "description": "The commit and date of the payload it was read off.",
+            "properties": {
+              "commit": {
+                "type": "string"
+              },
+              "at": {
+                "type": "string"
+              }
+            }
+          },
+          "provenance": {
+            "type": "object",
+            "description": "The bench, corpus and curation that wrote it.",
+            "properties": {
+              "bench": {
+                "type": "string"
+              },
+              "corpus": {
+                "type": "string"
+              },
+              "scenario": {
+                "type": "string"
+              },
+              "at": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      }
+    },
+    "selection": {
+      "type": "object",
+      "required": [
+        "derived",
+        "retained",
+        "rule"
+      ],
+      "description": "THE DENOMINATOR. Reporting the retained findings without the number they were drawn from is the file-drawer problem, which this instrument exists to refuse. The two populations are kept apart because a board can hold findings this model never derived: ones returned from an outside engine, or carried in with another scholar's model. Counting those against this model's derivation would give a denominator smaller than its numerator.",
+      "properties": {
+        "derived": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Propositions this model's own derivation produced, errors excluded."
+        },
+        "retained": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Reported below."
+        },
+        "derived_here": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Of those retained, how many this model derived."
+        },
+        "from_elsewhere": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Of those retained, how many arrived from outside this derivation. Each carries that provenance on the finding."
+        },
+        "set_aside": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Taken onto the board and then withdrawn. Reported as a number because a withdrawal is a decision; the rows themselves do not travel here."
+        },
+        "rule": {
+          "type": "string",
+          "description": "How the retained set was selected, in the scholar's words. Stated rather than inferred."
+        }
+      }
+    },
+    "withheld": {
+      "type": "object",
+      "description": "Present only where a deposit declaration keeps something out of this file. Step 4.2's material decision governs verbatim spans, and this report carries them, so a deposit that declared quotes do not travel and then shipped them inside the report would leak exactly what the scholar withheld. Where it is present, each claim below carries `quote_withheld` in place of `quote`.",
+      "properties": {
+        "quotes": {
+          "type": "boolean"
+        },
+        "why": {
+          "type": "string"
+        }
+      }
+    },
+    "findings": {
+      "type": "array",
+      "description": "One module per retained finding, each self-contained. A scholar building on one finding should be able to take that module alone.",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "sentence",
+          "outcome",
+          "parameter",
+          "scope",
+          "rests_on",
+          "evidence"
+        ],
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "sentence": {
+            "type": "string"
+          },
+          "outcome": {
+            "type": "string"
+          },
+          "parameter": {
+            "type": "string"
+          },
+          "direction": {
+            "type": "string"
+          },
+          "verdict": {
+            "type": "string"
+          },
+          "share": {
+            "type": "number",
+            "description": "Of the declared box, the part the sign was proved on."
+          },
+          "undecided": {
+            "type": "number",
+            "description": "The rest of it. A sign proved on three quarters of a box is a different claim from one proved everywhere, and the remaining quarter is NOT the other sign: it is where the method could not settle either way."
+          },
+          "expression": {
+            "type": "string",
+            "description": "The derivative, as an expression a reader can differentiate themselves."
+          },
+          "scope": {
+            "type": "object",
+            "required": [
+              "box",
+              "declared",
+              "defaulted"
+            ],
+            "properties": {
+              "box": {
+                "type": "object",
+                "description": "Name to [lo, hi]."
+              },
+              "declared": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "description": "The bounds somebody set."
+              },
+              "defaulted": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "description": "The bounds nobody set. Named rather than merged with the others, because a sign proved over a default is proved against an obligation nobody took on, and the two read identically otherwise."
+              },
+              "region": {
+                "type": "object",
+                "description": "Where the sign holds, derived rather than asserted, where the method located it."
+              }
+            }
+          },
+          "method": {
+            "type": "object"
+          },
+          "rests_on": {
+            "type": "object",
+            "properties": {
+              "mechanisms": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "idle": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "description": "Mechanisms the model carries that this finding does not use. A boundary statement in the positive direction."
+              },
+              "combination_rule": {
+                "type": "string"
+              }
+            }
+          },
+          "certificate": {
+            "type": "object",
+            "description": "The warrant, embedded. This is the certificate the standalone proof export writes, not a copy of it: a conforming producer hands the generator that object rather than rebuilding one, which is what makes the two incapable of drifting. Absent where the model as it stands will no longer re-derive the finding, which is itself reportable. Shapes follow proof.schema.json.",
+            "properties": {
+              "leaves": {
+                "type": "integer",
+                "minimum": 0,
+                "description": "Cells the search decided or gave up on, which are the ones in `split`."
+              },
+              "boxes": {
+                "type": "integer",
+                "minimum": 0,
+                "description": "Cells it visited, including the ones it split again."
+              },
+              "covers": {
+                "type": "number",
+                "minimum": 0,
+                "description": "Summed volume of the leaves as a share of the declared box. Anything but 1 means the list is not a proof of anything."
+              },
+              "method": {
+                "type": "string"
+              },
+              "truncated_at": {
+                "type": "integer",
+                "minimum": 1,
+                "description": "Present only where the split was too long to write in full, which makes the file a report and not a certificate, and says so."
+              },
+              "witness": {
+                "type": "object",
+                "description": "A point where the sign runs the other way, where the search found one."
+              },
+              "split": {
+                "type": "array",
+                "description": "Every sub-box with the interval enclosure of the derivative over it. Carried here and summarised in the prose twin, because a search that splits a box into hundreds of sub-boxes produces a list nobody reads as prose.",
+                "items": {
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "declarations": {
+            "type": "array",
+            "description": "Each bound and class the proof ran under, with whether anybody set it (`by`) and WHICH OF THEM DID (`who`): read off the sources, proposed by a model and accepted, the scholar's own, or undecided. The second is the one a reviewer needs and the one a format is tempted to drop, because the two read identically in a document that carries only the first.",
+            "items": {
+              "type": "object",
+              "properties": {
+                "what": {
+                  "type": "string"
+                },
+                "value": {
+                  "type": "string"
+                },
+                "by": {
+                  "enum": [
+                    "declared",
+                    "default"
+                  ]
+                },
+                "who": {
+                  "enum": [
+                    "corpus",
+                    "claude",
+                    "hand",
+                    "open"
+                  ]
+                },
+                "at": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "evidence": {
+            "type": "array",
+            "description": "THE SOURCES, which a count cannot replace. The claims standing behind the mechanisms this finding rests on, grouped by relation. A tally of signs cannot tell a contradiction from a scope difference: two papers asserting different signs may be about populations that never overlap, and two asserting the same sign may differ on shape, magnitude and bearer. So the material goes in and the reader decides.",
+            "items": {
+              "type": "object",
+              "required": [
+                "from",
+                "to",
+                "rows",
+                "reading"
+              ],
+              "properties": {
+                "from": {
+                  "type": "string"
+                },
+                "to": {
+                  "type": "string"
+                },
+                "claims": {
+                  "type": "integer",
+                  "minimum": 0
+                },
+                "papers": {
+                  "type": "integer",
+                  "minimum": 0
+                },
+                "signs": {
+                  "type": "object",
+                  "description": "Sign to count."
+                },
+                "agree": {
+                  "type": "boolean",
+                  "description": "Whether every claim asserts one sign. Not whether they agree, which is not something this format decides."
+                },
+                "unscoped": {
+                  "type": "integer",
+                  "minimum": 0,
+                  "description": "How many of the claims state no scope at all. A literature in which most claims state none is a finding about that literature, which is why this is counted rather than left for a reader to notice."
+                },
+                "reading": {
+                  "type": "string",
+                  "description": "What is in front of the reader, stopping short of a verdict."
+                },
+                "rows": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "required": [
+                      "paper",
+                      "sign"
+                    ],
+                    "properties": {
+                      "paper": {
+                        "type": "string"
+                      },
+                      "sign": {
+                        "type": "string"
+                      },
+                      "basis": {
+                        "type": "string",
+                        "description": "asserted, reported, derived or estimated."
+                      },
+                      "shape": {
+                        "type": "string"
+                      },
+                      "scope": {
+                        "type": "string",
+                        "description": "The scope its own paper stated, verbatim, or the word `unstated`, which is a value and not a gap."
+                      },
+                      "quote": {
+                        "type": "string",
+                        "description": "Verbatim, from the paper."
+                      },
+                      "quote_withheld": {
+                        "type": "boolean",
+                        "description": "In place of `quote` where a deposit declaration withheld it."
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "empirical": {
+            "type": "object",
+            "description": "A result returned from outside: recorded, attributed, and NOT verified here. It sits beside the proof rather than over it.",
+            "properties": {
+              "line": {
+                "type": "string"
+              },
+              "agrees": {
+                "type": "string"
+              },
+              "n": {
+                "type": "integer"
+              },
+              "at": {
+                "type": "string"
+              },
+              "verified_here": {
+                "type": "boolean",
+                "description": "Always false. The page did not run it and cannot see the data."
+              },
+              "ran": {
+                "type": "object",
+                "description": "Which engine, which version, which dataset, and WHICH COLUMN STOOD IN FOR WHICH CONSTRUCT. That last is the measurement decision and the part a reviewer would contest; the result line alone is not auditable without it."
+              }
+            }
+          },
+          "note": {
+            "type": "object",
+            "description": "The scholar's own words about the finding. Marked as theirs and never mixed into anything computed."
+          },
+          "design": {
+            "type": "object",
+            "description": "A study design proposed by a model and accepted by name. Checked by nothing, and says so."
+          },
+          "provenance": {
+            "type": "object",
+            "description": "Derived here, written by hand, proposed by a model, or returned from an outside tool; the round it was taken in, and when."
+          }
+        }
+      }
+    },
+    "appendix": {
+      "type": "object",
+      "properties": {
+        "decisions": {
+          "type": "object",
+          "description": "The five a deposit makes."
+        },
+        "forms": {
+          "type": "object"
+        },
+        "corpus_note": {
+          "type": "string",
+          "description": "Why the articles themselves do not travel, and on what terms the extraction can be run again."
+        }
+      }
+    },
+    "limits": {
+      "type": "string",
+      "description": "What the report does not establish. Required, because a format that makes it optional will see it omitted."
+    }
+  }
+}

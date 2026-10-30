@@ -1,0 +1,328 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://bellapurpose.org/amg/proof.schema.json",
+  "title": "One finding, with the certificate that settled it",
+  "description": "A result says what the method concluded. This says why, in a form a reader can recheck without this page: the derivative as an expression, the box it ran over, and every sub-box the branch-and-bound search split into with the interval enclosure of the derivative over it. The conclusion follows from two facts about that list, and both are checkable here: every enclosure said to carry the sign does carry it, and the boxes cover the declared box. A result is the finding; this is its warrant.",
+  "type": "object",
+  "required": [
+    "format",
+    "v",
+    "finding",
+    "expression",
+    "scope",
+    "certificate",
+    "declarations"
+  ],
+  "properties": {
+    "format": {
+      "const": "amg-proof"
+    },
+    "v": {
+      "const": 1
+    },
+    "id": {
+      "type": "string"
+    },
+    "finding": {
+      "type": "object",
+      "required": [
+        "outcome",
+        "parameter",
+        "direction",
+        "verdict"
+      ],
+      "properties": {
+        "sentence": {
+          "type": "string"
+        },
+        "outcome": {
+          "type": "string"
+        },
+        "parameter": {
+          "type": "string"
+        },
+        "direction": {
+          "enum": [
+            "up",
+            "down",
+            "flat"
+          ]
+        },
+        "verdict": {
+          "enum": [
+            "proved",
+            "disproved",
+            "partial",
+            "undecided",
+            "flat"
+          ]
+        },
+        "share": {
+          "type": "number",
+          "minimum": 0,
+          "description": "Of the declared box, the part on which the sign was proved."
+        },
+        "settled": {
+          "type": "number",
+          "minimum": 0,
+          "description": "One minus the part the search left open. A disproved finding is settled throughout and proved nowhere, so the two numbers are not each other's complement."
+        }
+      }
+    },
+    "expression": {
+      "description": "What was differentiated and what came out, in the bench's own grammar, so a reader can parse it with anything rather than trusting a rendering.",
+      "type": "object",
+      "required": [
+        "outcome",
+        "derivative"
+      ],
+      "properties": {
+        "grammar": {
+          "type": "string"
+        },
+        "outcome": {
+          "type": "string",
+          "description": "The outcome inlined to the free parameters"
+        },
+        "derivative": {
+          "type": "string",
+          "description": "Its derivative in the parameter, simplified, with any ceiling resolved to the branch that binds"
+        }
+      }
+    },
+    "scope": {
+      "type": "object",
+      "required": [
+        "box"
+      ],
+      "properties": {
+        "box": {
+          "type": "object",
+          "description": "name to [lo, hi]"
+        },
+        "declared": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Which of those ranges somebody declared. The rest are this page's default, which is not an obligation anyone took on."
+        }
+      }
+    },
+    "certificate": {
+      "description": "The search, written out. `covers` is the summed share of the leaves and is computed from the boxes below rather than asserted: a reader who recomputes it and gets something else has found a wrong file rather than a doubt.",
+      "type": "object",
+      "required": [
+        "method",
+        "leaves",
+        "covers",
+        "split"
+      ],
+      "properties": {
+        "method": {
+          "type": "string"
+        },
+        "boxes": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Cells the search visited, including the ones it split again"
+        },
+        "leaves": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Cells it decided or gave up on, which are the ones written below"
+        },
+        "covers": {
+          "type": "number",
+          "minimum": 0,
+          "description": "Summed volume of the leaves as a share of the declared box. Anything but 1 means the list is not a proof of anything."
+        },
+        "truncated_at": {
+          "type": "integer",
+          "minimum": 1,
+          "description": "Present only where the split was too long to write in full, which makes the file a report and not a certificate."
+        },
+        "witness": {
+          "type": "object",
+          "description": "A point where the sign runs the other way, where the search found one"
+        },
+        "split": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": [
+              "box",
+              "holds"
+            ],
+            "properties": {
+              "box": {
+                "type": "object"
+              },
+              "enclosure": {
+                "type": "array",
+                "items": {
+                  "type": "number"
+                },
+                "minItems": 2,
+                "description": "The interval the derivative is enclosed in over this box. Absent where `unbounded` is set."
+              },
+              "unbounded": {
+                "type": "boolean",
+                "description": "Interval arithmetic could not bound the derivative over this box at all: a zero in a denominator, or a fractional power of something that may be negative. Such a leaf is not settled for a reason that has nothing to do with the box being wide, and narrowing the box is what would change it. The field exists because JSON has no infinity and writing one produces a null that reads as a missing value."
+              },
+              "holds": {
+                "enum": [
+                  "with the sign",
+                  "against the sign",
+                  "not settled",
+                  "flat"
+                ]
+              },
+              "share": {
+                "type": "number",
+                "minimum": 0
+              }
+            }
+          }
+        }
+      }
+    },
+    "declared_class": {
+      "description": "What the class of functional forms says about the same finding, where the declared set was run. Kept apart from the box deliberately: a conclusion can hold over every parameter setting and fail at a third of the admissible forms, and one number for the two is how that gets called robust.",
+      "type": "object",
+      "properties": {
+        "set": {
+          "type": "string"
+        },
+        "label": {
+          "type": "string"
+        },
+        "held": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "of": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "undecided": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "turned": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "at": {
+          "type": "string"
+        },
+        "signature": {
+          "type": "string"
+        }
+      }
+    },
+    "rests_on": {
+      "type": "object",
+      "properties": {
+        "mechanisms": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "idle": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "mechanism_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "combination_rule": {
+          "type": "string"
+        }
+      }
+    },
+    "declarations": {
+      "description": "Every declaration the conclusion reads, with its warrant. `by` is the point of the list: `default` means the page supplied the value and nobody committed to it, which is the failure this bench exists to make visible. A declaration nothing in the derivative reads is not here, because saying it was part of this proof would overstate the file.",
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "what",
+          "value",
+          "by"
+        ],
+        "properties": {
+          "what": {
+            "type": "string"
+          },
+          "value": {
+            "type": "string"
+          },
+          "by": {
+            "enum": [
+              "declared",
+              "default"
+            ]
+          },
+          "at": {
+            "type": "string"
+          },
+          "who": {
+            "enum": [
+              "corpus",
+              "claude",
+              "hand",
+              "open"
+            ],
+            "description": "WHICH OF THEM CHOSE IT, where `by` says only whether anybody did. `corpus` is read off what the sources recorded, `claude` is a proposal from a language model that somebody accepted, `hand` is the scholar's own, and `open` is undecided. A reader cannot otherwise tell a scholar's declaration from an accepted proposal, which is the distinction this instrument exists to keep visible."
+          }
+        }
+      }
+    },
+    "recorded": {
+      "description": "What the board said when the finding was taken, and whether re-proving it now agrees. A false `agrees` is the model having moved under a finding, which is a thing to know from the file rather than from the page that wrote it.",
+      "type": "object",
+      "properties": {
+        "verdict": {
+          "type": "string"
+        },
+        "share": {
+          "type": "number"
+        },
+        "at": {
+          "type": "string"
+        },
+        "signature": {
+          "type": "string"
+        },
+        "agrees": {
+          "type": "boolean"
+        }
+      }
+    },
+    "provenance": {
+      "type": "object",
+      "properties": {
+        "bench": {
+          "type": "string"
+        },
+        "corpus": {
+          "type": "string"
+        },
+        "scenario": {
+          "type": "string"
+        },
+        "arithmetic": {
+          "type": "string"
+        },
+        "at": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}

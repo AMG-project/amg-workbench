@@ -1,0 +1,126 @@
+{
+ "format": "amg-scenario",
+ "v": 1,
+ "bench": {
+  "v": "0.14",
+  "at": "2026-10-22"
+ },
+ "corpus": null,
+ "at": "2026-10-23T00:00:00.000Z",
+ "name": "A shielded channel",
+ "snap": {
+  "stage": 6,
+  "vtype": [
+   {
+    "id": "pi",
+    "name": "pi",
+    "kinds": [
+     "degree"
+    ],
+    "aspects": [
+     "level"
+    ],
+    "lo": 0,
+    "hi": 1,
+    "bset": true,
+    "at": "2026-10-23"
+   },
+   {
+    "id": "cost",
+    "name": "cost",
+    "kinds": [
+     "degree"
+    ],
+    "aspects": [
+     "level"
+    ],
+    "lo": 0,
+    "hi": 1,
+    "bset": true,
+    "at": "2026-10-23"
+   },
+   {
+    "id": "shielded",
+    "name": "shielded",
+    "kinds": [
+     "degree"
+    ],
+    "aspects": [
+     "level"
+    ],
+    "lo": 0,
+    "hi": 1,
+    "bset": true,
+    "at": "2026-10-23"
+   },
+   {
+    "id": "exposed",
+    "name": "exposed",
+    "kinds": [
+     "degree"
+    ],
+    "aspects": [
+     "level"
+    ],
+    "lo": 0,
+    "hi": 1,
+    "bset": true,
+    "at": "2026-10-23"
+   }
+  ],
+  "arith": {
+   "consts": [
+    {
+     "name": "w",
+     "value": 0.5,
+     "why": "the weight on the cost",
+     "lo": null,
+     "hi": null
+    }
+   ],
+   "hand": true,
+   "lines": [
+    {
+     "lhs": "t_pi_to_both",
+     "py": "(1 - exp(-2 * pi)) / (1 - exp(-2))",
+     "kind": "term",
+     "why": "",
+     "mech": "pi_to_both"
+    },
+    {
+     "lhs": "incidence",
+     "py": "w * cost",
+     "kind": "local",
+     "why": "what the cost takes from the exposed channel"
+    },
+    {
+     "lhs": "shield",
+     "py": "w * cost - incidence",
+     "kind": "local",
+     "why": "the shielded channel's share of it, which the declaration sets to none"
+    },
+    {
+     "lhs": "shielded",
+     "py": "t_pi_to_both - shield",
+     "kind": "out",
+     "why": ""
+    },
+    {
+     "lhs": "exposed",
+     "py": "t_pi_to_both - incidence",
+     "kind": "out",
+     "why": ""
+    }
+   ],
+   "miss": [],
+   "note": "A fixture, not a model of anything: `shield` is `w * cost` minus itself, so the shielded channel does not move with the cost at all and the exposed one does. The two-channel model's principal_cost_incidence has exactly this shape, and the engine used to report the shielded channel as RISING with the cost.",
+   "checks": [],
+   "sig": "flatfixture",
+   "run": null,
+   "at": "2026-10-23"
+  }
+ },
+ "provenance": [],
+ "rounds": [],
+ "log": []
+}

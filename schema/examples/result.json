@@ -1,0 +1,33 @@
+{
+ "format": "amg-result",
+ "v": 1,
+ "id": "r1",
+ "sentence": "firm accounting performance rises with purpose clarity factor, for every purpose clarity factor in [0.00, 1.00].",
+ "outcome": "firm_accounting_performance",
+ "parameter": "purpose_clarity_factor",
+ "direction": "up",
+ "verdict": "proved",
+ "share": 1,
+ "scope": {
+  "box": {"purpose_clarity_factor": [0, 1], "prosocial_mission": [0, 1]},
+  "declared": ["purpose_clarity_factor", "prosocial_mission"],
+  "region": {
+   "cuts": [{"name": "purpose_clarity_factor", "hi": 0.44}],
+   "rate": 0.654, "base": 0.588, "volume": 0.44, "read_off": 1210
+  }
+ },
+ "method": {"kind": "exact+sampled", "draws": 608, "corners": 8, "boxes": 1},
+ "rests_on": {
+  "mechanisms": ["t_purpose_clarity_factor_to_firm_accounting_performance"],
+  "idle": ["t_prosocial_mission_to_perceived_work_meaningfulness",
+           "t_perceived_work_meaningfulness_to_firm_accounting"],
+  "declarations": ["the role of purpose clarity factor to firm accounting performance",
+                   "the shapes of purpose clarity factor to firm accounting performance",
+                   "the combination rule for firm_accounting_performance"],
+  "combination_rule": "ces"
+ },
+ "provenance": {
+  "bench": "0.14", "corpus": "3fbe18d", "scenario": "Worked example",
+  "round": 1, "at": "2026-10-22T18:05:00.000Z"
+ }
+}

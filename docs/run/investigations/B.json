@@ -1,0 +1,166 @@
+{
+ "entail_version": "0.1.0.dev0",
+ "created_at": "2026-09-02T13:22:59Z",
+ "model": "purpose",
+ "llm": "claude-opus-5",
+ "design": {
+  "base_n": 128,
+  "grid": 81,
+  "optimised": "pi",
+  "objective": "AVp",
+  "parameters": [
+   "alpha",
+   "principal_competence",
+   "principal_conflict",
+   "agent_conflict"
+  ],
+  "ablated": []
+ },
+ "prompt_key": "635300e3fdd44185567c48b78188fcda",
+ "outcome": "B",
+ "patterns": [
+  {
+   "sentence": "principal_conflict raises B (rank correlation +0.74; Sobol first-order 0.51, total 0.65)",
+   "parameter": "principal_conflict",
+   "first_order": 0.5092680796732969,
+   "total": 0.653486617452493,
+   "correlation": 0.7446956285628966
+  },
+  {
+   "sentence": "alpha raises B (rank correlation +0.28; Sobol first-order 0.11, total 0.25)",
+   "parameter": "alpha",
+   "first_order": 0.10594270911179501,
+   "total": 0.24802891930366716,
+   "correlation": 0.2776614050320665
+  },
+  {
+   "sentence": "agent_conflict lowers B (rank correlation -0.48; Sobol first-order 0.20, total 0.21)",
+   "parameter": "agent_conflict",
+   "first_order": 0.19997428954909108,
+   "total": 0.20563860202021336,
+   "correlation": -0.4761019405548061
+  }
+ ],
+ "candidates": [
+  {
+   "claim": "B is what gets delivered as control rather than discretion, and it grows exactly when discretion becomes expensive: principals deciding in their own interest makes the residual channel dear, so more of what is conceded is written down instead.",
+   "explains": "principal_conflict",
+   "mechanisms": [
+    "principal_conflict_cost",
+    "principal_cost_incidence",
+    "contractibility"
+   ],
+   "minimal": [
+    "contractibility"
+   ],
+   "redundant": [
+    "principal_conflict_cost",
+    "principal_cost_incidence"
+   ],
+   "rationale": "The effect exists only because the two channels are unequally taxed. Switch off principal_conflict_cost and the residual channel is no longer penalised by opportunism; switch off principal_cost_incidence and any penalty is no longer confined to that channel. In either case the reallocation motive disappears, and B should stop tracking principal_conflict altogether — which would be a strong result, since principal_conflict is the single largest mover of B.",
+   "predicted": "vanishes",
+   "observed": "vanishes",
+   "confirmed": true,
+   "total_before": 0.653486617452493,
+   "total_after": 0.0,
+   "correlation_before": 0.7446956285628966,
+   "correlation_after": 0.0
+  },
+  {
+   "claim": "Agent conflict lowers B because agency costs are the one burden the control channel cannot escape: delegation degrades what has been contracted as well as what is left to discretion, so writing more down buys no protection from a self-interested manager.",
+   "explains": "agent_conflict",
+   "mechanisms": [
+    "agent_conflict_cost",
+    "agency_cost_incidence",
+    "ai_agency_cost_reduction"
+   ],
+   "minimal": [
+    "agency_cost_incidence"
+   ],
+   "redundant": [
+    "agent_conflict_cost",
+    "ai_agency_cost_reduction"
+   ],
+   "rationale": "This account makes agent_conflict's negative sign wholly a matter of where agency costs are charged. With agent_conflict_cost off there is no manager agenda to price; with agency_cost_incidence off the cost no longer reaches the control channel at all; ai_agency_cost_reduction is included because it is the only mechanism that scales the same cost, and leaving it on would let AI intensity keep a residual version of the same drag alive. The prediction that the whole effect goes is testable and distinguishes this from the incidence-artifact account below.",
+   "predicted": "vanishes",
+   "observed": "vanishes",
+   "confirmed": true,
+   "total_before": 0.20563860202021336,
+   "total_after": 0.0,
+   "correlation_before": -0.4761019405548061,
+   "correlation_after": -0.00018714766057636455
+  },
+  {
+   "claim": "Alpha raises B directly rather than through any cost comparison: it determines the fraction of what stakeholders are owed that is specifiable ex ante, and B is simply the size of that fraction once it is claimed.",
+   "explains": "alpha",
+   "mechanisms": [
+    "contractibility",
+    "ai_contractibility_shift"
+   ],
+   "minimal": [
+    "ai_contractibility_shift"
+   ],
+   "redundant": [
+    "contractibility"
+   ],
+   "rationale": "If alpha enters B only as the width of the control channel, then removing the mechanisms that constitute that width removes the effect entirely: there is no channel left whose share can be raised. The declared substitution with purpose_vulnerability_reduction should not rescue the effect here, because the substitute operates on the price stakeholders demand, not on how much of the concession can be held as control — it shifts B's level, not its gradient in alpha. The modest size of the observed effect (0.28, first-order 0.11 against total 0.25) fits a channel that mostly matters in interaction with the cost terms.",
+   "predicted": "vanishes",
+   "observed": "vanishes",
+   "confirmed": true,
+   "total_before": 0.24802891930366716,
+   "total_after": 0.0,
+   "correlation_before": 0.2776614050320665,
+   "correlation_after": 0.0
+  },
+  {
+   "claim": "The whole sign pattern in B is an artifact of where costs are charged rather than how large they are: principal costs spare the control channel while agency costs do not, so principal_conflict pushes B up and agent_conflict pushes it down for one and the same reason, and equalising the incidence should flip both.",
+   "explains": "principal_conflict",
+   "mechanisms": [
+    "principal_cost_incidence",
+    "agency_cost_incidence"
+   ],
+   "minimal": [
+    "agency_cost_incidence"
+   ],
+   "redundant": [
+    "principal_cost_incidence"
+   ],
+   "rationale": "Switching off only the two incidence rules leaves both cost magnitudes intact but removes the asymmetry between the channels. Principal costs would then also load what is contracted, so higher principal_conflict should stop favouring the control channel and start depressing B; agency costs would no longer single out the control channel, so agent_conflict's drag on B should slacken and could turn positive if the surviving reallocation motive dominates. I consider this the unlikely account of the four, since it requires the magnitudes to contribute nothing beyond the asymmetry, but it is the cleanest discriminating test available: no other explanation here predicts a sign change from those two switches alone.",
+   "predicted": "reverses",
+   "observed": "unchanged",
+   "confirmed": false,
+   "total_before": 0.653486617452493,
+   "total_after": 0.616774454699332,
+   "correlation_before": 0.7446956285628966,
+   "correlation_after": 0.6967116547365537
+  },
+  {
+   "claim": "The whole sign pattern in B is an artifact of where costs are charged rather than how large they are: principal costs spare the control channel while agency costs do not, so principal_conflict pushes B up and agent_conflict pushes it down for one and the same reason, and equalising the incidence should flip both.",
+   "explains": "agent_conflict",
+   "mechanisms": [
+    "principal_cost_incidence",
+    "agency_cost_incidence"
+   ],
+   "minimal": [
+    "agency_cost_incidence"
+   ],
+   "redundant": [
+    "principal_cost_incidence"
+   ],
+   "rationale": "Switching off only the two incidence rules leaves both cost magnitudes intact but removes the asymmetry between the channels. Principal costs would then also load what is contracted, so higher principal_conflict should stop favouring the control channel and start depressing B; agency costs would no longer single out the control channel, so agent_conflict's drag on B should slacken and could turn positive if the surviving reallocation motive dominates. I consider this the unlikely account of the four, since it requires the magnitudes to contribute nothing beyond the asymmetry, but it is the cleanest discriminating test available: no other explanation here predicts a sign change from those two switches alone.",
+   "predicted": "reverses",
+   "observed": "vanishes",
+   "confirmed": false,
+   "total_before": 0.20563860202021336,
+   "total_after": 0.0043328929724698395,
+   "correlation_before": -0.4761019405548061,
+   "correlation_after": -0.05826113920823796
+  }
+ ],
+ "malformed": [],
+ "summary": {
+  "proposed": 5,
+  "survived": 3,
+  "refuted": 2
+ }
+}

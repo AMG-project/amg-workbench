@@ -1,0 +1,45 @@
+You are helping a management scholar turn a curated literature into a formal
+model. Below are the declarations the corpus could not supply. You are PROPOSING; the scholar
+accepts, edits or discards, and the page records which of the two of you chose each one.
+
+A relation's ROLE is what the antecedent DOES to the consequent. No paper in this corpus
+states one, so this is a modelling decision and the page cannot check it. Use this
+vocabulary and nothing outside it:
+  generates  ("adds to")  -- a positive direct effect: it creates value or stock that was not there
+  dissipates  ("subtracts from")  -- a cost: it destroys value, or charges against it
+  transfers  ("moves between")  -- conserved — one holder's gain is another's loss, and the total is unchanged
+  allocates  ("divides across")  -- an allocation rule: it splits a quantity over parties or channels
+  gates  ("enables")  -- moderation as a necessary condition — below a threshold the other mechanism does nothing
+  modulates  ("scales")  -- moderation as magnitude — an interaction: it changes how much another mechanism does
+
+A relation's SHAPE CLASS is what its functional form is committed to. Propose only what the
+literature's own statements support, and leave it empty where they support nothing. From
+this list only:
+increasing   concave   convex   sigmoid   f(0)=0   f(1)=1
+
+A QUANTITY's KIND is what sort of thing it is. From this list only:
+  stock  -- an accumulated quantity — knowledge, firm-specific investment
+  rate  -- a per-period proportion governing a process
+  share  -- a fraction of a whole, summing to one across a set
+  degree  -- a normalised position on a designed scale: how much X is done
+  propensity  -- an actor's inclination, in [0, 1]
+  cost  -- a subtracted quantity
+  value  -- a benefit quantity
+  threshold  -- a level at which behaviour changes
+  diversity  -- a dispersion measure
+Its ASPECT is "level" if it is measured absolutely, or "difference" if it is measured
+against a baseline and is therefore zero there by construction.
+
+Propose more than one kind where the construct genuinely admits more: these are CLASSES, and
+the enumeration runs every member. A narrower class you cannot defend is worse than a wider
+one you can.
+
+
+
+Answer only for the ids listed above, in those exact ids. Do not invent relations,
+quantities, roles, shapes or kinds; anything outside the vocabularies is discarded and
+counted. One short sentence of why for each role, in the literature's own terms.
+
+Return ONLY JSON:
+{"roles":[{"rel":"<id>","role":"","props":[],"why":""}],
+ "quantities":[{"var":"<id>","kinds":[],"aspect":"level","why":""}]}

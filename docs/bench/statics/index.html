@@ -1,0 +1,36 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Comparative Statics</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,600;1,400&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* The page around the mount. Everything inside it is dressed by
+   statics.css, which the module brings with it. */
+html,body{margin:0;background:#f6f7f9}
+@media (prefers-color-scheme:dark){html:not([data-theme="light"]) body{background:#111419}}
+html[data-theme="dark"] body{background:#111419}
+#root{min-height:100vh}
+#root:empty::after{content:"Reading the model\2026";display:block;padding:48px 28px;
+  font:14px "IBM Plex Mono",ui-monospace,monospace;color:#868f9e}
+</style>
+</head><body>
+
+<!-- THE PAGE IS A MOUNT POINT.
+
+     What was here -- the model, the charts, the robustness grid, all of it --
+     is in statics/statics.js now, because step 7 of the workbench draws the
+     same thing and the two had been separate copies since the day the second
+     one was made. The module reads the project open in this browser, or the
+     finished example the bench ships when nothing has been declared yet, and
+     compiles it with the same kernel the workbench proves with. -->
+<div id="root"></div>
+
+<script type="module">
+import { mount } from "./statics.js";
+mount(document.getElementById("root")).catch(e => {
+  document.getElementById("root").textContent =
+    "The model would not load: " + (e && e.message || e);
+});
+</script>
+</body></html>

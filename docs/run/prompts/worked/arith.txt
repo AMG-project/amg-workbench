@@ -1,0 +1,137 @@
+You are helping a management scholar build a formal model out of a curated
+literature. Every declaration below was made by hand. What is missing is the one thing no
+declaration fixes, which is the arithmetic.
+
+Write it. One assignment per line, in a grammar that is valid Python AND JavaScript at once,
+because the page runs it and checks it before anybody believes it:
+
+  names        lower_snake_case. In scope: the parameters below, any constant you declare, and
+               any line you have already written. Nothing else exists -- no attribute access,
+               no quotes, no brackets but round ones, no conditionals.
+  operators    + - * / **  and the comma inside a call. Parenthesise a leading minus before
+               ** : write -(x ** 2), never -x ** 2.
+  functions    min(a, b)  max(a, b)  exp(a)  log(a)  and nothing else.
+  numbers      decimals with a leading digit: 0.5, never .5.
+
+Write exactly one line per TERM the brief names, named exactly as it names it, reading the
+parameter it is declared to read. Then exactly one line per OUTCOME, named exactly as the brief
+names it, combining its own terms the way its composition is declared:
+  additive  they add    multiplicative  they multiply    min  the smallest binds
+  max  the largest carries    ces  between the two, as a weighted power mean
+
+What each declared word requires of your expression. The brief marks every term with the
+shape words that were declared for it, and these six are the only ones that can be:
+  f(0)=0       zero where its reader sits at the bottom of its declared range
+  f(1)=1       one at the top of that range, so swapping a form moves the shape and not
+               the scale -- which is what lets a broken obligation be attributed
+  increasing   rises in what it reads, everywhere in the reader's range
+  concave      rises with a falling slope -- diminishing returns
+  convex       rises with a rising slope -- a compounding cost
+  sigmoid      changes curvature exactly once: slow, then rapid, then saturating
+And the six role words, which say how a term enters the outcome it writes:
+  generates    enters positively: it creates value that was not there
+  dissipates   enters negatively: a cost, charged against the outcome
+  transfers    conserved -- what it adds to one quantity it takes from another
+  allocates    an allocation rule: it splits a quantity over parties or channels
+  gates        lies in [0, 1] and MULTIPLIES the term it acts on, which the brief names
+  modulates    multiplies the term it acts on, unbounded -- an interaction
+A term whose shape is unconstrained is yours to choose. Say what you chose and why, in one
+sentence that names what in the declarations decided it.
+
+Where the brief lists FORM FAMILIES for a term, a member of one is the better answer than
+an expression of your own: the page can then run the WHOLE family against your model and
+report whether the conclusion holds for the class or only for the line you wrote. Name it --
+"family" and "member" beside the line -- and a constant in front is allowed. Name a family
+only if the line really is that member: a class the line is not in is worse than no class.
+
+A CLASS OF ONE IS A CLAIM, AND IT IS THE STRONGEST ONE HERE. The "linear" family holds a
+single member, so naming it pins the shape exactly: it asserts that there is no curvature,
+rather than declining to assert any. If the declarations and the corpus say nothing about
+the curvature of a term, the WEAKER answer is the family whose properties you are willing
+to assert, with the member you think likeliest named inside it; the page then reads every
+conclusion against all of its members and reports the share that agree. Name "linear" where
+proportionality is the content of the claim -- an allocation rule splitting a quantity pro
+rata is exactly that -- and say so in the reason. Do not reach for it as the modest answer
+to "nothing is known", because in this vocabulary it is the least modest answer available.
+
+EVERY MEMBER READS X ON [0, 1]. So X is not the reader itself unless the reader's declared
+range IS [0, 1]: where the brief gives a parameter some other range, write
+((reader - lo) / (hi - lo)) in place of X. Substituting the raw reader breaks f(0)=0 and
+f(1)=1 -- the two properties the family claims -- and the page will say so.
+
+Give every weight a name as a constant, and give each one the INTERVAL it should be run over
+as well as a value: "lo" and "hi", the range over which you would still expect the model to
+behave as the declarations say. That interval is what lets a conclusion be proved over the
+weights rather than merely at the ones you picked, and nothing in the corpus fixes a weight,
+so the range is a judgement and it should be a wide one rather than a flattering one. Keep the
+weights few, and keep every outcome inside its declared bounds everywhere in the box.
+
+PARAMETERS -- free inputs, nothing writes them
+  purpose_clarity_factor in [0, 1]  kind=stock|degree  ("purpose clarity factor")
+  clarity_only_index in [0, 1]  kind=degree  ("clarity only index")
+  prosocial_mission in [0, 1]  kind=stock|threshold  ("prosocial mission")
+  stated_purpose_commitment in [0, 1]  kind=stock|degree  ("stated purpose commitment")
+  measurement_and_accountability_technology in [0, 1]  kind=stock|degree  ("measurement and accountability technology")
+
+OUTCOME firm_accounting_performance in [0, 1]  kind=stock|rate|degree  aspect=level  ("firm accounting performance")
+  composition: additive or ces
+  TERM t_purpose_clarity_factor_to_firm_accounting_performance  reads purpose_clarity_factor  role=generates  shape=f(0)=0+f(1)=1+increasing  (7 papers)
+    families carrying it: linear (proportional); concave (exponential, sqrt, cbrt, log, hyperbolic); convex (quadratic, cubic, quartic, exponential); sigmoid (logistic, smoothstep, smootherstep, algebraic, logistic_late)
+  TERM t_clarity_only_index_to_firm_accounting_performance  reads clarity_only_index  role=gates  shape=f(0)=0+f(1)=1+increasing  (1 papers)
+    families carrying it: linear (proportional); concave (exponential, sqrt, cbrt, log, hyperbolic); convex (quadratic, cubic, quartic, exponential); sigmoid (logistic, smoothstep, smootherstep, algebraic, logistic_late)
+  TERM t_prosocial_mission_to_firm_accounting_performance  reads prosocial_mission  role=generates  shape=f(0)=0+f(1)=1+increasing  (1 papers)
+    families carrying it: linear (proportional); concave (exponential, sqrt, cbrt, log, hyperbolic); convex (quadratic, cubic, quartic, exponential); sigmoid (logistic, smoothstep, smootherstep, algebraic, logistic_late)
+  TERM t_perceived_work_meaningfulness_to_firm_accounting  reads perceived_work_meaningfulness  role=generates  shape=f(0)=0+f(1)=1+increasing  (1 papers)
+    families carrying it: linear (proportional); concave (exponential, sqrt, cbrt, log, hyperbolic); convex (quadratic, cubic, quartic, exponential); sigmoid (logistic, smoothstep, smootherstep, algebraic, logistic_late)
+
+OUTCOME perceived_work_meaningfulness in [0, 1]  kind=stock|degree  aspect=level  ("perceived work meaningfulness")
+  composition: additive
+  TERM t_prosocial_mission_to_perceived_work_meaningfulness  reads prosocial_mission  role=generates  shape=f(0)=0+f(1)=1+increasing  (2 papers)
+    families carrying it: linear (proportional); concave (exponential, sqrt, cbrt, log, hyperbolic); convex (quadratic, cubic, quartic, exponential); sigmoid (logistic, smoothstep, smootherstep, algebraic, logistic_late)
+
+OUTCOME residual_control_rights_allocation in [0, 1]  kind=share  aspect=level  ("residual control rights allocation")
+  composition: multiplicative
+  TERM t_stated_purpose_commitment_to_residual_control_rights  reads stated_purpose_commitment  role=allocates  shape=f(0)=0+f(1)=1+increasing  (model)
+    families carrying it: linear (proportional); concave (exponential, sqrt, cbrt, log, hyperbolic); convex (quadratic, cubic, quartic, exponential); sigmoid (logistic, smoothstep, smootherstep, algebraic, logistic_late)
+  TERM t_measurement_and_accountability_technology_to_residual  reads measurement_and_accountability_technology  role=modulates  shape=f(0)=0+f(1)=1+increasing  (model)
+    families carrying it: linear (proportional); concave (exponential, sqrt, cbrt, log, hyperbolic); convex (quadratic, cubic, quartic, exponential); sigmoid (logistic, smoothstep, smootherstep, algebraic, logistic_late)
+
+FORM FAMILIES -- the classes a shape can be declared from. X is what the term reads.
+  linear  (f(0)=0, f(1)=1, increasing, linear)
+    proportional = X
+  concave  (f(0)=0, f(1)=1, increasing, concave)
+    exponential = (1 - exp(-2 * X)) / (1 - exp(-2))
+    sqrt = X ** 0.5
+    cbrt = X ** (1 / 3)
+    log = log(1 + 4 * X) / log(5)
+    hyperbolic = 2 * X / (1 + X)
+  convex  (f(0)=0, f(1)=1, increasing, convex)
+    quadratic = X * X
+    cubic = X ** 3
+    quartic = X ** 4
+    exponential = (exp(2 * X) - 1) / (exp(2) - 1)
+  sigmoid  (f(0)=0, f(1)=1, increasing, sigmoid)
+    logistic = (1 / (1 + exp(-11 * (X - 0.4))) - 1 / (1 + exp(4.4))) / (1 / (1 + exp(-6.6)) - 1 / (1 + exp(4.4)))
+    smoothstep = X * X * (3 - 2 * X)
+    smootherstep = X ** 3 * (X * (6 * X - 15) + 10)
+    algebraic = X ** 3 / (X ** 3 + (1 - X) ** 3)
+    logistic_late = (1 / (1 + exp(-8 * (X - 0.55))) - 1 / (1 + exp(4.4))) / (1 / (1 + exp(-3.6)) - 1 / (1 + exp(4.4)))
+
+DECLARED SUBSTITUTES -- disabling either alone is allowed to change nothing
+  t_purpose_clarity_factor_to_firm_accounting_performance / t_clarity_only_index_to_firm_accounting_performance / t_prosocial_mission_to_firm_accounting_performance / t_perceived_work_meaningfulness_to_firm_accounting -> firm_accounting_performance
+  t_stated_purpose_commitment_to_residual_control_rights / t_measurement_and_accountability_technology_to_residual -> residual_control_rights_allocation
+
+INVARIANTS ALREADY AGREED TO -- your arithmetic has to satisfy these
+  clarity_dominates_clarity_only: The purpose-clarity factor should move performance at least as much as the clarity-only index does, because the corpus reports the bundled factor at seven papers and the isolated index as null. This is an ordering between two partial derivatives at the same point and none of the four forms holds a comparison of two slopes, so it is stated rather than bent into one.
+
+For each invariant already agreed to, give a check the page can run:
+  nonneg  an expression that must stay >= 0 at every sampled point  -- give expr
+  up      a quantity that must rise in a parameter                  -- give y and x
+  down    a quantity that must fall in a parameter                  -- give y and x
+  peak    a quantity with a single interior peak in a parameter     -- give y and x
+
+Return ONLY JSON:
+{"constants":[{"name":"k_credibility","value":2.0,"lo":0.5,"hi":5.0,"why":"<one sentence>"}],
+ "lines":[{"lhs":"t_pi_to_vp","rhs":"pi ** 0.5","family":"saturating","member":"sqrt","why":"<one sentence>"}],
+ "checks":[{"for":"<the invariant name>","form":"nonneg","expr":"vp - vs","y":"","x":"","why":"<what would falsify it>"}],
+ "note":"<one sentence: what this arithmetic commits to that the declarations did not>"}

@@ -1,0 +1,64 @@
+/* THE STATICS SHEET, IN ONE PLACE.
+   ==========================================================================
+
+   Every rule is written under `.stx`, which is the class the page mounts into,
+   so the same sheet serves the standalone page and the copy embedded on step
+   7 of the workbench. It used to be two: this file's rules in the page, and a
+   hand-prefixed transcription of them in bench.css, with nothing holding the
+   two to each other. */
+.stx{color-scheme:light}.stx{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}.stx img{max-width:100%}.stx [hidden]:not([hidden=until-found]){display:none!important}.stx{
+  --paper:#f6f7f9; --card:#ffffff; --ink:#16191f; --muted:#5d6675; --faint:#868f9e;
+  --rule:#d9dde4; --rule-soft:#e8ebf0;
+  --chan-a:#b8762e; --chan-a-soft:#e9d8c1; --chan-b:#34597e; --chan-b-soft:#c8d4e1;
+  --neg:#a4342a; --pos:#2f6b4f;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .stx{
+  --paper:#111419; --card:#171b21; --ink:#e7eaf0; --muted:#98a1b0; --faint:#727c8b;
+  --rule:#2a3039; --rule-soft:#222831;
+  --chan-a:#d99a52; --chan-a-soft:#463525; --chan-b:#6f9fcd; --chan-b-soft:#243546;
+  --neg:#d9776b; --pos:#6fb28d;
+}}:root[data-theme="dark"] .stx{
+  --paper:#111419; --card:#171b21; --ink:#e7eaf0; --muted:#98a1b0; --faint:#727c8b;
+  --rule:#2a3039; --rule-soft:#222831;
+  --chan-a:#d99a52; --chan-a-soft:#463525; --chan-b:#6f9fcd; --chan-b-soft:#243546;
+  --neg:#d9776b; --pos:#6fb28d;
+}.stx *{box-sizing:border-box}.stx{background:var(--paper);color:var(--ink);
+  font-family:"IBM Plex Sans",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  font-size:15px;line-height:1.55;-webkit-font-smoothing:antialiased}.stx .wrap{max-width:1180px;margin:0 auto;padding:36px 28px 64px}.stx header{border-bottom:1px solid var(--rule);padding-bottom:22px;margin-bottom:22px}.stx .top{display:flex;justify-content:space-between;align-items:flex-start;gap:24px;flex-wrap:wrap}.stx .backlink{font-size:13px;color:var(--chan-b);text-decoration:none;white-space:nowrap;
+  border:1px solid var(--rule);border-radius:2px;padding:7px 13px;display:inline-block}.stx .backlink:hover{border-color:var(--chan-b)}.stx .backlink:focus-visible{outline:2px solid var(--chan-b);outline-offset:2px}.stx .eyebrow{font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:11px;letter-spacing:.13em;
+  text-transform:uppercase;color:var(--faint);margin:0 0 10px}.stx h1{font-family:Spectral,Georgia,serif;font-weight:600;font-size:clamp(28px,3.4vw,38px);
+  line-height:1.12;margin:0 0 10px;letter-spacing:-.01em;text-wrap:balance}.stx .standfirst{margin:0;color:var(--muted);max-width:68ch;font-size:15.5px}.stx .standfirst em{font-style:italic;color:var(--ink)}.stx .ctl-label{font-family:"IBM Plex Mono",monospace;font-size:10.5px;letter-spacing:.12em;
+  text-transform:uppercase;color:var(--faint);display:block;margin-bottom:8px}.stx .bar{background:var(--card);border:1px solid var(--rule);border-radius:3px;
+  padding:16px 20px;margin-bottom:14px}.stx .bar + .bar{margin-top:-4px}.stx .row{display:flex;flex-wrap:wrap;gap:22px 38px;align-items:flex-end}.stx .chips{display:flex;gap:7px}.stx .chip{font:inherit;font-size:13px;padding:6px 13px;cursor:pointer;background:transparent;
+  color:var(--muted);border:1px solid var(--rule);border-radius:2px;display:flex;
+  align-items:center;gap:7px;transition:border-color .12s,color .12s}.stx .chip:hover{border-color:var(--faint)}.stx .chip .dot{width:8px;height:8px;border-radius:50%;flex:none}.stx .chip[aria-pressed="true"]{color:var(--ink);border-color:var(--ink)}.stx .chip[aria-pressed="false"] .dot{opacity:.25}.stx .chip:focus-visible{outline:2px solid var(--chan-b);outline-offset:2px}.stx .slider-group{min-width:196px;flex:1 1 196px;max-width:280px}.stx .slider-head{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:8px;gap:12px}.stx .slider-head .ctl-label{margin:0}.stx .slider-val{font-family:"IBM Plex Mono",monospace;font-size:13px;font-variant-numeric:tabular-nums;color:var(--ink)}.stx input[type=range]{width:100%;accent-color:var(--chan-b);cursor:pointer;margin:0}.stx input[type=range]:focus-visible{outline:2px solid var(--chan-b);outline-offset:4px}.stx .hint{font-size:12px;color:var(--faint);margin:7px 0 0}.stx .forms{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+@media(max-width:780px){.stx .forms{grid-template-columns:1fr}}.stx select{font:inherit;font-size:13.5px;width:100%;padding:7px 9px;border:1px solid var(--rule);
+  border-radius:2px;background:var(--paper);color:var(--ink);cursor:pointer}.stx select:focus-visible{outline:2px solid var(--chan-b);outline-offset:2px}.stx .form-desc{font-size:12.5px;color:var(--muted);margin:7px 0 0;line-height:1.4;min-height:2.8em}.stx .form-desc b{color:var(--ink);font-weight:500;font-family:"IBM Plex Mono",monospace;font-size:11.5px}.stx .panels{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin:22px 0 14px}
+@media(max-width:920px){.stx .panels{grid-template-columns:1fr}}.stx .panel{background:var(--card);border:1px solid var(--rule);border-radius:3px;padding:16px 16px 4px;
+  display:flex;flex-direction:column}.stx .panel-num{font-family:"IBM Plex Mono",monospace;font-size:10.5px;letter-spacing:.12em;color:var(--faint)}.stx .panel h2{font-family:Spectral,Georgia,serif;font-weight:600;font-size:18px;margin:3px 0 4px;
+  line-height:1.2;letter-spacing:-.005em}.stx .panel .what{font-size:12.5px;color:var(--muted);margin:0 0 12px;min-height:4.2em;line-height:1.35}.stx .panel svg{display:block;width:100%;height:auto}.stx .readout{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--rule-soft);margin-top:10px}.stx .readout div{padding:11px 4px 15px;text-align:center}.stx .readout div + div{border-left:1px solid var(--rule-soft)}.stx .rk{font-family:"IBM Plex Mono",monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--faint);display:block;margin-bottom:3px}.stx .rv{font-family:"IBM Plex Mono",monospace;font-size:16px;font-variant-numeric:tabular-nums;font-weight:500}.stx .rv.up{color:var(--pos)}.stx .rv.down{color:var(--neg)}.stx .rv.flat{color:var(--faint)}.stx .robust{background:var(--card);border:1px solid var(--rule);border-radius:3px;margin-bottom:26px}.stx .robust h3{font-family:Spectral,Georgia,serif;font-size:17px;font-weight:600;margin:0;
+  padding:15px 18px 5px}.stx .robust p.sub{margin:0;padding:0 18px 14px;font-size:12.5px;color:var(--muted);max-width:74ch}.stx .rgrid{display:grid;grid-template-columns:repeat(5,1fr);border-top:1px solid var(--rule)}
+@media(max-width:880px){.stx .rgrid{grid-template-columns:repeat(2,1fr)}}.stx .rcell{padding:13px 16px 15px;border-left:1px solid var(--rule-soft)}.stx .rcell:first-child{border-left:none}.stx .rcell .lab{font-size:12px;color:var(--muted);line-height:1.3;display:block;margin-bottom:7px;min-height:3.2em}.stx .score{font-family:"IBM Plex Mono",monospace;font-size:19px;font-variant-numeric:tabular-nums;font-weight:500}.stx .score.all{color:var(--pos)}.stx .score.some{color:var(--chan-a)}.stx .score.none{color:var(--neg)}.stx .score small{font-size:12px;color:var(--faint);font-weight:400}.stx .tag{font-family:"IBM Plex Mono",monospace;font-size:9.5px;letter-spacing:.09em;text-transform:uppercase;
+  color:var(--faint);display:block;margin-top:5px}.stx .tablewrap{overflow-x:auto;border:1px solid var(--rule);border-radius:3px;background:var(--card);margin-bottom:26px}.stx table{border-collapse:collapse;width:100%;font-size:13.5px;min-width:600px}.stx caption{text-align:left;padding:15px 18px 13px;border-bottom:1px solid var(--rule);
+  font-family:Spectral,Georgia,serif;font-size:17px;font-weight:600;color:var(--ink)}.stx caption span{display:block;font-family:"IBM Plex Sans",sans-serif;font-size:12.5px;font-weight:400;
+  color:var(--muted);margin-top:3px}.stx th,.stx td{padding:10px 18px;text-align:right;border-bottom:1px solid var(--rule-soft)}.stx th:first-child,.stx td:first-child{text-align:left}.stx thead th{font-family:"IBM Plex Mono",monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--faint);font-weight:400}.stx tbody td{font-family:"IBM Plex Mono",monospace;font-variant-numeric:tabular-nums}.stx tbody td:first-child{font-family:"IBM Plex Sans",sans-serif}.stx tbody tr:last-child td{border-bottom:none}.stx tbody tr.off td{color:var(--faint)}.stx .swatch{display:inline-block;width:9px;height:9px;border-radius:50%;margin-right:8px;vertical-align:baseline}.stx .past{color:var(--neg)}.stx .ncard li{cursor:default}.stx .ncard li:hover{background:var(--rule-soft)}
+@media(prefers-reduced-motion:reduce){.stx *{transition:none!important}}.stx /* Added when this page stopped carrying a model of its own. */
+.src{font-family:"IBM Plex Mono",monospace;font-size:11.5px;color:var(--faint);
+  margin:14px 0 0;display:flex;flex-wrap:wrap;gap:6px 16px}.stx .src b{color:var(--muted);font-weight:500}.stx .holds{display:flex;flex-wrap:wrap;gap:16px 26px}.stx .hold{min-width:150px;flex:1 1 150px;max-width:230px}.stx .hold .slider-head{margin-bottom:5px}.stx .note{background:var(--card);border:1px solid var(--rule);border-left:3px solid var(--chan-a);
+  border-radius:3px;padding:14px 18px;margin-bottom:18px;font-size:13.5px;color:var(--muted)}.stx .note b{color:var(--ink);font-weight:500}.stx .legend{display:flex;flex-wrap:wrap;gap:6px 16px;font-size:11.5px;color:var(--muted);margin:10px 0 0}.stx .legend span{display:flex;align-items:center;gap:6px}.stx .legend i{width:14px;height:0;border-top-width:2px;border-top-style:solid;display:inline-block}.stx .mechs{margin:0 0 10px;padding:0;list-style:none;font-size:12px;color:var(--muted);line-height:1.4}.stx .mechs li{margin:0 0 5px;padding-left:12px;text-indent:-12px}.stx .mechs code{font-family:"IBM Plex Mono",monospace;font-size:11px;color:var(--ink)}.stx .panel .what{min-height:0}.stx /* However long the mechanism statements are,.stx the charts line up. */
+.pbot{margin-top:auto}.stx .panels{grid-template-columns:repeat(auto-fill,minmax(300px,1fr))}.stx .rcell .lab{min-height:4.4em}
+
+/* The per-panel full-screen button, in the corner of the panel it acts on. */
+.stx .panel{position:relative}
+.stx .panel .fsbtn{position:absolute;top:9px;right:10px;z-index:2;font:inherit;
+  font-size:10.5px;letter-spacing:.04em;text-transform:uppercase;padding:3px 7px;
+  cursor:pointer;background:var(--paper);border:1px solid var(--rule);border-radius:2px;
+  color:var(--muted)}
+.stx .panel .fsbtn:hover{border-color:var(--faint);color:var(--ink)}
+.stx .panel .fsbtn[aria-pressed="true"]{border-color:var(--ink);color:var(--ink)}
+/* In full screen the chart takes the room and the reading stays under it. */
+.stx .panel.fson{overflow:auto;padding:26px 30px}
+.stx .panel.fson .pbot{display:block}
+.stx .panel.fson svg{width:100%;height:auto;max-height:72vh}

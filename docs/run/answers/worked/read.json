@@ -1,0 +1,84 @@
+{
+ "read": [
+  {
+   "id": "firm_accounting_performance|purpose_clarity_factor",
+   "says": "Clearer purpose pays, and the method could only prove it over three quarters of the range the scholar declared. Where it is proved, the gain is steepest at the low end: the first move from no clarity to some clarity buys more than any later one, which is what declaring a saturating shape for that route commits the model to.",
+   "mind": "It establishes nothing about the remaining quarter of the range, where the method could not settle the sign either way; that quarter is undecided, not a region where clarity stops paying."
+  },
+  {
+   "id": "firm_accounting_performance|prosocial_mission",
+   "says": "A stronger prosocial mission raises firm performance across the whole declared range, by two routes at once: directly, through the productivity the corpus attributes to purpose-driven firms, and indirectly, through the meaningfulness employees report. The direct route saturates, so the first increment of mission does the most work.",
+   "mind": "It says nothing about how much: the sign is proved and the size is not, and no weight in this model is fixed by the corpus. Of the 3,125 declared combinations of functional form the search could settle 1,000, every one of which agreed; the other 2,125 are undecided rather than contrary."
+  },
+  {
+   "id": "perceived_work_meaningfulness|prosocial_mission",
+   "says": "Mission makes work feel meaningful across the whole declared range, and the model was told this is a threshold rather than a proportion: below a level of authenticity a stated mission buys almost no meaningfulness, and above it the effect arrives quickly and then levels off. That shape is a declaration read off the corpus's insistence on AUTHENTIC purpose, not something the data fixed.",
+   "mind": "Where the threshold sits is declared, not measured. The corpus says authenticity matters and never says at what level, so the particular sigmoid is one way of writing that down and 1,250 of the 3,125 declared combinations were settled, all agreeing."
+  },
+  {
+   "id": "control_rights_allocation|measurement_and_accountability_technology",
+   "says": "Sheet 2a, the half that grows. Better measurement and accountability technology moves the control-rights boundary outward: more of what a firm owes its stakeholders can be specified and verified in advance, so more of it is held as a fixed control right. Proved over the whole declared range, and it is the one quantity in this model that moves the boundary at all.",
+   "mind": "It says nothing about the total. The boundary divides what was conceded; it does not decide how much was conceded, and reading this row on its own would make a relocation look like a gain. The row below is the other half."
+  },
+  {
+   "id": "residual_control_rights_allocation|measurement_and_accountability_technology",
+   "says": "Sheet 2a, the half that shrinks, and the two together are the result. What the control channel gains the residual channel gives up, exactly: the same boundary that lets more be pinned down leaves less to discretion. Proved falling over the whole declared range. Softer governance relocates value between the channels and creates none.",
+   "mind": "It is a statement about where value sits, not about how much of it there is. A board reading this as a reason to invest in measurement should note that the model says nothing here about whether the total rose."
+  },
+  {
+   "id": "control_rights_allocation|purpose_clarity_factor",
+   "says": "Sheet 1, the inverted U, for the pinned-down channel. The page could not settle a single sign over the declared range, which is what a turning curve looks like from a derivation that reports signs: what is conceded rises with integration at diminishing returns while the cost of running it rises at an increasing rate, so the channel grows and then falls.",
+   "mind": "An unsettled sign is not a finding of no effect. It records that the sign changes somewhere inside the declared range, and where the turn sits is a question the sweep at step 4.1 answers, not this row."
+  },
+  {
+   "id": "residual_control_rights_allocation|purpose_clarity_factor",
+   "says": "Sheet 1 for the discretionary channel, and it turns the same way. The turn belongs to the area under the curve rather than to either side of the division, so both channels peak; if only one had, the division would be doing something the sketch does not claim for it.",
+   "mind": "The two peaks need not sit at the same level of integration, and nothing here says they do. The boundary moves value between the channels as integration rises, so the optimum for one is not the optimum for the other."
+  },
+  {
+   "id": "control_rights_allocation|shirking_vulnerability",
+   "says": "Stoelhorst and Vishwanathan's own claim, read as a slope: exposure to shirking is what calls for control rights, so the more exposed the relation, the more of them are allocated. Proved over the whole declared range. It is the only relationship in this corpus with a control-rights channel on either end.",
+   "mind": "Their claim is CATEGORICAL. It says which party gets control rights when shirking is present, not how many. Declaring the quantity a degree is what turns their statement into a direction, and that declaration is the scholar's, not theirs."
+  },
+  {
+   "id": "control_rights_allocation|externality_vulnerability",
+   "says": "The other half of the same claim, and it behaves identically because it was declared identically: exposure to externalities calls for control rights in proportion to itself. Proved over the whole declared range.",
+   "mind": "The two vulnerabilities are joined with OR in the paper and with addition here, which is a choice: a relation exposed to both gets no more than the sum, and nothing in their claim settles whether the two compound."
+  },
+  {
+   "id": "control_rights_allocation|stated_purpose_commitment",
+   "says": "A firm that commits to a purpose concedes more, and a fixed share of what it concedes is pinned down in advance, so the control channel rises with commitment over the whole declared range.",
+   "mind": "It rises because the total rises, not because the boundary moved. The boundary is held by measurement alone in this model, so this row and the measurement row are two different mechanisms reaching the same channel."
+  },
+  {
+   "id": "residual_control_rights_allocation|shirking_vulnerability",
+   "says": "No single sign over the declared range. Exposure raises what is conceded, which feeds the discretionary channel, and it also raises the base the principal cost is charged against, which drains it. Which of the two wins depends on where in the box the firm sits.",
+   "mind": "This is the model declining to sign a conclusion, not a finding that exposure does not matter. The same shock has a clean sign on the control channel, and the contrast is the point: a cost charged to one channel only makes the two behave differently under the same shock."
+  },
+  {
+   "id": "residual_control_rights_allocation|externality_vulnerability",
+   "says": "Unsettled for the same reason as the row above, and by the same arithmetic: the two vulnerabilities were declared alike, so they behave alike on both channels.",
+   "mind": "That the two agree is a consequence of a declaration, not evidence. The corpus does not distinguish their effects, and the model does not either."
+  },
+  {
+   "id": "residual_control_rights_allocation|stated_purpose_commitment",
+   "says": "No single sign. Commitment raises what is conceded and raises the principal cost charged against it at the same time, and the model was not given enough to say which dominates everywhere.",
+   "mind": "The earlier version of this model proved this row rising. It did so because the principal cost was not in it. Adding a cost that is charged to the discretionary channel alone is exactly what turned a proved sign into an open one, and that is the result rather than a regression."
+  },
+  {
+   "id": "B|c",
+   "says": "Wider contractibility enlarges the control-rights channel. This came back from the two-channel model's own run rather than from a derivation on this page, and it held over all 100 of that model's declared form combinations.",
+   "mind": "It is not this page's proof. The warrant travelled with the result from the engine that produced it, and nothing here re-derived it: step 3.2 can re-sign a returned result only when it is expressed in this bench's own grammar."
+  },
+  {
+   "id": "B|MB",
+   "says": "Principal costs fall on the residual channel and leave the control channel untouched, on all 100 form combinations of the model that produced it. In the governance argument this is the substitution result: a cost charged to one channel does not quietly reduce the other.",
+   "mind": "Returned rather than proved here, and about the two-channel model rather than about the purpose model this scenario built. It sits on the board because somebody stood behind it, not because this page checked it."
+  },
+  {
+   "id": "A and B|delegation cost",
+   "says": "Agency costs compress both channels at once, which is the one result in this set that is not a substitution: nothing is relocated, both sides lose. It held over all 100 declared form combinations of the model it came from.",
+   "mind": "Returned from another engine, so this page carries it with its provenance and not with a proof of its own. Whether it transfers to the purpose model is a question nobody has asked yet."
+  }
+ ]
+}

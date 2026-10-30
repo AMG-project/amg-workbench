@@ -1,0 +1,179 @@
+{
+ "format": "amg-results",
+ "v": 1,
+ "bench": {
+  "v": "0.14",
+  "at": "2026-10-22"
+ },
+ "corpus": null,
+ "at": "2026-10-22T17:59:28.513Z",
+ "results": [
+  {
+   "format": "amg-result",
+   "v": 1,
+   "id": "r1",
+   "sentence": "firm accounting performance rises with purpose clarity factor, for every purpose clarity factor in [0.00, 1.00].",
+   "outcome": "firm_accounting_performance",
+   "parameter": "purpose_clarity_factor",
+   "direction": "up",
+   "verdict": "proved",
+   "share": 1,
+   "scope": {
+    "box": {
+     "purpose_clarity_factor": [
+      0,
+      1
+     ],
+     "prosocial_mission": [
+      0,
+      1
+     ],
+     "rho": [
+      2,
+      2
+     ]
+    },
+    "declared": [
+     "purpose_clarity_factor",
+     "prosocial_mission"
+    ],
+    "region": {
+     "cuts": [
+      {
+       "name": "purpose_clarity_factor",
+       "lo": 0.31893,
+       "hi": 0.915734
+      },
+      {
+       "name": "prosocial_mission",
+       "lo": 0.60115
+      }
+     ],
+     "rate": 0.983871,
+     "base": 0.733042,
+     "volume": 0.238035,
+     "read_off": 457
+    }
+   },
+   "method": {
+    "kind": "exact+sampled",
+    "boxes": 1,
+    "draws": 308,
+    "corners": 8,
+    "error_sd": 0.15,
+    "holds": 0.733042
+   },
+   "rests_on": {
+    "mechanisms": [
+     "t_purpose_clarity_factor_to_firm_accounting_performance"
+    ],
+    "idle": [
+     "t_prosocial_mission_to_perceived_work_meaningfulness",
+     "t_perceived_work_meaningfulness_to_firm_accounting"
+    ],
+    "combination_rule": "ces"
+   },
+   "provenance": {
+    "bench": "0.14",
+    "corpus": "",
+    "scenario": "Worked example",
+    "round": 1,
+    "at": "2026-10-22T17:59:28.513Z"
+   }
+  },
+  {
+   "format": "amg-result",
+   "v": 1,
+   "id": "r2",
+   "sentence": "firm accounting performance rises with prosocial mission, for every prosocial mission in [0.00, 1.00].",
+   "outcome": "firm_accounting_performance",
+   "parameter": "prosocial_mission",
+   "direction": "up",
+   "verdict": "proved",
+   "share": 1,
+   "scope": {
+    "box": {
+     "purpose_clarity_factor": [
+      0,
+      1
+     ],
+     "prosocial_mission": [
+      0,
+      1
+     ],
+     "rho": [
+      2,
+      2
+     ]
+    },
+    "declared": [
+     "purpose_clarity_factor",
+     "prosocial_mission"
+    ]
+   },
+   "method": {
+    "kind": "exact+sampled",
+    "boxes": 1,
+    "draws": 308,
+    "corners": 8
+   },
+   "rests_on": {
+    "mechanisms": []
+   },
+   "provenance": {
+    "bench": "0.14",
+    "corpus": "",
+    "scenario": "Worked example",
+    "round": 1,
+    "at": "2026-10-22T17:59:28.513Z"
+   }
+  },
+  {
+   "format": "amg-result",
+   "v": 1,
+   "id": "r3",
+   "sentence": "perceived work meaningfulness rises with prosocial mission, for every prosocial mission in [0.00, 1.00].",
+   "outcome": "perceived_work_meaningfulness",
+   "parameter": "prosocial_mission",
+   "direction": "up",
+   "verdict": "proved",
+   "share": 1,
+   "scope": {
+    "box": {
+     "purpose_clarity_factor": [
+      0,
+      1
+     ],
+     "prosocial_mission": [
+      0,
+      1
+     ],
+     "rho": [
+      2,
+      2
+     ]
+    },
+    "declared": [
+     "purpose_clarity_factor",
+     "prosocial_mission"
+    ]
+   },
+   "method": {
+    "kind": "exact+sampled",
+    "boxes": 1,
+    "draws": 308,
+    "corners": 8
+   },
+   "rests_on": {
+    "mechanisms": []
+   },
+   "provenance": {
+    "bench": "0.14",
+    "corpus": "",
+    "scenario": "Worked example",
+    "round": 1,
+    "at": "2026-10-22T17:59:28.513Z"
+   }
+  }
+ ]
+}

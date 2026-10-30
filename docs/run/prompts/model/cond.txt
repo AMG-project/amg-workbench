@@ -1,0 +1,93 @@
+You are helping a management scholar state the REGULARITY CONDITIONS a formal
+model has to satisfy. Below is its structure.
+
+Six are already derived from what was declared and must NOT be restated: zero at the baseline
+for difference-aspect quantities, staying inside declared bounds, shares summing to one,
+propensities in the unit interval, conservation under a transfer role, and monotonicity where a
+shape class says increasing.
+
+Propose what those do not reach: an ordering between two outcomes, a quantity that must vanish
+when another does, the sign of a comparative static, a single peak the theory predicts. Put each
+in one of the four forms this page can RUN:
+  nonneg  an expression that stays at or above zero at every sampled point — give expr
+  up      a quantity that must rise in a named parameter                   — give y and x
+  down    a quantity that must fall in a named parameter                   — give y and x
+  peak    a quantity with a single peak inside a parameter's range         — give y and x
+
+If a condition the theory genuinely implies cannot be put in one of those four, give it with
+form "stated" and say what it is in words. It will be kept and written into the exported file,
+and the page will say plainly that it is not checked here. Do NOT bend a condition into a form
+it does not fit: a check that passes because it was reshaped is worse than one nobody ran.
+
+An expression may use the names below, + - * / **, min, max, exp, log, round brackets and plain
+decimals. Nothing else exists.
+
+PARAMETERS -- free inputs, nothing writes them
+  pi in [0, 1]  kind=degree  ("π purpose integration")
+  fsi_employees in [0, 1]  kind=stock  ("firm-specific investment, employees")
+  principal_competence in [0, 1]  kind=degree  ("principal competence")
+  principal_conflict in [0, 1]  kind=propensity  ("principal conflict")
+  agent_conflict in [0, 1]  kind=propensity  ("agent conflict")
+  alpha in [0, 1]  kind=degree  ("α AI intensity")
+
+OUTCOME avp in [0, 1]  kind=value  aspect=difference  ("AVp  value appropriated")
+  composition: additive
+  TERM t_purpose_vulnerability_reduction  reads pi  role=modulates  shape=unconstrained  (hand)
+    families carrying it: linear (proportional); concave (exponential, sqrt, cbrt, log, hyperbolic); convex (quadratic, cubic, quartic, exponential); sigmoid (logistic, smoothstep, smootherstep, algebraic, logistic_late)
+
+OUTCOME vp in [0, 1]  kind=value  aspect=difference  ("Vp  value created")
+  composition: additive
+  TERM t_commitment_credibility  reads fsi_employees  role=gates  shape=unconstrained  (hand)
+    families carrying it: linear (proportional); concave (exponential, sqrt, cbrt, log, hyperbolic); convex (quadratic, cubic, quartic, exponential); sigmoid (logistic, smoothstep, smootherstep, algebraic, logistic_late)
+  TERM t_decision_cost  reads pi  role=dissipates  shape=unconstrained  (hand)
+    families carrying it: linear (proportional); concave (exponential, sqrt, cbrt, log, hyperbolic); convex (quadratic, cubic, quartic, exponential); sigmoid (logistic, smoothstep, smootherstep, algebraic, logistic_late)
+  TERM t_ai_agency_cost_reduction  reads alpha  role=modulates  shape=unconstrained  (hand)
+    families carrying it: linear (proportional); concave (exponential, sqrt, cbrt, log, hyperbolic); convex (quadratic, cubic, quartic, exponential); sigmoid (logistic, smoothstep, smootherstep, algebraic, logistic_late)
+
+OUTCOME a in [0, 1]  kind=value  aspect=difference  ("A  residual rights channel")
+  composition: additive
+  TERM t_principal_competence_cost  reads principal_competence  role=dissipates  shape=unconstrained  (hand)
+    families carrying it: linear (proportional); concave (exponential, sqrt, cbrt, log, hyperbolic); convex (quadratic, cubic, quartic, exponential); sigmoid (logistic, smoothstep, smootherstep, algebraic, logistic_late)
+  TERM t_principal_conflict_cost  reads principal_conflict  role=dissipates  shape=unconstrained  (hand)
+    families carrying it: linear (proportional); concave (exponential, sqrt, cbrt, log, hyperbolic); convex (quadratic, cubic, quartic, exponential); sigmoid (logistic, smoothstep, smootherstep, algebraic, logistic_late)
+  TERM t_principal_cost_incidence  reads pi  role=allocates  shape=unconstrained  (hand)
+    families carrying it: linear (proportional); concave (exponential, sqrt, cbrt, log, hyperbolic); convex (quadratic, cubic, quartic, exponential); sigmoid (logistic, smoothstep, smootherstep, algebraic, logistic_late)
+
+OUTCOME b in [0, 1]  kind=value  aspect=difference  ("B  control rights channel")
+  composition: additive
+  TERM t_agent_conflict_cost  reads agent_conflict  role=dissipates  shape=unconstrained  (hand)
+    families carrying it: linear (proportional); concave (exponential, sqrt, cbrt, log, hyperbolic); convex (quadratic, cubic, quartic, exponential); sigmoid (logistic, smoothstep, smootherstep, algebraic, logistic_late)
+  TERM t_contractibility  reads pi  role=allocates  shape=unconstrained  (hand)
+    families carrying it: linear (proportional); concave (exponential, sqrt, cbrt, log, hyperbolic); convex (quadratic, cubic, quartic, exponential); sigmoid (logistic, smoothstep, smootherstep, algebraic, logistic_late)
+  TERM t_ai_contractibility_shift  reads alpha  role=modulates  shape=unconstrained  (hand)
+    families carrying it: linear (proportional); concave (exponential, sqrt, cbrt, log, hyperbolic); convex (quadratic, cubic, quartic, exponential); sigmoid (logistic, smoothstep, smootherstep, algebraic, logistic_late)
+  TERM t_agency_cost_incidence  reads pi  role=allocates  shape=unconstrained  (hand)
+    families carrying it: linear (proportional); concave (exponential, sqrt, cbrt, log, hyperbolic); convex (quadratic, cubic, quartic, exponential); sigmoid (logistic, smoothstep, smootherstep, algebraic, logistic_late)
+
+FORM FAMILIES -- the classes a shape can be declared from. X is what the term reads.
+  linear  (f(0)=0, f(1)=1, increasing, linear)
+    proportional = X
+  concave  (f(0)=0, f(1)=1, increasing, concave)
+    exponential = (1 - exp(-2 * X)) / (1 - exp(-2))
+    sqrt = X ** 0.5
+    cbrt = X ** (1 / 3)
+    log = log(1 + 4 * X) / log(5)
+    hyperbolic = 2 * X / (1 + X)
+  convex  (f(0)=0, f(1)=1, increasing, convex)
+    quadratic = X * X
+    cubic = X ** 3
+    quartic = X ** 4
+    exponential = (exp(2 * X) - 1) / (exp(2) - 1)
+  sigmoid  (f(0)=0, f(1)=1, increasing, sigmoid)
+    logistic = (1 / (1 + exp(-11 * (X - 0.4))) - 1 / (1 + exp(4.4))) / (1 / (1 + exp(-6.6)) - 1 / (1 + exp(4.4)))
+    smoothstep = X * X * (3 - 2 * X)
+    smootherstep = X ** 3 * (X * (6 * X - 15) + 10)
+    algebraic = X ** 3 / (X ** 3 + (1 - X) ** 3)
+    logistic_late = (1 / (1 + exp(-8 * (X - 0.55))) - 1 / (1 + exp(4.4))) / (1 / (1 + exp(-3.6)) - 1 / (1 + exp(4.4)))
+
+DECLARED SUBSTITUTES -- disabling either alone is allowed to change nothing
+  t_commitment_credibility / t_decision_cost / t_ai_agency_cost_reduction -> vp
+  t_principal_competence_cost / t_principal_conflict_cost / t_principal_cost_incidence -> a
+  t_agent_conflict_cost / t_contractibility / t_ai_contractibility_shift / t_agency_cost_incidence -> b
+
+Return ONLY JSON: {"proposals":[{"for":"<lower_snake_case_name>","form":"nonneg","expr":"vp - vs","y":"","x":"","why":"<one sentence saying what would falsify it>"}]}

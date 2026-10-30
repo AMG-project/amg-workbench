@@ -1,0 +1,142 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://bellapurpose.org/amg/bridge.schema.json",
+  "title": "The local runtime's three messages",
+  "description": "A page in a browser cannot look at a dataset and cannot be trusted to report evidence about one. `amg bridge` serves the workbench and runs the scripts it writes, in R or Python, on the machine the page is open on. These are the three messages that pass between them. They are published for one reason: so a bridge can be written in another language. Nothing here is a file anybody deposits -- a deposit carries the script and the result, not the socket traffic -- and nothing here travels off the machine. A conforming bridge must refuse a POST whose Origin is not the address it serves the page on, must treat a dataset name as a NAME and never as a path, and must not offer the design route unless its operator named a command for it. Those three refusals are what make the arrangement safe to have, and a bridge that implements the messages without them is not this bridge.",
+  "oneOf": [
+    {"$ref": "#/$defs/hello"},
+    {"$ref": "#/$defs/result"},
+    {"$ref": "#/$defs/design"}
+  ],
+  "$defs": {
+    "hello": {
+      "title": "What the bridge says it can do",
+      "description": "The answer to GET /bridge/hello. The page asks once, after its first paint, and only when it was served from loopback; a page on a web host has no bridge and must not wait for one. Everything the page offers afterwards comes from this answer, so a runtime the bridge has not got is never offered rather than offered and then refused.",
+      "type": "object",
+      "required": ["format", "v", "runtimes", "data", "design", "limits"],
+      "properties": {
+        "format": {"const": "amg-bridge"},
+        "v": {"const": 1},
+        "runtimes": {
+          "type": "object",
+          "description": "One field per engine that answered, holding its own version string as the engine printed it. AN ENGINE THE BRIDGE HAS NOT GOT IS ABSENT, not null: absence is a statement, and a field holding a non-answer would need a type that means nothing. The bridge asks by running each engine's version flag rather than looking for a file, because a path that exists is not an engine that runs.",
+          "properties": {
+            "r": {"type": "string"},
+            "python": {"type": "string"}
+          }
+        },
+        "data": {
+          "type": "object",
+          "required": ["dir", "exists", "sets"],
+          "description": "The shelf. The page may name any dataset listed here and nothing else.",
+          "properties": {
+            "dir": {"type": "string",
+              "description": "Where the bridge is looking, so a scholar with an empty shelf is told where to put a file rather than that there is nothing."},
+            "exists": {"type": "boolean"},
+            "sets": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "required": ["name", "bytes", "columns"],
+                "properties": {
+                  "name": {"type": "string",
+                    "description": "A basename, with no path separator in it. This is the whole of what a job may send back about which file to use."},
+                  "bytes": {"type": "integer", "minimum": 0},
+                  "columns": {"type": "array", "items": {"type": "string"},
+                    "description": "The header row, which is what a scholar needs to choose two columns. The bridge reads the header and not the data: the values are the scholar's, and which column stands in for which construct is a measurement decision no preview would help with."}
+                }
+              }
+            }
+          }
+        },
+        "design": {
+          "type": "object",
+          "required": ["offered"],
+          "properties": {
+            "offered": {"type": "boolean",
+              "description": "True only where the operator named a command on the bridge's own command line. The page never names a program to run."},
+            "command": {"type": "string",
+              "description": "The command's first word, so the page can say what it is about to ask. Not the arguments, which are the operator's business."}
+          }
+        },
+        "limits": {
+          "type": "object",
+          "required": ["timeout_s", "output_bytes"],
+          "properties": {
+            "timeout_s": {"type": "integer", "minimum": 1},
+            "output_bytes": {"type": "integer", "minimum": 1}
+          }
+        },
+        "at": {"type": "string"}
+      }
+    },
+    "job": {
+      "title": "A script to run",
+      "description": "The body of POST /bridge/run. The SCRIPT IS WRITTEN BY THE PAGE, by the same writer whose output the download button produces, with the column names filled in rather than left blank -- so the file that ran is the file that travels in the deposit. The bridge does not write, rewrite or complete a script; it runs the one it was given, in a fresh directory, with a copy of the named dataset beside it.",
+      "type": "object",
+      "required": ["lang", "script"],
+      "properties": {
+        "of": {"type": "string",
+          "description": "What the job is about, in words, for the line the bridge prints in its terminal before it runs anything. A scholar started this process; the terminal is where they see what their browser just asked their machine to do."},
+        "lang": {"enum": ["r", "python"]},
+        "dataset": {"type": "string",
+          "description": "The basename of one of the datasets the hello listed. A conforming bridge matches it against what the directory actually holds, so a request can pick a file and never describe one."},
+        "script": {"type": "string"}
+      }
+    },
+    "result": {
+      "title": "What the runtime wrote",
+      "description": "The answer to POST /bridge/run. It is A RETURNED RESULT and not a proved one: the page did not run it, cannot see the data, and does not check it. It is recorded against the finding, attributed, dated and marked unverified, through the same path a line pasted by hand takes -- a result does not get promoted for having arrived over a socket. `ran` carries the one part of it nobody could recompute.",
+      "type": "object",
+      "required": ["format", "v", "ok"],
+      "properties": {
+        "format": {"const": "amg-bridge-result"},
+        "v": {"const": 1},
+        "of": {"type": "string"},
+        "ok": {"type": "boolean"},
+        "why": {"type": "string",
+          "description": "Present where ok is false: the refusal in words, naming what was wrong. A refusal with no reason is the one thing a bridge must not send, because the page has no other way to tell a scholar what to change."},
+        "code": {"type": "integer", "description": "The engine's exit status, absent where the process was stopped before it had one."},
+        "ms": {"type": "integer", "minimum": 0},
+        "stdout": {"type": "string"},
+        "stderr": {"type": "string"},
+        "line": {"type": "string",
+          "description": "The AMG-DATA line the script printed, pulled out by the bridge rather than by the page so the two engines' scripts can only ever agree about its shape. Empty where the script wrote none, which is reported rather than treated as a failure: a script can run correctly and conclude nothing."},
+        "ran": {
+          "type": "object",
+          "description": "WHICH ENGINE, WHICH VERSION, WHICH FILE. Recorded on the finding, because a result read against one version of an engine over one dataset is not the same result read against another, and nothing else on the row could say so.",
+          "required": ["runtime"],
+          "properties": {
+            "runtime": {"enum": ["R", "Python"]},
+            "version": {"type": "string"},
+            "dataset": {"type": "string"},
+            "bytes": {"type": "integer", "minimum": 0}
+          }
+        }
+      }
+    },
+    "design": {
+      "title": "A study design, proposed",
+      "description": "The answer to POST /bridge/design, whose body carries a brief. The brief says what was proved, over what range and under which declarations, asks for a design, and tells the command NOT to report evidence or give an effect size -- nothing in this arrangement could check such a claim. What comes back is a proposal: the page offers it to be accepted by name or refused, it never enters the arithmetic, and refusing it writes nothing. Accepting it keeps it on the finding, stamped with the command that wrote it and marked as not checked, beside the scholar's own note and never merged into it.",
+      "type": "object",
+      "required": ["format", "v", "ok"],
+      "properties": {
+        "format": {"const": "amg-bridge-design"},
+        "v": {"const": 1},
+        "of": {"type": "string"},
+        "ok": {"type": "boolean"},
+        "why": {"type": "string"},
+        "ms": {"type": "integer", "minimum": 0},
+        "text": {"type": "string", "description": "Prose. Not parsed, not scored, not ranked."},
+        "stderr": {"type": "string"},
+        "ran": {
+          "type": "object",
+          "properties": {
+            "command": {"type": "string"},
+            "at": {"type": "string"}
+          }
+        }
+      }
+    }
+  }
+}

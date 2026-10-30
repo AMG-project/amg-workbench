@@ -1,0 +1,7 @@
+{"weights":{"material":0,"novel":3,"composition":3,"robust":0},
+ "require":[],
+ "note":"This rule favours findings that no carried relation already asserts and that need two mechanisms together to hold, weights them equally, and gives no weight to effect size or to stability under halved and doubled weights, because you did not mention either.",
+ "unreachable":[
+  "whether the sign is proved at all rather than sampled",
+  "whether a board could act on it"
+ ]}

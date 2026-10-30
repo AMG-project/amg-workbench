@@ -1,0 +1,2498 @@
+:root{
+  --paper:#f4f5f7; --card:#ffffff; --sunk:#eceef2; --band:#e3e7ee;
+  --ink:#171a1f; --muted:#5c6472; --faint:#848c9a;
+  --rule:#dcdfe6; --rule-soft:#e9ebf0;
+  --steel:#2f5d7c; --steel-soft:#d4dfe8; --steel-lite:#c9d8e4;
+  --ochre:#a9682c; --ochre-soft:#eadbc7; --ochre-fill:#9a5d24;
+  --pos:#2e6a4e; --neg:#9e3328; --ind:#55688a; --vd-on:#ffffff;
+  --ap-st:#3f7a8c; --ap-ex:#a9682c; --ap-dm:#67589a; --ap-x:#8c94a2;
+  /* Two more, for a classification imported from a paper: the shipped one
+     has three traditions and a read-in scheme may name up to six. Same
+     hues as the three above in the same key, so an imported cut reads as
+     the same kind of thing as the declared one. */
+  --ap-4:#4f8f6a; --ap-5:#96566a;
+  --c1:#c9cfd6; --c2:#93a7b8; --c3:#5f82a0; --c4:#3c5f85; --c5:#a9682c;
+}
+@media (prefers-color-scheme:dark){ :root:not([data-theme="light"]){
+  --paper:#101317; --card:#171a20; --sunk:#1d2128; --band:#242a34;
+  --ink:#e6e9ef; --muted:#98a0ae; --faint:#737b8a;
+  --rule:#282e37; --rule-soft:#20252d;
+  --steel:#6a9dc4; --steel-soft:#22333f; --steel-lite:#27384a;
+  --ochre:#d2954f; --ochre-soft:#3b2d1d; --ochre-fill:#d2954f;
+  --pos:#6cb08b; --neg:#d4766a; --ind:#93a9c8; --vd-on:#101317;
+  --ap-st:#6fa8ba; --ap-ex:#d2954f; --ap-dm:#a294c9; --ap-x:#7b8494;
+  --ap-4:#7fbd96; --ap-5:#c98da0;
+  --c1:#3a424d; --c2:#566a7d; --c3:#7c99b1; --c4:#a8c2d6; --c5:#d2954f;
+}}
+:root[data-theme="dark"]{
+  --paper:#101317; --card:#171a20; --sunk:#1d2128; --band:#242a34;
+  --ink:#e6e9ef; --muted:#98a0ae; --faint:#737b8a;
+  --rule:#282e37; --rule-soft:#20252d;
+  --steel:#6a9dc4; --steel-soft:#22333f; --steel-lite:#27384a;
+  --ochre:#d2954f; --ochre-soft:#3b2d1d; --ochre-fill:#d2954f;
+  --pos:#6cb08b; --neg:#d4766a; --ind:#93a9c8; --vd-on:#101317;
+  --ap-st:#6fa8ba; --ap-ex:#d2954f; --ap-dm:#a294c9; --ap-x:#7b8494;
+  --ap-4:#7fbd96; --ap-5:#c98da0;
+  --c1:#3a424d; --c2:#566a7d; --c3:#7c99b1; --c4:#a8c2d6; --c5:#d2954f;
+}
+
+*{box-sizing:border-box}
+/* HIDDEN MEANS HIDDEN. A class that sets display beats the hidden attribute,
+   which is how three things stayed on the page while the JavaScript believed
+   it had put them away: both axis menus over a third of the map, the way-in
+   bar after the example was open, and the rows under "Open from the
+   workbench". The attribute is the page's one way of saying "not now", so it
+   wins here rather than in every component that happens to set display.
+   statics/statics.css carries the same rule. until-found is exempt because a
+   browser unhides it to find text in it. */
+[hidden]:not([hidden="until-found"]){display:none!important}
+body{background:var(--paper);color:var(--ink);
+  font-family:"IBM Plex Sans",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  font-size:15px;line-height:1.55;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1460px;margin:0 auto;padding:14px 24px 56px}
+.mono{font-family:"IBM Plex Mono",ui-monospace,monospace}
+
+/* ---- header ---- */
+header{border-bottom:1px solid var(--rule);padding:6px 0 7px;margin-bottom:9px;
+  position:sticky;top:0;z-index:50;background:var(--paper)}
+h1{font-family:Spectral,Georgia,serif;font-weight:600;font-size:clamp(27px,3.1vw,36px);
+  line-height:1.1;margin:0;letter-spacing:-.012em;text-wrap:balance}
+
+/* ---- stage flow: a chevron process ---- */
+.flow{margin-bottom:0}
+.flowhead{display:flex;justify-content:space-between;align-items:baseline;gap:16px;
+  flex-wrap:wrap;margin-bottom:11px}
+.flowhead .lab{font-family:"IBM Plex Mono",monospace;font-size:10.5px;letter-spacing:.13em;
+  text-transform:uppercase;color:var(--faint)}
+.flowhead .note{font-size:12.5px;color:var(--faint)}
+
+.track{display:flex;align-items:flex-start;gap:3px}
+/* One height and one weight for every step. The chevrons sized themselves
+   to their own titles, so a two-line title stood taller than a one-line one
+   and the three inside the loop were narrower than the six outside, which
+   read as emphasis nobody meant. The columns stretch to the tallest, the
+   chevron fills whatever its own stats leave, and the stats block is held at
+   two lines so that remainder is the same in every column. */
+/* The nine chevrons this page opened with, and the dashed band that bracketed
+   three of them, are gone. The blocks took that job in the header and the steps
+   took it in the row under them, at the same shape and a third of the height. */
+
+/* ---- four blocks over nine steps ---- */
+/* The nine steps are four pieces of work, and the piece you are in is the only
+   one whose steps you need on screen. The blocks are always drawn; the chevrons
+   under them belong to the open block alone. That is also what lets the first
+   block's own object -- the literature those three steps read -- sit inside it
+   instead of above a header that governs all nine. */
+.track{flex-direction:column;align-items:stretch;gap:0}
+/* Both of these stay on screen while you work down a step, because the
+   complaint they answer is the same one: scroll into a panel and the only way
+   out was the previous or the next step. */
+.blockrow{display:flex;align-items:stretch;gap:3px;
+  flex:1 1 660px;min-width:0;margin-left:auto}
+
+.blkcol{flex:1 1 auto;min-width:0;display:flex}
+.blk{position:relative;flex:1 1 auto;border:none;font:inherit;text-align:left;
+  cursor:pointer;background:var(--card);color:var(--muted);
+  padding:4px 11px 4px 17px;min-height:30px;overflow:hidden;
+  display:grid;grid-template-columns:auto minmax(0,1fr);align-items:center;
+  column-gap:6px;
+  clip-path:polygon(0 0,calc(100% - 12px) 0,100% 50%,calc(100% - 12px) 100%,0 100%,12px 50%);
+  transition:background .13s,color .13s}
+.blkcol:first-child .blk{padding-left:10px;
+  clip-path:polygon(0 0,calc(100% - 12px) 0,100% 50%,calc(100% - 12px) 100%,0 100%)}
+.blk:hover{background:var(--sunk)}
+.blk[aria-current="true"]{background:var(--steel)}
+.blk[aria-current="true"]:hover{background:var(--steel)}
+.blk:focus-visible{outline:none;box-shadow:inset 0 0 0 2.5px var(--ochre)}
+.steprow:empty{display:none}
+.blk .bn{grid-column:1;grid-row:1 / span 2;align-self:center;white-space:nowrap;
+  font-family:"IBM Plex Mono",monospace;font-size:8.5px;letter-spacing:.08em;
+  text-transform:uppercase;color:var(--faint);line-height:1.2}
+.blk[aria-current="true"] .bn{color:var(--paper);opacity:.72}
+.blk .bt{grid-column:2;grid-row:1;min-width:0;font-family:Spectral,Georgia,serif;
+  font-size:clamp(11px,.92vw,13px);font-weight:600;
+  line-height:1.2;letter-spacing:-.004em;color:var(--ink);
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.blk[aria-current="true"] .bt{color:var(--paper)}
+/* A TICK, NOT "SET". In a modelling tool "set" reads as configured rather
+   than finished, and every familiar stepper uses a tick. The alt text is
+   what a screen reader says in its place. */
+.blk.done .bn::after{content:" \2713" / "done";color:var(--ochre);letter-spacing:.05em}
+.blk[aria-current="true"].done .bn::after{color:var(--paper)}
+/* The round lives on the block that holds it, because that block IS steps five
+   to seven. The dashed band stays on the step row underneath, so the claim is
+   made at both grains. */
+.blkloop{margin-left:5px;cursor:help;font-size:11px;font-weight:400}
+/* The steps of the open block, as chevrons under their block — the same
+   shape at the finer grain, so the two rows read as one navigation rather than
+   as a process and a list. They were an accordion for one version: the step
+   opened in place and held the panel, which meant that with a panel of any
+   length the other steps sat far below it and you scrolled past a whole step to
+   reach the next. A step is a page instead. */
+.steprow{display:flex;align-items:flex-start;gap:3px;margin-top:3px}
+/* What steps one to three READ, at the head of their row and pointing into it.
+   It was a bar underneath, which put the thing that governs three steps below
+   them and read as a fourth control rather than as their input. */
+.litcol{flex:0 0 auto}
+.litcap{display:flex;align-items:center;gap:6px;background:var(--band);
+  color:var(--muted);padding:4px 19px 4px 12px;min-height:38px;
+  clip-path:polygon(0 0,calc(100% - 11px) 0,100% 50%,calc(100% - 11px) 100%,0 100%)}
+.litcap select{width:auto;min-width:92px;max-width:170px;font-size:11.5px;padding:2px 5px}
+.litcap .scenlab{white-space:nowrap}
+.litcol .sccn{max-width:230px}
+/* What a block hands forward, under its title. */
+.bhand{grid-column:2;grid-row:2;font-family:"IBM Plex Mono",monospace;font-size:9.5px;
+  letter-spacing:-.015em;
+  line-height:1.3;color:var(--muted);font-variant-numeric:tabular-nums;
+  margin-top:1px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.bhand i{font-style:normal;color:var(--muted);opacity:.75}
+.blk[aria-current="true"] .bhand{color:var(--paper);opacity:.85}
+.blk[aria-current="true"] .bhand i{color:var(--paper);opacity:.6}
+.stepcol{flex:1 1 auto;min-width:0;display:flex}
+.schev{position:relative;flex:1 1 auto;border:none;font:inherit;text-align:left;
+  cursor:pointer;background:var(--card);color:var(--muted);
+  padding:4px 11px 4px 17px;min-height:38px;overflow:hidden;
+  display:flex;flex-direction:column;justify-content:center;gap:1px;
+  clip-path:polygon(0 0,calc(100% - 11px) 0,100% 50%,calc(100% - 11px) 100%,0 100%,11px 50%);
+  transition:background .12s}
+.stepcol:first-child .schev{padding-left:10px;
+  clip-path:polygon(0 0,calc(100% - 11px) 0,100% 50%,calc(100% - 11px) 100%,0 100%)}
+.schev:hover{background:var(--sunk)}
+/* A STEP IS A TINT OF ITS PHASE, not a second solid bar of it.
+   Both chevron rows were the same blue, so the row you are on and the step
+   you are on read as one band; a brighter blue for the step fixed that and
+   read as MORE important rather than less. A pale tint of the same hue, with
+   the text in ink rather than reversed out, says subordinate the way a filled
+   bar never can: the phase is a block of colour, the step is a wash of it.
+   Ink on the tint is 12:1 light and 9.9:1 dark; the step number takes the
+   full steel (4.8:1) and dark mode's --muted (4.6:1). */
+.schev[aria-current="true"]{background:var(--steel-lite)}
+@media (prefers-color-scheme:dark){ :root:not([data-theme="light"])
+  .schev[aria-current="true"] .ssn, :root:not([data-theme="light"])
+  .schev[aria-current="true"] .stt i{color:var(--muted)} }
+:root[data-theme="dark"] .schev[aria-current="true"] .ssn,
+:root[data-theme="dark"] .schev[aria-current="true"] .stt i{color:var(--muted)}
+.schev[aria-current="true"]:hover{background:var(--steel-lite)}
+.schev:focus-visible{outline:none;box-shadow:inset 0 0 0 2.5px var(--ochre)}
+.schev .ssn{flex:0 0 auto;white-space:nowrap;font-family:"IBM Plex Mono",monospace;
+  font-size:8.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--faint);
+  line-height:1.2}
+.schev[aria-current="true"] .ssn{color:var(--steel);opacity:1}
+.schev .stt{min-width:0;font-family:Spectral,Georgia,serif;
+  font-size:clamp(11.5px,.95vw,13.5px);font-weight:600;line-height:1.2;
+  letter-spacing:-.004em;color:var(--ink);
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.schev[aria-current="true"] .stt{color:var(--ink)}
+.schev .stt i{font-family:"IBM Plex Mono",monospace;font-size:8.5px;font-style:normal;
+  letter-spacing:.08em;color:var(--faint);margin-left:7px}
+.schev[aria-current="true"] .stt i{color:var(--steel);opacity:.8}
+.schev.done .ssn::after{content:" \2713" / "done";color:var(--ochre);letter-spacing:.05em}
+.schev[aria-current="true"].done .ssn::after{color:var(--ochre)}
+/* The counts sit under the row rather than in the chevron: a chevron that grows
+   with its own statistics makes the step with the shortest sentence the tallest
+   one, which reads as emphasis nobody meant. */
+/* 8.5px in --faint was 3.1:1 on --paper and 2.7:1 on --band, which made the
+   numbers that best say what the bench is for the hardest text on the page to
+   read. --muted is 5.5:1 and 4.8:1, and --ink on the figures.
+
+   10px and not the 11px notes/52 asked for, measured rather than guessed: the
+   contrast is the COLOUR's and the size does not change it, and at 10.5 the
+   counts wrap to a second line and the sticky header goes from 100px to 124,
+   which is 24 pixels taken from every step. At 10 they stay on one line and
+   the header costs 9 -- with the block handoff line included. */
+.sccn{margin:0;padding:2px 10px 0 17px;font-family:"IBM Plex Mono",monospace;
+  font-size:10px;line-height:1.4;color:var(--muted);font-variant-numeric:tabular-nums;
+  display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.stepcol:first-child .sccn{padding-left:10px}
+.sccn b{color:var(--ink);font-weight:500}
+.stepcol{flex-direction:column}
+
+/* The literature the first block reads. A selector and not tabs: tabs across
+   the top of the page asserted that this choice governs the whole of it, when it
+   governs three steps. Beside it, the actions about HAVING a literature rather
+   than about curating one. */
+.litbar{display:flex;align-items:center;gap:5px 9px;flex-wrap:wrap;
+  margin-top:8px;padding:4px 11px;background:var(--band);
+  border:1px solid var(--rule-soft);border-radius:3px}
+.litbar select{font-size:11.5px;padding:3px 6px}
+.litbar .tabbtn{font-size:11.5px;padding:3px 9px}
+.litbar select{width:auto;min-width:174px;max-width:290px;font-size:12px;padding:4px 7px}
+/* On the same line as the controls where it fits, and wrapping under them
+   where it does not — a bar whose explanation always took its own line was
+   two rows of chrome before the step. The long form is on hover. */
+.litbar .litwhy{flex:1 1 220px;min-width:0;margin:0;padding:0;cursor:help;
+  font-family:"IBM Plex Mono",monospace;font-size:9.5px;line-height:1.5;color:var(--faint)}
+.litbar .litwhy b{color:var(--ink);font-weight:500}
+.litbar .litwhy b.warn{color:var(--ochre)}
+.passlast{opacity:.75}
+.xsel{width:100%;font-size:12px;padding:4px 7px}
+.xn{color:var(--ink);font-weight:500}
+.xscur{color:var(--steel)}
+.xsrights{color:var(--ochre)}
+.xsother{color:var(--muted)}
+/* Step five declares two different kinds of thing and used to stack them, which
+   put the mechanisms below the fold on every screen. Side by side, as step four
+   puts its blocks beside its map — the same geometry for a different job:
+   there the second column shows what the first one did, here the two are
+   independent surfaces that do not feed each other. */
+/* Stacked, not side by side. The two blocks follow one another with a clear
+   division between them rather than sitting in two columns, because two
+   columns put two long lists at the same height, so neither could be
+   read down without losing the other's place -- and the two are not parallel
+   anyway: you declare what the quantities are, and then what the relations
+   between them do. One after the other is the order of the work. */
+.declgrid{display:grid;grid-template-columns:1fr;gap:0;align-items:start;
+  flex:1 1 100%;max-width:none}
+.declcol{min-width:0;max-width:none}
+
+/* The division itself: a named heading with a rule over it, so the page reads
+   as a few sections rather than a column of controls. Heavier than .ctl-label,
+   which names a block inside a section. */
+.secthd{display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 12px;
+  margin:30px 0 14px;padding-top:20px;border-top:2px solid var(--rule)}
+.declgrid > .declcol:first-child > .secthd,
+.sectone{margin-top:4px;padding-top:0;border-top:none}
+.sectn{font-family:Spectral,Georgia,serif;font-size:17px;font-weight:600;
+  letter-spacing:-.01em;color:var(--ink);line-height:1.15}
+.secti{flex:1 1 240px;color:var(--muted);font-size:11.5px;line-height:1.45}
+
+/* THE WORKSPACE. Step six's buffer is the one surface on this bench that is
+   worked on rather than read, and it sat in the same flat column as the prose
+   around it -- so "where I derive" was a paragraph you had to find the end of
+   rather than a place. The panel is the identification: a sunk ground inside
+   the page's own, held by a steel edge on the side the eye starts from. The
+   .chain inside keeps its --card ground, so the buffer still reads as raised
+   against this, and .bline:hover's --sunk still shows against --card -- which
+   is why the panel takes --sunk rather than the rows' own hover colour. */
+.wbench{flex:1 1 100%;max-width:none;display:flex;flex-wrap:wrap;
+  gap:13px 24px;align-items:flex-start;
+  background:var(--sunk);border:1px solid var(--rule);
+  border-left:3px solid var(--steel);border-radius:3px;
+  padding:14px 16px 16px}
+/* A setting that governs every verdict below it, so it sits above them and is
+   divided off rather than queued among the controls. */
+.wbset{flex:1 1 100%;max-width:none;padding-bottom:11px;
+  border-bottom:1px dashed var(--rule)}
+/* Prose that explains a control belongs with it, not above it. Folded, these
+   two steps lose about a screen of first-level reading each. */
+.deet{margin:5px 0 0}
+.deet > summary{list-style:none;cursor:pointer;display:inline-block;
+  font-family:"IBM Plex Mono",monospace;font-size:9px;letter-spacing:.09em;
+  text-transform:uppercase;color:var(--faint);padding:2px 0}
+.deet > summary::-webkit-details-marker{display:none}
+.deet > summary::marker{content:""}
+.deet > summary:hover{color:var(--ink)}
+.deet > summary::before{content:"\25b8 ";font-size:8px}
+.deet[open] > summary::before{content:"\25be "}
+.deet .why{margin-top:4px}
+/* A whole section folded, rather than a paragraph. Its summary carries the
+   number somebody would have opened it for. */
+.deet.sect{flex:1 1 100%;max-width:none;margin:0;
+  border-top:1px solid var(--rule-soft);padding-top:9px}
+.deet.sect > summary{font-family:"IBM Plex Mono",monospace;font-size:10px;
+  letter-spacing:.07em;text-transform:none;color:var(--muted);padding:3px 0}
+.deet.sect > summary b{color:var(--ink);font-weight:600}
+.deet.sect > summary:hover{color:var(--ink)}
+.work{display:block}
+/* The launcher, and the panel it opens. Bottom right, out of the reading order,
+   and the page is complete without it. */
+/* A HEADER CONTROL, NOT A FLOATING ONE. Fixed to the bottom right it covered
+   whatever scrolled under it, and a drawer is not a reason to hide a button
+   that is underneath. It reads as what it is now: one more thing you can do to
+   the whole scenario, beside the menu that holds the rest of them. */
+.gfab{display:flex;align-items:center;gap:5px;font:inherit;font-size:12px;
+  padding:5px 11px;border-radius:2px;cursor:pointer;white-space:nowrap;
+  flex:0 0 auto;align-self:center;margin-left:8px;
+  background:var(--card);color:var(--steel);border:1px solid var(--steel)}
+.gfab:hover{background:var(--steel);color:var(--paper)}
+.gfab[aria-expanded="true"]{background:var(--steel);color:var(--paper)}
+.gfab:focus-visible{outline:2px solid var(--ochre);outline-offset:2px}
+.gfabi{font-size:12px;line-height:1}
+.gfab .gcount{background:var(--ochre);color:#fff;border-radius:9px;
+  padding:0 6px;font-family:"IBM Plex Mono",monospace;font-size:9.5px;line-height:15px}
+/* The drawer hangs under the header, right-aligned with the window rather than
+   with the button, so it does not move when the header reflows. --navh is the
+   header's own measured height, set by renderTrack. */
+/* Where you are, at the foot of the drawer: one line on what is finished and
+   one on the first step that is not. A suggestion, not a task list, so it is
+   quiet and it carries exactly one button. */
+.gnext{border-top:2px solid var(--rule);background:var(--sunk)}
+.gwhere{margin:0 0 7px;font-size:12.5px;color:var(--muted);line-height:1.5}
+.gwhere b{color:var(--ink);font-weight:600}
+.gdo{margin:0 0 9px;font-size:13px;color:var(--ink);line-height:1.5}
+.gdon{display:inline-block;font-family:"IBM Plex Mono",monospace;font-size:9px;
+  letter-spacing:.07em;text-transform:uppercase;padding:1.5px 6px;border-radius:2px;
+  background:var(--steel-lite);color:#fff;margin-right:5px;vertical-align:1px}
+.gnext .tabbtn{font-size:11.5px}
+.guide{position:fixed;right:18px;top:calc(var(--navh, 100px) + 8px);z-index:69;
+  width:340px;max-width:calc(100vw - 36px);
+  max-height:calc(100vh - var(--navh, 100px) - 26px);overflow-y:auto;background:var(--card);
+  border:1px solid var(--rule);border-radius:4px;box-shadow:0 10px 34px rgba(0,0,0,.26)}
+@media(max-width:520px){.guide{right:9px;left:9px;width:auto}}
+.guide h3{font-family:Spectral,Georgia,serif;font-size:14px;font-weight:600;margin:0;
+  padding:10px 13px 3px;color:var(--ink)}
+.guide .gsub{margin:0;padding:0 13px 9px;font-family:"IBM Plex Mono",monospace;
+  font-size:8.5px;letter-spacing:.07em;text-transform:uppercase;color:var(--faint)}
+.gsec{border-top:1px solid var(--rule-soft);padding:9px 13px 11px}
+.gsec h4{margin:0 0 6px;font-family:"IBM Plex Mono",monospace;font-size:8.5px;
+  letter-spacing:.1em;text-transform:uppercase;color:var(--faint);font-weight:500}
+.gmv{display:flex;gap:7px;align-items:flex-start;width:100%;text-align:left;
+  background:transparent;border:0;border-radius:2px;font:inherit;font-size:11.5px;
+  line-height:1.4;color:var(--ink);padding:5px 6px;margin:0 -6px}
+button.gmv{cursor:pointer}
+button.gmv:hover{background:var(--sunk)}
+.gmv .gat{flex:0 0 auto;font-family:"IBM Plex Mono",monospace;font-size:8.5px;
+  letter-spacing:.06em;color:var(--faint);padding-top:2px;min-width:30px}
+.gmv.now .gat{color:var(--ochre)}
+.gmv.later{opacity:.52}
+.gmv.alt{padding-top:1px}
+.gmv.alt .gat{font-style:italic}
+.gnote{margin:0 0 7px;font-size:10px;line-height:1.45;color:var(--faint)}
+.gmv .gtx b{font-weight:600}
+.gmv .gwy{display:block;font-size:10px;color:var(--faint);margin-top:1px}
+.glog{display:flex;flex-direction:column;gap:0;max-height:260px;overflow-y:auto;
+  margin:0 -6px}
+.grow{display:flex;gap:7px;padding:4px 6px;font-size:11px;line-height:1.35;
+  border-radius:2px}
+.grow:nth-child(even){background:var(--sunk)}
+.grow .gt{flex:0 0 auto;font-family:"IBM Plex Mono",monospace;font-size:8.5px;
+  color:var(--faint);padding-top:1px;min-width:30px;font-variant-numeric:tabular-nums}
+.grow .gd{min-width:0}
+.grow .gd i{display:block;font-style:normal;font-size:9.5px;color:var(--faint)}
+.gempty{margin:0;font-size:11px;color:var(--faint);line-height:1.45}
+.gacts{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px}
+.gacts .tabbtn{font-size:11px;padding:3px 8px}
+/* The sentence leads the row; the expression it came from sits under it. The
+   other way round is a page for somebody who already knows what it says. */
+.psent{margin:0 0 4px;font-size:12.5px;line-height:1.5;color:var(--ink)}
+.psent b{font-weight:600}
+.mtag{font-family:"IBM Plex Mono",monospace;font-size:8.5px;letter-spacing:.07em;
+  text-transform:uppercase;padding:1px 5px;border-radius:2px;white-space:nowrap;
+  border:1px solid var(--rule)}
+.mtag.mex{color:var(--steel);border-color:var(--steel-soft)}
+.mtag.msamp{color:var(--ochre);border-color:var(--ochre-soft)}
+.mtag.mboth{color:var(--pos);border-color:var(--pos);opacity:.8}
+.mcross{margin:0 0 4px;font-size:10.5px;line-height:1.45;color:var(--faint)}
+.mcross.bad{color:var(--neg)}
+.mcross.res{color:var(--ochre)}
+.mcross.stoch{color:var(--ind)}
+.mcross.wbox{color:var(--pos)}
+.mcross.wbox b{color:var(--ink)}
+.mtag.mstoch{color:var(--ind);border-color:var(--ind);opacity:.75}
+#bnsd{width:62px;font-size:11px;padding:3px 5px}
+.mcross b{font-weight:600}
+#mthsel{font-size:11px;padding:2px 5px;max-width:260px}
+.pwit{color:var(--neg);font-size:11px}
+.bdep{display:block;margin-top:3px;color:var(--faint)}
+.bdep b{color:var(--ochre);font-weight:600}
+.passbar select{min-width:290px;max-width:380px}
+.passn{font-family:"IBM Plex Mono",monospace;font-size:9.5px;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--ochre);padding-left:4px}
+
+
+@media(max-width:1080px){
+  .track{flex-wrap:wrap}
+  .stepcol{flex:1 1 46%;min-width:150px}
+  .steprow{flex-wrap:wrap;gap:3px}
+}
+/* ---- control panel for the active stage ---- */
+.panel{background:var(--card);border:1px solid var(--rule);
+  border-top:2px solid var(--steel);border-radius:0 0 3px 3px;
+  margin-bottom:13px;overflow:hidden}
+/* One line, not three: the step number sits on the title's baseline and the
+   blurb runs beside it, so the panel head costs a row instead of a block. */
+.phead{padding:9px 18px 8px;border-bottom:1px solid var(--rule-soft);
+  display:flex;align-items:baseline;gap:4px 18px;flex-wrap:wrap}
+.pttl{display:flex;align-items:baseline;gap:10px;flex:0 0 auto}
+.phead h2{font-family:Spectral,Georgia,serif;font-size:19px;font-weight:600;margin:0;
+  letter-spacing:-.005em}
+.phead .pblurb{margin:0;font-size:12.5px;color:var(--muted);
+  flex:1 1 400px;min-width:250px;max-width:none}
+.phead .sn{font-family:"IBM Plex Mono",monospace;font-size:9.5px;letter-spacing:.13em;
+  text-transform:uppercase;color:var(--steel);flex:0 0 auto;white-space:nowrap}
+.pbody{padding:12px 18px 14px}
+/* A step whose work renders under the blocks leaves this empty. */
+.pbody:empty{display:none}
+.row{display:flex;flex-wrap:wrap;gap:18px 30px;align-items:flex-start}
+.fld{min-width:196px;flex:0 1 250px}
+.fld.wide{flex:1 1 360px;max-width:560px}
+/* Step one has three controls and a wide panel; left at the default width they
+   sat in its left half and pushed their own notes down into a column. */
+.scoperow{gap:16px 34px}
+.scoperow > .fld{flex:1 1 292px;max-width:none}
+.ctl-label{font-family:"IBM Plex Mono",monospace;font-size:10.5px;letter-spacing:.12em;
+  text-transform:uppercase;color:var(--faint);display:block;margin-bottom:7px}
+.sh{display:flex;justify-content:space-between;align-items:baseline;gap:10px;margin-bottom:7px}
+.sh .ctl-label{margin:0}
+.sv{font-family:"IBM Plex Mono",monospace;font-size:13px;font-variant-numeric:tabular-nums;color:var(--ink)}
+.why{font-size:12px;color:var(--faint);margin:7px 0 0;line-height:1.4}
+.why b{color:var(--muted);font-weight:400}
+input[type=range]{width:100%;accent-color:var(--steel);cursor:pointer;margin:0;display:block}
+/* a minor adjustment on top of the standings above it, not a headline control */
+.relrow{display:flex;align-items:baseline;gap:9px;flex-wrap:wrap;padding:7px 0;
+  border-top:1px dotted var(--rule);font-size:13px;cursor:pointer}
+.relrow:first-of-type{border-top:0}
+.relrow input{margin:0;accent-color:var(--steel);flex:none;cursor:pointer}
+.relname{flex:1 1 220px}
+.relname i{font-style:normal;color:var(--faint);font-size:11.5px;margin-left:6px}
+.relkind{font-size:11px;letter-spacing:.04em;text-transform:uppercase;padding:1px 6px;
+  border:1px solid var(--rule);border-radius:2px;color:var(--muted);flex:none}
+.relkind.k-arrow{border-color:var(--ochre);color:var(--ochre)}
+.relkind.k-unsupported{border-style:dashed}
+.reldet{flex:1 1 100%;font-size:12px;color:var(--faint);line-height:1.45;margin-left:26px}
+.pick{margin-top:12px;padding-top:10px;border-top:1px dotted var(--rule)}
+.minbar{display:flex;align-items:center;gap:8px;margin-top:10px;flex-wrap:wrap}
+.applyset{display:flex;align-items:center;gap:6px;margin-left:auto}
+.mblab{font-family:"IBM Plex Mono",monospace;font-size:9.5px;letter-spacing:.09em;
+  text-transform:uppercase;color:var(--faint)}
+.minbar .sv{font-size:10.5px;color:var(--muted)}
+input[type=range].mbslide{width:84px;flex:none;accent-color:var(--faint);height:12px}
+input[type=range].mbslide:hover{accent-color:var(--steel)}
+input[type=range]:focus-visible{outline:2px solid var(--steel);outline-offset:4px}
+select,input[type=text]{font:inherit;font-size:13.5px;width:100%;padding:7px 9px;
+  border:1px solid var(--rule);border-radius:2px;background:var(--paper);color:var(--ink)}
+select{cursor:pointer}
+select:focus-visible,input[type=text]:focus-visible{outline:2px solid var(--steel);outline-offset:2px}
+textarea{font:inherit;font-size:13.5px;width:100%;padding:7px 9px;border:1px solid var(--rule);
+  border-radius:2px;background:var(--paper);color:var(--ink);line-height:1.45;resize:vertical}
+textarea:focus-visible{outline:2px solid var(--steel);outline-offset:2px}
+/* two fields side by side in a dialog, which is all the layout these need */
+.frow{display:flex;gap:12px;flex-wrap:wrap;margin-top:4px}
+.frow label{flex:1 1 210px;min-width:0;font-size:11.5px;color:var(--faint);display:flex;
+  flex-direction:column;gap:4px}
+.chk{display:flex;align-items:flex-start;gap:9px;font-size:13.5px;cursor:pointer;line-height:1.4}
+.chk input{margin:3px 0 0;accent-color:var(--steel);flex:none;cursor:pointer}
+.chk span b{display:block;font-weight:400}
+.chk span i{font-style:normal;font-size:12px;color:var(--faint)}
+/* THE (i) BESIDE THE LABEL, NOT UNDER IT. `.chk span b` is a block, so the
+   marker and the isolated count both started a line of their own below the
+   words they belong to. Here the label, its count and its marker are flex
+   items on one row; the label is the item that shrinks, and a count's own bold
+   number stays inline inside it. */
+.chkl{display:flex;align-items:baseline}
+.chkl > b{flex:0 1 auto}
+.chkl > i,.chkl > .inf{flex:0 0 auto;margin-left:6px}
+.chkl i b{display:inline}
+/* The two filters under step 1.3's arrow list. They are not the step's work,
+   they are what you do to see it, so they read as one quiet row: one size and
+   one colour across the label, its count and its (i), where the label was
+   full-size ink and the count smaller and fainter. */
+.isorow .chk{font-size:12.5px;color:var(--muted)}
+.isorow .chk span b{color:var(--muted)}
+.isorow .chk span i{font-size:12.5px;color:var(--muted)}
+.isorow .chk:hover span b{color:var(--ink)}
+.seg{display:flex;gap:6px;flex-wrap:wrap}
+.seg button{font:inherit;font-size:13px;padding:6px 12px;cursor:pointer;background:transparent;
+  color:var(--muted);border:1px solid var(--rule);border-radius:2px;
+  display:flex;align-items:center;gap:7px;transition:border-color .12s,color .12s}
+.seg button:hover{border-color:var(--faint)}
+.seg button[aria-pressed="true"]{color:var(--ink);border-color:var(--ink)}
+.seg button:focus-visible{outline:2px solid var(--steel);outline-offset:2px}
+.seg .dot{width:8px;height:8px;border-radius:50%;flex:none}
+.seg button[aria-pressed="false"] .dot{opacity:.25}
+.jgrid{display:flex;flex-direction:column;gap:2px}
+.jbox{max-height:122px;overflow-y:auto;border:1px solid var(--rule);border-radius:2px;
+  background:var(--paper);padding:7px 10px}
+.jbox:focus-within{border-color:var(--steel)}
+.jcount{font-family:"IBM Plex Mono",monospace;font-size:10.5px;color:var(--faint);
+  align-self:center;margin-left:2px;font-variant-numeric:tabular-nums}
+
+.jgrid .chk{font-size:12.5px}
+.jgrid .cnt{font-family:"IBM Plex Mono",monospace;font-size:10.5px;color:var(--faint);
+  font-variant-numeric:tabular-nums}
+.minor{display:flex;gap:8px;margin-top:12px}
+
+/* ---- the corpus, listed. Scope is a decision about which papers belong, so
+   the papers are in the step rather than only behind a count. ---- */
+.papersec{background:var(--card);border:1px solid var(--rule);border-radius:3px;
+  padding:11px 14px 13px;margin-bottom:14px}
+.pfold{background:none;border:none;cursor:pointer;padding:0;display:inline-flex;
+  align-items:baseline;gap:6px}
+.pfold .ctl-label{margin:0}
+.pfold:hover .ctl-label{color:var(--ink)}
+.pfold:focus-visible{outline:2px solid var(--steel);outline-offset:2px}
+.phdr{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;margin-bottom:5px}
+.phdr .ctl-label{margin:0}
+.pcount{font-family:"IBM Plex Mono",monospace;font-size:10.5px;color:var(--faint);
+  font-variant-numeric:tabular-nums}
+/* the standing of each component within its bar */
+.comps{display:flex;flex-direction:column;gap:3px;margin-top:9px}
+.comp{display:flex;align-items:center;gap:8px}
+.cname{flex:1;font-size:11.5px;color:var(--muted);line-height:1.25;min-width:0}
+.cstand{display:flex;flex:none;border:1px solid var(--rule);border-radius:2px;overflow:hidden}
+.cstand button{font-family:"IBM Plex Mono",monospace;font-size:9px;letter-spacing:.04em;
+  padding:2px 5px;cursor:pointer;background:transparent;border:none;
+  border-right:1px solid var(--rule);color:var(--faint)}
+.cstand button:last-child{border-right:none}
+.cstand button:hover{color:var(--ink)}
+.cstand button[aria-pressed="true"]{background:var(--ochre-soft);color:var(--ink)}
+.cstand button[data-comp$=":req"][aria-pressed="true"]{background:var(--steel);color:#fff}
+.cstand button[data-comp$=":ign"][aria-pressed="true"]{background:var(--sunk);color:var(--faint)}
+.cstand button:focus-visible{outline:2px solid var(--steel);outline-offset:-2px}
+
+.mstat{margin-top:8px;border-collapse:collapse;font-family:"IBM Plex Mono",monospace;
+  font-size:9px;color:var(--faint);font-variant-numeric:tabular-nums}
+.mstat td{padding:1px 9px 1px 0;white-space:nowrap}
+.mstat td.num{text-align:right;padding-right:10px}
+.mstat td.hint{color:var(--faint);text-align:left;padding-right:0}
+.mstat tr.now td{color:var(--muted)}
+.mstat tr.now td.num{font-size:10px;color:var(--ink)}
+.pacts{margin-left:auto;display:flex;gap:6px}
+.pacts .tabbtn{font-size:11.5px;padding:4px 9px}
+/* SAYS SO ON THE BUTTON. These controls are the shape of the method rather
+   than the method, and a reader finding that out by pressing one is worse than
+   a word that tells them first. The title on each says what it would do. */
+.pil{margin-left:6px;font-family:"IBM Plex Mono",monospace;font-size:8.5px;
+  letter-spacing:.06em;text-transform:uppercase;color:var(--faint);
+  border:1px solid var(--rule-soft);border-radius:2px;padding:0 3px;
+  vertical-align:1px}
+.menupop .tabbtn .pil{float:right}
+.phdr .menu > summary{font-size:11.5px;padding:4px 9px}
+/* Wide enough that the longest source and its marker stay on one line. */
+.phdr .menupop{min-width:236px}
+.papersec .why{margin:0 0 8px}
+.pbox{max-height:246px;overflow:auto;border:1px solid var(--rule);border-radius:2px;
+  background:var(--paper)}
+.pbox:focus-within{border-color:var(--steel)}
+.plist{width:100%;min-width:640px;border-collapse:collapse;table-layout:fixed;font-size:12.5px}
+.plist col.c-t{width:17px} .plist col.c-w{width:118px} .plist col.c-y{width:44px}
+.plist col.c-j{width:62px} .plist col.c-n{width:48px} .plist col.c-f{width:66px}
+.plist thead th{position:sticky;top:0;z-index:2;background:var(--paper);
+  font-family:"IBM Plex Mono",monospace;font-size:9.5px;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--faint);font-weight:400;text-align:left;
+  padding:6px 8px 5px;border-bottom:1px solid var(--rule);white-space:nowrap}
+.plist thead th[data-psort]{cursor:pointer}
+.plist thead th[data-psort]:hover{color:var(--ink)}
+.plist thead th.num{text-align:right}
+.parr{margin-left:3px;color:var(--ochre)}
+.plist td.num,.pyr,.pcb{font-family:"IBM Plex Mono",monospace;font-size:10.5px;
+  color:var(--faint);text-align:right;font-variant-numeric:tabular-nums}
+.plist td{padding:4px 8px;border-bottom:1px solid var(--rule-soft);vertical-align:baseline}
+.plist tr:last-child td{border-bottom:none}
+.plist tr:hover{background:var(--sunk)}
+.prow.out{opacity:.33}
+.plist td.ptrad{padding-right:0}
+.ptrad i{display:inline-block;width:7px;height:7px;border-radius:50%}
+.pwho{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.pti{color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;cursor:help}
+.pj{font-family:"IBM Plex Mono",monospace;font-size:10.5px;color:var(--faint);
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.pnc{font-family:"IBM Plex Mono",monospace;font-size:10.5px;color:var(--faint);
+  text-align:right;font-variant-numeric:tabular-nums}
+.plist td.pft{text-align:right;white-space:nowrap;padding-left:0}
+.ftbtn{font-family:"IBM Plex Mono",monospace;font-size:10px;letter-spacing:.04em;
+  padding:2px 6px;border:1px solid var(--rule);border-radius:2px;
+  background:transparent;color:var(--faint);cursor:pointer}
+.ftbtn:hover{border-color:var(--faint);color:var(--ink)}
+.ftbtn.has{border-color:var(--ochre);color:var(--ochre)}
+.ftbtn:focus-visible{outline:2px solid var(--steel);outline-offset:1px}
+.minor button{font:inherit;font-size:12px;padding:4px 10px;cursor:pointer;background:transparent;
+  color:var(--steel);border:1px solid var(--rule);border-radius:2px}
+.minor button:hover{border-color:var(--steel)}
+.minor button:focus-visible{outline:2px solid var(--steel);outline-offset:2px}
+
+/* ---- stage: grouping ---- */
+.modebar{display:flex;gap:0;border:1px solid var(--rule);border-radius:2px;overflow:hidden;width:max-content}
+.modebar button{font:inherit;font-size:13px;padding:7px 15px;cursor:pointer;background:transparent;
+  color:var(--muted);border:none;border-right:1px solid var(--rule)}
+.modebar button:last-child{border-right:none}
+.modebar button[aria-pressed="true"]{background:var(--ochre-soft);color:var(--ink)}
+/* AND WHEN THE SAME BAR IS A TAB STRIP. Step 3.1's two views of one panel were
+   two pressed buttons in a bordered box, which reads as a control that acts;
+   each view then carried its own name again as a heading below, so the word
+   "Variables" appeared twice under one another. The tabs sit on the panel's
+   top edge now, the selected one joined to what it shows. */
+.tabsrow{border:0;border-radius:0;width:auto;overflow:visible;gap:3px;
+  border-bottom:1px solid var(--rule);padding:0 2px}
+.tabsrow button[role=tab]{border:1px solid transparent;border-bottom:none;
+  border-radius:3px 3px 0 0;margin-bottom:-1px;padding:8px 17px}
+.tabsrow button[role=tab][aria-selected="true"]{background:var(--card);color:var(--ink);
+  border-color:var(--rule);box-shadow:0 1px 0 0 var(--card)}
+.tabsrow button[role=tab]:hover:not([aria-selected="true"]){color:var(--ink)}
+.declgrid[role=tabpanel]{padding-top:16px}
+.modebar button:focus-visible{outline:2px solid var(--steel);outline-offset:-2px}
+.selbar{margin-top:14px;border:1px solid var(--ochre);border-radius:3px;
+  background:var(--ochre-soft);padding:13px 15px}
+.selbar h4{font-family:Spectral,Georgia,serif;font-size:15.5px;font-weight:600;margin:0 0 3px}
+.selbar p{margin:0 0 11px;font-size:12.5px;color:var(--muted)}
+.selnames{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:11px}
+.selnames span{font-family:"IBM Plex Mono",monospace;font-size:11px;background:var(--card);
+  border:1px solid var(--rule);border-radius:2px;padding:3px 8px;display:inline-flex;
+  align-items:center;gap:6px}
+.selnames button{background:none;border:none;color:var(--faint);cursor:pointer;
+  font:inherit;font-size:13px;line-height:1;padding:0}
+.selnames button:hover{color:var(--neg)}
+.mkgrp{display:flex;gap:9px;align-items:center;flex-wrap:wrap}
+.mkgrp input[type=text]{flex:1 1 230px;width:auto;background:var(--card)}
+.btn{font:inherit;font-size:13.5px;padding:8px 15px;cursor:pointer;border-radius:2px;
+  border:1px solid var(--ink);background:var(--ink);color:var(--card);white-space:nowrap}
+.btn:hover{opacity:.87}
+.btn:focus-visible{outline:2px solid var(--steel);outline-offset:2px}
+.btn.ghostbtn{background:transparent;color:var(--muted);border-color:var(--rule)}
+.btn.ghostbtn:hover{border-color:var(--faint);opacity:1}
+
+/* ---- canvas + rail ---- */
+.stageWrap{display:grid;grid-template-columns:1fr 330px;gap:16px;align-items:start}
+@media(max-width:1120px){.stageWrap{grid-template-columns:1fr}}
+.canvas{background:var(--card);border:1px solid var(--rule);border-radius:3px;position:relative;
+  overflow:hidden;min-height:560px}
+.canvas svg{display:block;width:100%;height:660px;touch-action:none}
+.cbar{position:absolute;top:0;left:0;right:0;display:flex;justify-content:space-between;
+  align-items:flex-start;gap:14px;padding:11px 14px;pointer-events:none}
+.cbar .tally,.botbar .tally{font-family:"IBM Plex Mono",monospace;font-size:9.5px;
+  color:var(--faint);background:color-mix(in srgb,var(--card) 88%,transparent);
+  border:1px solid var(--rule-soft);border-radius:2px;padding:4px 8px;line-height:1.55;
+  font-variant-numeric:tabular-nums}
+.cbar .tally b,.botbar .tally b{color:var(--muted);font-weight:500;font-size:10px}
+/* What a click does belongs on the thing the click lands on. In the panel it
+   sat a screen above the map and you had to look away to change mode. */
+.cleft{display:flex;flex-direction:column;gap:9px;align-items:flex-start;min-width:0}
+.modeov{pointer-events:auto;display:flex;flex-direction:column;gap:6px;max-width:292px;
+  background:color-mix(in srgb,var(--card) 92%,transparent);
+  border:1px solid var(--rule-soft);border-radius:2px;padding:7px 9px 8px}
+.movlab{font-family:"IBM Plex Mono",monospace;font-size:9.5px;letter-spacing:.12em;
+  text-transform:uppercase;color:var(--faint)}
+.ovrule{height:1px;background:var(--rule-soft);margin:2px 0 1px}
+.axrow{display:flex;align-items:center;gap:7px;justify-content:space-between}
+.axrow select{font:inherit;font-size:12px;padding:3px 6px;border:1px solid var(--rule);
+  border-radius:2px;background:var(--card);color:var(--ink);flex:1 1 auto;max-width:168px}
+.axrow select:focus-visible{outline:2px solid var(--steel);outline-offset:1px}
+
+/* the plot the force settles into */
+.axes line.axr{stroke:var(--rule);stroke-width:1}
+.axes line.axc{stroke:var(--rule-soft);stroke-width:1;stroke-dasharray:2 4}
+.axes text{font-family:"IBM Plex Mono",monospace;fill:var(--faint)}
+.axes text.axrl{font-size:9.5px;letter-spacing:.1em;text-transform:uppercase}
+.axes text.axcl{font-size:9.5px}
+.axes text.axcap,.axes text.axycap{font-size:9.5px;letter-spacing:.11em;
+  text-transform:uppercase;fill:var(--muted)}
+.modeov .modebar button{font-size:12px;padding:5px 11px}
+.seedrow{display:flex;align-items:center;gap:6px;flex-wrap:wrap}
+.seedrow .movlab{margin-right:1px}
+.seedrow button{font:inherit;font-size:11px;padding:3px 9px;cursor:pointer;
+  background:var(--card);border:1px solid var(--rule);border-radius:2px;color:var(--muted)}
+.seedrow button:hover{border-color:var(--ochre);color:var(--ochre)}
+.seedrow button.grow{border-color:var(--steel);color:var(--steel)}
+.seedrow button.grow:hover{background:var(--steel-soft)}
+.seedrow button:focus-visible{outline:2px solid var(--steel);outline-offset:2px}
+.seedn{font-family:"IBM Plex Mono",monospace;font-size:10px;color:var(--faint);
+  font-variant-numeric:tabular-nums}
+.legend{display:flex;align-items:center;font-size:11px;color:var(--muted);
+  background:color-mix(in srgb,var(--card) 88%,transparent);border:1px solid var(--rule-soft);
+  border-radius:2px;padding:6px 10px}
+.legend i{display:inline-block;width:9px;height:9px;border-radius:50%;margin-right:5px;
+  vertical-align:baseline}
+/* The key took the bottom edge, so the running hint takes the top, where the
+   key used to sit. They were landing on each other. */
+.hint-ov{position:absolute;top:12px;left:0;right:0;padding:0 14px;pointer-events:none;
+  font-size:12px;color:var(--faint);text-align:center}
+.hint-ov span{background:color-mix(in srgb,var(--card) 90%,transparent);
+  border:1px solid var(--rule-soft);border-radius:2px;padding:5px 11px;display:inline-block}
+/* The key reads with the picture, not against the corner of it, so it sits on
+   the bottom edge with the counts and the axis menu. */
+.botbar{position:absolute;left:0;right:0;bottom:0;display:flex;flex-direction:column;
+  gap:7px;padding:8px 12px 10px;pointer-events:none}
+.botrow{display:flex;align-items:flex-end;gap:12px}
+.botrow.keys{justify-content:center}
+.botrow > *{pointer-events:auto}
+.botbar .tally{flex:0 0 auto}
+.axsel{position:relative}
+.axsel.x{margin:0 auto}
+.axsel.y{position:absolute;top:50%;transform:translateY(-50%);z-index:4}
+.axlab{font-family:"IBM Plex Mono",monospace;font-size:10px;letter-spacing:.11em;
+  text-transform:uppercase;color:var(--muted);background:none;border:none;cursor:pointer;
+  padding:3px 4px;display:inline-flex;align-items:center;gap:5px;white-space:nowrap}
+/* the chart treatment: the axes assert themselves instead of receding */
+.axbold .axlab{font-size:11.5px;color:var(--ink);letter-spacing:.13em}
+.axbold .axes line.axr{stroke:var(--faint);stroke-width:1}
+.axbold .axes line.axc{stroke:var(--rule);stroke-dasharray:2 3}
+.axbold .axes text{fill:var(--muted)}
+.axbold .axes text.axrl{font-size:10.5px;fill:var(--ink)}
+.axbold .axes text.axcl{font-size:10.5px}
+.axmsep{height:1px;background:var(--rule-soft);margin:4px 2px}
+.axmenu .axbold{font-family:"IBM Plex Mono",monospace;font-size:10.5px;
+  letter-spacing:.06em;color:var(--faint)}
+.axmenu .axbold[aria-pressed="true"]{color:var(--ochre)}
+.axlab:hover{color:var(--ink)}
+.axlab:focus-visible{outline:2px solid var(--steel);outline-offset:1px}
+/* the vertical one reads bottom-to-top, the way an axis label does */
+.axlab.vert{writing-mode:vertical-rl;transform:rotate(180deg)}
+.axcaret,.caret{color:var(--ochre);font-size:12px;line-height:1}
+.axmenu{position:absolute;z-index:9;min-width:186px;max-height:246px;overflow-y:auto;
+  background:var(--card);border:1px solid var(--rule);border-radius:2px;
+  box-shadow:0 6px 20px rgba(0,0,0,.14);padding:4px;display:flex;flex-direction:column}
+.axsel.x .axmenu{bottom:100%;left:50%;transform:translateX(-50%);margin-bottom:5px}
+.axsel.y .axmenu{left:100%;top:50%;transform:translateY(-50%);margin-left:6px}
+.axmenu button{font:inherit;font-size:12px;text-align:left;padding:4px 8px;cursor:pointer;
+  background:none;border:none;border-radius:2px;color:var(--muted)}
+.axmenu button:hover{background:var(--sunk);color:var(--ink)}
+.axmenu button[aria-selected="true"]{color:var(--ink);background:var(--ochre-soft)}
+.axmenu button:focus-visible{outline:2px solid var(--steel);outline-offset:-2px}
+.plotfld{flex:1 1 288px;max-width:none}
+.axgrid{display:flex;flex-direction:column;gap:4px;margin-top:8px}
+.axgrid .axrow{gap:8px}
+.axgrid .movlab{flex:0 0 52px}
+.axgrid select{font:inherit;font-size:12px;padding:3px 6px;border:1px solid var(--rule);
+  border-radius:2px;background:var(--card);color:var(--ink);flex:1 1 auto;min-width:0}
+.axgrid select:focus-visible{outline:2px solid var(--steel);outline-offset:1px}
+.preslab{display:block;margin:11px 0 5px}
+.presets{display:flex;gap:5px;flex-wrap:wrap}
+.presets button{font:inherit;font-size:11px;padding:3px 8px;cursor:pointer;
+  background:var(--card);border:1px solid var(--rule);border-radius:2px;color:var(--muted)}
+.presets button:hover{border-color:var(--ochre);color:var(--ochre)}
+.presets button[aria-pressed="true"]{background:var(--ochre-soft);color:var(--ink);
+  border-color:var(--ochre)}
+.presets button:focus-visible{outline:2px solid var(--steel);outline-offset:2px}
+.lgwhat{font-family:"IBM Plex Mono",monospace;font-size:9.5px;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--faint);align-self:center}
+.lgbtn{background:none;border:none;cursor:help;padding:2px 4px;display:inline-flex;
+  align-items:center;gap:3px}
+.lgbtn i{display:inline-block;width:8px;height:8px;border-radius:50%}
+.lgname{font-family:"IBM Plex Mono",monospace;font-size:9.5px;letter-spacing:.09em;
+  text-transform:uppercase;color:var(--faint);margin-left:4px;max-width:150px;
+  overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.lgbtn:hover .lgname{color:var(--ink)}
+.lgbtn:focus-visible{outline:2px solid var(--steel);outline-offset:1px}
+.zsep{width:1px;height:15px;background:var(--rule)}
+#tip ul.lgkey{list-style:none;margin:5px 0 7px;padding:0;display:flex;
+  flex-direction:column;gap:3px}
+#tip ul.lgkey li{display:flex;align-items:center;gap:7px;font-size:12px}
+#tip ul.lgkey i{display:inline-block;width:9px;height:9px;border-radius:50%;flex:none}
+.axes text.axrl.num{letter-spacing:0;text-transform:none}
+.zoomov{display:flex;align-items:center;gap:5px;
+  background:color-mix(in srgb,var(--card) 92%,transparent);
+  border:1px solid var(--rule-soft);border-radius:2px;padding:4px 6px}
+.zoomov button{font:inherit;font-size:11.5px;padding:3px 8px;cursor:pointer;
+  background:var(--card);border:1px solid var(--rule);border-radius:2px;color:var(--muted)}
+.zoomov button:hover{border-color:var(--ochre);color:var(--ochre)}
+.zoomov button:focus-visible{outline:2px solid var(--steel);outline-offset:2px}
+.zpct{font-family:"IBM Plex Mono",monospace;font-size:10px;color:var(--faint);
+  font-variant-numeric:tabular-nums;min-width:34px;text-align:right}
+
+.rail{display:flex;flex-direction:column;gap:14px;position:sticky;top:14px}
+.card{background:var(--card);border:1px solid var(--rule);border-radius:3px;overflow:hidden}
+.card h3{font-family:Spectral,Georgia,serif;font-size:16px;font-weight:600;margin:0;
+  padding:13px 15px 4px}
+.cardfold{font:inherit;background:none;border:none;padding:0;cursor:pointer;color:inherit;
+  display:inline-flex;align-items:center;gap:7px}
+.cardfold:hover{color:var(--steel)}
+.cardfold:focus-visible{outline:2px solid var(--steel);outline-offset:2px}
+.card p.sub{margin:0;padding:0 15px 12px;font-size:12px;color:var(--muted);line-height:1.42}
+.card .body{border-top:1px solid var(--rule-soft);padding:12px 15px 14px}
+.card .body.flush{padding:0}
+.empty{font-size:12.5px;color:var(--faint);padding:13px 15px;line-height:1.45}
+
+.glist{list-style:none;margin:0;padding:0}
+.glist li{padding:11px 15px;border-bottom:1px solid var(--rule-soft)}
+.glist li:last-child{border-bottom:none}
+.gtop{display:flex;align-items:baseline;gap:9px}
+.gswatch{width:10px;height:10px;border-radius:2px;flex:none;margin-top:4px}
+.gname{font-family:Spectral,Georgia,serif;font-size:14.5px;font-weight:600;flex:1;line-height:1.25}
+.gact{display:flex;gap:7px;margin-top:7px}
+.gact button{font:inherit;font-size:11.5px;padding:3px 9px;cursor:pointer;background:transparent;
+  border:1px solid var(--rule);border-radius:2px;color:var(--muted)}
+.gact button:hover{border-color:var(--faint);color:var(--ink)}
+.gact button.del:hover{border-color:var(--neg);color:var(--neg)}
+.gact button:focus-visible{outline:2px solid var(--steel);outline-offset:2px}
+.gsub{list-style:none;margin:7px 0 0;padding:0;min-height:20px}
+.gsub li,.slist li{display:flex;align-items:center;gap:7px;padding:3px 0;
+  border-bottom:1px solid var(--rule-soft)}
+.gsub li:last-child,.slist li:last-child{border-bottom:none}
+.crow{cursor:grab}
+.crow:hover{background:var(--sunk)}
+.crow.dragging{opacity:.4}
+.crow input{margin:0;flex:none;cursor:pointer}
+.gsub .tname,.slist .tname{font-size:12.5px;cursor:help}
+.slist.out .tname{color:var(--faint)}
+.gnone{font-size:11.5px;color:var(--faint);font-style:italic}
+.selhd{display:flex;align-items:baseline;gap:8px;padding:11px 15px 4px;
+  border-top:1px solid var(--rule-soft)}
+.selhd.bucket{background:var(--sunk)}
+.selacts{margin-left:auto;display:flex;gap:5px}
+.selacts button{font-family:"IBM Plex Mono",monospace;font-size:9.5px;letter-spacing:.06em;
+  padding:2px 6px;cursor:pointer;background:transparent;border:1px solid var(--rule);
+  border-radius:2px;color:var(--faint)}
+.selacts button:hover{border-color:var(--ochre);color:var(--ochre)}
+.selacts button:focus-visible{outline:2px solid var(--steel);outline-offset:1px}
+.slist{list-style:none;margin:0;padding:0 15px 12px;max-height:230px;overflow-y:auto}
+.slist.out{max-height:190px;background:var(--sunk);padding-top:4px}
+/* where a dragged construct would land */
+.dragover{outline:2px dashed var(--ochre);outline-offset:-2px;background:var(--ochre-soft)}
+.gtop{cursor:default}
+.gmem.mixed{color:var(--neg)}
+.gmem{font-family:"IBM Plex Mono",monospace;font-size:10.5px;color:var(--faint);
+  margin-top:5px;line-height:1.5;word-break:break-word}
+
+.insp dl{margin:0;font-size:12.5px}
+.insp dt{font-family:"IBM Plex Mono",monospace;font-size:9.5px;letter-spacing:.11em;
+  text-transform:uppercase;color:var(--faint);margin-bottom:3px}
+.insp dd{margin:0 0 10px;color:var(--ink);line-height:1.45}
+.insp dd:last-child{margin-bottom:0}
+.insp .def{color:var(--muted);font-size:12px;line-height:1.5}
+.insp ul{list-style:none;margin:0;padding:0}
+.insp li{font-size:12px;padding:3px 0;line-height:1.4;color:var(--ink)}
+.insp li a{color:var(--steel);text-decoration:none}
+.insp li a:hover{text-decoration:underline}
+.insp li .jr{color:var(--faint);font-family:"IBM Plex Mono",monospace;font-size:10.5px}
+
+.passbox{font-family:"IBM Plex Mono",monospace;font-size:11.5px;line-height:1.6;
+  background:var(--sunk);border:1px solid var(--rule);border-radius:2px;padding:12px 13px;
+  white-space:pre-wrap;word-break:break-word;max-height:300px;overflow-y:auto;color:var(--ink)}
+.pill{font-family:"IBM Plex Mono",monospace;font-size:9.5px;letter-spacing:.08em;
+  text-transform:uppercase;padding:2px 7px;border-radius:2px;border:1px solid var(--rule);
+  color:var(--muted);white-space:nowrap}
+.pill.ok{border-color:var(--pos);color:var(--pos)}
+.pill.no{border-color:var(--neg);color:var(--neg)}
+
+/* ---- graph marks ---- */
+.nodeg{cursor:pointer}
+.nodeg circle.body{stroke:var(--card);stroke-width:1.4}
+.nodeg circle.ring{fill:none;stroke:var(--ochre);stroke-width:2.4;opacity:0}
+.nodeg.picked circle.ring{opacity:1}
+.nodeg circle.drop{fill:none;stroke:var(--ochre);stroke-width:3;stroke-dasharray:4 3;opacity:0}
+.nodeg.dropcand circle.drop{opacity:1}
+.hull{pointer-events:none}
+.hulllab{font-family:Spectral,Georgia,serif;font-size:12.5px;font-weight:600;
+  pointer-events:none;paint-order:stroke;stroke:var(--card);stroke-width:3.5px;
+  stroke-linejoin:round}
+#tip{position:fixed;pointer-events:none;z-index:70;background:var(--card);
+  border:1px solid var(--rule);border-radius:2px;padding:11px 13px;font-size:12.5px;
+  max-width:340px;box-shadow:0 10px 30px -14px rgba(0,0,0,.45);opacity:0;
+  transition:opacity .1s;line-height:1.45;color:var(--ink)}
+#tip.on{opacity:1}
+#tip.live{pointer-events:auto}
+#tip .tipadd{font:inherit;font-family:"IBM Plex Mono",monospace;font-size:11px;
+  margin-top:9px;padding:4px 11px;cursor:pointer;background:var(--paper);
+  border:1px solid var(--steel);border-radius:2px;color:var(--steel);display:block;width:100%}
+#tip .tipadd:hover{background:var(--steel);color:var(--card)}
+#tip .tipadd.on{border-color:var(--ochre);color:var(--ochre)}
+#tip .tipadd.on:hover{background:var(--ochre);color:var(--card)}
+#tip h5{margin:0 0 5px;font-family:Spectral,Georgia,serif;font-size:14.5px;font-weight:600;line-height:1.2}
+#tip .sig{font-family:"IBM Plex Mono",monospace;font-size:10px;letter-spacing:.06em;
+  color:var(--faint);display:block;margin-bottom:7px}
+#tip .def{margin:0 0 9px;font-size:12px;color:var(--muted);line-height:1.45}
+#tip h6{font-family:"IBM Plex Mono",monospace;font-size:9.5px;letter-spacing:.11em;
+  text-transform:uppercase;color:var(--faint);margin:0 0 4px;font-weight:400}
+#tip ul{margin:0;padding:0;list-style:none}
+#tip li{font-size:11.5px;color:var(--ink);padding:2px 0;line-height:1.35}
+#tip .act{display:block;margin-top:7px;font-family:"IBM Plex Mono",monospace;
+  font-size:10px;color:var(--ochre);letter-spacing:.05em}
+
+footer{margin-top:26px;padding-top:20px;border-top:1px solid var(--rule);
+  color:var(--muted);font-size:13px;max-width:84ch}
+footer p{margin:0 0 11px}
+footer strong{color:var(--ink);font-weight:500}
+footer code{font-family:"IBM Plex Mono",monospace;font-size:12px;background:var(--sunk);
+  padding:1px 5px;border-radius:2px}
+
+/* ---- step four: the worklist ---- */
+.wlgroup{border:1px solid var(--rule);border-radius:3px;margin:14px 0 0;overflow:hidden}
+.wlhead{background:var(--sunk);padding:12px 15px 13px;border-bottom:1px solid var(--rule)}
+.wlhead h4{font-family:Spectral,Georgia,serif;font-size:15.5px;font-weight:600;margin:0 0 4px;
+  display:flex;align-items:baseline;gap:9px}
+.wlhead h4 .n{font-family:"IBM Plex Mono",monospace;font-size:11px;color:var(--card);
+  background:var(--ochre);border-radius:9px;padding:1px 8px;font-weight:500}
+.wlhead p{margin:0;font-size:12.5px;color:var(--muted);line-height:1.45;max-width:92ch}
+.wlitem{padding:12px 15px 13px;border-bottom:1px solid var(--rule-soft)}
+.wlitem:last-child{border-bottom:none}
+.wlitem.answered{background:var(--sunk);opacity:.82}
+.wltop{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
+.wltarget{font-family:Spectral,Georgia,serif;font-size:14.5px;font-weight:600;line-height:1.25}
+.wldetail{font-family:"IBM Plex Mono",monospace;font-size:11px;color:var(--muted);
+  margin-top:5px;line-height:1.55;word-break:break-word}
+.wlrec{margin-top:8px;font-size:11.5px;color:var(--ochre);line-height:1.45;
+  border-left:2px solid var(--ochre);padding-left:9px}
+.wlrec b{font-family:"IBM Plex Mono",monospace;font-size:10.5px;text-transform:none}
+.wlverbs{display:flex;gap:7px;margin-top:10px;flex-wrap:wrap;align-items:center}
+.wlverbs button{font:inherit;font-family:"IBM Plex Mono",monospace;font-size:11.5px;
+  padding:5px 11px;cursor:pointer;background:transparent;border:1px solid var(--rule);
+  border-radius:2px;color:var(--muted)}
+.wlverbs button:hover{border-color:var(--ochre);color:var(--ochre)}
+.wlverbs button:focus-visible{outline:2px solid var(--steel);outline-offset:2px}
+.wlreason{flex:1 1 230px;width:auto;font-size:12.5px;padding:5px 9px;background:var(--card)}
+.wlans{display:flex;gap:10px;align-items:baseline;margin-top:8px;flex-wrap:wrap}
+.wlans span{font-size:12px;color:var(--muted);flex:1}
+.wlans button{font:inherit;font-size:11.5px;padding:3px 9px;cursor:pointer;background:transparent;
+  border:1px solid var(--rule);border-radius:2px;color:var(--muted)}
+.wlans button:hover{border-color:var(--faint);color:var(--ink)}
+
+.ledger{display:flex;flex-direction:column;gap:0;border:1px solid var(--rule);
+  border-radius:3px;overflow:hidden}
+.ledrow{display:flex;align-items:baseline;gap:14px;padding:10px 14px;background:var(--card);
+  border:none;border-bottom:1px solid var(--rule-soft);font:inherit;text-align:left;
+  cursor:pointer;color:var(--ink);width:100%}
+.ledrow:last-child{border-bottom:none}
+.ledrow:hover{background:var(--sunk)}
+.ledrow:focus-visible{outline:2px solid var(--steel);outline-offset:-2px}
+.ledstep{font-family:Spectral,Georgia,serif;font-size:14px;font-weight:600;flex:0 0 232px}
+.ledwhat{font-family:"IBM Plex Mono",monospace;font-size:11.5px;color:var(--muted);flex:1}
+.ledn{font-family:"IBM Plex Mono",monospace;font-size:13px;color:var(--ink);
+  font-variant-numeric:tabular-nums;white-space:nowrap}
+.ledn i{font-style:normal;font-size:10.5px;color:var(--faint);letter-spacing:.06em}
+.ledstale{margin:0;padding:10px 14px;background:var(--ochre-soft);font-size:12px;
+  color:var(--ink);border-top:1px solid var(--rule)}
+@media(max-width:780px){.ledrow{flex-wrap:wrap;gap:4px 12px}.ledstep{flex:1 1 100%}}
+
+.wlfrom{font-family:"IBM Plex Mono",monospace;font-size:10.5px;color:var(--faint);
+  margin:0 0 7px!important;letter-spacing:.03em}
+.wlfrom b{color:var(--steel);font-weight:500}
+.wlstale{margin-top:8px;font-size:11.5px;color:var(--ochre);line-height:1.45;
+  border-left:2px solid var(--ochre);padding-left:9px}
+.papbtn{font:inherit;font-family:"IBM Plex Mono",monospace;font-size:10.5px;
+  padding:2px 9px;cursor:pointer;background:transparent;border:1px solid var(--rule);
+  border-radius:9px;color:var(--muted);white-space:nowrap}
+.wltop .papbtn:first-of-type{margin-left:auto}
+.papbtn:hover{border-color:var(--steel);color:var(--steel)}
+.papbtn:focus-visible{outline:2px solid var(--steel);outline-offset:2px}
+.paplist{margin-top:9px;border-left:2px solid var(--rule);padding-left:11px;
+  display:flex;flex-direction:column;gap:4px}
+.paprow{display:flex;gap:10px;align-items:baseline;font-size:12px;flex-wrap:wrap}
+.paprow a{color:var(--steel);text-decoration:none;font-weight:500}
+.paprow a:hover{text-decoration:underline}
+.paprow a:focus-visible{outline:2px solid var(--steel);outline-offset:2px}
+.papj{color:var(--muted);font-size:11.5px}
+.papap{font-family:"IBM Plex Mono",monospace;font-size:10px;color:var(--faint);
+  margin-left:auto;white-space:nowrap}
+
+/* ---- the step's foot: what it hands on, and where you go next ---- */
+/* what moves on, between the two arrows that move between the steps */
+.hoffbox{border-top:1px solid var(--rule-soft);padding:12px 18px 14px;background:var(--paper)}
+.rtabs{display:flex;flex-wrap:wrap;gap:4px;padding:0 0 9px;align-items:center}
+.rtabs button[role=tab]{font:inherit;font-size:11.5px;padding:4px 8px;cursor:pointer;
+  background:transparent;border:1px solid var(--rule);border-radius:2px;color:var(--muted)}
+.rtabs button[role=tab]:hover{border-color:var(--faint);color:var(--ink)}
+.rtabs button[aria-selected="true"]{color:var(--ink);border-color:var(--ink);
+  background:var(--ochre-soft)}
+.rtabs button[role=tab] i{font-style:normal;color:var(--faint);margin-left:5px;font-size:10.5px}
+.rtabs button[aria-selected="true"] i{color:var(--muted)}
+/* Step 2.1 puts the imported blocks across the full width ABOVE the map, and
+   leaves the inspector where it is on every other step: beside the diagram.
+   `display:contents` on the rail is what allows it, because the two cards
+   become grid items in their own right, so the blocks span both columns while
+   the inspector keeps the right-hand one. All three were stacked at full width
+   until 24 October 2026, which put the inspector a screen below the map it
+   inspects. */
+.stageWrap.blocksfirst .rail{display:contents}
+.stageWrap.blocksfirst #stepcard{order:-1;grid-column:1 / -1}
+.stageWrap.blocksfirst .canvas{order:0;grid-column:1}
+.stageWrap.blocksfirst .card.insp{order:0;grid-column:2;position:sticky;top:14px}
+/* The step's own work, between the blocks and the map. Same order as the
+   blocks and later in the DOM, which is what puts it second; the map and the
+   inspector keep their columns below it. */
+#blkfoot[hidden]{display:none}
+/* Step 2.1's map, shut by default: the inspector takes the width the diagram
+   would have had, so the right column does not sit empty beside nothing. */
+.stageWrap.nocanvas .canvas{display:none}
+.stageWrap.nocanvas .card.insp{grid-column:1 / -1;position:static}
+.stageWrap.blocksfirst #blkfoot{order:-1;grid-column:1 / -1}
+@media(max-width:1120px){.stageWrap.blocksfirst #stepcard,
+  .stageWrap.blocksfirst .canvas,
+  .stageWrap.blocksfirst #blkfoot,
+  .stageWrap.blocksfirst .card.insp{grid-column:1}}
+/* Full width, so the two boxes sit side by side: the constructs are a list of
+   names and need a quarter of it, the claims are sentences and need the rest.
+   Only here -- in the 330px rail of steps two and three one column is all there
+   is room for. */
+.stageWrap.blocksfirst #grail{display:grid;grid-template-columns:minmax(210px,1fr) 3fr;
+  gap:16px;align-items:start}
+.stageWrap.blocksfirst #grail > .bbox{margin-bottom:0;min-width:0}
+@media(max-width:940px){.stageWrap.blocksfirst #grail{grid-template-columns:1fr}}
+.bbox{border:1px solid var(--rule-soft);border-radius:3px;padding:9px 11px 11px;
+  margin-bottom:10px}
+.bbhd{display:flex;align-items:baseline;gap:8px;justify-content:space-between;
+  padding-bottom:6px}
+.bbhd .movlab{margin:0}
+/* the filter, above the two buttons it governs */
+.bbfind{display:flex;align-items:center;gap:6px;margin-top:8px}
+.bbfind input{font:inherit;font-size:12.5px;flex:1 1 auto;min-width:0;padding:5px 8px;
+  background:var(--paper);border:1px solid var(--rule);border-radius:2px;color:var(--ink)}
+.bbfind input:focus{outline:none;border-color:var(--steel)}
+.bbfind input::placeholder{color:var(--faint)}
+.bbfind button{font:inherit;font-size:15px;line-height:1;padding:3px 8px;cursor:pointer;
+  background:none;border:1px solid var(--rule);border-radius:2px;color:var(--faint)}
+.bbfind button:hover{border-color:var(--neg);color:var(--neg)}
+.bbacts{display:flex;gap:5px;flex-wrap:wrap;padding:0 0 8px;align-items:center}
+.bbacts button{font:inherit;font-size:11px;padding:3px 8px;cursor:pointer;
+  background:transparent;border:1px solid var(--rule);border-radius:2px;color:var(--muted)}
+.bbacts button:hover{border-color:var(--faint);color:var(--ink)}
+.bbacts .tabbtn{margin-left:auto}
+.bbscroll{max-height:58vh;overflow-y:auto;padding-right:4px}
+.bbscroll::-webkit-scrollbar{width:9px}
+.bbscroll::-webkit-scrollbar-thumb{background:var(--rule);border-radius:5px}
+.strmhd{display:flex;align-items:baseline;gap:8px;justify-content:space-between;
+  position:sticky;top:0;background:var(--card);padding:7px 0 4px;z-index:1;
+  border-bottom:1px solid var(--rule)}
+.strmhd:not(:first-child){margin-top:9px}
+.strmhd .movlab{margin:0;color:var(--ink)}
+.namedhd{display:flex;align-items:baseline;gap:8px;justify-content:space-between;
+  margin-top:7px;padding-top:6px;border-top:1px dotted var(--rule)}
+.namedhd .movlab{margin:0}
+.cllist{display:flex;flex-direction:column;gap:1px;margin-top:3px}
+.clrow{display:flex;align-items:baseline;gap:7px;padding:3px 0;font-size:12px;
+  border-top:1px dotted var(--rule-soft)}
+.clrow:first-child{border-top:0}
+.clrow.prop{cursor:pointer}
+.clrow input{margin:2px 0 0;accent-color:var(--steel);flex:none;cursor:pointer}
+.clw{flex:1 1 auto;line-height:1.35}
+.clw b{color:var(--ochre);font-weight:400}
+.clw i{display:block;font-style:normal;font-size:11px;color:var(--faint)}
+.clid{font-size:10.5px;color:var(--faint)}
+.clid::before{content:"("}
+.clid::after{content:")"}
+.evb{font-family:"IBM Plex Mono",monospace;font-size:9px;letter-spacing:.07em;
+  text-transform:uppercase;padding:1px 5px;border-radius:2px;
+  border:1px solid var(--rule);color:var(--faint)}
+.evb.co{border-color:var(--pos);color:var(--pos)}
+.evb.cx{border-color:var(--neg);color:var(--neg)}
+/* unsettled about where, not about whether: a question for step five */
+.evb.sc{border-color:var(--ochre);color:var(--ochre)}
+/* step six: the page that enumerates, shown where it belongs in the sequence */
+.embhd{display:flex;align-items:baseline;justify-content:space-between;gap:12px}
+.embhd .ctl-label{margin:0}
+.emb{display:block;width:100%;height:76vh;min-height:470px;border:1px solid var(--rule);
+  border-radius:3px;background:var(--card)}
+/* and the links between step five and it, built or not */
+.chain{display:flex;flex-direction:column;margin-top:7px;border:1px solid var(--rule);
+  border-radius:3px;background:var(--card)}
+.crow{display:grid;grid-template-columns:72px 1fr;gap:3px 13px;padding:9px 14px;
+  border-top:1px solid var(--rule-soft);font-size:13px;align-items:baseline}
+.crow:first-child{border-top:0}
+.cst{font-family:"IBM Plex Mono",monospace;font-size:9px;letter-spacing:.07em;
+  text-transform:uppercase;padding:1px 5px;border-radius:2px;border:1px solid var(--rule);
+  color:var(--faint);justify-self:start}
+/* THE VERDICT, AND THE ONLY FILLED BADGE ON THE PAGE.
+   ------------------------------------------------------------------------
+   .cst above is an outlined badge about forty places share, for verdicts and
+   for workflow states alike, with ok/part/gap meaning different things in
+   each. A verdict is the bench's central output and the one thing a reader
+   should be able to recognise without reading it, so it gets a shape of its
+   own and nothing else uses it. Workflow states keep .cst.
+
+   Contrast, measured: proved 6.4:1 light and 7.3:1 dark; disproved 7.1 and
+   5.9; partial and turns 5.3 and 7.2, which is why light has a fill token of
+   its own -- --ochre at white is 4.46 and fails; flat 5.6 and 7.8; undecided
+   4.8 and 5.5. Undecided is neutral and never red: the page's own explanation
+   says it is a verdict rather than a failure, and it was drawn in the colour
+   of a failure in two places. */
+.vd{font-family:"IBM Plex Mono",monospace;font-size:9px;letter-spacing:.07em;
+  text-transform:uppercase;padding:1.5px 6px;border-radius:2px;border:1px solid transparent;
+  background:var(--band);color:var(--muted);justify-self:start;white-space:nowrap}
+.vd.proved{background:var(--pos);color:var(--vd-on)}
+.vd.disproved{background:var(--neg);color:var(--vd-on)}
+.vd.partial, .vd.turns{background:var(--ochre-fill);color:var(--vd-on)}
+.vd.flat{background:var(--ind);color:var(--vd-on)}
+/* The region the verdict holds on, beside the word. The chart on step 4.1 is
+   the large version of this and uses the same colours and the same label. */
+.vdw{display:flex;flex-direction:column;align-items:flex-start;gap:3px;
+  justify-self:start}
+.vdbar{display:block;width:40px;height:5px;flex:none;background:var(--sunk);
+  border:1px solid var(--rule-soft);border-radius:2px;overflow:hidden}
+.vdbar i{display:block;height:100%;font-style:normal;background:var(--faint)}
+.vdw .proved + .vdbar i{background:var(--pos)}
+.vdw .disproved + .vdbar i{background:var(--neg)}
+.vdw .partial + .vdbar i, .vdw .turns + .vdbar i{background:var(--ochre-fill)}
+.vdw .flat + .vdbar i{background:var(--ind)}
+.cst.ok{border-color:var(--pos);color:var(--pos)}
+.cst.part{border-color:var(--ochre);color:var(--ochre)}
+.cst.gap{border-color:var(--neg);color:var(--neg)}
+.cnm{font-weight:500}
+.cfl{font-family:"IBM Plex Mono",monospace;font-size:10.5px;color:var(--faint);margin-left:8px}
+.cwy{grid-column:2;color:var(--muted);line-height:1.45;font-size:12.5px}
+/* a quantity being typed, and a relation being roled */
+.crow.vrow{grid-template-columns:76px 1fr auto}
+.vrow .cwy{grid-column:2 / 4;font-family:"IBM Plex Mono",monospace;font-size:11px}
+.crow.mrow{grid-template-columns:44px 1fr}
+.crow.hrow{grid-template-columns:66px 1fr auto;align-items:center}
+/* a proposal, which is never a declaration until somebody says so */
+.chain.prop{border-style:dashed;border-color:var(--ochre);margin-top:8px}
+.crow.prow{grid-template-columns:72px 1fr auto}
+.crow.prow .cwy{grid-column:2 / 4}
+.pacts2{display:flex;gap:6px}
+.arith{margin:9px 0 0;padding:11px 14px;background:var(--sunk);border:1px solid var(--rule);
+  border-radius:2px;font-family:"IBM Plex Mono",monospace;font-size:11px;line-height:1.65;
+  color:var(--ink);white-space:pre;overflow:auto;max-height:290px}
+.arith .alh{color:var(--steel)}
+.arith .acm{color:var(--faint)}
+.crow.arow{grid-template-columns:62px 1fr}
+.meq{font-family:Spectral,Georgia,serif;font-size:15px;line-height:1.1;
+  display:inline-block;vertical-align:middle;color:var(--ink)}
+.meq .mv{font-style:italic;font-family:Spectral,Georgia,serif}
+.meq .mn{font-variant-numeric:tabular-nums}
+.meq .mu{font-style:normal;color:var(--muted)}
+.meq sup{font-size:.68em;vertical-align:super;line-height:0}
+.meq .frac{display:inline-flex;flex-direction:column;vertical-align:middle;
+  text-align:center;margin:0 .22em}
+.meq .fnum{border-bottom:1px solid currentColor;padding:0 .3em .08em}
+.meq .fden{padding:.08em .3em 0}
+.eqwrap{margin:4px 0 2px;overflow-x:auto;max-width:100%;padding:3px 0}
+.famadd{margin-top:9px;padding:11px 13px;border:1px dashed var(--ochre);border-radius:2px}
+.famadd .condrow{align-items:flex-start;flex-wrap:wrap}
+.famadd .roles{display:flex;gap:4px;flex-wrap:wrap}
+.ptab{width:100%;border-collapse:collapse;margin-top:10px;font-size:12.5px}
+.ptab th{font-family:"IBM Plex Mono",monospace;font-size:9.5px;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--faint);font-weight:500;text-align:left;
+  padding:0 10px 5px;border-bottom:1px solid var(--rule)}
+.ptab td{padding:6px 10px;border-bottom:1px solid var(--rule-soft);vertical-align:middle}
+.ptab tr:last-child td{border-bottom:none}
+.ptab .pn{font-family:"IBM Plex Mono",monospace;font-size:11.5px;color:var(--ink);white-space:nowrap}
+.ptab .pn .mu{color:var(--faint)}
+.ptab .pr{font-family:"IBM Plex Mono",monospace;font-size:11.5px;white-space:nowrap;width:1%}
+.ptab .pw{color:var(--muted);line-height:1.4}
+.wnum{width:66px;font:inherit;font-family:"IBM Plex Mono",monospace;font-size:11px;
+  padding:2px 5px;border:1px solid var(--rule);border-radius:2px;background:var(--card);
+  color:var(--ink);margin-right:5px}
+.wnum:focus-visible{outline:2px solid var(--steel);outline-offset:-1px}
+.condrow{display:flex;gap:8px;align-items:center;margin-top:8px}
+.defbox.cond{min-height:0;flex:1;margin-top:0;font-family:"IBM Plex Mono",monospace;font-size:11.5px}
+.lgloss{margin:3px 0 0;font-size:12.5px;color:var(--muted);line-height:1.4;max-width:78ch}
+.eqlhs{font-family:"IBM Plex Mono",monospace;font-size:11px;color:var(--faint);
+  margin-right:6px;vertical-align:middle}
+.crow.trow.out{background:var(--sunk);grid-template-columns:72px 1fr auto}
+.ovals{font-family:"IBM Plex Mono",monospace;font-size:10.5px;color:var(--faint);
+  font-variant-numeric:tabular-nums;margin-right:9px;white-space:nowrap}
+.swlab{font-size:11px;color:var(--faint)}
+body.nomap .stageWrap, body.nomap #clfoot, body.nomap #wlfoot{display:none}
+.crow.trow{grid-template-columns:72px 1fr auto}
+.crow.trow .cwy{grid-column:1 / 4}
+.fsel{display:flex;gap:6px;align-items:center}
+.spark{display:block;width:92px;height:26px;overflow:visible}
+.spark polyline{fill:none;stroke:var(--steel);stroke-width:1.4;
+  stroke-linejoin:round;stroke-linecap:round}
+.spark.bad{font-family:"IBM Plex Mono",monospace;font-size:9px;color:var(--neg);width:auto}
+.dexp{font-family:"IBM Plex Mono",monospace;font-size:11.5px;background:var(--sunk);
+  padding:1px 6px;border-radius:2px;color:var(--ink)}
+.sbar{display:inline-block;width:74px;height:5px;background:var(--rule);border-radius:3px;overflow:hidden}
+.sbar i{display:block;height:100%;background:var(--steel)}
+.cwy.sax{font-size:11.5px;line-height:1.6;color:var(--faint);margin-top:3px}
+.cwy.sax b{font-family:"IBM Plex Mono",monospace;font-size:9.5px;letter-spacing:.07em;
+  text-transform:uppercase;font-weight:500;color:var(--faint);margin-right:6px}
+.cwy.sax b.on{color:var(--pos)} .cwy.sax b.part{color:var(--ochre)} .cwy.sax b.off{color:var(--neg)}
+.clsrow{font-size:11.5px;line-height:1.9;color:var(--faint);margin-top:1px}
+.clsrow b{color:var(--muted);font-weight:500}
+.mem{font-family:"IBM Plex Mono",monospace;font-size:10px;letter-spacing:.03em;
+  border:1px solid var(--rule);border-radius:3px;padding:1px 5px;margin:0 3px 0 0;
+  display:inline-block;color:var(--faint);white-space:nowrap}
+.mem.ok{color:var(--muted)}
+.mem.pv{border-color:var(--pos);color:var(--pos)}
+.mem.no{border-color:var(--neg);color:var(--neg)}
+.mem.na{border-style:dashed}
+.defbox{width:100%;min-height:62px;font:inherit;font-size:12.5px;padding:9px 11px;
+  border:1px solid var(--rule);border-radius:2px;background:var(--card);color:var(--ink);
+  margin-top:7px;resize:vertical}
+.defbox:focus-visible{outline:2px solid var(--steel);outline-offset:-1px}
+.hrow .cnm{font-weight:400}
+#histbox .chain{max-height:52vh;overflow-y:auto}
+.roles{grid-column:2;display:flex;flex-wrap:wrap;gap:4px;margin-top:4px;align-items:baseline}
+.roles.props{margin-top:3px;padding-top:3px;border-top:1px dotted var(--rule-soft)}
+.roles.props .sup{margin-left:4px}
+/* the modeller's own hand: solid, where composed is dashed and reconstructed
+   dotted, because this one was put there deliberately and not derived */
+.evb.hand{border-color:var(--steel);color:var(--steel)}
+.cgrp.hand{border-left:2px solid var(--steel);padding-left:9px;margin-left:-11px}
+.cgrp.hand .cgn b{color:var(--steel)}
+.cghd .edbtn{margin-left:5px}
+.wlgroup.hand{border-color:var(--steel)}
+.wlgroup.hand .wlhead{background:var(--sunk);border-bottom-color:var(--steel)}
+.wlgroup.hand .wlfrom{color:var(--steel)}
+.wlhead h4 .n.hand{background:var(--steel)}
+/* the claims being handed on, and the editor for one claim's domain */
+.clist{display:flex;flex-direction:column;max-height:46vh;overflow-y:auto;padding:2px 15px 8px}
+/* the list brings its own bordered section, so the host must not draw a second box */
+#clfoot:not(:empty){border:0;padding:0;background:none;margin-top:16px}
+.clrw{display:grid;grid-template-columns:1fr auto;gap:3px 12px;align-items:start;
+  padding:7px 0;border-top:1px solid var(--rule-soft);font-size:12.5px}
+.clrw:first-child{border-top:0}
+/* the row's first cell: a checkbox where the step is for selecting, and the
+   claim beside it either way */
+.clrw .st{line-height:1.35;display:flex;gap:9px;align-items:flex-start}
+label.clrw .st,.clrw label.st{cursor:pointer}
+.clrw .sttx{flex:1 1 auto;min-width:0}
+.clrw .clpick{margin:3px 0 0;flex:none;accent-color:var(--steel);cursor:pointer}
+.clrw.off .sttx{opacity:.5}
+/* a relation the paper also routes through a mediator of its own */
+.viam{color:var(--ochre);cursor:help;border-bottom:1px dotted var(--ochre)}\n.dispm{color:var(--neg);cursor:help;border-bottom:1px dotted var(--neg)}
+/* Substitutes, inside the mechanisms column rather than under both of them.
+   A rule above it so it reads as the column's second section and not as more
+   of the mechanism list. */
+.subsblk{margin-top:16px;padding-top:14px;border-top:1px solid var(--rule)}
+/* The expectation and the way onto the board, on a buffer row. One line, under
+   the derivation, so it reads as part of the row rather than a second control
+   surface. */
+.bguess{display:flex;flex-wrap:wrap;align-items:center;gap:6px 9px;margin-top:9px;
+  padding-top:8px;border-top:1px dashed var(--rule-soft)}
+.bguess .movlab{color:var(--muted);font-size:10.5px;letter-spacing:.02em}
+.bguess .bnote{flex:1 1 220px;color:var(--faint);font-size:10.5px;font-style:italic}
+/* Where a test came from, under its verdict. */
+.afrom{display:block;margin-top:4px;color:var(--faint);font-size:10.5px;font-style:italic}
+/* a composed relation: drawn apart, because nothing asserts it */
+/* `comp` alone is the bar components' class, and it is display:flex */
+.cgrp.cmpd{border-left:2px dashed var(--ind);padding-left:9px;margin-left:-11px}
+.cgrp.cmpd .cgn b{color:var(--ind)}
+.evb.cmp{border-color:var(--ind);color:var(--ind)}
+/* a relation the model needs and no paper asserts */
+.evb.rec{border-color:var(--neg);color:var(--neg)}
+.cgrp.recon{border-left:2px dotted var(--neg);padding-left:9px;margin-left:-11px}
+.cgrp.recon .cgn b{color:var(--neg)}
+.cgrp.recon .cghd input{margin:0;flex:none;accent-color:var(--neg);cursor:pointer}
+.cpath{display:flex;gap:10px;align-items:baseline;padding:2px 0 2px 23px;font-size:11.5px}
+.cpath .cplab{flex:0 0 96px}
+.cpath .cpv{flex:1 1 auto;color:var(--muted);line-height:1.4}
+.cpath .cpv b{color:var(--ink);font-weight:500}
+.cpick{margin:0;flex:none;accent-color:var(--ind);cursor:pointer}
+.wlhead h4 .n.cmpd{background:var(--ind)}
+/* the proposals, in a block of their own */
+.wlgroup.cmpd{border-color:var(--ind);border-style:dashed}
+.wlgroup.cmpd .wlhead{background:var(--sunk);border-bottom-color:var(--ind)}
+.wlgroup.cmpd .wlfrom{color:var(--ind)}
+/* the two settings, directly above the list they govern */
+.cmpctl{display:flex;gap:10px 22px;flex-wrap:wrap;align-items:flex-end;margin-top:11px;
+  padding:10px 12px;border:1px solid var(--rule);border-radius:3px;background:var(--card)}
+.cmpc{flex:1 1 190px;min-width:0}
+.cmpc.wide{flex:2 1 300px}
+.cmpc .sh{display:flex;align-items:baseline;justify-content:space-between;gap:9px}
+.cmpc input[type=range]{width:100%;margin-top:5px}
+.cmpc .modebar{margin-top:5px}
+.cmpacts{display:flex;gap:8px;margin-top:10px;flex-wrap:wrap}
+.cmpacts button{font:inherit;font-family:"IBM Plex Mono",monospace;font-size:11px;
+  padding:3px 10px;cursor:pointer;background:var(--card);border:1px solid var(--rule);
+  border-radius:2px;color:var(--ink)}
+.cmpacts button:hover:not([disabled]){border-color:var(--ind);color:var(--ind)}
+.cmpacts button[disabled]{opacity:.42;cursor:default}
+.cmpacts button:focus-visible{outline:2px solid var(--ind);outline-offset:2px}
+/* THE DERIVATION BUFFER. A row is selectable, so it says so by the cursor and
+   by the ground it sits on -- and .crow sets cursor:grab far above, which is
+   why this is here rather than beside the other .crow rules. */
+.bufchain{max-height:48vh;overflow:auto}
+.bline{cursor:pointer}
+.bline:hover{background:var(--sunk)}
+.bline.on{background:var(--ochre-soft)}
+.bline.on .cwy,.bline.on .bnote{color:var(--ink)}
+.bsrc{font-family:"IBM Plex Mono",monospace;font-size:9px;letter-spacing:.05em;
+  text-transform:uppercase;font-weight:500;color:var(--ind);cursor:help}
+.bsrc.bstt{color:var(--pos)}
+.bseg{font-family:"IBM Plex Mono",monospace;font-size:9.5px;color:var(--ochre);cursor:help}
+.bline.bst{border-left:2px solid var(--pos)}
+.bnote{color:var(--faint);font-size:11.5px;font-style:italic;display:inline-block;
+  margin-bottom:2px}
+/* the palette. A command and the name it runs on read as one control, which is
+   what .bpg joins -- a button beside an unattached dropdown reads as two. */
+.bufpal{display:flex;flex-wrap:wrap;gap:7px;align-items:stretch;margin:11px 0 0}
+.bufpal button{font:inherit;font-family:"IBM Plex Mono",monospace;font-size:11px;
+  padding:3px 10px;cursor:pointer;background:var(--card);border:1px solid var(--rule);
+  border-radius:2px;color:var(--ink);white-space:nowrap}
+.bufpal button:hover:not([disabled]){border-color:var(--ind);color:var(--ind)}
+.bufpal button[disabled]{opacity:.45;cursor:help}
+.bufpal button:focus-visible{outline:2px solid var(--ind);outline-offset:2px}
+.bpg{display:flex;align-items:stretch}
+.bpg button{border-radius:2px 0 0 2px;border-right:0}
+.bpg select,.bpg input{font-family:"IBM Plex Mono",monospace;font-size:11px;
+  padding:3px 7px;border:1px solid var(--rule);border-radius:0 2px 2px 0;
+  background:var(--sunk);color:var(--ink);max-width:210px;min-width:0}
+.bpg select[disabled],.bpg input[disabled]{opacity:.45}
+.bufbox{min-height:56px}
+/* what a command just said, directly under the command that said it */
+.bufmsg{border-left:2px solid var(--neg);padding-left:9px;color:var(--ink);margin-top:9px}
+/* the four quantities the ranking can compute, as a list rather than as a
+   sentence, because the point is that they are four and not the definition */
+.saxlist .cst{text-transform:none;letter-spacing:.02em;font-size:9.5px;
+  border-color:var(--rule);color:var(--ind)}
+.saxlist .crow{grid-template-columns:96px 1fr}
+/* its own scroll, so a hundred and thirty-eight proposals do not push the
+   claims off the page */
+.cmplist{max-height:40vh}
+.cmplist .cgrp.cmpd{border-left:0;margin-left:0;padding-left:0}
+.cmplist .cgrp.cmpd + .cgrp.cmpd{border-top:1px solid var(--rule-soft)}
+/* a reconstructed row is a label, not the two-column claim row: its checkbox
+   belongs beside its text and not at the far end of a grid track */
+.clrw.prop{display:flex;gap:9px;align-items:flex-start}
+.clrw.prop .clw{flex:1 1 auto;min-width:0}
+.clrw.prop input{margin:3px 0 0;flex:none}
+/* one heading per statement, with its claims under it */
+.cgrp{border-top:1px solid var(--rule)}
+.cgrp:first-child{border-top:0}
+.cghd{display:flex;align-items:baseline;gap:9px;padding:10px 0 3px;
+  background:var(--card);position:sticky;top:0;z-index:1}
+.cgn{font-family:Spectral,Georgia,serif;font-size:14px;font-weight:600;line-height:1.25}
+.cgn b{color:var(--ochre);font-weight:400}
+.cgmeta{font-size:11px;color:var(--faint);margin-left:auto;white-space:nowrap;
+  display:flex;align-items:baseline;gap:6px}
+.cgall{margin:0;flex:none;accent-color:var(--steel);cursor:pointer}
+.cgrp .clrw{padding-left:23px;border-top:1px solid var(--rule-soft)}
+.cgrp .clrw:first-of-type{border-top:0}
+/* several papers agreeing are one line, with the papers an expander away */
+.sgrp{border-top:1px solid var(--rule-soft)}
+.sgrp:first-of-type{border-top:0}
+.sghd{display:flex;align-items:baseline;gap:8px;padding:5px 0 5px 23px}
+.sgfold{background:none;border:none;cursor:pointer;padding:0;color:var(--faint);
+  font:inherit;line-height:1;flex:none}
+.sgfold:hover{color:var(--steel)}
+.sgfold:focus-visible{outline:2px solid var(--steel);outline-offset:2px}
+.sgall{margin:0;flex:none;accent-color:var(--steel);cursor:pointer}
+.sgn{font-size:12.5px}
+.sgn b{color:var(--ochre);font-weight:500}
+.sgmeta{font-size:11px;color:var(--faint);margin-left:auto;display:flex;
+  align-items:baseline;gap:7px;white-space:nowrap}
+.sgrp.off .sgn,.sgrp.off .sgmeta{opacity:.5}
+.clrw.sub{padding-left:46px;border-top:1px dotted var(--rule-soft)}
+.clq{font-size:10.5px;color:var(--faint);white-space:nowrap}
+/* the properties of the relation, under the pair that carries it */
+/* four buckets on one wrapped line, not four stacked rows */
+.cprops{margin:3px 0 5px 23px;padding:6px 10px 7px;border-left:2px solid var(--rule);
+  background:var(--sunk);border-radius:0 3px 3px 0;
+  display:flex;flex-wrap:wrap;gap:4px 16px;align-items:baseline}
+.cpb{display:flex;gap:4px;flex-wrap:wrap;align-items:baseline;min-width:0}
+.cplab{font-family:"IBM Plex Mono",monospace;font-size:9.5px;letter-spacing:.09em;
+  text-transform:uppercase;color:var(--faint);cursor:help;flex:none}
+.cpmore{font:inherit;font-family:"IBM Plex Mono",monospace;font-size:9.5px;
+  letter-spacing:.04em;background:none;border:none;padding:1px 3px;cursor:pointer;
+  color:var(--steel);text-decoration:underline;text-underline-offset:2px}
+.cpmore:hover{color:var(--ochre)}
+.cpnote{font-size:11.5px;color:var(--muted);font-style:italic;flex:1 1 100%}
+.sup{font-size:11px;border:1px solid var(--rule);border-radius:2px;padding:1px 6px;
+  color:var(--ink);white-space:nowrap;cursor:help;background:var(--card)}
+.sup i{font-style:normal;font-family:"IBM Plex Mono",monospace;font-size:9.5px;
+  color:var(--ochre);margin-left:5px}
+.sup.none{color:var(--faint);border-style:dashed}
+.sup.none i{color:var(--faint)}
+.sup.pick{font-family:inherit;cursor:pointer}
+.sup.pick:hover{border-color:var(--steel);color:var(--steel)}
+.sup.on{border-color:var(--steel);color:var(--steel);background:var(--card)}
+.sup.pick.on{box-shadow:inset 0 0 0 1px var(--steel)}
+.cgmeta .sup{cursor:help}
+.clrw.off:hover .sttx{opacity:.85}
+.clrw .st b{color:var(--ochre);font-weight:400}
+.clrw .meta,.clrw .dom{display:block;font-size:11px;margin-top:2px;color:var(--faint)}
+.clrw .dom.set{color:var(--steel)}
+.clrw .dom.clash{color:var(--neg)}
+.dchip{font-family:"IBM Plex Mono",monospace;font-size:9px;letter-spacing:.06em;
+  text-transform:uppercase;border:1px solid var(--rule);border-radius:2px;
+  padding:1px 5px;margin-right:4px;color:var(--faint);white-space:nowrap}
+.dchip.on{border-color:var(--steel);color:var(--steel)}
+.dchip.bad{border-color:var(--neg);color:var(--neg)}
+.edbtn{font:inherit;font-size:11px;padding:2px 10px;cursor:pointer;background:var(--paper);
+  border:1px solid var(--rule);border-radius:2px;color:var(--ink);white-space:nowrap}
+.edbtn:hover{border-color:var(--steel);color:var(--steel)}
+.edbtn:focus-visible{outline:2px solid var(--steel);outline-offset:2px}
+#domdlg,#condlg,#clmdlg,#vardlg{border:1px solid var(--rule);border-radius:4px;
+  background:var(--card);color:var(--ink);padding:0;max-width:640px;width:92vw;font:inherit}
+#domdlg::backdrop,#condlg::backdrop,#clmdlg::backdrop,#vardlg::backdrop{background:rgba(0,0,0,.45)}
+.dlgh{padding:12px 18px 10px;border-bottom:1px solid var(--rule-soft)}
+.dlgh h4{margin:0;font-family:Spectral,Georgia,serif;font-weight:600;font-size:16px;
+  line-height:1.25}
+.dlgh .sig{display:block;margin-top:3px}
+.dlgb{padding:13px 18px 8px;max-height:58vh;overflow-y:auto}
+.dlgf{padding:10px 18px 14px;border-top:1px solid var(--rule-soft);display:flex;
+  gap:9px;align-items:center;flex-wrap:wrap}
+.dlgf .sp{flex:1 1 auto}
+.pgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(196px,1fr));gap:6px 16px}
+.rng{display:flex;gap:9px;align-items:baseline;flex-wrap:wrap;margin-top:4px}
+.rng input[type=number]{font:inherit;font-size:13px;width:92px;padding:5px 7px;
+  background:var(--paper);border:1px solid var(--rule);border-radius:2px;color:var(--ink)}
+.rng label{font-size:11.5px;color:var(--faint)}
+.dlgwarn{color:var(--neg);font-size:12.5px;margin:9px 0 0;line-height:1.45}
+.clhd{display:flex;align-items:baseline;gap:8px;justify-content:space-between;
+  margin-top:11px;padding-top:9px;border-top:1px solid var(--rule)}
+.clhd .movlab{margin:0}
+.undband{margin:5px 0 7px}
+.undn{display:block;font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;
+  color:var(--faint)}
+.undn i{font-style:normal;margin-left:5px}
+.undlist{list-style:none;margin:2px 0 0;padding:0}
+.undrow{display:flex;align-items:baseline;gap:7px;padding:2px 0;font-size:12.5px}
+.undrow i{font-style:normal;color:var(--faint);font-size:11px;margin-left:5px}
+.undbtn{font:inherit;font-size:12px;line-height:1;width:19px;height:19px;flex:none;
+  cursor:pointer;background:transparent;color:var(--ochre);border:1px solid var(--rule);
+  border-radius:2px;padding:0}
+.undbtn:hover{border-color:var(--ochre)}
+.undbtn:focus-visible{outline:2px solid var(--steel);outline-offset:2px}
+.recbox{border:1px solid var(--rule);border-radius:3px;background:var(--card);
+  padding:11px 15px 14px;margin:0 0 16px}
+/* The two finished examples, while nothing has been declared here. Flat and
+   quiet on purpose: it is a signpost, not a banner, and it is the first thing
+   a reader meets. */
+/* THE WAY IN. A page rather than a bar: the four phases, and the three ways
+   to start. Shown while this browser has declared nothing and gone for good
+   once anything is. */
+/* THE START PAGE IS A PAGE. body.home takes the chain row, the panel, the map
+   and the footer off screen and leaves this, so it is not a banner above the
+   work -- it is instead of it. The header stays, because the wordmark is the
+   way back and the phase chevrons are the way in. */
+body.home .steprow, body.home .flow, body.home #work, body.home .stageWrap,
+body.home #clfoot, body.home #wlfoot, body.home > .wrap > footer,
+body.home #papersec, body.home #gfab, body.home .guide{display:none!important}
+body.home header{border-bottom:0}
+.openbar{max-width:980px;margin:14px auto 0;padding:0}
+.obhead{padding:14px 0 20px;border-bottom:1px solid var(--rule)}
+.obhead h2{font-family:Spectral,Georgia,serif;font-size:clamp(23px,3.3vw,32px);
+  font-weight:600;line-height:1.16;letter-spacing:-.012em;margin:0 0 10px;
+  color:var(--ink);text-wrap:balance;max-width:22ch}
+.obhead p{margin:0;font-size:14.5px;color:var(--muted);line-height:1.55;max-width:68ch}
+/* The lead is two paragraphs: what the instrument does, then what it is for.
+   Without this they set as one block and the second reads as a continuation. */
+.obhead p + p{margin-top:11px}
+/* One rhythm down the page: a quiet label, then the thing it names. */
+.obsec{padding:22px 0;border-bottom:1px solid var(--rule-soft)}
+.obsec:last-child{border-bottom:0;padding-bottom:40px}
+.obh{font-family:"IBM Plex Mono",monospace;font-size:9.5px;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--faint);font-weight:500;margin:0 0 13px}
+.obhow{list-style:none;counter-reset:hw;margin:0 0 12px;padding:0;
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:13px 26px}
+.obhow > li{counter-increment:hw;padding-left:25px;position:relative;font-size:13.5px;
+  line-height:1.5;color:var(--muted);max-width:52ch}
+.obhow > li::before{content:counter(hw);position:absolute;left:0;top:1px;
+  font-family:"IBM Plex Mono",monospace;font-size:10px;color:var(--steel);
+  width:17px;height:17px;line-height:16px;text-align:center;
+  border:1px solid var(--rule);border-radius:2px}
+.obhow b{color:var(--ink);font-weight:600}
+/* A CITATION IS BESIDE THE SENTENCE AND NOT IN IT: muted, a size down, and
+   the name is the link. */
+.obcite{font-size:11.5px;color:var(--faint);white-space:nowrap}
+.obcite a{color:inherit;text-decoration:none;border-bottom:1px dotted var(--rule)}
+.obcite a:hover{color:var(--ink);border-bottom-color:var(--muted)}
+/* THE SOURCES, CLOSED. Every claim the start page makes carries its source,
+   and a reader who wants the full reference opens this rather than meeting
+   eighteen of them on the way to the buttons. */
+.obsrc{margin:0}
+.obsrc > summary{cursor:pointer;font-family:"IBM Plex Mono",monospace;font-size:9.5px;
+  letter-spacing:.1em;text-transform:uppercase;color:var(--faint)}
+.obsrc > summary:hover{color:var(--ink)}
+.obsrc ul{list-style:none;margin:11px 0 0;padding:0;display:flex;
+  flex-direction:column;gap:7px;max-width:76ch}
+.obsrc li{font-size:11.5px;color:var(--muted);line-height:1.5;
+  padding-left:17px;text-indent:-17px}
+.obsrc a{color:inherit}
+.obhow .aim{color:var(--ochre)}
+.infdemo{display:inline-block;width:13px;height:13px;line-height:12px;text-align:center;
+  border:1px solid var(--rule);border-radius:50%;font-size:9px;color:var(--faint);
+  font-family:"IBM Plex Mono",monospace;vertical-align:1px}
+/* The key, and the line that says where it goes. */
+.obkey{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin:12px 0 10px}
+.obkey input{flex:1 1 260px;max-width:380px;font:inherit;font-family:"IBM Plex Mono",monospace;
+  font-size:12px;padding:6px 10px;border-radius:2px;border:1px solid var(--rule);
+  background:var(--card);color:var(--ink)}
+.obkey input:focus-visible{outline:2px solid var(--steel);outline-offset:1px}
+.obmok{margin:0 0 9px;font-size:14px;color:var(--ink);line-height:1.5;max-width:68ch;
+  display:flex;align-items:baseline;gap:2px;flex-wrap:wrap}
+/* THE FOUR PHASES, AS THE CHEVRONS THEY ARE IN THE HEADER. The four take the
+   header's own chevron so that the start page and the chain read as one thing,
+   and they take the card colour rather than the dark background, which belongs
+   to the header alone. So the same shape and
+   the same notch as `.blk`, in the card colour throughout: on the start page
+   none of the four is the one you are on, and a filled chevron would say one
+   of them was. The shape is what carries the relation to the header; the fill
+   is what would have made it a state. */
+.obphases{list-style:none;counter-reset:ph;margin:0 0 18px;padding:0;
+  display:flex;align-items:stretch;gap:3px;flex-wrap:wrap}
+.obphases li{counter-increment:ph;position:relative;min-width:0;
+  flex:1 1 220px;background:var(--card);border:1px solid var(--rule-soft);
+  padding:10px 13px 11px 24px;
+  clip-path:polygon(0 0,calc(100% - 12px) 0,100% 50%,calc(100% - 12px) 100%,0 100%,12px 50%)}
+.obphases li:first-child{padding-left:14px;
+  clip-path:polygon(0 0,calc(100% - 12px) 0,100% 50%,calc(100% - 12px) 100%,0 100%)}
+/* A border and a clip-path do not agree: the clip cuts the border off along
+   the two diagonals and leaves it on the flat edges, which reads as a broken
+   box. So the edge is drawn by the clip alone and the separation comes from
+   the gap and a hairline inset instead. */
+.obphases li{border:0;box-shadow:inset 0 0 0 1px var(--rule-soft)}
+.obphases li::before{content:counter(ph);position:absolute;left:24px;top:10px;
+  font-family:"IBM Plex Mono",monospace;font-size:8.5px;letter-spacing:.08em;
+  color:var(--faint)}
+.obphases li:first-child::before{left:14px}
+.obphases b{display:block;font-size:13px;font-weight:600;color:var(--ink);
+  font-family:Spectral,Georgia,serif;margin:0 0 3px 17px}
+.obphases span{display:block;font-size:12px;color:var(--muted);line-height:1.45}
+@media(max-width:700px){
+  /* Stacked, the chevron points down the page rather than across it, and a
+     left notch on a full-width block is a dent. The shape goes and the order
+     carries the sequence. */
+  .obphases li,.obphases li:first-child{clip-path:none;padding-left:14px}
+  .obphases li::before,.obphases li:first-child::before{left:14px}
+}
+/* THE TWO THINGS A READER CAN PRESS. Everything else on the start page is
+   read; the projects and the tours are done, and on an open page with no
+   ground under them they read as more prose. The recessed fill is the one the
+   key field already uses, so a reader meets the same shape twice and learns it
+   once. */
+.obbox{background:var(--sunk);border:1px solid var(--ochre-soft);border-radius:6px;
+  padding:14px 15px}
+.obbox > .tourlist{margin:0}
+.obways{display:flex;flex-direction:column;align-items:flex-start;gap:8px}
+.obgo{width:280px;text-align:left}
+@media(max-width:420px){.obgo{width:100%}}
+.obsec > .why{margin:12px 0 0;max-width:72ch}
+@media(max-width:620px){.obhead h2{font-size:21px}.obsec{padding:18px 0}}
+.recbox .phdr{margin-bottom:8px}
+.recbox .why{max-width:none}
+.plate{display:grid;grid-template-columns:minmax(300px,1.1fr) 1fr;gap:4px 18px;
+  padding:16px 0;border-top:1px solid var(--rule-soft);align-items:start}
+.plate:first-of-type{border-top:0}
+/* The title and the full-screen button span both columns. The button used to
+   be absolutely positioned over the plate's top-right corner, where it sat on
+   top of the sentence in the right-hand column and clipped it. */
+.plhd{grid-column:1/-1;display:flex;justify-content:space-between;align-items:baseline;
+  gap:14px;margin:0 0 8px}
+.plttl{font-size:13px;color:var(--ink)}
+.plsvg{width:100%;height:auto;overflow:visible}
+.plax{stroke:var(--rule);stroke-width:1}
+.plaxs{stroke:var(--rule-soft);stroke-width:1}
+/* The zero line is the reference the whole proposition is read against, so it
+   is drawn heavier than an axis and never hidden behind a band. */
+.plzero{stroke:var(--ink);stroke-width:1.1;opacity:.75}
+/* The band runs past the top of the panel wherever the outer bound is far
+   wider than the finding, and a flush edge reads as a bound it is not. */
+.plclip{stroke:var(--muted);stroke-width:1;stroke-dasharray:2 3;opacity:.7}
+.plline{fill:none;stroke:var(--ink);stroke-width:1.5;stroke-linejoin:round}
+.plmline{fill:none;stroke:var(--ink);stroke-width:1.4;stroke-linejoin:round}
+.plflip{stroke:var(--ochre);stroke-width:1;stroke-dasharray:3 3}
+.pltk{font-family:"IBM Plex Mono",monospace;font-size:9px;fill:var(--faint)}
+.pltz{fill:var(--muted)}
+.pltl{font-size:10px;fill:var(--muted);letter-spacing:.03em}
+.pllab{font-size:9.5px;fill:var(--muted);letter-spacing:.04em;text-transform:uppercase}
+.plnone{font-size:10px;fill:var(--faint)}
+/* The band, per cell, in the verdict's own colours. A wash rather than a fill,
+   because the line inside it has to stay readable where the band is narrow. */
+.dbdp{fill:var(--pos);opacity:.26} .dbdf{fill:var(--neg);opacity:.26}
+.dbdm{fill:var(--ochre);opacity:.3} .dbdo{fill:var(--rule);opacity:.4}
+.bdp{fill:var(--pos)} .bdf{fill:var(--neg)} .bdo{fill:var(--rule)}
+.bdm{fill:var(--ochre);opacity:.55}
+.plsay{font-size:12.5px;line-height:1.5}
+.plprop{margin:0 0 5px;color:var(--ink)}
+.plscope{margin:0 0 5px;color:var(--muted);font-size:11.5px;line-height:1.5}
+.plcls{color:var(--ink)}
+.plfix{margin:8px 0 0;color:var(--faint);font-size:11px;line-height:1.45}
+.plkey{font-size:11px;color:var(--faint);margin:8px 0 0}
+.plkey i{display:inline-block;width:16px;height:7px;vertical-align:middle;margin:0 4px 0 10px;
+  border-radius:1px}
+.srcd{font-family:"IBM Plex Mono",monospace;font-size:9px;letter-spacing:.07em;
+  text-transform:uppercase;color:var(--pos);border:1px solid var(--pos);border-radius:2px;
+  padding:0 4px;vertical-align:1px}
+.flowfoot{margin:9px 0 0;text-align:right}
+.flowfoot .tabbtn{font-size:11.5px}
+.wlfoot:not(:empty){border:1px solid var(--rule-soft);
+  border-radius:3px;padding:10px 18px 16px;margin-top:16px;background:var(--paper)}
+.hhead{display:flex;align-items:baseline;gap:10px;margin-bottom:8px}
+.hhead .ctl-label{margin:0}
+.hcols{display:flex;gap:22px;align-items:flex-start;flex-wrap:wrap}
+.hcol{flex:1 1 300px;min-width:0}
+.hcol.hsearch{flex:0 1 260px}
+.hlist{list-style:none;margin:0;padding:0;max-height:208px;overflow-y:auto;
+  border:1px solid var(--rule);border-radius:2px;background:var(--card)}
+.hlist li{display:flex;align-items:baseline;gap:10px;padding:3px 9px;
+  border-bottom:1px solid var(--rule-soft);font-size:12.5px}
+.hlist li:last-child{border-bottom:none}
+.hn{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.hg{font-style:normal;font-size:11px}
+.hm{font-family:"IBM Plex Mono",monospace;font-size:10px;color:var(--faint);
+  white-space:nowrap;font-variant-numeric:tabular-nums}
+.hcol .movlab{display:block;margin-bottom:5px}
+
+.pfoot{display:flex;align-items:center;gap:16px;padding:12px 18px;
+  border-top:1px solid var(--rule);background:var(--sunk);flex-wrap:wrap}
+/* The failure line. Full width above the footer's three columns, and absent
+   from the markup entirely while nothing has failed. */
+.pfoot .failbar{flex:1 1 100%;font-size:12px;color:var(--neg);
+  border:1px solid var(--neg);border-radius:2px;padding:6px 10px;background:var(--card)}
+.pfoot .failbar summary{cursor:pointer}
+.pfoot .failbar ul{margin:6px 0 0;padding-left:18px}
+.pfoot .failbar li{margin:2px 0;font-family:"IBM Plex Mono",monospace;font-size:11px}
+.pfoot .fleft{flex:0 0 auto}
+.pfoot .fmid{flex:1 1 180px;text-align:center;min-width:140px}
+.pfoot .fright{flex:0 0 auto;margin-left:auto;max-width:46ch;text-align:right}
+.handoff{font-family:"IBM Plex Mono",monospace;font-size:11.5px;color:var(--ink);
+  font-variant-numeric:tabular-nums;background:var(--card);border:1px solid var(--rule);
+  border-radius:2px;padding:5px 11px;display:inline-block}
+.fnote{font-size:11.5px;color:var(--faint);line-height:1.4;display:inline-block}
+.stepbtn{font:inherit;font-size:13px;padding:7px 14px;cursor:pointer;border-radius:2px;
+  background:var(--card);border:1px solid var(--rule);color:var(--muted);white-space:nowrap}
+.stepbtn:hover{border-color:var(--faint);color:var(--ink)}
+.stepbtn.fwd{background:var(--ink);border-color:var(--ink);color:var(--card);font-weight:500}
+.stepbtn.fwd:hover{opacity:.87;color:var(--card)}
+.stepbtn:focus-visible{outline:2px solid var(--steel);outline-offset:2px}
+@media(max-width:700px){.pfoot{flex-direction:column;align-items:stretch;text-align:left}
+  .pfoot .fright{margin-left:0;text-align:left;max-width:none}
+  .pfoot .fmid{text-align:left}}
+
+/* ---- rail: the step-specific card ---- */
+.scopebox{padding:12px 15px 14px}
+dl.mini{display:flex;gap:18px;margin:0 0 11px;flex-wrap:wrap}
+dl.mini > div{flex:0 1 auto}
+dl.mini dt{font-family:"IBM Plex Mono",monospace;font-size:9.5px;letter-spacing:.11em;
+  text-transform:uppercase;color:var(--faint);margin-bottom:2px}
+dl.mini dd{margin:0;font-family:"IBM Plex Mono",monospace;font-size:18px;font-weight:500;
+  font-variant-numeric:tabular-nums;color:var(--ink);line-height:1.1}
+dl.mini dd i{display:block;font-style:normal;font-size:10.5px;color:var(--faint);
+  font-weight:400;margin-top:2px}
+ul.jlist{list-style:none;margin:0;padding:0;border-top:1px solid var(--rule-soft)}
+ul.jlist li{display:flex;justify-content:space-between;gap:10px;align-items:baseline;
+  padding:4px 0;font-size:12px;border-bottom:1px solid var(--rule-soft)}
+ul.jlist li:last-child{border-bottom:none}
+ul.jlist li span{color:var(--muted)}
+ul.jlist li b{font-family:"IBM Plex Mono",monospace;font-size:12px;font-weight:500;
+  font-variant-numeric:tabular-nums;color:var(--ink)}
+.railnote{margin:10px 0 0;font-size:11.5px;color:var(--faint);line-height:1.45}
+.papbtn.look{margin-left:0;border-color:var(--steel);color:var(--steel)}
+.papbtn.look:hover{background:var(--steel-soft)}
+.wlitem:hover{background:var(--sunk)}
+.wlitem.answered:hover{background:var(--sunk)}
+
+/* three columns of roughly equal weight — left alone, the carry box took every
+   spare pixel and squeezed the slider's note into a thin tall column */
+/* STEP 1.2 IS TWO COLUMNS, not three. The Plot block holds eight presets and,
+   under Manual, four menus and a layout choice; at a third of the row its
+   presets wrapped two to a line. It takes the left half; the two blocks about
+   merging stack on the right, in the order they are used. */
+.mergerow > .fld,.mergerow > .chk{flex:1 1 282px;max-width:none}
+.mergerow > .plotfld{flex:1 1 560px}
+.mergeside{display:flex;flex-direction:column;gap:18px;flex:1 1 290px;min-width:260px}
+.mergeside > .fld{flex:0 0 auto;max-width:none;width:100%;min-width:0}
+/* A FILTER THAT DECIDES WHAT THE STEP IS WORKING ON, boxed so that it does
+   not read as one control among the others. The minimum occurrence threshold
+   fixes the construct set every merge on step 1.2 is made from; it moved here
+   from 1.1 on 27 October because it is a count of constructs and 1.1 is about
+   papers. Boxed, because it is an important filter and a line of running text
+   does not read as one. */
+.keyfld{border:1px solid var(--ochre-soft);border-radius:5px;background:var(--sunk);
+  padding:12px 13px 10px}
+.keyfld > .sh{margin-bottom:8px}
+.keyfld .ctl-label{color:var(--ochre)}
+.keyfld #minpTab{margin-top:2px}
+@media(max-width:860px){.mergerow > .plotfld{flex:1 1 100%}}
+.nodeg circle.over{fill:none;stroke:var(--ochre);stroke-width:1.8;stroke-dasharray:3 2.5}
+.handoff.warn{border-color:var(--neg);color:var(--neg)}
+.pfoot .handoff{cursor:pointer;display:inline-flex;align-items:center;gap:7px}
+.pfoot .handoff:hover{border-color:var(--steel);color:var(--ink)}
+.pfoot .handoff:focus-visible{outline:2px solid var(--steel);outline-offset:2px}
+.fwarn{display:block;margin-top:5px;font-size:11px;color:var(--neg)}
+
+/* ---- the carried tray ---- */
+ul.tray{list-style:none;margin:0 0 10px;padding:0;max-height:260px;overflow-y:auto}
+ul.tray li{display:flex;align-items:baseline;gap:9px;padding:5px 0;
+  border-bottom:1px solid var(--rule-soft)}
+ul.tray li:last-child{border-bottom:none}
+.tname{flex:1;font-size:13px;line-height:1.3}
+.tmeta{font-family:"IBM Plex Mono",monospace;font-size:10.5px;color:var(--faint)}
+ul.tray button{background:none;border:none;color:var(--faint);cursor:pointer;
+  font-size:15px;line-height:1;padding:0 2px}
+ul.tray button:hover{color:var(--neg)}
+ul.tray button:focus-visible{outline:2px solid var(--steel);outline-offset:2px}
+.traysum{display:flex;flex-direction:column;gap:3px;font-size:11.5px;color:var(--muted);
+  border-top:1px solid var(--rule-soft);padding-top:8px;margin-bottom:10px}
+.tsplit{color:var(--neg)} .tok{color:var(--pos)}
+.tsearch{position:relative}
+.tsearch input{font-size:13px;padding:6px 9px}
+.tres{position:absolute;left:0;right:0;top:100%;z-index:20;background:var(--card);
+  border:1px solid var(--rule);border-radius:2px;margin-top:3px;max-height:230px;
+  overflow-y:auto;box-shadow:0 8px 22px -14px rgba(0,0,0,.4)}
+.tres button{display:block;width:100%;text-align:left;background:none;border:none;
+  border-bottom:1px solid var(--rule-soft);padding:7px 10px;cursor:pointer;font:inherit}
+.tres button:last-child{border-bottom:none}
+.tres button:hover{background:var(--sunk)}
+.tres button:focus-visible{outline:2px solid var(--steel);outline-offset:-2px}
+.tres span{display:block;font-size:12.5px;color:var(--ink);line-height:1.3}
+.tres i{display:block;font-style:normal;font-family:"IBM Plex Mono",monospace;
+  font-size:10px;color:var(--faint);margin-top:2px}
+
+.tgrow{font-family:"IBM Plex Mono",monospace;font-size:10.5px;padding:1px 7px;
+  border:1px solid var(--rule);border-radius:9px;background:var(--card);
+  color:var(--steel);cursor:pointer;line-height:1.5}
+.tgrow:hover{border-color:var(--steel);background:var(--steel-soft)}
+.tgrow:focus-visible{outline:2px solid var(--steel);outline-offset:2px}
+
+
+dl.terms{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+  gap:12px 30px;margin:0 0 20px;padding-bottom:18px;border-bottom:1px solid var(--rule-soft)}
+dl.terms > div{display:block}
+dl.terms dt{font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:.09em;
+  color:var(--ink);margin-bottom:3px}
+dl.terms dd{margin:0;font-size:12.5px;color:var(--muted);line-height:1.5}
+
+/* ---- literature streams, as tabs ---- */
+/* The mark that says a model is involved. Sized in em so it follows whatever
+   it sits in, and coloured by currentColor so it works on a button, in a
+   chevron and inside a badge without being restyled for each. */
+.aim{width:.9em;height:.9em;flex:none;vertical-align:-.08em;margin-right:.35em}
+.cst .aim, .pil .aim{margin-right:.3em}
+.schev .aim{margin:0 0 0 .35em;opacity:.8}
+.aileg .aim{margin-right:.4em;color:var(--ochre)}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;
+  clip:rect(0,0,0,0);white-space:nowrap;border:0}
+.tabs{display:flex;align-items:center;gap:6px 12px;flex-wrap:wrap}
+.toolname{font-family:Spectral,Georgia,serif;font-size:clamp(15px,1.5vw,18px);
+  font-weight:600;letter-spacing:-.008em;color:var(--ink);padding:0;
+  white-space:nowrap;background:none;border:0;cursor:pointer;line-height:1.2}
+.toolname:hover{color:var(--steel)}
+.toolname:focus-visible{outline:2px solid var(--steel);outline-offset:3px;border-radius:2px}
+.toolname[aria-current="true"]{color:var(--steel)}
+.toolrule{width:1px;align-self:stretch;background:var(--rule);margin:2px 13px}
+.tablist{display:flex;align-items:flex-end;gap:2px;flex-wrap:wrap}
+.tab{font:inherit;font-family:Spectral,Georgia,serif;font-size:clamp(16px,1.7vw,19px);
+  font-weight:600;letter-spacing:-.01em;line-height:1.15;
+  background:transparent;border:none;border-bottom:2px solid transparent;
+  color:var(--faint);padding:4px 14px 9px;cursor:pointer;white-space:nowrap;
+  transition:color .13s,border-color .13s}
+.tablist .tab:first-child{padding-left:2px}
+.tab[aria-selected="true"]{color:var(--ink);border-bottom-color:var(--ink)}
+.tab:hover:not(.off){color:var(--ink)}
+.tab:focus-visible{outline:2px solid var(--steel);outline-offset:2px}
+.tab.off{color:var(--rule);cursor:default}
+.tab.off:hover{color:var(--muted)}
+
+.scen .tabbtn{font-size:11.5px;padding:3px 9px}
+/* On means an example is open and this is the way back, so it reads as a state
+   and not as something to press again for more of the same. */
+.scen .tabbtn[aria-pressed="true"]{border-color:var(--steel);color:var(--ink);
+  background:var(--steel-soft,transparent)}
+.scen select{font-size:11.5px;padding:3px 6px}
+.scen{display:flex;align-items:center;gap:6px;flex:0 1 auto;min-width:0}
+.menu{position:relative}
+.menu > summary{list-style:none;display:inline-block}
+.menu > summary::-webkit-details-marker{display:none}
+.menu > summary::marker{content:""}
+.menu[open] > summary{color:var(--ink);border-color:var(--steel)}
+.mcar{font-size:9px;color:var(--faint);margin-left:1px}
+/* ONE MENU WHERE THERE WERE THREE CONTROLS. The scenario select and the
+   example toggle both lived beside this on the row that also carries the
+   chain; both are items in it now, and the button says what it is. */
+.menubtn{font-size:12.5px;font-weight:500;padding:5px 13px}
+.menubtn::after{content:" \25be";font-size:9px;color:var(--faint)}
+.menu[open] > .menubtn::after{content:" \25b4"}
+.menunote{margin:2px 4px 5px;font-size:11.5px;line-height:1.45;color:var(--muted);
+  max-width:30ch}
+.menunote b{color:var(--ink);font-weight:600}
+.menuhd{font-family:"IBM Plex Mono",monospace;font-size:8.5px;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--faint);padding:5px 9px 3px}
+.menuhd.sub{padding-top:7px}
+/* An item whose name does not say the whole of what it opens. */
+.menupop .tabbtn.mi2{line-height:1.3;padding-top:5px;padding-bottom:6px}
+.menupop .tabbtn.mi2 i{display:block;font-style:normal;font-size:10.5px;color:var(--faint);
+  margin-top:1px}
+.menupop .tabbtn.mi2:hover i{color:var(--muted)}
+/* A submenu opens in place rather than flying out: the menu is already at the
+   right edge of the window and a second column would leave it. */
+.submenu{display:flex;flex-direction:column}
+.subarw{float:right;font-size:8px;color:var(--faint);line-height:1.6}
+.subhd[aria-expanded="true"] .subarw{transform:rotate(90deg);display:inline-block}
+.subrows{display:flex;flex-direction:column;gap:1px;margin:1px 0 2px 10px;
+  padding-left:7px;border-left:1px solid var(--rule-soft)}
+.subrows .tabbtn{font-size:11.5px;padding:5px 8px}
+/* The scenarios, ticked, at the foot. */
+.scenlist{display:flex;flex-direction:column;gap:1px;max-height:240px;overflow-y:auto}
+.scenpick{display:flex;align-items:baseline;gap:6px;font-size:12px}
+.scenpick .tick{flex:0 0 11px;color:var(--ochre);font-size:10px;line-height:1.3}
+.scenpick .scennm{flex:1 1 auto;min-width:0;overflow:hidden;text-overflow:ellipsis;
+  white-space:nowrap}
+.scenpick i{flex:0 0 auto;font-style:normal;font-family:"IBM Plex Mono",monospace;
+  font-size:9px;color:var(--faint)}
+.scenpick.on .scennm{color:var(--ink);font-weight:500}
+.menupop{position:absolute;right:0;top:calc(100% + 5px);z-index:60;
+  display:flex;flex-direction:column;gap:2px;align-items:stretch;min-width:246px;
+  background:var(--card);border:1px solid var(--rule);border-radius:3px;padding:5px;
+  box-shadow:0 8px 26px rgba(0,0,0,.16)}
+.menupop .tabbtn{border:0;text-align:left;width:100%;padding:6px 9px}
+.menupop .tabbtn:hover:not(.off){background:var(--sunk);color:var(--ink)}
+.menusep{height:1px;background:var(--rule-soft);margin:3px 2px}
+/* Under the last step, at the level of its statistics. It opens wide and
+   leftwards, because thirteen rows in a column a hundred and fifty pixels
+   across is not a list anybody can read. */
+.chaindet{font-size:9px;padding:3px 8px 0 22px;font-family:"IBM Plex Mono",monospace}
+.chaindet > summary{display:inline-block;cursor:pointer;color:var(--faint);
+  letter-spacing:.07em;text-transform:uppercase;
+  text-decoration:underline;text-decoration-style:dotted;text-underline-offset:3px;
+  list-style:none}
+.chaindet > summary::-webkit-details-marker{display:none}
+.chaindet > summary::marker{content:""}
+.chaindet > summary:hover,.chaindet[open] > summary{color:var(--ink)}
+.chaindetb{position:absolute;right:0;top:100%;z-index:50;width:min(760px,84vw);
+  text-align:left;margin-top:6px;font-family:"IBM Plex Sans",system-ui,sans-serif;
+  font-size:12.5px;border:1px solid var(--rule);border-radius:3px;
+  background:var(--card);padding:13px 15px;box-shadow:0 10px 30px rgba(0,0,0,.16);
+  max-height:62vh;overflow-y:auto}
+.scenlab{font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--faint)}
+.scen select{width:auto;min-width:110px;max-width:188px;font-size:12px;padding:4px 7px}
+.tabbtn{font:inherit;font-size:12px;padding:5px 11px;border-radius:2px;
+  background:transparent;border:1px solid var(--rule);color:var(--muted);
+  cursor:pointer;white-space:nowrap}
+.tabbtn:hover:not(.off){border-color:var(--faint);color:var(--ink)}
+.tabbtn:focus-visible{outline:2px solid var(--steel);outline-offset:2px}
+.tabbtn.off{color:var(--faint);border-color:var(--rule-soft);cursor:default}
+.tabbtn.off:hover{color:var(--muted);border-color:var(--rule)}
+.tabbtn.armed{border-color:var(--ochre);color:var(--ochre);cursor:pointer}
+@media(max-width:860px){
+  .tabacts{margin-left:0;width:100%;padding-top:10px;justify-content:flex-start}
+  .toolrule{margin:4px 10px 9px}}
+
+.schemebar{display:flex;align-items:center;gap:9px;margin-top:8px;flex-wrap:wrap}
+.schemesrc{font-size:11.5px;color:var(--muted);line-height:1.4;flex:1 1 150px;min-width:0}
+.schemesrc i{font-style:italic}
+.schemebar .tabbtn{font-size:11.5px;padding:4px 9px}
+@media(prefers-reduced-motion:reduce){*{transition:none!important}}
+
+/* The worked example, inlined. Its own palette and its own rules, every
+   selector scoped to .stx -- it redefines --paper, --ink, --rule and the
+   rest at :root, and carries classes called panel, row and wrap, so
+   dropping it in unscoped would have recoloured and relaid the bench. */
+/* The statics sheet used to be transcribed here, every rule hand-prefixed
+   with .stx, so that the copy embedded on step 7 looked like the standalone
+   page. It is statics/statics.css now, written under .stx once and brought
+   in by the module that mounts either of them. */
+
+/* ===========================================================================
+   THE WORKSPACE -- a rail and a list, inside step six's bench panel.
+
+   The rail is a NAVIGATION surface, so it is quiet: no cards, no fills, one
+   weight of type, and the only colour in it is on the folder that is open.
+   The three groups are separated by a rule and labelled, because a folder
+   computed from the line and a folder the scholar made are different claims
+   and a tree that looked uniform would say they were the same.
+
+   It collapses under the list below 860px rather than squeezing: a rail
+   narrower than its longest folder name is worse than a rail above the list.
+   ========================================================================= */
+.wswrap{display:grid;grid-template-columns:202px minmax(0, 1fr);gap:0 18px;
+  align-items:start;margin-top:10px}
+.wsmain{min-width:0}
+@media (max-width:860px){
+  .wswrap{grid-template-columns:minmax(0, 1fr)}
+  .wsrail{display:flex;flex-wrap:wrap;gap:0 16px;border-right:0;padding-right:0;
+    border-bottom:1px solid var(--rule);padding-bottom:10px;margin-bottom:10px}
+  .wsgrp{flex:1 1 170px}
+}
+.wsrail{border-right:1px solid var(--rule);padding-right:14px;
+  position:sticky;top:52px;max-height:calc(100vh - 80px);overflow-y:auto}
+.wsgrp{display:flex;flex-direction:column;gap:1px;padding-bottom:9px;margin-bottom:9px;
+  border-bottom:1px dashed var(--rule)}
+.wsgrp:last-child{border-bottom:0;margin-bottom:0;padding-bottom:0}
+.wsgl{font-family:"IBM Plex Mono",monospace;font-size:9px;letter-spacing:.13em;
+  text-transform:uppercase;color:var(--faint);margin-bottom:1px}
+.wsgw{font-size:10.5px;line-height:1.35;color:var(--faint);margin-bottom:5px}
+.wsf{display:flex;align-items:baseline;justify-content:space-between;gap:8px;
+  font:inherit;font-size:12.5px;text-align:left;cursor:pointer;
+  background:none;border:0;border-radius:2px;padding:3px 6px;color:var(--muted);
+  width:100%}
+.wsf:hover{background:var(--band);color:var(--ink)}
+.wsf.on{background:var(--steel-soft);color:var(--ink)}
+.wsf.on .wsfn{font-weight:600}
+.wsf.nil{color:var(--faint)}
+.wsf:focus-visible{outline:2px solid var(--steel);outline-offset:1px}
+.wsfn{min-width:0;overflow-wrap:anywhere}
+.wsfc{font-family:"IBM Plex Mono",monospace;font-size:10px;color:var(--faint);flex:none;
+  font-variant-numeric:tabular-nums}
+.wsf.on .wsfc{color:var(--steel)}
+/* A folder of the scholar's can be deleted; a computed one cannot, because
+   there is nothing to delete -- it is a question asked of every line. */
+.wsfw{display:flex;align-items:center;gap:2px}
+.wsfx{font:inherit;font-size:13px;line-height:1;cursor:pointer;background:none;border:0;
+  color:var(--faint);padding:2px 4px;border-radius:2px;flex:none}
+.wsfx:hover{color:var(--neg);background:var(--band)}
+.wsnew{display:flex;gap:4px;margin-top:6px}
+.wsnew input{font:inherit;font-size:11.5px;padding:3px 6px;min-width:0;flex:1 1 auto;
+  background:var(--card);border:1px solid var(--rule);border-radius:2px;color:var(--ink)}
+.wsnew button{font:inherit;font-family:"IBM Plex Mono",monospace;font-size:10.5px;
+  padding:3px 8px;cursor:pointer;background:var(--card);border:1px solid var(--rule);
+  border-radius:2px;color:var(--ink);flex:none}
+.wsnew button:hover{border-color:var(--ind);color:var(--ind)}
+
+/* The bar says WHICH folder is open and HOW MUCH of the buffer it shows,
+   because a filtered list that does not say it is filtered reads as a list
+   that lost rows. */
+.wsbar{display:flex;align-items:center;gap:9px;flex-wrap:wrap}
+.wsbf{font-family:Spectral,Georgia,serif;font-size:15px;font-weight:600;color:var(--ink)}
+.wsbc{font-family:"IBM Plex Mono",monospace;font-size:10.5px;color:var(--faint);
+  font-variant-numeric:tabular-nums}
+.wsbar input[type=search]{font:inherit;font-size:12px;padding:3px 8px;flex:1 1 180px;
+  min-width:120px;background:var(--card);border:1px solid var(--rule);border-radius:2px;
+  color:var(--ink)}
+.wsbar button{font:inherit;font-family:"IBM Plex Mono",monospace;font-size:10.5px;
+  padding:3px 9px;cursor:pointer;background:var(--card);border:1px solid var(--rule);
+  border-radius:2px;color:var(--ink);flex:none}
+.wsbar button:hover{border-color:var(--ind);color:var(--ind)}
+
+/* What a row can do, on the row. The palette keeps all fifteen commands; a
+   row carries the four it is usually wanted for. */
+.wsacts{display:flex;gap:5px;flex-wrap:wrap;align-items:center;margin-top:7px}
+.wsfs{font:inherit;font-family:"IBM Plex Mono",monospace;font-size:10.5px;padding:2px 5px;
+  background:var(--card);border:1px solid var(--rule);border-radius:2px;color:var(--muted);
+  margin-left:auto;max-width:150px}
+
+.wscomb{display:flex;align-items:center;gap:7px;flex-wrap:wrap;margin-top:9px;
+  padding:8px 11px;background:var(--card);border:1px dashed var(--rule);border-radius:3px}
+.wscomb b{font-weight:600;font-size:12.5px;color:var(--ink)}
+.wscomb select,.wscomb button{font:inherit;font-family:"IBM Plex Mono",monospace;
+  font-size:10.5px;padding:2px 7px;background:var(--paper);border:1px solid var(--rule);
+  border-radius:2px;color:var(--ink);max-width:220px}
+.wscomb button{cursor:pointer}
+.wscomb button:hover:not([disabled]){border-color:var(--ind);color:var(--ind)}
+.wscomb button[disabled],.wscomb select[disabled]{opacity:.45;cursor:default}
+
+/* A score on a row, under the criteria declared on this step. The weight is
+   printed beside each bar: a bar on its own looks like a measurement, and
+   three quarters of this number is a decision somebody made. */
+.wssc{display:flex;align-items:center;gap:4px 11px;flex-wrap:wrap;margin-top:7px;
+  padding:6px 9px;background:var(--sunk);border-radius:3px}
+.wsscn{font-family:"IBM Plex Mono",monospace;font-size:11.5px;font-weight:500;color:var(--ink);
+  font-variant-numeric:tabular-nums}
+.wsscp{display:flex;align-items:center;gap:4px;font-family:"IBM Plex Mono",monospace;
+  font-size:9.5px;letter-spacing:.04em;color:var(--faint)}
+.wsscp i{font-style:normal;color:var(--muted)}
+.wssc .bnote{flex:1 1 100%}
+
+/* A result from outside, which the page did not run. The border is dashed
+   everywhere and never green: an agreeing dataset is still unverified here,
+   and a solid rule would say the bench had checked it. */
+.wsdat{margin-top:7px;padding:7px 10px;border:1px dashed var(--rule);border-radius:3px;
+  background:var(--card)}
+.wsdat.agr{border-color:var(--pos)}
+.wsdat.dis{border-color:var(--neg)}
+.wsdl{font-family:"IBM Plex Mono",monospace;font-size:9px;letter-spacing:.11em;
+  text-transform:uppercase;color:var(--faint);display:block;margin-bottom:3px}
+.wsdat.agr .wsdl{color:var(--pos)}
+.wsdat.dis .wsdl{color:var(--neg)}
+.wsdat code{font-family:"IBM Plex Mono",monospace;font-size:11px;color:var(--ink);
+  display:block;overflow-x:auto;white-space:pre}
+
+/* ---- the workspace toolbar ---------------------------------------------
+   Fifteen commands, three intakes and a combiner were a wall under the list.
+   They act ON the list, so they sit above it as menus, in the same
+   <details class="menu"> the header already uses. The popovers are wide
+   because what is in them is a form and not a list of items. */
+.wstools{display:flex;align-items:center;gap:7px;flex-wrap:wrap;margin:9px 0 2px;
+  padding-bottom:9px;border-bottom:1px solid var(--rule)}
+.wsmenu{position:relative}
+.wsmenu > summary.tabbtn::after{content:" \25be";font-size:9px;color:var(--faint)}
+.wsmenu[open] > summary.tabbtn{border-color:var(--ind);color:var(--ind)}
+/* A form, not a menu of items: left-aligned to its button and wide enough
+   for a textarea, and it must not be clipped by the panel it sits in. */
+.menupop.wsp{right:auto;left:0;width:min(560px, calc(100vw - 48px));padding:12px 14px;
+  max-height:min(70vh, 620px);overflow-y:auto}
+.wsmenu.wsset > .menupop.wsp{left:auto;right:0}
+.wscg{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:11px}
+.wscg:last-of-type{margin-bottom:4px}
+.wscgl{flex:1 1 100%;font-family:"IBM Plex Mono",monospace;font-size:9px;letter-spacing:.13em;
+  text-transform:uppercase;color:var(--faint);margin-bottom:1px}
+.wscg button{font:inherit;font-family:"IBM Plex Mono",monospace;font-size:11px;
+  padding:3px 10px;cursor:pointer;background:var(--card);border:1px solid var(--rule);
+  border-radius:2px;color:var(--ink);white-space:nowrap;text-align:left;width:auto}
+.wscg button:hover:not([disabled]){border-color:var(--ind);color:var(--ind)}
+.wscg button[disabled]{opacity:.45;cursor:help}
+.wscg .bpg button{border-radius:2px 0 0 2px;border-right:0}
+.wscgw{border-top:1px dashed var(--rule);padding-top:8px;margin-top:4px}
+/* The three ways a line gets onto the list, stacked and each named by its
+   SOURCE -- "What came back from your own tool" named the event and not the
+   thing, which is how three labelled boxes got asked "what is this?". */
+.wsadd{display:flex;flex-direction:column;gap:13px}
+.wsai{display:flex;flex-direction:column}
+.wsai .why{margin:3px 0 6px}
+.wsai .bufbox{width:100%}
+.wssimp{display:flex;align-items:center;gap:5px;margin-left:auto}
+.wssimp button{font:inherit;font-family:"IBM Plex Mono",monospace;font-size:10.5px;
+  padding:2px 8px;cursor:pointer;background:var(--card);border:1px solid var(--rule);
+  border-radius:2px;color:var(--muted)}
+.wssimp button[aria-pressed=true]{border-color:var(--steel);color:var(--ink);
+  background:var(--steel-soft)}
+@media (max-width:560px){ .wssimp{margin-left:0} }
+
+/* ---- what fills the workspace ------------------------------------------
+   The four routes in, as one toolbar, with derive primary because it is the
+   one that works from nothing. They were in three different places before --
+   derive among six export buttons, the data route inside one row's menu, the
+   class search and the ranking under a separate heading called "Ask for
+   more" -- which is three places to look for one question. */
+.wspop{display:flex;align-items:center;gap:7px;flex-wrap:wrap;flex:1 1 100%;max-width:none}
+.wspop button{font:inherit;font-family:"IBM Plex Mono",monospace;font-size:11px;
+  padding:4px 11px;cursor:pointer;background:var(--card);border:1px solid var(--rule);
+  border-radius:2px;color:var(--ink);white-space:nowrap}
+.wspop button:hover:not(.off){border-color:var(--ind);color:var(--ind)}
+.wspop button:focus-visible{outline:2px solid var(--ind);outline-offset:2px}
+.wspop button[aria-pressed=true]{border-color:var(--steel);background:var(--steel-soft)}
+/* Primary, and the only one on this step that is: it is what a scholar does
+   first and what they do again after every declaration moves. */
+.wspop .wsbig{font-size:13px;padding:7px 18px;font-weight:500;letter-spacing:.02em;
+  background:var(--steel);border-color:var(--steel);color:#fff}
+.wspop .wsbig:hover{background:var(--ink);border-color:var(--ink);color:#fff}
+@media (prefers-color-scheme:dark){ :root:not([data-theme="light"]) .wspop .wsbig{color:#0d1014} }
+:root[data-theme="dark"] .wspop .wsbig{color:#0d1014}
+/* Named and disabled, the same idiom as the second literature and the model
+   import: what is missing is visible rather than hidden. */
+.wspop button.off{opacity:.5;cursor:help;border-style:dashed}
+.wspop .wsset{margin-left:auto}
+/* A result to read, not a form to fill, so it opens under the toolbar in the
+   flow rather than in a popover over the list. */
+.wspanel{flex:1 1 100%;max-width:none;margin-top:11px;padding:12px 14px;
+  background:var(--card);border:1px solid var(--rule);border-left:3px solid var(--steel);
+  border-radius:3px}
+.wspanel .fld{flex:1 1 100%;max-width:none}
+.wspanel > .embhd:first-child{margin-bottom:2px}
+
+/* WHAT STEP 4.1 SAYS ABOUT THE SET: one line, and the two buttons. The
+   apparatus behind it is in #expdlg, because the declaration that is almost
+   always right is the whole class and a reader should reach the findings
+   without making it. */
+.xhead{display:flex;align-items:flex-start;gap:16px;flex-wrap:wrap;
+  border:1px solid var(--rule);border-left:3px solid var(--ochre-soft);
+  border-radius:4px;background:var(--sunk);padding:11px 14px}
+.xhead .cmpacts{margin-left:auto;flex:0 0 auto}
+.xhwords{flex:1 1 320px;min-width:0}
+.xhline{margin:0;font-size:13px;line-height:1.5;color:var(--ink)}
+.xhline b{font-weight:600}
+.xhsub{margin:4px 0 0;font-size:11.5px;line-height:1.5;color:var(--muted)}
+/* A set somebody narrowed is not the default, and says so by colour. */
+.xhead.xnarrow{border-left-color:var(--ochre)}
+.xhead.xnarrow .xhline b{color:var(--ochre)}
+#expdlg{max-width:min(860px,calc(100vw - 32px))}
+
+/* THE GUIDED TOURS. A dim backdrop with a hole cut in it over one real
+   control, and a caption beside the hole. The hole is four box-shadows rather
+   than a clip-path, because a clip-path on a fixed overlay stops the page
+   underneath receiving the scroll the tour asks for. page/30-tour.js. */
+/* THE DIM, WITH A HOLE PER MARK. A box-shadow spread can cut exactly one, and
+   a stop points at three or four areas now, so the dim is an SVG path over the
+   viewport with each mark's rectangle wound into it and `evenodd` doing the
+   rest. Nothing here takes pointer events: the control under a hole has to be
+   pressable, because some stops hand it to the reader. */
+.tourback{position:fixed;inset:0;z-index:70;pointer-events:none}
+.tourback .tourcut{position:absolute;inset:0;width:100%;height:100%}
+.tourback .tourcut path{fill:rgba(14,18,24,.46)}
+.tourmarks{position:fixed;inset:0;z-index:71;pointer-events:none}
+/* The first mark is the subject of the stop and is drawn solid; the rest are
+   what it bears on. A reader should be able to tell where to look first. */
+.tourmark{position:absolute;border:2px solid var(--ochre);border-radius:6px}
+.tourmark.tm2{border-width:1px;border-style:dashed;opacity:.78}
+.tourlab{position:absolute;bottom:100%;left:0;margin-bottom:4px;white-space:nowrap;
+  font-family:"IBM Plex Mono",monospace;font-size:9.5px;letter-spacing:.06em;
+  text-transform:uppercase;color:var(--card);background:var(--ochre);
+  border-radius:2px;padding:2px 6px}
+.tourlab.tlbelow{bottom:auto;top:100%;margin:4px 0 0}
+.tourmark.tm2 .tourlab{background:var(--muted)}
+.tourcard{position:fixed;z-index:71;max-width:min(430px,calc(100vw - 20px));
+  top:50%;left:50%;background:var(--card);border:1px solid var(--rule);
+  border-left:3px solid var(--ochre);border-radius:4px;padding:13px 15px;
+  box-shadow:0 10px 34px rgba(14,18,24,.26)}
+.tourcard:not([style*="top:"]){transform:translate(-50%,-50%)}
+.tourhd{display:flex;align-items:baseline;gap:9px;margin-bottom:6px}
+.tourn{font-weight:600;color:var(--ink);font-size:13.5px}
+.tourct{font-family:"IBM Plex Mono",monospace;font-size:9.5px;letter-spacing:.08em;
+  color:var(--faint);margin-left:auto}
+.toursay{margin:0 0 10px;font-size:13px;line-height:1.55;color:var(--muted)}
+.toursay b{color:var(--ink);font-weight:600}
+.touracts{display:flex;gap:7px;align-items:center}
+.touracts button{font:inherit;font-family:"IBM Plex Mono",monospace;font-size:11px;
+  padding:4px 11px;cursor:pointer;background:var(--card);color:var(--ink);
+  border:1px solid var(--rule);border-radius:3px}
+.touracts button:hover:not([disabled]){border-color:var(--ochre);color:var(--ochre)}
+.touracts button[disabled]{opacity:.42;cursor:default}
+.touracts #tourNext{background:var(--ink);color:var(--card);border-color:var(--ink)}
+/* THE CLOSING CARD, in the middle of the screen with nothing dimmed behind
+   it: one of the answers it offers is to carry on working in what is behind
+   it, so dimming that would be arguing against itself. Carrying on is the
+   button that leads, because the state the tour built is the thing a reader
+   has just spent thirteen stops getting to. */
+.tourcard.tourover{max-width:min(455px,calc(100vw - 20px));border-left-color:var(--steel)}
+.tourcard.tourover .touracts{flex-wrap:wrap;gap:7px}
+.touracts #tourStay{background:var(--ink);color:var(--card);border-color:var(--ink)}
+.touracts .tourx{margin-left:auto;border-color:transparent;color:var(--faint)}
+.tourfoot{margin:9px 0 0;font-size:11px;line-height:1.5;color:var(--faint)}
+/* WHAT THE READER IS ASKED TO PRESS, and what it said once they had. */
+.tourask{margin:0 0 10px;font-size:12px;line-height:1.5;color:var(--ink);
+  background:var(--sunk);border-left:2px solid var(--ochre);
+  border-radius:0 2px 2px 0;padding:6px 9px}
+.tourask b{color:var(--ochre)}
+.tourask.tdone{color:var(--faint);border-left-color:var(--rule)}
+/* WHAT THE SLIDESHOW IS SHOWING. The reader is watching nine maps go past and
+   has to be told which is which; the page already says it on the control, so
+   this is that text rather than a second description of it. */
+/* INSIDE A DIALOG the overlay is a child of an element the browser has put in
+   its top layer, so its own fixed positioning is measured against the viewport
+   as usual and nothing has to change -- except that a dialog has padding and a
+   border, and the backdrop must not inherit them. */
+#tourhost.indlg{position:fixed;inset:0;pointer-events:none}
+#tourhost.indlg .tourcard{pointer-events:auto}
+/* THE NEXT TOUR, offered on the last stop rather than announced on the first:
+   a reader who has just finished one is the only one who needs it. */
+.tourfoot.tournext{margin:9px 0 0}
+.tourgo{font:inherit;font-family:"IBM Plex Mono",monospace;font-size:11px;
+  padding:3px 9px;cursor:pointer;background:var(--card);color:var(--ink);
+  border:1px solid var(--rule);border-radius:3px;margin-left:4px}
+.tourgo:hover{border-color:var(--ochre);color:var(--ochre)}
+.tourcyc{margin:0 0 10px;font-size:11.5px;line-height:1.5;color:var(--muted)}
+.tourcyc b{color:var(--ink);font-weight:600}
+.tourcycn{display:block;margin-top:3px;font-family:"IBM Plex Mono",monospace;
+  font-size:9.5px;letter-spacing:.06em;color:var(--faint)}
+.toursay .aim{color:var(--ochre);margin-right:5px;vertical-align:-1px}
+/* The five, on the start page. */
+.tourlist{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:7px}
+.tourlist li{display:flex;gap:11px;align-items:baseline;flex-wrap:wrap}
+.tourlist li > span{flex:1 1 300px;font-size:12px;color:var(--muted);line-height:1.5}
+.tourlist .tabbtn{flex:0 0 auto;min-width:210px;text-align:left}
+
+/* ANOTHER SCHOLAR'S MODEL, beside this one. A dashed edge rather than a solid
+   one, all the way down, because nothing in this block is yours: it is read
+   until it is adopted. page/29-models.js. */
+.impanel{flex:1 1 100%;max-width:none;margin-top:14px;padding:12px 14px;
+  background:var(--card);border:1px dashed var(--rule);border-left:3px dashed var(--steel);
+  border-radius:3px}
+.impanel .fld{flex:1 1 100%;max-width:none}
+.impanel > .embhd:first-child{margin-bottom:2px}
+.impanel .presets{margin:5px 0 2px}
+.imlist{display:flex;flex-direction:column;gap:7px;margin-top:9px}
+.imrow{padding:7px 10px;background:var(--sunk);border-radius:3px;
+  border:1px solid var(--rule);font-size:12.5px}
+/* Adopted, and therefore no longer only theirs. */
+.imrow.took{border-color:var(--pos)}
+/* Cannot be placed against this corpus, which is a true statement about two
+   literatures and not a failure. */
+.imrow.nope{opacity:.72;border-style:dashed}
+/* Two models over one question, reaching different verdicts. */
+.imrow.clash{border-left:3px solid var(--ochre)}
+.imwhat{color:var(--ink);line-height:1.5}
+.imwhat code{font-size:11px}
+.imsay{display:flex;gap:5px;flex-wrap:wrap;align-items:center;margin-top:4px}
+.imacts{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-top:5px}
+.imrow .bnote{display:block;margin-top:3px}
+.imrow .bnote.nope{color:var(--neg)}
+.imarith{margin:7px 0 0;padding:9px 11px;background:var(--sunk);border-radius:3px;
+  border:1px solid var(--rule);font-family:"IBM Plex Mono",monospace;font-size:11px;
+  line-height:1.6;color:var(--muted);white-space:pre-wrap;overflow-x:auto;
+  max-height:320px;overflow-y:auto}
+
+/* THE LOCAL RUNTIME. Marked off from the panels around it by an edge in the
+   colour the page uses wherever a model is involved, because what happens
+   here happens in a process the page does not control. page/28-bridge.js. */
+.wsbridge{flex:1 1 100%;max-width:none;margin-top:11px;padding:12px 14px;
+  background:var(--card);border:1px solid var(--rule);border-left:3px solid var(--ind);
+  border-radius:3px}
+.wsbridge .fld{flex:1 1 100%;max-width:none}
+.wsbridge > .embhd:first-child{margin-bottom:2px}
+.wsbridge .presets{margin-top:3px}
+/* What a runtime wrote, as it wrote it. Scrolls in its own box, because a
+   traceback is long and a page that scrolls sideways is a bug. */
+.brout{margin:7px 0 0;padding:8px 10px;background:var(--sunk);border-radius:3px;
+  border:1px solid var(--rule);font-family:"IBM Plex Mono",monospace;font-size:10.5px;
+  line-height:1.55;color:var(--muted);white-space:pre-wrap;overflow-x:auto;
+  max-height:340px;overflow-y:auto}
+.brprop{margin-top:10px;padding-top:9px;border-top:1px dashed var(--rule)}
+/* An accepted design, on the finding and never mixed into the note beside it. */
+.bdesign{margin-top:7px;padding:7px 10px;background:var(--sunk);border-radius:3px;
+  border:1px dashed var(--ind);font-size:12px;color:var(--muted)}
+.bdesign > b{display:block;color:var(--ink);font-size:11.5px}
+.bdesign .bnote{display:block;margin:2px 0 0}
+.bdesign .brout{max-height:220px}
+
+/* What a retained finding can be taken to next -- which is not what step
+   seven does to it, and the row says so. */
+.wslaunch{display:flex;align-items:center;gap:7px;flex-wrap:wrap;flex:1 1 100%;max-width:none;
+  margin-top:9px;padding:9px 12px;background:var(--sunk);border-radius:3px}
+.wslaunch button{font:inherit;font-family:"IBM Plex Mono",monospace;font-size:10.5px;
+  padding:3px 9px;cursor:pointer;background:var(--card);border:1px solid var(--rule);
+  border-radius:2px;color:var(--ink)}
+.wslaunch button:hover{border-color:var(--ind);color:var(--ind)}
+.wslw{flex:1 1 230px;font-size:11.5px;line-height:1.4;color:var(--faint)}
+
+/* ---- step four's merger suggestions, under the map ----------------------
+   A list you read down once and then act on. Scrolled rather than tall: it
+   is a footnote to the construct map above it, and pushing the map off the
+   screen to show twelve proposals gets the emphasis exactly backwards. */
+.xsug{border:1px solid var(--rule);border-radius:3px;background:var(--card);
+  padding:12px 15px 14px;margin-top:4px}
+.xscroll{max-height:min(46vh, 420px);overflow-y:auto;margin-top:7px;
+  border:1px solid var(--rule-soft);border-radius:3px}
+.xscroll .chain{margin-top:0;border:0;border-radius:0}
+/* The set to explore is one row per shape class, and on step 4.1 it sits above
+   the findings it governs: shorter, so both are on the screen at once. */
+.xscroll.xshort{max-height:min(30vh, 260px)}
+.xsug .embhd{margin-bottom:2px}
+
+/* ---- the reviewer's panel ----------------------------------------------
+   Rows rather than buttons, because none of this is a thing to press. A
+   check states a fact, an exposure line states a measurement, and a note
+   from the reading states a move -- so the status word on the left is the
+   only thing that varies and the body always reads claim-then-reason. */
+.rvrow{display:grid;grid-template-columns:76px 1fr;gap:3px 11px;padding:8px 0;
+  border-top:1px solid var(--rule-soft);align-items:baseline}
+.rvrow:first-of-type{border-top:0}
+.rvb{min-width:0}
+.rvb b{display:block;font-weight:500;color:var(--ink);font-size:12.5px;line-height:1.4}
+.rvb i{display:block;font-style:normal;color:var(--faint);font-size:11.5px;line-height:1.45;
+  margin-top:3px}
+.rvidea .rvb b{color:var(--ink)}
+.rvact{font-family:"IBM Plex Mono",monospace;font-size:9px;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--steel);margin-right:5px}
+/* What it could not make actionable: kept, and visibly set apart, because
+   hiding it would be deciding for the scholar which thoughts were worth
+   having. */
+.rvinert{opacity:.62}
+.rvinert .cst{color:var(--faint)}
+.gcount.gbad{background:var(--neg);color:#fff}
+
+/* The seven names a similarity formula may use, under the box on step 1.2.
+   A name nobody can see the meaning of is not a name they can write with. */
+.simnames{list-style:none;margin:7px 0 0;padding:0;display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(255px,1fr));gap:2px 18px}
+.simnames li{font-size:12px;color:var(--faint);line-height:1.45}
+.simnames code{color:var(--muted)}
+
+/* The footer is reference, not reading. Four paragraphs of it opened the page
+   at full height under every step; now the first sentence stands and the rest
+   is one click away. */
+.footfold > summary{list-style:none;cursor:pointer;display:block;margin:0 0 2px}
+.footfold > summary::-webkit-details-marker{display:none}
+.footfold > summary:hover .footmore{color:var(--ink)}
+.footmore{font-size:12px;color:var(--faint);border-bottom:1px solid var(--rule);
+  white-space:nowrap}
+.footfold[open] > summary .footmore{display:none}
+.footfold[open] > summary{margin-bottom:11px}
+
+/* An (i) that holds what used to be a paragraph. The text lives in the DOM so
+   its markup survives, hidden until the icon is hovered or focused. */
+.inf{display:inline-flex;align-items:center;justify-content:center;width:15px;height:15px;
+  border:1px solid var(--rule);border-radius:50%;font-size:10px;font-style:normal;
+  color:var(--faint);cursor:help;vertical-align:middle;flex:none;background:var(--card)}
+.inf:hover,.inf:focus{color:var(--ink);border-color:var(--muted);outline:none}
+.infx{display:none}
+/* Two folded paragraphs in a row sat as two stacked lines holding one circle
+   each. Inline, they share a line and read as what they are: a couple of
+   notes attached to the label above them. */
+.why.fold{display:inline-block;margin:4px 7px 0 0}
+
+/* Step 3.1 asks two different questions and asked them both at once, down one
+   long page. They are tabs now, and the closed one is out of the way. */
+.declcol.off{display:none}
+
+/* WHAT IS SETTLED, on step 3.2. An open declaration is a thing to go and do,
+   so it is drawn as a chip carrying the factor it multiplies by; a retained
+   finding's settled share is drawn as a bar whose EMPTY part is the point,
+   because that part is what the method could not decide and it is the thing a
+   reader would otherwise take on trust. */
+.stslots{display:flex;flex-wrap:wrap;gap:6px;margin-top:3px}
+.stslot{display:inline-flex;align-items:baseline;gap:6px;font-size:12px;
+  background:var(--card);border:1px solid var(--rule);border-radius:2px;padding:4px 9px}
+.stslot b{font-weight:500;color:var(--ink)}
+.stslot i{font-style:normal;color:var(--muted);font-size:11.5px}
+.stslot em{font-style:normal;font-family:"IBM Plex Mono",monospace;font-size:10.5px;
+  color:var(--faint)}
+.stslot.more{color:var(--faint);border-style:dashed}
+.stbars{display:flex;flex-direction:column;gap:4px;margin-top:4px}
+.stline{display:grid;grid-template-columns:minmax(120px,2fr) 3fr 44px minmax(74px,auto);
+  align-items:center;gap:10px;font-size:12px}
+.stnm{color:var(--ink);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.stbar{display:block;height:9px;background:var(--sunk);border:1px solid var(--rule-soft);
+  border-radius:2px;overflow:hidden}
+.stbar i{display:block;height:100%;background:var(--steel);font-style:normal}
+/* The chart is the large version of the badge beside each finding, so a bar
+   takes the colour its verdict takes. */
+.stbar.proved i{background:var(--pos)} .stbar.disproved i{background:var(--neg)}
+.stbar.partial i, .stbar.turns i{background:var(--ochre-fill)}
+.stbar.flat i{background:var(--ind)}
+.stpc{font-family:"IBM Plex Mono",monospace;font-size:11px;color:var(--muted);
+  text-align:right;font-variant-numeric:tabular-nums}
+
+/* The scopes the papers stated, on step 4.1. A count, the sentence, and how
+   many papers said it; the sentence is the point, so it gets the room. */
+.scopes{display:flex;flex-direction:column;gap:0;margin-top:3px;
+  border-top:1px solid var(--rule-soft)}
+/* One line per mechanism, and the papers' own words inside it. A scope
+   sentence is econometric prose written to sit beside its own claim; on a
+   screen of its own it is reference material, so it is reachable and not
+   shown. */
+.scgrp{border-bottom:1px solid var(--rule-soft);padding:6px 2px}
+.scgrp > summary{cursor:pointer;list-style:none;display:block}
+.scgrp > summary::-webkit-details-marker{display:none}
+.scgrp > summary::before{content:"\25b8";color:var(--faint);font-size:10px;
+  margin-right:6px}
+.scgrp[open] > summary::before{content:"\25be"}
+.scgrp .scnm{font-size:13px;color:var(--ink)}
+.scgrp .scnm b{color:var(--steel);font-weight:400;margin:0 3px}
+.scgrp .scmeta{display:block;margin:2px 0 0 14px;font-size:11.5px;color:var(--faint);
+  line-height:1.45}
+.scgrp .scmeta b{color:var(--ink);font-weight:500}
+.scwords{margin:6px 0 2px 14px;padding-left:10px;border-left:1px solid var(--rule-soft)}
+.scwords p{margin:0 0 6px;font-size:12px;color:var(--muted);line-height:1.45}
+.scwords b{color:var(--ink);font-weight:500}
+.scwords i{font-style:normal;font-family:"IBM Plex Mono",monospace;font-size:10.5px;
+  color:var(--faint);margin:0 5px}
+.scwords em{font-style:italic;color:var(--faint)}
+/* The sign a paper asserted, in the colours the verdicts use, so a reader
+   scanning a mechanism's claims sees where they disagree before reading one. */
+.scsg.up{color:var(--pos)} .scsg.down{color:var(--neg)}
+.scsg.part{color:var(--ochre)} .scsg.flat{color:var(--ind)}
+
+/* What no arrow can carry, on step 1.3. The number carries the weight, so it
+   is set large and the reason beside it reads as the caption it is. */
+.offm{display:flex;flex-direction:column;gap:0;border-top:1px solid var(--rule-soft);
+  margin-top:3px}
+.offrow{display:grid;grid-template-columns:52px 1fr;gap:14px;align-items:baseline;
+  padding:10px 2px;border-bottom:1px solid var(--rule-soft)}
+.offn{font-family:"IBM Plex Mono",monospace;font-size:17px;color:var(--ink);
+  text-align:right;font-variant-numeric:tabular-nums}
+.offt{font-size:12.5px;color:var(--muted);line-height:1.45}
+.offt b{color:var(--ink);font-weight:500}
+/* Each sub-reason on its own line, indented under the one it refines, and the
+   corpus's own words set apart from the page's. */
+.offsub{display:block;margin-top:5px;padding-left:11px;font-size:12px;
+  border-left:1px solid var(--rule-soft)}
+.offeg{display:block;margin-top:2px;font-style:italic;color:var(--faint)}
+/* The trade at each setting of the paper threshold, one pill per setting with
+   the live one marked. Read on step 1.3 and moved on step 1.1. */
+.flpill{display:inline-block;margin:0 5px 4px 0;padding:2px 7px;font-size:11.5px;
+  border:1px solid var(--rule-soft);border-radius:2px;color:var(--muted);
+  font-variant-numeric:tabular-nums}
+.flpill.on{border-color:var(--ink);color:var(--ink);background:var(--ochre-soft)}
+.flpill b{font-family:"IBM Plex Mono",monospace;color:var(--steel);margin-right:3px}
+.flpill.on b{color:var(--ink)}
+.flpill i{font-style:normal;color:var(--faint);margin-left:4px}
+
+/* The scholar's own note on a proposition, on step 3.2. Set apart from the
+   computed text of the row, because the whole point is that a reader can tell
+   which of the two said it. */
+.banno{display:block;margin-top:6px;padding:6px 9px;font-size:12.5px;
+  border-left:2px solid var(--ochre);background:var(--ochre-soft);color:var(--ink);
+  line-height:1.45}
+.banno b{display:block;font-size:10.5px;font-weight:600;letter-spacing:.06em;
+  text-transform:uppercase;color:var(--steel);margin-bottom:2px}
+.banno i{display:block;margin-top:3px;font-style:normal;font-size:10.5px;
+  font-family:"IBM Plex Mono",monospace;color:var(--faint)}
+.bannoed{display:block;margin-top:6px}
+.bannoed textarea{width:100%;max-width:none;resize:vertical;min-height:52px}
+/* A paper's own theses, inside its tooltip. */
+.thx{margin:0 0 6px;padding-left:15px;font-size:12px;color:var(--muted);line-height:1.4}
+.thx li{margin:0 0 3px}
+
+/* A section note is one circle now, and it used to be a paragraph: the old
+   `flex:1 1 240px` asked for a column of text, so in a heading narrower than
+   that the circle wrapped onto a line of its own. It sits beside the title. */
+.secthd .secti{flex:0 0 auto}
+
+/* The store's own scenarios, listed inside the scenario menu. */
+.scenrows{display:flex;flex-direction:column;gap:2px;padding:2px 0}
+.scenrow{display:flex;flex-direction:column;align-items:flex-start;gap:1px;text-align:left}
+.scenrow i{font-style:normal;font-size:11px;color:var(--faint)}
+.scenrows p{max-width:46ch;white-space:normal}
+
+/* THE FULL-SCREEN BUTTON ON A DIAGRAM, in the corner of the thing it acts on.
+   The map's own lives in the zoom bar, where the other view controls already
+   are; a plate has no bar, so it carries its own. */
+.plate .fsbtn{flex:0 0 auto;font:inherit;font-size:10px;  letter-spacing:.04em;text-transform:uppercase;padding:3px 6px;cursor:pointer;
+  background:var(--paper);border:1px solid var(--rule);border-radius:2px;color:var(--faint)}
+.plate .fsbtn:hover{border-color:var(--faint);color:var(--ink)}
+.plate .fsbtn[aria-pressed="true"]{border-color:var(--ink);color:var(--ink)}
+.plate.fson{overflow:auto;padding:26px 30px;background:var(--card)}
+.plate.fson .plsvg{width:100%;height:auto;max-height:76vh}
+
+/* THE PLOT BLOCK, after the presets came first. Manual is the last button in
+   the same row, set apart so it reads as the way out of the list rather than
+   a seventh reading, and what it opens is indented under it. */
+.presets .manbtn{margin-left:6px;border-style:dashed}
+.presets .manbtn[aria-pressed="true"]{border-style:solid}
+.manbox{margin-top:9px;padding:9px 11px 2px;border-left:2px solid var(--rule);
+  background:var(--paper)}
+.manbox .movlab{display:block;margin-bottom:4px}
+.manbox .modebar{margin-bottom:10px}
+.manbox .axgrid{margin:0}
+
+/* THE CLUSTERS, in the inspector. Eight slots, because the map colours by
+   cluster too and a reader has to be able to match a row to a dot. */
+:root{--com-0:#4a6fa5;--com-1:#a8603d;--com-2:#5d7f5a;--com-3:#8a5a7a;
+  --com-4:#7a7340;--com-5:#436f6e;--com-6:#8f5547;--com-7:#5f5f7d}
+.comlist{display:flex;flex-direction:column;gap:0;margin-top:6px;
+  border-top:1px solid var(--rule-soft)}
+.comrow{display:grid;grid-template-columns:26px 1fr;gap:9px;align-items:start;
+  padding:7px 2px;border-bottom:1px solid var(--rule-soft)}
+.comn{font-family:"IBM Plex Mono",monospace;font-size:11px;color:#fff;text-align:center;
+  border-radius:2px;padding:2px 0;font-variant-numeric:tabular-nums}
+.comnm{min-width:0}
+.comnm input[data-comname]{width:100%;max-width:none;margin:0 0 4px;font-size:12.5px}
+.commem{display:block;margin-bottom:3px}
+.commv{font:inherit;font-size:11px;padding:1px 5px;margin:0 3px 3px 0;cursor:pointer;
+  background:var(--paper);border:1px solid var(--rule-soft);border-radius:2px;
+  color:var(--muted)}
+.commv:hover{border-color:var(--faint);color:var(--ink)}
+.commvsel{font:inherit;font-size:11px;margin:0 3px 3px 0;max-width:100%}
+.compap{display:block;font-size:10.5px;color:var(--faint);line-height:1.4}
+.compap i{font-style:normal;font-family:"IBM Plex Mono",monospace}
+.comties{display:flex;flex-direction:column;gap:2px;margin:3px 0 7px}
+.comres{display:block;margin-bottom:4px}
+.comres input[type=range]{width:100%}
+
+/* Accepting a cluster is a merge, so the row says what the merge would cost
+   before it is pressed. */
+.comacts{display:block;margin-top:4px}
+.comwarn{display:block;margin-top:3px;font-size:10.5px;font-weight:400;color:var(--neg);
+  line-height:1.4}
+
+/* A proposed name, and the sentence that came with it. Set apart from the
+   name in the field above, because one was computed and one was offered. */
+.comprop{display:block;margin-top:4px;padding:4px 7px;font-size:11.5px;
+  border-left:2px solid var(--steel);background:var(--paper);color:var(--muted)}
+.comprop b{font-size:10px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;
+  color:var(--steel);margin-right:5px}
+.comprop i{display:block;margin-top:3px;font-style:normal;color:var(--faint);line-height:1.4}
+.comprop .edbtn{margin-left:5px}
+.comdesc{display:block;margin-top:3px;font-size:11.5px;color:var(--muted);line-height:1.4}
+
+/* The cluster settings, in the Plot block behind the Clusters preset, laid
+   out like Manual's box so the two read as alternatives. */
+.combox{margin-top:9px;padding:9px 11px 4px;border-left:2px solid var(--rule);
+  background:var(--paper)}
+.combox .movlab{display:block;margin:7px 0 3px}
+.combox .movlab:first-child{margin-top:0}
+.combox input[type=range]{width:100%}
+.combox .modebar{margin:2px 0 0}
+.combox .comties{margin:2px 0 0}
+/* The overlay's own list needs the room a rail card never had. */
+#comdlg .dlgb{min-width:min(760px,86vw)}
+#comdlg .comrow{grid-template-columns:30px 1fr}
+
+/* A control that exists and is not built, on a row rather than in a menu. */
+.edbtn.off{opacity:.5;cursor:default;border-style:dashed}
+.edbtn.off:hover{border-color:var(--rule);color:var(--muted)}
+
+/* THE READING on step 3.2: the verdict, then the sentence, then the numbers
+   it rests on, then the expression behind a fold. The prose is set in the
+   reading face because it is prose; everything computed stays in the sans. */
+.reads{display:flex;flex-direction:column;gap:0;margin-top:8px;
+  border-top:1px solid var(--rule-soft)}
+/* STEP 3.2, THE FINDINGS TAB. A help strip, then one row per signed line as
+   a sentence. The row is deliberately the same shape as a reading row: badge
+   and region on the left, words on the right, and nothing in between. */
+/* A formula behind one click, on a step that is about what a quantity is. */
+.eqfold > summary{cursor:pointer;font-family:"IBM Plex Mono",monospace;font-size:10px;
+  letter-spacing:.05em;text-transform:uppercase;color:var(--faint);list-style:none;
+  padding:1px 0}
+.eqfold > summary::-webkit-details-marker{display:none}
+.eqfold > summary::before{content:"\25b8 ";color:var(--faint)}
+.eqfold[open] > summary::before{content:"\25be "}
+.eqfold > summary:hover{color:var(--ink)}
+.eqfold .eqwrap{margin-top:3px}
+.helpstrip{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin-top:4px}
+.helpstrip .hsmain{background:var(--steel);border-color:var(--steel);color:var(--paper);
+  font-weight:500}
+.helpstrip .hsmain:hover:not(:disabled){filter:brightness(1.12)}
+.helpstrip button[aria-expanded="true"]{border-color:var(--ochre);color:var(--ink)}
+.fnds{display:flex;flex-direction:column;gap:0;margin-top:4px;
+  border-top:1px solid var(--rule-soft)}
+.fnd{display:grid;grid-template-columns:86px 1fr;gap:12px;padding:11px 2px;
+  border-bottom:1px solid var(--rule-soft);align-items:start}
+.fndbody{min-width:0}
+.fnsay{margin:0;font-family:Spectral,Georgia,serif;font-size:14.5px;line-height:1.45;
+  color:var(--ink)}
+.fnsay b{font-weight:600}
+.fnsay .mtag, .fnsay .pwit{display:none}
+@media(max-width:620px){.fnd{grid-template-columns:1fr;gap:5px}}
+.readrow{display:grid;grid-template-columns:86px 1fr;gap:12px;padding:11px 2px;
+  border-bottom:1px solid var(--rule-soft);align-items:start}
+.rdbody{min-width:0}
+.rdsay{margin:0 0 5px;font-family:Spectral,Georgia,serif;font-size:15px;line-height:1.45;
+  color:var(--ink);max-width:70ch}
+.rdsay i{font-style:italic;color:var(--muted);font-size:14px}
+.rdmind{margin:0 0 5px;font-size:12.5px;color:var(--muted);line-height:1.45;max-width:70ch}
+.rdmind b{display:inline;font-size:10px;font-weight:600;letter-spacing:.05em;
+  text-transform:uppercase;color:var(--steel);margin-right:5px}
+.rdnums{margin:0;font-size:11.5px;color:var(--faint);line-height:1.45}
+.rdnums b{color:var(--ink);font-weight:500}
+.rdmore{margin-top:6px}
+.rdmore > summary{cursor:pointer;font-size:11.5px;color:var(--steel);list-style:none}
+.rdmore > summary::-webkit-details-marker{display:none}
+.rdmore > summary::before{content:"\25b8 ";color:var(--faint)}
+.rdmore[open] > summary::before{content:"\25be "}
+.rdfull{margin:5px 0 0;padding-left:11px;border-left:1px solid var(--rule-soft)}
+.rdprov{margin:4px 0 0;font-size:10.5px;font-family:"IBM Plex Mono",monospace;
+  color:var(--faint);line-height:1.5}

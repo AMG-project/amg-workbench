@@ -1,0 +1,228 @@
+{
+ "entail_version": "0.1.0.dev0",
+ "created_at": "2026-09-02T13:22:53Z",
+ "model": "purpose",
+ "llm": "claude-opus-5",
+ "design": {
+  "base_n": 128,
+  "grid": 81,
+  "optimised": "pi",
+  "objective": "AVp",
+  "parameters": [
+   "alpha",
+   "principal_competence",
+   "principal_conflict",
+   "agent_conflict"
+  ],
+  "ablated": []
+ },
+ "prompt_key": "009aabf026db05231c1d4b3105e1da0e",
+ "outcome": "A",
+ "patterns": [
+  {
+   "sentence": "alpha lowers A (rank correlation -0.81; Sobol first-order 0.63, total 0.68)",
+   "parameter": "alpha",
+   "first_order": 0.6266455575412991,
+   "total": 0.6804751543183204,
+   "correlation": -0.8126387346863038
+  },
+  {
+   "sentence": "principal_competence raises A (rank correlation +0.46; Sobol first-order 0.20, total 0.21)",
+   "parameter": "principal_competence",
+   "first_order": 0.20071483896072764,
+   "total": 0.2059772521847392,
+   "correlation": 0.46295617926201216
+  },
+  {
+   "sentence": "principal_conflict raises A (rank correlation +0.27; Sobol first-order 0.08, total 0.12)",
+   "parameter": "principal_conflict",
+   "first_order": 0.0830712488826949,
+   "total": 0.12436102122335096,
+   "correlation": 0.26614866570053447
+  }
+ ],
+ "candidates": [
+  {
+   "claim": "A is the discretionary side of the bargain, so it is swollen by everything principals do badly and shrunk by everything alpha moves out of their hands: principal costs are charged only against residual rights, and a wider control channel leaves a smaller residual base for them to land on.",
+   "explains": "alpha",
+   "mechanisms": [
+    "contractibility",
+    "principal_cost_incidence",
+    "principal_competence_cost",
+    "principal_conflict_cost"
+   ],
+   "minimal": [
+    "contractibility",
+    "principal_competence_cost",
+    "principal_conflict_cost"
+   ],
+   "redundant": [
+    "principal_cost_incidence"
+   ],
+   "rationale": "With both principal costs off there is nothing left to charge against the residual channel, and with the incidence rule off alpha no longer decides where a charge falls. Every one of the three observed effects then loses its carrier: alpha stops mattering because the split it governs is no longer a split between a taxed and an untaxed channel, and the two principal parameters stop mattering because they enter A only as that tax.",
+   "predicted": "vanishes",
+   "observed": "reverses",
+   "confirmed": false,
+   "total_before": 0.6804751543183204,
+   "total_after": 0.18723451788333656,
+   "correlation_before": -0.8126387346863038,
+   "correlation_after": 0.3405620062604943
+  },
+  {
+   "claim": "A is the discretionary side of the bargain, so it is swollen by everything principals do badly and shrunk by everything alpha moves out of their hands: principal costs are charged only against residual rights, and a wider control channel leaves a smaller residual base for them to land on.",
+   "explains": "principal_competence",
+   "mechanisms": [
+    "contractibility",
+    "principal_cost_incidence",
+    "principal_competence_cost",
+    "principal_conflict_cost"
+   ],
+   "minimal": [
+    "principal_competence_cost"
+   ],
+   "redundant": [
+    "contractibility",
+    "principal_cost_incidence",
+    "principal_conflict_cost"
+   ],
+   "rationale": "With both principal costs off there is nothing left to charge against the residual channel, and with the incidence rule off alpha no longer decides where a charge falls. Every one of the three observed effects then loses its carrier: alpha stops mattering because the split it governs is no longer a split between a taxed and an untaxed channel, and the two principal parameters stop mattering because they enter A only as that tax.",
+   "predicted": "vanishes",
+   "observed": "vanishes",
+   "confirmed": true,
+   "total_before": 0.2059772521847392,
+   "total_after": 0.0,
+   "correlation_before": 0.46295617926201216,
+   "correlation_after": -0.0034282171713622325
+  },
+  {
+   "claim": "A is the discretionary side of the bargain, so it is swollen by everything principals do badly and shrunk by everything alpha moves out of their hands: principal costs are charged only against residual rights, and a wider control channel leaves a smaller residual base for them to land on.",
+   "explains": "principal_conflict",
+   "mechanisms": [
+    "contractibility",
+    "principal_cost_incidence",
+    "principal_competence_cost",
+    "principal_conflict_cost"
+   ],
+   "minimal": [
+    "principal_conflict_cost"
+   ],
+   "redundant": [
+    "contractibility",
+    "principal_cost_incidence",
+    "principal_competence_cost"
+   ],
+   "rationale": "With both principal costs off there is nothing left to charge against the residual channel, and with the incidence rule off alpha no longer decides where a charge falls. Every one of the three observed effects then loses its carrier: alpha stops mattering because the split it governs is no longer a split between a taxed and an untaxed channel, and the two principal parameters stop mattering because they enter A only as that tax.",
+   "predicted": "vanishes",
+   "observed": "vanishes",
+   "confirmed": true,
+   "total_before": 0.12436102122335096,
+   "total_after": 0.0,
+   "correlation_before": 0.26614866570053447,
+   "correlation_after": 0.0038063015045205276
+  },
+  {
+   "claim": "The alpha effect on A is a width effect and not an incidence effect: alpha and AI intensity raise the fraction of what stakeholders are owed that can be written down and verified ex ante, and A falls simply because less of the concession remains to be settled at discretion.",
+   "explains": "alpha",
+   "mechanisms": [
+    "contractibility",
+    "ai_contractibility_shift"
+   ],
+   "minimal": [
+    "ai_contractibility_shift"
+   ],
+   "redundant": [
+    "contractibility"
+   ],
+   "rationale": "If A shrinks because the control channel widens, then closing the contractibility channels should remove most of alpha's grip on A. It should not remove all of it, because purpose_vulnerability_reduction is a declared substitute for ai_contractibility_shift: with contractibility gone, integration still lowers the risk premium stakeholders demand, and that route continues to pull A down as alpha rises. A strong effect surviving at reduced size, rather than disappearing, is what distinguishes this account from the incidence account.",
+   "predicted": "weakens",
+   "observed": "vanishes",
+   "confirmed": false,
+   "total_before": 0.6804751543183204,
+   "total_after": 0.01289083530773244,
+   "correlation_before": -0.8126387346863038,
+   "correlation_after": 0.08594268566497922
+  },
+  {
+   "claim": "Principal incompetence and principal self-dealing raise A because they are what stakeholders anticipate and price: the premium demanded against the possibility of being decided over badly shows up in the discretionary channel, so A is a price of exposure rather than an accounting cost of governance.",
+   "explains": "principal_competence",
+   "mechanisms": [
+    "purpose_vulnerability_reduction",
+    "commitment_credibility"
+   ],
+   "minimal": [
+    "purpose_vulnerability_reduction",
+    "commitment_credibility"
+   ],
+   "redundant": [],
+   "rationale": "Switch off the two mechanisms through which exposure is priced and principal misbehaviour can no longer be capitalised into stakeholders' opportunity cost or willingness-to-pay; what remains is only whatever direct burden the cost terms impose. The effects should therefore shrink markedly rather than vanish. The reason to expect survival is that these two are not the only route: ai_contractibility_shift substitutes for purpose_vulnerability_reduction, so part of the pricing channel is still open. That principal_competence carries a larger Sobol share than principal_conflict here is mildly against this account, since it is conflict, not honest error, that the theory says stakeholders price.",
+   "predicted": "weakens",
+   "observed": "vanishes",
+   "confirmed": false,
+   "total_before": 0.2059772521847392,
+   "total_after": 0.0,
+   "correlation_before": 0.46295617926201216,
+   "correlation_after": 0.0
+  },
+  {
+   "claim": "Principal incompetence and principal self-dealing raise A because they are what stakeholders anticipate and price: the premium demanded against the possibility of being decided over badly shows up in the discretionary channel, so A is a price of exposure rather than an accounting cost of governance.",
+   "explains": "principal_conflict",
+   "mechanisms": [
+    "purpose_vulnerability_reduction",
+    "commitment_credibility"
+   ],
+   "minimal": [
+    "purpose_vulnerability_reduction",
+    "commitment_credibility"
+   ],
+   "redundant": [],
+   "rationale": "Switch off the two mechanisms through which exposure is priced and principal misbehaviour can no longer be capitalised into stakeholders' opportunity cost or willingness-to-pay; what remains is only whatever direct burden the cost terms impose. The effects should therefore shrink markedly rather than vanish. The reason to expect survival is that these two are not the only route: ai_contractibility_shift substitutes for purpose_vulnerability_reduction, so part of the pricing channel is still open. That principal_competence carries a larger Sobol share than principal_conflict here is mildly against this account, since it is conflict, not honest error, that the theory says stakeholders price.",
+   "predicted": "weakens",
+   "observed": "vanishes",
+   "confirmed": false,
+   "total_before": 0.12436102122335096,
+   "total_after": 0.0,
+   "correlation_before": 0.26614866570053447,
+   "correlation_after": 0.0
+  },
+  {
+   "claim": "A tracks the deliberative burden of joint decision-making rather than the quality of the decisions taken: enfranchisement raises the informational load on the centre at an increasing rate, and alpha lowers A by settling more of the concession in advance so that less of it has to be deliberated at all.",
+   "explains": "alpha",
+   "mechanisms": [
+    "decision_cost"
+   ],
+   "minimal": [],
+   "redundant": [],
+   "rationale": "On this reading decision_cost is the sole convex term that gives A its curvature, and both observed effects are that term seen from two directions: alpha reduces what must be deliberated, and principal_competence proxies the difficulty of deliberating it. Removing decision_cost should therefore flatten A entirely with respect to both. This is the least likely of the four accounts, because decision_cost is described as a burden on the central authority as a function of breadth of enfranchisement, and neither alpha nor principal_competence is obviously that breadth; but it is not impossible if breadth is itself a function of the split alpha governs.",
+   "predicted": "vanishes",
+   "observed": "unchanged",
+   "confirmed": false,
+   "total_before": 0.6804751543183204,
+   "total_after": 0.7340375353746135,
+   "correlation_before": -0.8126387346863038,
+   "correlation_after": -0.8533403606147371
+  },
+  {
+   "claim": "A tracks the deliberative burden of joint decision-making rather than the quality of the decisions taken: enfranchisement raises the informational load on the centre at an increasing rate, and alpha lowers A by settling more of the concession in advance so that less of it has to be deliberated at all.",
+   "explains": "principal_competence",
+   "mechanisms": [
+    "decision_cost"
+   ],
+   "minimal": [],
+   "redundant": [],
+   "rationale": "On this reading decision_cost is the sole convex term that gives A its curvature, and both observed effects are that term seen from two directions: alpha reduces what must be deliberated, and principal_competence proxies the difficulty of deliberating it. Removing decision_cost should therefore flatten A entirely with respect to both. This is the least likely of the four accounts, because decision_cost is described as a burden on the central authority as a function of breadth of enfranchisement, and neither alpha nor principal_competence is obviously that breadth; but it is not impossible if breadth is itself a function of the split alpha governs.",
+   "predicted": "vanishes",
+   "observed": "unchanged",
+   "confirmed": false,
+   "total_before": 0.2059772521847392,
+   "total_after": 0.19467336510224936,
+   "correlation_before": 0.46295617926201216,
+   "correlation_after": 0.43040903544068665
+  }
+ ],
+ "malformed": [],
+ "summary": {
+  "proposed": 8,
+  "survived": 2,
+  "refuted": 6
+ }
+}

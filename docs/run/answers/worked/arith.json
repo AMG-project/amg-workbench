@@ -1,0 +1,217 @@
+{
+ "constants": [
+  {
+   "name": "w_clarity",
+   "value": 0.35,
+   "lo": 0.1,
+   "hi": 0.6,
+   "why": "The purpose-clarity route is the best supported of the four, at seven papers, so it carries the largest share, and the range stays wide because nothing in the corpus fixes a weight."
+  },
+  {
+   "name": "w_meaning",
+   "value": 0.3,
+   "lo": 0.05,
+   "hi": 0.6,
+   "why": "Meaningfulness is the mediated route and the only one the corpus describes as routing purpose to performance, so it is weighted near the direct mission route."
+  },
+  {
+   "name": "ceil_rights",
+   "value": 0.7,
+   "lo": 0.4,
+   "hi": 1.0,
+   "why": "How much of the residual control rights can be conceded at all. The quantity is declared a SHARE, so it cannot exceed the whole, and the cap is what makes that declaration bite rather than sit in the record unused."
+  },
+  {
+   "name": "chi_0",
+   "value": 0.2,
+   "lo": 0.05,
+   "hi": 0.3,
+   "why": "How much can be specified in advance before any measurement technology is in place. Not zero: some of what a firm owes its stakeholders is written into ordinary contracts already."
+  },
+  {
+   "name": "chi_alpha",
+   "value": 0.45,
+   "lo": 0.15,
+   "hi": 0.5,
+   "why": "How far measurement technology moves the boundary. The top of the range keeps the boundary below one, because a relation with nothing left to discretion is not the relation this literature is about."
+  },
+  {
+   "name": "gamma_pc",
+   "value": 0.2,
+   "lo": 0.05,
+   "hi": 0.3,
+   "why": "The scale of Goshen and Squire's principal cost: joint decision-making generates honest mistakes where the principals lack the expertise or the incentive to decide well. A constant with a range and not a quantity, because the corpus carries no firm-level measure of it -- the nearest candidates sit at field level or are borne by somebody other than this firm."
+  },
+  {
+   "name": "gamma_ac",
+   "value": 0.2,
+   "lo": 0.05,
+   "hi": 0.3,
+   "why": "The scale of the agency cost, on the same footing as the principal cost and deliberately equal to it at the default: the result is about WHERE each cost falls, not about which of them is larger."
+  }
+ ],
+ "lines": [
+  {
+   "lhs": "t_purpose_clarity_factor_to_firm_accounting_performance",
+   "rhs": "purpose_clarity_factor ** 0.5",
+   "family": "concave",
+   "member": "sqrt",
+   "why": "Seven papers report the association without reporting acceleration, and a survey factor pushed against an accounting outcome is far likelier to show diminishing returns than compounding ones."
+  },
+  {
+   "lhs": "t_prosocial_mission_to_perceived_work_meaningfulness",
+   "rhs": "(1 / (1 + exp(-11 * (prosocial_mission - 0.4))) - 1 / (1 + exp(4.4))) / (1 / (1 + exp(-6.6)) - 1 / (1 + exp(4.4)))",
+   "family": "sigmoid",
+   "member": "logistic",
+   "why": "The corpus says AUTHENTIC purpose makes work meaningful, and authenticity is a threshold: below it a stated mission is cheap talk and buys no meaningfulness, above it the effect arrives quickly and then saturates."
+  },
+  {
+   "lhs": "perceived_work_meaningfulness",
+   "rhs": "t_prosocial_mission_to_perceived_work_meaningfulness",
+   "family": "",
+   "member": "",
+   "why": "One term writes it, so the additive composition has one summand and the outcome stays inside [0, 1] by the term's own f(1)=1."
+  },
+  {
+   "lhs": "t_perceived_work_meaningfulness_to_firm_accounting",
+   "rhs": "(1 - exp(-2 * perceived_work_meaningfulness)) / (1 - exp(-2))",
+   "family": "concave",
+   "member": "exponential",
+   "why": "Nothing in the corpus states a curvature for the mediated leg, which is a reason to declare the FAMILY and not the line: linear is one member and naming it would assert that there is no curvature, which no paper here says either. Concave is what I will assert -- the first increments of meaningfulness convert fastest into measured performance -- and the gentlest member is the one to write inside it, so every conclusion is read against all five rather than against my guess."
+  },
+  {
+   "lhs": "firm_accounting_performance",
+   "rhs": "(w_clarity * t_purpose_clarity_factor_to_firm_accounting_performance + w_meaning * t_perceived_work_meaningfulness_to_firm_accounting) / (w_clarity + w_meaning)",
+   "family": "",
+   "member": "",
+   "why": "Additive over three routes, divided by its weights so the outcome stays inside its declared [0, 1] everywhere in the weight box rather than only at the values picked. The clarity-only index is not a fourth route: it is declared GATES, and a gate multiplies the term it acts on, so clarity pays only where clarity alone is present. That is what the corpus's null for clarity without purpose bundling says, written as arithmetic."
+  },
+  {
+   "lhs": "t_stated_purpose_commitment_to_residual_control_rights",
+   "rhs": "stated_purpose_commitment",
+   "family": "linear",
+   "member": "proportional",
+   "why": "An allocation rule splits proportionally unless something says otherwise, and nothing here does."
+  },
+  {
+   "lhs": "t_shirking_vulnerability_to_control_rights_allocation",
+   "rhs": "shirking_vulnerability",
+   "family": "linear",
+   "member": "proportional",
+   "why": "Exposure calls for rights in proportion to itself. Nothing in the claim states a curvature, and a line is the one shape that asserts none."
+  },
+  {
+   "lhs": "t_externality_vulnerability_to_control_rights_allocation",
+   "rhs": "externality_vulnerability",
+   "family": "linear",
+   "member": "proportional",
+   "why": "The same, for the other vulnerability. The two are declared alike because the claim treats them alike."
+  },
+  {
+   "lhs": "purpose_integration",
+   "rhs": "purpose_clarity_factor",
+   "family": "",
+   "member": "",
+   "why": "Purpose integration is the inverse of purpose entropy, and clarity is what the corpus measures of it: Gartenberg, Prat and Serafeim read purpose off how clearly middle managers see it, so low clarity is high entropy almost by construction. A line and not a new quantity, because the model needs the axis and the corpus already has an instrument for it."
+  },
+  {
+   "lhs": "t_purpose_integration_cost_curve",
+   "rhs": "purpose_integration * purpose_integration",
+   "family": "convex",
+   "member": "quadratic",
+   "why": "How the cost of running a purpose grows with how far it is integrated. The first increment is close to free and each further one costs more, because the informational and deliberative burden compounds. The FAMILY is declared and not the line: nothing states the exponent, so cubic and quartic are in the class and the findings are asked to survive them."
+  },
+  {
+   "lhs": "vulnerability_call",
+   "rhs": "(t_shirking_vulnerability_to_control_rights_allocation + t_externality_vulnerability_to_control_rights_allocation) / 2",
+   "family": "",
+   "member": "",
+   "why": "Shirking OR externalities, as the claim joins them: either is a reason on its own, so they add, and the half keeps the call inside the unit the two vulnerabilities are measured in. Written as a mean and not as a MAX on purpose: max is the closer reading of OR, and it is undecidable where the two cross, which refused every finding downstream of it rather than only the two that differentiate in a vulnerability. The mean is the weaker claim and the one the page can sign."
+  },
+  {
+   "lhs": "rights_conceded",
+   "rhs": "ceil_rights * t_stated_purpose_commitment_to_residual_control_rights * (purpose_integration ** 0.5) * vulnerability_call",
+   "family": "",
+   "member": "",
+   "why": "What is conceded to stakeholders at all, before it is divided. Commitment allocates it proportionally, the ceiling is how much of the whole can be conceded, integration raises it with diminishing returns, and vulnerability is the reason there is anything to concede: no exposure, no rights."
+  },
+  {
+   "lhs": "t_measurement_and_accountability_technology_to_contractibility",
+   "rhs": "measurement_and_accountability_technology ** 0.5",
+   "family": "concave",
+   "member": "sqrt",
+   "why": "How much of what is owed can be specified and verified in advance, as a function of the measurement technology in place. The FAMILY is declared and not the line, because nothing states a curvature here either: concave is the assertion, and it is the one the governance argument already makes elsewhere -- the easiest terms to verify are written down first, so the first increment of measurement makes the most contractible and each further one makes less. Writing the gentlest member inside the class means every finding that turns on this term is read against all five rather than against one guess."
+  },
+  {
+   "lhs": "contractibility",
+   "rhs": "chi_0 + chi_alpha * t_measurement_and_accountability_technology_to_contractibility",
+   "family": "",
+   "member": "",
+   "why": "The control-rights boundary itself. Some of what a firm owes is written into ordinary contracts before any measurement technology is in place, which is the floor, and chi_alpha is how far the technology moves it. Both are held below one together, because a relation with nothing left to discretion is not the relation this literature is about."
+  },
+  {
+   "lhs": "net_of_agency",
+   "rhs": "rights_conceded * (1 - gamma_ac * t_purpose_integration_cost_curve)",
+   "family": "",
+   "member": "",
+   "why": "Delegation degrades what was conceded before it is divided, which is why the agency cost reaches both channels: it is taken out of the whole and each side is drawn from what is left."
+  },
+  {
+   "lhs": "control_rights_allocation",
+   "rhs": "contractibility * net_of_agency",
+   "family": "",
+   "member": "",
+   "why": "Channel B. The part of what survives delegation that can be pinned down in advance. The principal cost is ABSENT from this line and the absence is the claim: residual rights are the ones exercised at discretion, so the cost of a principal deciding badly is charged where the discretion is and nowhere else."
+  },
+  {
+   "lhs": "residual_control_rights_allocation",
+   "rhs": "net_of_agency - control_rights_allocation - rights_conceded * gamma_pc * t_purpose_integration_cost_curve",
+   "family": "",
+   "member": "",
+   "why": "Channel A. The rest of what survives delegation, less the whole of the principal cost. A and B sum to what was conceded net of both costs, so the division creates nothing and loses nothing."
+  }
+ ],
+ "checks": [
+  {
+   "for": "performance stays in range",
+   "form": "nonneg",
+   "expr": "1 - firm_accounting_performance",
+   "y": "",
+   "x": "",
+   "why": "A weighted average of terms that each top out at one cannot exceed one; if this goes negative the weighting is wrong, not the theory."
+  },
+  {
+   "for": "clarity raises performance",
+   "form": "up",
+   "expr": "",
+   "y": "firm_accounting_performance",
+   "x": "purpose_clarity_factor",
+   "why": "Falsified if performance ever falls in clarity, which would mean a weight has gone negative or a term is not increasing as declared."
+  },
+  {
+   "for": "mission raises meaningfulness",
+   "form": "up",
+   "expr": "",
+   "y": "perceived_work_meaningfulness",
+   "x": "prosocial_mission",
+   "why": "Falsified if meaningfulness falls anywhere in mission, which the sigmoid cannot do unless the member was substituted for one that is not increasing."
+  },
+  {
+   "for": "measurement moves value into the control channel",
+   "form": "up",
+   "expr": "",
+   "y": "control_rights_allocation",
+   "x": "measurement_and_accountability_technology",
+   "why": "Falsified if the pinned-down channel does not grow as more can be verified in advance."
+  },
+  {
+   "for": "and takes it out of the residual one",
+   "form": "down",
+   "expr": "",
+   "y": "residual_control_rights_allocation",
+   "x": "measurement_and_accountability_technology",
+   "why": "Falsified if the discretionary channel does not shrink by what the other gains. This replaces a check that asked for the opposite: measurement was read as modulating the allocation, and it allocates."
+  }
+ ],
+ "note": "This commits to four things no declaration fixed: that purpose integration is read off clarity, that the control-rights boundary moves with measurement technology and with nothing else here, that the agency cost is taken out of what was conceded before it is divided so it reaches both channels, and that the principal cost is charged against the residual channel alone. The last two are the incidence claim, and they are the reason the two channels can be told apart."
+}

@@ -1,0 +1,40 @@
+{
+ "format": "amg-relation",
+ "v": 1,
+ "id": "purpose-clarity-factor>firm-accounting-performance",
+ "from": {
+  "id": "purpose-clarity-factor",
+  "label": "purpose clarity factor",
+  "signature": {"level": "individual", "bearer": "employee", "scale": "interval",
+                "stock_or_flow": "stock", "aggregation": "mean-to-firm"}
+ },
+ "to": {
+  "id": "firm-accounting-performance",
+  "label": "firm accounting performance",
+  "signature": {"level": "firm", "bearer": "firm", "scale": "ratio",
+                "stock_or_flow": "flow", "aggregation": "none"}
+ },
+ "role": "generates",
+ "sign": "positive",
+ "forms": {
+  "family": "credibility",
+  "properties": ["f(0)=0", "f(1)=1", "increasing", "sigmoid"],
+  "members": [
+   {"name": "logistic", "expr": "(1 / (1 + exp(-11 * (X - 0.4))) - 1 / (1 + exp(4.4))) / (1 / (1 + exp(-6.6)) - 1 / (1 + exp(4.4)))"},
+   {"name": "smoothstep", "expr": "X * X * (3 - 2 * X)"}
+  ]
+ },
+ "scope": {
+  "stated": "publicly-traded corporations (the article's own stated referent for 'firms')",
+  "box": {"purpose_clarity_factor": [0, 1]}
+ },
+ "rests_on": [
+  {"claim": "026-gartenberg-prat-serafeim-2019#claim-4",
+   "paper": "026-gartenberg-prat-serafeim-2019",
+   "quote": "Bottom-to-top decile change in Purpose-clarity -> +0.115 log(Tobin's Q)"}
+ ],
+ "not_fixed": [
+  {"what": "the magnitude", "why": "one paper reports an effect and three assert the relation without one; the class admits every member consistent with the four properties"},
+  {"what": "which member", "why": "no paper states a functional form; the enumeration runs all of them rather than one being chosen here"}
+ ]
+}

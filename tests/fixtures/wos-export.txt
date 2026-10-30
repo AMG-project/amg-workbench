@@ -1,0 +1,3 @@
+PT	AU	TI	SO	PY	DI	TC	AB
+J	Mayer, C	The Future of the Corporation and the Economics of Purpose	Journal of Management Studies	2021	10.1111/joms.12660	231	some abstract
+J	Edmans, A	The end of ESG, and what grow the pie actually claims	Financial Management	2023	10.1111/fima.12413	118	some abstract

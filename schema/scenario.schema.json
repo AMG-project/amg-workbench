@@ -1,0 +1,534 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://bellapurpose.org/amg/scenario.schema.json",
+  "title": "An Action Model Generator curation",
+  "description": "Every decision taken on the nine steps, every proposal that was accepted with what was asked for it, the rounds through five to seven, and the record. A replay reads this instead of calling a language model.",
+  "type": "object",
+  "required": [
+    "format",
+    "v",
+    "bench",
+    "at",
+    "snap"
+  ],
+  "properties": {
+    "format": {
+      "const": "amg-scenario"
+    },
+    "v": {
+      "const": 1
+    },
+    "bench": {
+      "$ref": "#/$defs/stamp"
+    },
+    "corpus": {
+      "description": "Which corpus build the ids in this file resolve against. Null when the payload was generated before webdata.py emitted one, which is a fact worth carrying rather than hiding.",
+      "oneOf": [
+        {
+          "type": "null"
+        },
+        {
+          "$ref": "#/$defs/corpus"
+        }
+      ]
+    },
+    "at": {
+      "type": "string",
+      "description": "ISO 8601, when the file was written"
+    },
+    "name": {
+      "type": "string"
+    },
+    "snap": {
+      "type": "object",
+      "description": "The decisions themselves. Opaque to this schema on purpose: it is the bench's own store, it changes as steps change, and pinning its shape here would make every step a schema change.",
+      "required": [
+        "stage"
+      ],
+      "properties": {
+        "stage": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "lits": {
+          "description": "Every literature this curation holds, where it holds more than the one that ships. Steps 1.1 to 1.3 run once per literature, so each carries its own payload and its own decisions over it: the outlet frame, the tradition, the threshold and what was admitted under it; the tightness, the merges and the pairs forced apart; the three bars and their components; and what was dropped. Everything from step 2.1 on belongs to the scenario rather than to any one literature, because it is about the joined model. Absent where there is one literature, which is what a scenario written before 25 October 2026 is.",
+          "type": "object",
+          "properties": {
+            "at": {
+              "type": "string",
+              "description": "Which one steps 1.1 to 1.3 were last reading"
+            },
+            "union": {
+              "type": "boolean",
+              "description": "True where the file was written while step 2.1 held every literature on one map. The snapshot's OWN state is then that union's permissive scope -- every outlet, a threshold of one, no bar raised -- and a reader who took it for a literature's decisions would read the shipped literature as having drawn every construct it holds. Each literature's own decisions are on its own record either way."
+            },
+            "join": {
+              "type": "object",
+              "description": "Which two the join on step 2.1 is between",
+              "properties": {
+                "a": {
+                  "type": "string"
+                },
+                "b": {
+                  "type": "string"
+                }
+              }
+            },
+            "joins": {
+              "description": "The decisions that span literatures, which belong to no single one of them. A merge whose members come from two literatures IS the join; a pair forced apart across two is the refusal of one.",
+              "type": "object",
+              "properties": {
+                "groups": {
+                  "type": "array",
+                  "items": {
+                    "type": "object"
+                  }
+                },
+                "apart": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              }
+            },
+            "main": {
+              "type": "object",
+              "description": "What was added to, and decided over, the literature that ships. Its PAYLOAD is not here: it is in docs/bench/graph-data.js, which every reader of this format already loads, and a copy would be 1.6 megabytes of the same thing going stale."
+            },
+            "list": {
+              "description": "Every other literature, each with its own payload. A payload read in from an amg-stream file travels here, because nothing else carries it.",
+              "type": "array",
+              "items": {
+                "type": "object",
+                "required": [
+                  "id"
+                ],
+                "properties": {
+                  "id": {
+                    "type": "string"
+                  },
+                  "name": {
+                    "type": "string"
+                  },
+                  "base": {
+                    "type": "object"
+                  },
+                  "add": {
+                    "type": "object"
+                  },
+                  "dec": {
+                    "type": "object"
+                  },
+                  "at": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "models": {
+          "type": "array",
+          "description": "ANOTHER SCHOLAR'S ACTION MODEL, HELD BESIDE THIS ONE and not opened over it. Importing a scenario replaces this curation with that one; this is the other act, and the one a reader of a published action model wants: their declarations, their arithmetic and their retained conclusions sit next to yours so the two can be compared. Each declaration is placed against this corpus -- the statement it is about is looked for here, through this curation's own merges -- and is adopted BY NAME, one at a time, or not at all. Nothing in a model read in is part of this one until it is adopted, and `took` is which of them were. A conclusion is never adopted: it is a claim about THEIR model, and taking one would be taking a result without its proof. It is here so that two models reaching different verdicts about one pair can be seen to.",
+          "items": {
+            "type": "object",
+            "required": [
+              "id",
+              "name"
+            ],
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "name": {
+                "type": "string"
+              },
+              "kind": {
+                "enum": [
+                  "scenario",
+                  "stream"
+                ],
+                "description": "Which file it was read from. A stream carries declarations and no arithmetic."
+              },
+              "read": {
+                "type": "string"
+              },
+              "from": {
+                "type": "object",
+                "description": "The bench and corpus it was written off, so a reader can tell a model declared against this corpus from one declared against another.",
+                "properties": {
+                  "bench": {
+                    "type": "string"
+                  },
+                  "corpus": {
+                    "type": "string"
+                  },
+                  "at": {
+                    "type": "string"
+                  }
+                }
+              },
+              "decls": {
+                "type": "array",
+                "description": "One per statement, in the vocabulary this bench names. A verb or a shape property outside it was refused on the way in and counted in `why`.",
+                "items": {
+                  "type": "object",
+                  "required": [
+                    "statement"
+                  ],
+                  "properties": {
+                    "statement": {
+                      "type": "string"
+                    },
+                    "rel": {
+                      "type": "string"
+                    },
+                    "roles": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      }
+                    },
+                    "props": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      }
+                    },
+                    "target": {
+                      "type": "string"
+                    },
+                    "lo": {
+                      "type": "number"
+                    },
+                    "hi": {
+                      "type": "number"
+                    },
+                    "note": {
+                      "type": "string"
+                    },
+                    "at": {
+                      "type": "string"
+                    }
+                  }
+                }
+              },
+              "vtypes": {
+                "type": "array",
+                "description": "The kinds, aspects and bounds they declared for a construct.",
+                "items": {
+                  "type": "object",
+                  "required": [
+                    "id"
+                  ],
+                  "properties": {
+                    "id": {
+                      "type": "string"
+                    },
+                    "name": {
+                      "type": "string"
+                    },
+                    "kinds": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      }
+                    },
+                    "aspects": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      }
+                    },
+                    "lo": {
+                      "type": "number"
+                    },
+                    "hi": {
+                      "type": "number"
+                    },
+                    "bset": {
+                      "type": "boolean"
+                    },
+                    "at": {
+                      "type": "string"
+                    }
+                  }
+                }
+              },
+              "arith": {
+                "type": "object",
+                "description": "Their arithmetic as they kept it, NOT run here: their names need not resolve against these declarations, and an arithmetic that half-resolved would be worse than none. It can be put into the editor, where it goes through the same parser as anything typed.",
+                "properties": {
+                  "lines": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "lhs": {
+                          "type": "string"
+                        },
+                        "rhs": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  },
+                  "consts": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "name": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  },
+                  "at": {
+                    "type": "string"
+                  },
+                  "note": {
+                    "type": "string"
+                  },
+                  "sig": {
+                    "type": "string"
+                  },
+                  "hand": {
+                    "type": "boolean"
+                  },
+                  "checks": {
+                    "type": "integer"
+                  },
+                  "miss": {
+                    "type": "integer"
+                  }
+                }
+              },
+              "findings": {
+                "type": "array",
+                "description": "What they retained, with the verdict and the share of THEIR declared box. Read-only.",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "y": {
+                      "type": "string"
+                    },
+                    "x": {
+                      "type": "string"
+                    },
+                    "text": {
+                      "type": "string"
+                    },
+                    "verdict": {
+                      "type": "string"
+                    },
+                    "method": {
+                      "type": "string"
+                    },
+                    "src": {
+                      "type": "string"
+                    },
+                    "at": {
+                      "type": "string"
+                    },
+                    "anno": {
+                      "type": "string"
+                    }
+                  }
+                }
+              },
+              "counts": {
+                "type": "object",
+                "properties": {
+                  "decls": {
+                    "type": "integer"
+                  },
+                  "vtypes": {
+                    "type": "integer"
+                  },
+                  "lines": {
+                    "type": "integer"
+                  },
+                  "findings": {
+                    "type": "integer"
+                  }
+                }
+              },
+              "took": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "description": "Which of them were adopted, as `d<i>` for a declaration and `v<i>` for a quantity. An adoption is a decision and it is on the record."
+              },
+              "why": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "description": "What was refused on the way in, in words."
+              }
+            }
+          }
+        }
+      }
+    },
+    "provenance": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/accepted"
+      }
+    },
+    "rounds": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/round"
+      }
+    },
+    "log": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/event"
+      }
+    }
+  },
+  "$defs": {
+    "stamp": {
+      "type": "object",
+      "required": [
+        "v",
+        "at"
+      ],
+      "properties": {
+        "v": {
+          "type": "string"
+        },
+        "at": {
+          "type": "string"
+        }
+      }
+    },
+    "corpus": {
+      "type": "object",
+      "required": [
+        "commit",
+        "at"
+      ],
+      "properties": {
+        "commit": {
+          "type": "string",
+          "description": "The commit touching index, constructs and papers; suffixed +dirty if it was not clean"
+        },
+        "at": {
+          "type": "string",
+          "description": "That commit's date, not the build's, so an unchanged corpus rebuilds byte-identical"
+        }
+      }
+    },
+    "accepted": {
+      "description": "An answer somebody accepted, with the prompt that asked for it. A decision whose input nobody kept is not reproducible however careful the rest of the chain is.",
+      "type": "object",
+      "required": [
+        "what",
+        "at",
+        "prompt",
+        "answer"
+      ],
+      "properties": {
+        "what": {
+          "description": "Which prompt asked for it. Every kind the workbench records is listed here: a scenario that used one the schema did not name was written by the workbench and then rejected by its own format.",
+          "enum": [
+            "arith",
+            "assign",
+            "cluname",
+            "comp",
+            "cond",
+            "defn",
+            "expset",
+            "guide",
+            "join",
+            "paper",
+            "predict",
+            "read",
+            "roles",
+            "scheme",
+            "simil",
+            "similall"
+          ]
+        },
+        "at": {
+          "type": "string"
+        },
+        "model": {
+          "type": "string",
+          "description": "Empty when the capability reports none, which it does not promise to"
+        },
+        "prompt": {
+          "type": "string"
+        },
+        "answer": {
+          "type": "string",
+          "description": "JSON, as text, exactly as it came back"
+        }
+      }
+    },
+    "round": {
+      "description": "One pass through steps five to seven. Comparing two of them answers what the loop exists to ask.",
+      "type": "object",
+      "required": [
+        "n",
+        "props"
+      ],
+      "properties": {
+        "n": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "at": {
+          "type": "string"
+        },
+        "lines": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "decl": {
+          "type": "object",
+          "description": "choice key to value, as declared at the close of the round"
+        },
+        "props": {
+          "type": "object",
+          "description": "'outcome | parameter' to its verdict"
+        }
+      }
+    },
+    "event": {
+      "type": "object",
+      "required": [
+        "n",
+        "kind",
+        "text"
+      ],
+      "properties": {
+        "n": {
+          "type": "integer"
+        },
+        "kind": {
+          "type": "string"
+        },
+        "text": {
+          "type": "string"
+        },
+        "detail": {
+          "type": "string"
+        },
+        "at": {
+          "type": "string"
+        },
+        "stage": {
+          "type": "integer"
+        }
+      }
+    }
+  }
+}

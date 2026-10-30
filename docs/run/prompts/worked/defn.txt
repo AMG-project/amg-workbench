@@ -1,0 +1,33 @@
+A management scholar is ranking candidate predictions from their own formal
+model. They have written, in prose, what they want the ranking to favour. Compile it into
+weights.
+
+WHAT THEY WROTE, VERBATIM:
+What I want ranked first is whether the sign is proved at all rather than sampled, and after that I care most about findings that need more than one mechanism to hold and that nobody has already asserted. I also care whether a board could act on it, which I know you cannot compute.
+
+The ranking is arithmetic over exactly four quantities. These are the four this page can
+compute about a candidate, and there is nothing else available to it:
+  material  -- the effect is at least as big as the smallest difference the theory is declared to be about
+  novel  -- no relation carried from the literature runs straight from the antecedent to the consequent
+  composition  -- it survives every mechanism switched off alone and dies when a pair is switched off together
+  robust  -- it still holds with every declared weight at half and at double
+
+Give each a weight from 0 to 3. Zero means what they wrote gives it no role; do not spread
+weight onto a quantity they never mentioned. Put a name in "require" only where they said a
+candidate failing it should be ruled out altogether rather than ranked lower.
+
+Then the part that matters most. List, in their own words, every part of what they wrote that
+NONE of those four quantities reaches. Do not approximate it onto the nearest one, do not drop
+it, and do not pad the list with things the four do cover. Scholars name criteria like
+interestingness, relevance, novelty, surprise, policy bite or theoretical contribution; most
+of those are only partly reachable by four numbers a browser computes, so where that is the
+case, weight the part that is reachable and put the rest in the list verbatim. The page prints
+that list beside the ranking and says plainly that those parts did not affect it, which is the
+only honest thing it can do with a criterion it cannot compute. A short list that is true is
+worth more than an empty one.
+
+Return ONLY JSON:
+{"weights":{"material":1,"novel":2,"composition":3,"robust":0},
+ "require":["material"],
+ "note":"<one sentence, addressed to them, saying what this rule now favours>",
+ "unreachable":["<a phrase from what they wrote>"]}

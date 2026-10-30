@@ -1,0 +1,200 @@
+{
+ "id": "purpose-two-channel",
+ "title": "Purpose integration and the two rights channels",
+ "source": "drystone.models.purpose, ported for notes/39 P1",
+ "grammar": "amg-arithmetic/1",
+ "constants": {
+  "chi_0": 0.22,
+  "chi_pi": 0.45,
+  "chi_alpha": 0.34,
+  "rho_max": 0.8646647167633873,
+  "kappa": 1.4,
+  "delta": 0.4,
+  "gamma_pc": 0.3,
+  "gamma_ac": 0.32,
+  "w_employees": 0.4,
+  "w_shareholders": 0.35,
+  "w_community": 0.25,
+  "ceil_employees": 0.85,
+  "ceil_shareholders": 0.55,
+  "ceil_community": 1.0
+ },
+ "parameters": {
+  "pi": [
+   0.0,
+   1.0
+  ],
+  "alpha": [
+   0.0,
+   1.0
+  ],
+  "principal_competence": [
+   0.0,
+   1.0
+  ],
+  "principal_conflict": [
+   0.0,
+   1.0
+  ],
+  "agent_conflict": [
+   0.0,
+   1.0
+  ],
+  "fsi_employees": [
+   0.0,
+   1.0
+  ],
+  "outside_employees": [
+   0.0,
+   1.0
+  ],
+  "fsi_shareholders": [
+   0.0,
+   1.0
+  ],
+  "outside_shareholders": [
+   0.0,
+   1.0
+  ],
+  "fsi_community": [
+   0.0,
+   1.0
+  ],
+  "outside_community": [
+   0.0,
+   1.0
+  ]
+ },
+ "mechanisms": [
+  "purpose_vulnerability_reduction",
+  "commitment_credibility",
+  "decision_cost",
+  "principal_competence_cost",
+  "principal_conflict_cost",
+  "agent_conflict_cost",
+  "contractibility",
+  "ai_contractibility_shift",
+  "ai_agency_cost_reduction",
+  "principal_cost_incidence",
+  "agency_cost_incidence"
+ ],
+ "classes": {
+  "credibility": {
+   "family": "sigmoid",
+   "member": "logistic"
+  },
+  "saturating": {
+   "family": "concave",
+   "member": "exponential"
+  },
+  "convex_cost": {
+   "family": "convex",
+   "member": "quadratic"
+  }
+ },
+ "outcome_names": {
+  "a": "A",
+  "b": "B",
+  "avp": "AVp",
+  "vp": "Vp",
+  "firm_value": "firm_value"
+ },
+ "lines": [
+  "# Purpose integration and the two rights channels, in the kernel grammar.",
+  "# Ported from drystone.models.purpose; the constants are that model's own.",
+  "",
+  "# --- what can be specified in advance --------------------------------",
+  "# DIVERGENCE 1. purpose.py's ai_contractibility_shift does two things:",
+  "#   it raises chi, and it removes the (1 - alpha) factor from exposure.",
+  "#   One term cannot be zeroed in two places, so alpha is read back out",
+  "#   of the term, and switching the term off takes both effects with it.",
+  "t_ai_contractibility_shift = chi_alpha * alpha",
+  "alpha_eff = t_ai_contractibility_shift / chi_alpha",
+  "t_contractibility = min(chi_0 + chi_pi * pi + t_ai_contractibility_shift, 1)",
+  "chi = t_contractibility",
+  "",
+  "# --- value created, at this integration and at none ------------------",
+  "eff = (1 / (1 + exp(-11 * ((pi) - 0.4))) - 1 / (1 + exp(4.4))) / (1 / (1 + exp(-6.6)) - 1 / (1 + exp(4.4)))",
+  "sat = (1 - exp(-2 * (eff))) / (1 - exp(-2))",
+  "t_commitment_credibility = eff",
+  "t_purpose_vulnerability_reduction = rho_max * sat",
+  "t_principal_conflict_cost = principal_conflict",
+  "exposure = (1 - t_purpose_vulnerability_reduction) * (1 - alpha_eff)",
+  "",
+  "# the same block at pi = 0, because every outcome is a difference",
+  "eff_0 = (1 / (1 + exp(-11 * ((0) - 0.4))) - 1 / (1 + exp(4.4))) / (1 / (1 + exp(-6.6)) - 1 / (1 + exp(4.4)))",
+  "sat_0 = (1 - exp(-2 * (eff_0))) / (1 - exp(-2))",
+  "# DIVERGENCE 2. The baseline reads the live mechanism terms through a",
+  "#   ratio, so ablating a mechanism moves both ends of the difference,",
+  "#   as it does in purpose.py where _creation is called twice with the",
+  "#   same ablation set.",
+  "#   The divisor is floored, because at pi = 0 both eff and sat are",
+  "#   exactly zero and 0/0 is how the first version of this port",
+  "#   returned NaN for every outcome at the origin. The grammar reads",
+  "#   no exponent notation, so the floor is written out.",
+  "pvr_on = t_purpose_vulnerability_reduction / max(rho_max * sat, 0.000000000001)",
+  "cred_on = t_commitment_credibility / max(eff, 0.000000000001)",
+  "exposure_0 = (1 - rho_max * sat_0 * pvr_on) * (1 - alpha_eff)",
+  "fsi_eff_employees = fsi_employees * (1 + kappa * t_commitment_credibility)",
+  "base_employees = w_employees * fsi_eff_employees * (1 - 0.5 * outside_employees)",
+  "created_employees = base_employees * (1 - t_principal_conflict_cost * exposure)",
+  "fsi_eff_employees_0 = fsi_employees * (1 + kappa * eff_0 * cred_on)",
+  "base_employees_0 = w_employees * fsi_eff_employees_0 * (1 - 0.5 * outside_employees)",
+  "created_employees_0 = base_employees_0 * (1 - t_principal_conflict_cost * exposure_0)",
+  "gain_employees = created_employees - created_employees_0",
+  "fsi_eff_shareholders = fsi_shareholders * (1 + kappa * t_commitment_credibility)",
+  "base_shareholders = w_shareholders * fsi_eff_shareholders * (1 - 0.5 * outside_shareholders)",
+  "created_shareholders = base_shareholders * (1 - t_principal_conflict_cost * exposure)",
+  "fsi_eff_shareholders_0 = fsi_shareholders * (1 + kappa * eff_0 * cred_on)",
+  "base_shareholders_0 = w_shareholders * fsi_eff_shareholders_0 * (1 - 0.5 * outside_shareholders)",
+  "created_shareholders_0 = base_shareholders_0 * (1 - t_principal_conflict_cost * exposure_0)",
+  "gain_shareholders = created_shareholders - created_shareholders_0",
+  "fsi_eff_community = fsi_community * (1 + kappa * t_commitment_credibility)",
+  "base_community = w_community * fsi_eff_community * (1 - 0.5 * outside_community)",
+  "created_community = base_community * (1 - t_principal_conflict_cost * exposure)",
+  "fsi_eff_community_0 = fsi_community * (1 + kappa * eff_0 * cred_on)",
+  "base_community_0 = w_community * fsi_eff_community_0 * (1 - 0.5 * outside_community)",
+  "created_community_0 = base_community_0 * (1 - t_principal_conflict_cost * exposure_0)",
+  "gain_community = created_community - created_community_0",
+  "",
+  "# --- the costs of integrating ----------------------------------------",
+  "cvx = (pi) * (pi)",
+  "t_decision_cost = delta * cvx",
+  "t_principal_competence_cost = (1 - principal_competence) * gamma_pc * cvx",
+  "t_ai_agency_cost_reduction = 0.6 * alpha",
+  "t_agent_conflict_cost = agent_conflict * gamma_ac * cvx * (1 - t_ai_agency_cost_reduction)",
+  "",
+  "# --- where each cost lands -------------------------------------------",
+  "t_agency_cost_incidence = chi",
+  "# DIVERGENCE 3. purpose.py's principal_cost_incidence is inverted: by",
+  "#   default principal costs stay OFF the control channel, and ABLATING",
+  "#   the mechanism puts them on. A term can only be zeroed, so the term",
+  "#   here is the shield, and switching it off exposes the channel.",
+  "t_principal_cost_incidence = chi",
+  "principal_on_control = chi - t_principal_cost_incidence",
+  "reach_employees = min(chi, ceil_employees)",
+  "control_employees = reach_employees * gain_employees - t_agency_cost_incidence * t_agent_conflict_cost * w_employees - principal_on_control * t_principal_competence_cost * w_employees - reach_employees * t_decision_cost * w_employees",
+  "total_employees = gain_employees - (t_agent_conflict_cost + t_principal_competence_cost + t_decision_cost) * w_employees",
+  "residual_employees = total_employees - control_employees",
+  "reach_shareholders = min(chi, ceil_shareholders)",
+  "control_shareholders = reach_shareholders * gain_shareholders - t_agency_cost_incidence * t_agent_conflict_cost * w_shareholders - principal_on_control * t_principal_competence_cost * w_shareholders - reach_shareholders * t_decision_cost * w_shareholders",
+  "total_shareholders = gain_shareholders - (t_agent_conflict_cost + t_principal_competence_cost + t_decision_cost) * w_shareholders",
+  "residual_shareholders = total_shareholders - control_shareholders",
+  "reach_community = min(chi, ceil_community)",
+  "control_community = reach_community * gain_community - t_agency_cost_incidence * t_agent_conflict_cost * w_community - principal_on_control * t_principal_competence_cost * w_community - reach_community * t_decision_cost * w_community",
+  "total_community = gain_community - (t_agent_conflict_cost + t_principal_competence_cost + t_decision_cost) * w_community",
+  "residual_community = total_community - control_community",
+  "",
+  "# --- the two channels, and what the firm keeps -----------------------",
+  "# DIVERGENCE 4. The grammar admits lower-case names only, and the",
+  "#   model's published outcomes are A, B, AVp and Vp. They are written",
+  "#   here as a, b, avp and vp, and `outcome_names` below carries the",
+  "#   mapping so a conclusion about B still reads as a conclusion about B.",
+  "a = residual_employees + residual_shareholders + residual_community",
+  "b = control_employees + control_shareholders + control_community",
+  "avp = a + b",
+  "level = created_employees + created_shareholders + created_community",
+  "vp = level - (t_decision_cost + t_principal_competence_cost + t_agent_conflict_cost)",
+  "firm_value = avp - (gain_employees + gain_shareholders + gain_community) * 0.5"
+ ]
+}
